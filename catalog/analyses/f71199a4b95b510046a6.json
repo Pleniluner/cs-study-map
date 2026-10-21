@@ -1,0 +1,37 @@
+{
+  "blob_sha": "cb4df697465494cfc0635dc7f621012791a1bb93",
+  "context_key": "caba0378f127a5ab9899e9ba5c7a6cc4481302ab57415285c105ca5eabbc2bc0",
+  "coverage": "partial",
+  "evidence": [
+    {
+      "id": "p1",
+      "locator": "PDF 第 1 页"
+    }
+  ],
+  "extractor_version": "1",
+  "model": "gpt-6-astra",
+  "path": "大二上/数据结构/hw/PA2-4-v2-Sort.pdf",
+  "prompt_version": "1",
+  "result": {
+    "resource_type": "other",
+    "subjects": [
+      "algorithms"
+    ],
+    "suggested_exercises": [],
+    "suggested_prerequisites": [],
+    "summary": "当前局部提取仅包含标题与页脚，标题表明资料涉及排序，但未展示具体算法、题目或教学内容，无法确定资料形式及详细范围。",
+    "topics": [
+      {
+        "evidence_ids": [
+          "p1"
+        ],
+        "name": "排序（仅标题支持）"
+      }
+    ],
+    "uncertain": true
+  },
+  "review_status": "ai-unreviewed",
+  "schema_version": 1,
+  "source_commit": "37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0",
+  "source_repository": "PKUanonym/REKCARC-TSC-UHT"
+}

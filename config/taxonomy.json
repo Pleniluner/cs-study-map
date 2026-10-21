@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "subjects": {
+    "programming": "程序设计与软件工程",
+    "algorithms": "算法、理论与编译",
+    "systems": "计算机系统与体系结构",
+    "networks-security": "网络与信息安全",
+    "ai-data": "人工智能与数据科学",
+    "graphics-hci": "图形图像与人机交互",
+    "mathematics": "数学基础",
+    "physics-electronics": "物理、电子与信号",
+    "general": "通识与工程基础",
+    "unclassified": "待分类"
+  },
+  "resource_types": ["lecture", "exercise", "lab", "reference-code", "report", "reading", "tool", "other"]
+}

@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cs-study-map"
+version = "0.1.0"
+description = "Personal CS textbooks with incremental source sync, AI topic analysis and original lessons"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{name = "Pleniluner"}]
+dependencies = ["pypdf>=6,<7"]
+
+[project.scripts]
+cs-study-map = "cs_study_map.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

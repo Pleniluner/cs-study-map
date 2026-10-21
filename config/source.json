@@ -1,0 +1,8 @@
+{
+  "repository": "PKUanonym/REKCARC-TSC-UHT",
+  "branch": "master",
+  "max_download_bytes": 16777216,
+  "max_extract_chars": 10000,
+  "max_pdf_pages": 8,
+  "daily_analysis_limit": 6
+}

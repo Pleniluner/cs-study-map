@@ -1,0 +1,392 @@
+[
+  {
+    "id": "systems-bf4ab838ab",
+    "title": "信息科学技术概论",
+    "source_path": "大一上/信息科学技术概论",
+    "subject": "systems"
+  },
+  {
+    "id": "general-b7131258bd",
+    "title": "工程图学基础",
+    "source_path": "大一上/工程图学基础",
+    "subject": "general"
+  },
+  {
+    "id": "mathematics-eabace721e",
+    "title": "微积分A(1)",
+    "source_path": "大一上/微积分A(1)",
+    "subject": "mathematics"
+  },
+  {
+    "id": "general-3e2f335e5b",
+    "title": "思想道德修养与法律基础",
+    "source_path": "大一上/思想道德修养与法律基础",
+    "subject": "general"
+  },
+  {
+    "id": "mathematics-22a3b7e3eb",
+    "title": "离散数学(1)",
+    "source_path": "大一上/离散数学(1)",
+    "subject": "mathematics"
+  },
+  {
+    "id": "programming-f25722d2ba",
+    "title": "程序设计基础",
+    "source_path": "大一上/程序设计基础",
+    "subject": "programming"
+  },
+  {
+    "id": "mathematics-447fa5e1e3",
+    "title": "线性代数(1)",
+    "source_path": "大一上/线性代数(1)",
+    "subject": "mathematics"
+  },
+  {
+    "id": "systems-29be48d211",
+    "title": "计算机科学导论",
+    "source_path": "大一上/计算机科学导论",
+    "subject": "systems"
+  },
+  {
+    "id": "general-b582cb0bc4",
+    "title": "中国近现代史纲要-舒文老师",
+    "source_path": "大一下/中国近现代史纲要-舒文老师",
+    "subject": "general"
+  },
+  {
+    "id": "physics-electronics-6f7c9e8aca",
+    "title": "大学物理B(1)",
+    "source_path": "大一下/大学物理B(1)",
+    "subject": "physics-electronics"
+  },
+  {
+    "id": "physics-electronics-3b18d3cb27",
+    "title": "大学物理英-老毕（资料集2）",
+    "source_path": "大一下/大学物理英-老毕",
+    "subject": "physics-electronics"
+  },
+  {
+    "id": "mathematics-fd71c2c5eb",
+    "title": "微积分A(2)",
+    "source_path": "大一下/微积分A(2)",
+    "subject": "mathematics"
+  },
+  {
+    "id": "mathematics-ed97198321",
+    "title": "离散数学(2)",
+    "source_path": "大一下/离散数学(2)",
+    "subject": "mathematics"
+  },
+  {
+    "id": "mathematics-ed17c06428",
+    "title": "线性代数(2)",
+    "source_path": "大一下/线性代数(2)",
+    "subject": "mathematics"
+  },
+  {
+    "id": "programming-2eb8ebf955",
+    "title": "面向对象程序设计基础-刘知远老师",
+    "source_path": "大一下/面向对象程序设计基础-刘知远老师",
+    "subject": "programming"
+  },
+  {
+    "id": "programming-b22cecde05",
+    "title": "面向对象程序设计基础-姚海龙老师",
+    "source_path": "大一下/面向对象程序设计基础-姚海龙老师",
+    "subject": "programming"
+  },
+  {
+    "id": "programming-7a89ea998e",
+    "title": "Week_1-Qt",
+    "source_path": "大一小学期/Week_1-Qt",
+    "subject": "programming"
+  },
+  {
+    "id": "programming-c829466101",
+    "title": "Week_2-Socket",
+    "source_path": "大一小学期/Week_2-Socket",
+    "subject": "programming"
+  },
+  {
+    "id": "programming-057bfd34a1",
+    "title": "Week_3-Python",
+    "source_path": "大一小学期/Week_3-Python",
+    "subject": "programming"
+  },
+  {
+    "id": "ai-data-4cb35a28a6",
+    "title": "人工神经网络",
+    "source_path": "大三上/人工神经网络",
+    "subject": "ai-data"
+  },
+  {
+    "id": "graphics-hci-439505d259",
+    "title": "人机交互理论与技术",
+    "source_path": "大三上/人机交互理论与技术",
+    "subject": "graphics-hci"
+  },
+  {
+    "id": "physics-electronics-080f0cb0d3",
+    "title": "信号处理原理",
+    "source_path": "大三上/信号处理原理",
+    "subject": "physics-electronics"
+  },
+  {
+    "id": "algorithms-196f695cfe",
+    "title": "编译原理",
+    "source_path": "大三上/编译原理",
+    "subject": "algorithms"
+  },
+  {
+    "id": "systems-caa1b44712",
+    "title": "计算机组成原理",
+    "source_path": "大三上/计算机组成原理",
+    "subject": "systems"
+  },
+  {
+    "id": "networks-security-8b5da45c6a",
+    "title": "计算机网络原理",
+    "source_path": "大三上/计算机网络原理",
+    "subject": "networks-security"
+  },
+  {
+    "id": "networks-security-0221fb9770",
+    "title": "计算机网络安全技术",
+    "source_path": "大三上/计算机网络安全技术",
+    "subject": "networks-security"
+  },
+  {
+    "id": "programming-1a8266c912",
+    "title": "软件工程",
+    "source_path": "大三上/软件工程",
+    "subject": "programming"
+  },
+  {
+    "id": "graphics-hci-2e7eb7aa78",
+    "title": "多媒体技术",
+    "source_path": "大三下/多媒体技术",
+    "subject": "graphics-hci"
+  },
+  {
+    "id": "systems-b178a6dc0b",
+    "title": "存储技术基础",
+    "source_path": "大三下/存储技术基础",
+    "subject": "systems"
+  },
+  {
+    "id": "ai-data-d5e5dfdabc",
+    "title": "搜索引擎技术基础",
+    "source_path": "大三下/搜索引擎技术基础",
+    "subject": "ai-data"
+  },
+  {
+    "id": "systems-8f9743b9ff",
+    "title": "操作系统",
+    "source_path": "大三下/操作系统",
+    "subject": "systems"
+  },
+  {
+    "id": "mathematics-1ca518525b",
+    "title": "数值分析",
+    "source_path": "大三下/数值分析",
+    "subject": "mathematics"
+  },
+  {
+    "id": "graphics-hci-c504856052",
+    "title": "数字图像处理",
+    "source_path": "大三下/数字图像处理",
+    "subject": "graphics-hci"
+  },
+  {
+    "id": "mathematics-0f50ed7fa1",
+    "title": "数学实验",
+    "source_path": "大三下/数学实验",
+    "subject": "mathematics"
+  },
+  {
+    "id": "programming-41a0af088d",
+    "title": "数据库专题训练",
+    "source_path": "大三下/数据库专题训练",
+    "subject": "programming"
+  },
+  {
+    "id": "ai-data-e186395374",
+    "title": "数据挖掘",
+    "source_path": "大三下/数据挖掘",
+    "subject": "ai-data"
+  },
+  {
+    "id": "ai-data-d89f22ed7c",
+    "title": "机器学习概论",
+    "source_path": "大三下/机器学习概论",
+    "subject": "ai-data"
+  },
+  {
+    "id": "ai-data-d41fa7839a",
+    "title": "模式识别",
+    "source_path": "大三下/模式识别",
+    "subject": "ai-data"
+  },
+  {
+    "id": "networks-security-57bef81d20",
+    "title": "现代密码学",
+    "source_path": "大三下/现代密码学",
+    "subject": "networks-security"
+  },
+  {
+    "id": "systems-e64c0aacf9",
+    "title": "计算机系统结构",
+    "source_path": "大三下/计算机系统结构",
+    "subject": "systems"
+  },
+  {
+    "id": "networks-security-f2ed618cd8",
+    "title": "计算机网络专题训练",
+    "source_path": "大三下/计算机网络专题训练",
+    "subject": "networks-security"
+  },
+  {
+    "id": "systems-682dc9fbf2",
+    "title": "并行计算机体系结构与编程",
+    "source_path": "大三小学期/并行计算机体系结构与编程",
+    "subject": "systems"
+  },
+  {
+    "id": "mathematics-65ec565fe5",
+    "title": "复变函数引论",
+    "source_path": "大二上/复变函数引论",
+    "subject": "mathematics"
+  },
+  {
+    "id": "physics-electronics-dba5d27e5a",
+    "title": "大学物理B(2)",
+    "source_path": "大二上/大学物理B(2)",
+    "subject": "physics-electronics"
+  },
+  {
+    "id": "physics-electronics-f671b60e02",
+    "title": "大学物理英-老毕（资料集1）",
+    "source_path": "大二上/大学物理英-老毕",
+    "subject": "physics-electronics"
+  },
+  {
+    "id": "algorithms-325074162e",
+    "title": "数据结构",
+    "source_path": "大二上/数据结构",
+    "subject": "algorithms"
+  },
+  {
+    "id": "physics-electronics-083f43152d",
+    "title": "物理实验B(1)",
+    "source_path": "大二上/物理实验B(1)",
+    "subject": "physics-electronics"
+  },
+  {
+    "id": "physics-electronics-20a70e4934",
+    "title": "电子学基础",
+    "source_path": "大二上/电子学基础",
+    "subject": "physics-electronics"
+  },
+  {
+    "id": "physics-electronics-0503555f53",
+    "title": "电子学基础实验",
+    "source_path": "大二上/电子学基础实验",
+    "subject": "physics-electronics"
+  },
+  {
+    "id": "general-29375c10ee",
+    "title": "马克思主义基本原理",
+    "source_path": "大二上/马克思主义基本原理",
+    "subject": "general"
+  },
+  {
+    "id": "ai-data-2705a5ed1a",
+    "title": "人工智能导论",
+    "source_path": "大二下/人工智能导论",
+    "subject": "ai-data"
+  },
+  {
+    "id": "mathematics-9c8a62a9e3",
+    "title": "初等数论",
+    "source_path": "大二下/初等数论",
+    "subject": "mathematics"
+  },
+  {
+    "id": "algorithms-5eaf02f371",
+    "title": "形式语言与自动机",
+    "source_path": "大二下/形式语言与自动机",
+    "subject": "algorithms"
+  },
+  {
+    "id": "physics-electronics-0b3dccdeda",
+    "title": "数字逻辑实验",
+    "source_path": "大二下/数字逻辑实验",
+    "subject": "physics-electronics"
+  },
+  {
+    "id": "physics-electronics-09bf5c671f",
+    "title": "数字逻辑电路",
+    "source_path": "大二下/数字逻辑电路",
+    "subject": "physics-electronics"
+  },
+  {
+    "id": "mathematics-f892a84e7f",
+    "title": "概率论数理统计",
+    "source_path": "大二下/概率论数理统计",
+    "subject": "mathematics"
+  },
+  {
+    "id": "physics-electronics-a74a98d1f1",
+    "title": "物理实验B(2)",
+    "source_path": "大二下/物理实验B(2)",
+    "subject": "physics-electronics"
+  },
+  {
+    "id": "graphics-hci-b98cddd4d9",
+    "title": "计算机图形学基础",
+    "source_path": "大二下/计算机图形学基础",
+    "subject": "graphics-hci"
+  },
+  {
+    "id": "mathematics-0ccbf7c6b1",
+    "title": "随机数学方法",
+    "source_path": "大二下/随机数学方法",
+    "subject": "mathematics"
+  },
+  {
+    "id": "programming-a19b812208",
+    "title": "Java台湾小学期",
+    "source_path": "大二小学期/Java台湾小学期",
+    "subject": "programming"
+  },
+  {
+    "id": "programming-95c94ff399",
+    "title": "Java程序设计与训练",
+    "source_path": "大二小学期/Java程序设计与训练",
+    "subject": "programming"
+  },
+  {
+    "id": "systems-0e50cf488a",
+    "title": "汇编语言程序设计",
+    "source_path": "大二小学期/汇编语言程序设计",
+    "subject": "systems"
+  },
+  {
+    "id": "systems-a65ee7cedc",
+    "title": "嵌入式系统",
+    "source_path": "大四上/嵌入式系统",
+    "subject": "systems"
+  },
+  {
+    "id": "networks-security-d21c7d90fe",
+    "title": "网络安全工程与实践",
+    "source_path": "大四上/网络安全工程与实践",
+    "subject": "networks-security"
+  },
+  {
+    "id": "mathematics-5e8994cf37",
+    "title": "组合数学",
+    "source_path": "研究生/组合数学",
+    "subject": "mathematics"
+  }
+]

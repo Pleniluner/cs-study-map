@@ -1,0 +1,69 @@
+name: Sync study map
+
+on:
+  schedule:
+    - cron: '23 3 * * *'
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: '最多尝试分析的资料数（0–100）'
+        required: false
+        default: '6'
+        type: number
+      require_ai:
+        description: '必须配置模型且所选资料分析无失败'
+        required: false
+        default: false
+        type: boolean
+      book_limit:
+        description: '最多编写的教材章节数（0–10）'
+        required: false
+        default: '1'
+        type: number
+
+permissions:
+  contents: write
+
+concurrency:
+  group: study-map-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: pyproject.toml
+      - name: Install
+        run: python -m pip install -e .
+      - name: Synchronize, analyze and build
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          CS_STUDY_API_BASE: ${{ vars.CS_STUDY_API_BASE }}
+          CS_STUDY_MODEL: ${{ vars.CS_STUDY_MODEL }}
+          CS_STUDY_API_STYLE: ${{ vars.CS_STUDY_API_STYLE || 'chat' }}
+          CS_STUDY_API_KEY: ${{ secrets.CS_STUDY_API_KEY }}
+          RUN_LIMIT: ${{ github.event_name == 'workflow_dispatch' && format('{0}', inputs.limit) || '6' }}
+          RUN_BOOK_LIMIT: ${{ github.event_name == 'workflow_dispatch' && format('{0}', inputs.book_limit) || '1' }}
+          REQUIRE_AI: ${{ inputs.require_ai || 'false' }}
+        run: python scripts/workflow_sync.py
+      - name: Test and audit before publishing generated changes
+        run: |
+          python -m unittest discover -s tests -v
+          git add -- catalog docs
+          cs-study-map validate --tracked
+      - name: Commit generated changes
+        run: |
+          if git diff --cached --quiet; then
+            echo 'No generated changes to commit.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'chore: synchronize study catalog and guides'
+          git push

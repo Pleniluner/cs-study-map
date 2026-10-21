@@ -1,0 +1,97 @@
+{
+  "blob_sha": "47388b7c57b7ddfebc1cb78a314fd1261021ecec",
+  "context_key": "0c4ef5874d48da826b7268c869043a37e712409c3554d10a93a0ee4ccc77f73c",
+  "coverage": "extracted-text",
+  "evidence": [
+    {
+      "id": "L1-L40",
+      "locator": "第 1–40 行"
+    },
+    {
+      "id": "L41-L80",
+      "locator": "第 41–80 行"
+    },
+    {
+      "id": "L81-L120",
+      "locator": "第 81–120 行"
+    },
+    {
+      "id": "L121-L153",
+      "locator": "第 121–153 行"
+    }
+  ],
+  "extractor_version": "1",
+  "model": "gpt-6-astra",
+  "path": "大三下/操作系统/hw/2017/2014011330_738789_452509766_lab2-2014011330/lab2-tsinghua_huangjh14.md",
+  "prompt_version": "1",
+  "result": {
+    "resource_type": "report",
+    "subjects": [
+      "systems"
+    ],
+    "suggested_exercises": [
+      "建议用小规模分配与释放序列检查空闲链表顺序、块拆分及相邻块合并。",
+      "建议绘制虚拟地址经页目录和页表定位物理页的过程，并核对相关位字段。",
+      "建议追踪多个映射共享物理页时的引用计数变化及 TLB 失效操作。",
+      "建议绘制启动各阶段的地址转换关系，检查分段与分页切换时的映射连续性。"
+    ],
+    "suggested_prerequisites": [
+      "建议掌握 C 语言指针、结构体与位运算",
+      "建议熟悉链表及内存块管理",
+      "建议理解虚拟地址、线性地址和物理地址",
+      "建议了解 x86 分段、分页和异常处理基础"
+    ],
+    "summary": "所提供片段是一份 uCore 内存管理实验报告，讨论 First-Fit 空闲块管理、二级页表的查找与创建、页映射移除和物理页回收，并分析页访问异常及启动过程中分段与分页的地址映射衔接。内容包含实现思路和改进设想，部分硬件机制描述需进一步核实；本摘要仅覆盖已提取片段。",
+    "topics": [
+      {
+        "evidence_ids": [
+          "L1-L40"
+        ],
+        "name": "First-Fit 分配与有序空闲链表、空闲块拆分和合并"
+      },
+      {
+        "evidence_ids": [
+          "L1-L40",
+          "L41-L80"
+        ],
+        "name": "页目录与页表项的查找及按需创建"
+      },
+      {
+        "evidence_ids": [
+          "L41-L80",
+          "L81-L120"
+        ],
+        "name": "页表项的地址字段、存在标志与访问权限"
+      },
+      {
+        "evidence_ids": [
+          "L81-L120"
+        ],
+        "name": "页访问异常与异常处理入口"
+      },
+      {
+        "evidence_ids": [
+          "L81-L120"
+        ],
+        "name": "移除页映射、引用计数回收与 TLB 一致性"
+      },
+      {
+        "evidence_ids": [
+          "L121-L153"
+        ],
+        "name": "物理页管理结构与页表映射的对应关系"
+      },
+      {
+        "evidence_ids": [
+          "L121-L153"
+        ],
+        "name": "内核启动期间分段与分页的地址映射衔接"
+      }
+    ],
+    "uncertain": false
+  },
+  "review_status": "ai-unreviewed",
+  "schema_version": 1,
+  "source_commit": "37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0",
+  "source_repository": "PKUanonym/REKCARC-TSC-UHT"
+}

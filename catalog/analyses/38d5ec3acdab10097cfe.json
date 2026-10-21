@@ -1,0 +1,108 @@
+{
+  "blob_sha": "c40b455a18845095ff916c5e8126ec694eb3f936",
+  "context_key": "3383f7ed50fe5e484cbd7afbc4c8f106a5e82a0a5938a14c6c0feec5e5cf11fc",
+  "coverage": "partial",
+  "evidence": [
+    {
+      "id": "p3",
+      "locator": "PDF 第 3 页"
+    },
+    {
+      "id": "p4",
+      "locator": "PDF 第 4 页"
+    },
+    {
+      "id": "p5",
+      "locator": "PDF 第 5 页"
+    },
+    {
+      "id": "p6",
+      "locator": "PDF 第 6 页"
+    },
+    {
+      "id": "p7",
+      "locator": "PDF 第 7 页"
+    },
+    {
+      "id": "p8",
+      "locator": "PDF 第 8 页"
+    }
+  ],
+  "extractor_version": "1",
+  "model": "gpt-6-astra",
+  "path": "大一上/程序设计基础/hw/编程手记/大作业_ERISC程序可视化.pdf",
+  "prompt_version": "1",
+  "result": {
+    "resource_type": "lab",
+    "subjects": [
+      "programming",
+      "systems",
+      "graphics-hci"
+    ],
+    "suggested_exercises": [
+      "建议自行设计少量指令，记录执行前后的寄存器和存储状态",
+      "建议用自选数值练习小端字节拆分与重组",
+      "建议模拟连续入栈和出栈，检查栈顶变化与数据恢复",
+      "建议制作简单状态视图，突出每条指令修改的位置"
+    ],
+    "suggested_prerequisites": [
+      "建议掌握基本程序控制结构与函数",
+      "建议理解数组、地址与指针的基本概念",
+      "建议熟悉二进制、十六进制及字节表示",
+      "建议了解栈的后进先出特性"
+    ],
+    "summary": "这是一份围绕自定义 ERISC 指令执行可视化的编程大作业说明。已提供片段介绍精简指令集背景、内存与独立栈模型、寄存器与立即数表示，以及数据读写、栈操作和部分算术指令。材料仅局部提取，具体可视化规则、完整输入输出及任务要求尚未展示。",
+    "topics": [
+      {
+        "evidence_ids": [
+          "p3"
+        ],
+        "name": "指令执行过程的程序可视化"
+      },
+      {
+        "evidence_ids": [
+          "p3"
+        ],
+        "name": "精简指令集与复杂指令集的访存方式"
+      },
+      {
+        "evidence_ids": [
+          "p4"
+        ],
+        "name": "ERISC 内存、独立栈与寄存器模型"
+      },
+      {
+        "evidence_ids": [
+          "p5"
+        ],
+        "name": "寄存器操作数、立即数及进制表示"
+      },
+      {
+        "evidence_ids": [
+          "p5",
+          "p6"
+        ],
+        "name": "内存加载、存储与小端字节序"
+      },
+      {
+        "evidence_ids": [
+          "p6",
+          "p7"
+        ],
+        "name": "入栈、出栈与栈顶地址变化"
+      },
+      {
+        "evidence_ids": [
+          "p7",
+          "p8"
+        ],
+        "name": "寄存器赋值与基本算术运算"
+      }
+    ],
+    "uncertain": false
+  },
+  "review_status": "ai-unreviewed",
+  "schema_version": 1,
+  "source_commit": "37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0",
+  "source_repository": "PKUanonym/REKCARC-TSC-UHT"
+}
