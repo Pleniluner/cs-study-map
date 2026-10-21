@@ -1,0 +1,86 @@
+# cs-study-map · Personal computer science textbooks
+
+| [简体中文](../../README.md) | [繁體中文](zh-TW.md) | [English](en.md) | [日本語](ja.md) | [Русский](ru.md) | [Français](fr.md) | [Deutsch](de.md) | [Italiano](it.md) | [Português](pt.md) | [Español](es.md) | [العربية](ar.md) | [한국어](ko.md) |
+
+This project is mainly for the maintainer’s own study. It selects useful topics from [REKCARC-TSC-UHT](https://github.com/PKUanonym/REKCARC-TSC-UHT), reorganizes them into a Chinese-language textbook according to prerequisites, and adds explanations, original examples, solved exercises, and self-checks. Synchronization, AI classification, and source guides support selection and updates.
+
+**[Textbook](../textbook/index.md)** · [Study map](../index.md) · [Coverage](../status.md) · [Usage](../usage.md) · [Sources and licensing](../../ATTRIBUTION.md)
+
+This is Pleniluner’s personal learning project, with no official affiliation with Tsinghua University or upstream maintainers. The public repository contains original tools, textbook drafts, source indexes, and AI guides. Original course materials, slides, assignments, student source code, and extracted full text are not published.
+
+## Three starter chapters
+
+| # | Topic | Activity |
+| --- | --- | --- |
+| 1 | [Binary, bytes, and little-endian order](../textbook/01-data-and-bytes.md) | Split a number into bytes, then reconstruct it from memory |
+| 2 | [Registers, memory, and the stack](../textbook/02-execution-and-stack.md) | Trace a toy machine state step by step |
+| 3 | [First fit, splitting, and coalescing](../textbook/03-first-fit.md) | Simulate allocation and release; explain external fragmentation |
+
+Each chapter has detailed explanations, 2 original examples, 3 exercises with expandable solutions, a self-check, and topic sources. This is an AI first draft, not reviewed by subject experts or trial learners; it does not mean every course has a textbook.
+
+## What you can do
+
+Study by chapter and keep private notes in Git-ignored `.local/`; create original chapters from identified topics while recording source versions; find materials by field, course, or AI-identified topic and open a fixed upstream revision; inspect topics, prerequisites, suggestions, and evidence locations; check upstream changes and reuse unchanged analyses; override automatic classification with human decisions.
+
+AI guides state extraction coverage, model, and unreviewed status. Catalog completeness and AI-guide coverage are tracked separately; partial extraction, unsupported formats, and failures are reported honestly.
+
+## Quick start
+
+Requires Python 3.11+. This fetches metadata and builds navigation; no model key is needed and source contents are not downloaded.
+
+```bash
+git clone https://github.com/Pleniluner/cs-study-map.git
+cd cs-study-map
+python -m venv .venv
+# Linux / macOS:
+source .venv/bin/activate
+# Windows PowerShell:
+# .\.venv\Scripts\Activate.ps1
+python -m pip install -e .
+cs-study-map run --limit 0
+```
+
+## AI workflow
+
+Both providers use the same validation and guide-generation pipeline. For a model API set `CS_STUDY_API_BASE`, `CS_STUDY_MODEL`, and `CS_STUDY_API_KEY`. For local Codex CLI set `CS_STUDY_PROVIDER=codex` and `CS_STUDY_MODEL`; optionally set `CS_STUDY_CODEX_BIN`. API adapters support Chat Completions and Responses; `chat` is the default and `CS_STUDY_API_STYLE=responses` selects Responses. Use a model supported by the service. Codex requires a current CLI supporting the chosen model and manages its credentials.
+
+```bash
+cs-study-map analyze --course 程序设计基础 --limit 2 --require-ai
+cs-study-map write --limit 1 --require-ai
+cs-study-map build
+cs-study-map validate
+```
+
+See [usage and setup](../usage.md) for configuration, PowerShell examples, and GitHub settings.
+
+## Scheduled synchronization
+
+GitHub Actions checks upstream daily and can be started manually as **Sync study map**. When a model is configured, it generates guides and textbook chapters within configured budgets, validates, and commits updates. Defaults are at most 6 materials analyzed and 1 chapter written per day; scope is in `config/curriculum.json`.
+
+Without a model, the workflow still syncs the catalog and reports `not-configured`; existing guides remain available and changed sources await analysis. Filename rules and simulated output are never labeled completed AI work. Anyone can browse the published map without a model account. Forks need their own model API configuration; local Codex login is not uploaded to GitHub. GitHub may disable schedules after prolonged inactivity; re-enable them in Actions.
+
+## Project layout
+
+```text
+config/                  routes, sources, taxonomy, course map and overrides
+catalog/                 metadata, analyses, textbook drafts and coverage
+docs/textbook/           GitHub-readable textbook (currently Chinese)
+docs/                    course and field navigation, study log template, usage
+src/cs_study_map/        synchronization, extraction, AI classification and writing
+tests/                   synchronization, recovery, provenance and publishing checks
+.github/workflows/       scheduled synchronization and CI
+.cache/                  local source files and extraction cache; never commit
+.local/                  private study notes; never commit
+```
+
+README translations do not mean the textbook chapters themselves are translated; the current textbook text is Chinese.
+
+Initial field mappings came from the maintainer’s personal organization of course directories. They are revisable and are not official upstream categories or a university curriculum. New courses are marked pending classification. Supported inputs include text, common source code, text-extractable PDF, DOCX, PPTX, and Notebook. OCR for scans, legacy DOC/PPT, and archive analysis are not implemented. PDF extraction defaults to at most 8 pages and 10,000 characters, so a long lecture may only be partially read.
+
+## Validation and contributions
+
+Run `python -m unittest discover -s tests -v` and `cs-study-map validate --tracked`. Report errors through Issues. Pull requests may improve code, mappings, or manual correction rules; see the [contribution guide](../../CONTRIBUTING.md).
+
+Original programs, textbook text, and maintenance documents use the MIT License. This does not change source-material rights; see [attribution and licensing](../../ATTRIBUTION.md).
+
+Early work: [knowledge overview and 60 course guides](../early-work/index.md), including the original category overview and textbook README. These pre-existing documents were imported into Git with learning content preserved and local absolute paths removed.

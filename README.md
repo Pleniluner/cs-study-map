@@ -1,5 +1,7 @@
 # cs-study-map · 给自己的计算机教材
 
+| 简体中文 | [繁體中文](docs/readme/zh-TW.md) | [English](docs/readme/en.md) | [日本語](docs/readme/ja.md) | [Русский](docs/readme/ru.md) | [Français](docs/readme/fr.md) | [Deutsch](docs/readme/de.md) | [Italiano](docs/readme/it.md) | [Português](docs/readme/pt.md) | [Español](docs/readme/es.md) | [العربية](docs/readme/ar.md) | [한국어](docs/readme/ko.md) |
+
 主要供本人自学：从 [REKCARC-TSC-UHT](https://github.com/PKUanonym/REKCARC-TSC-UHT) 识别可以学习的知识，按照先修关系重新组织成中文教材，补上概念讲解、原创例题、练习解答和自测。自动同步、分类与资料导读为教材选材和更新提供支持。
 
 **[开始读教材](docs/textbook/index.md)** · [查找参考资料](docs/index.md) · [覆盖状态](docs/status.md) · [使用与运行](docs/usage.md) · [来源与许可](ATTRIBUTION.md)
