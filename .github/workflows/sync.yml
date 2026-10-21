@@ -65,5 +65,6 @@ jobs:
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          python scripts/privacy_guard.py install
           git commit -m 'chore: synchronize study catalog and guides'
           git push
