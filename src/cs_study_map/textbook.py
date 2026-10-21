@@ -310,6 +310,8 @@ def build_textbook(project):
         programming_support.append("[数据结构练习指引](../data-structures-practice.md)")
     if (root / "docs/algorithms-practice.md").is_file():
         programming_support.append("[算法练习指引](../algorithms-practice.md)")
+    if (root / "docs/recursion-practice.md").is_file():
+        programming_support.append("[递归与分治练习指引](../recursion-practice.md)")
     for index, chapter in enumerate(plan["chapters"]):
         document = documents[chapter["id"]]
         status = chapter_status(project, plan, chapter, document)

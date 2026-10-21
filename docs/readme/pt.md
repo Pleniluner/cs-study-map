@@ -8,7 +8,7 @@ O projeto serve principalmente ao estudo do mantenedor: seleciona temas de [REKC
 
 Este é um projeto pessoal de Pleniluner, sem vínculo oficial com a Universidade Tsinghua ou os mantenedores originais. O repositório público contém ferramentas próprias, rascunhos, índices de fontes e guias de IA. Materiais didáticos originais, slides, tarefas, código de estudantes e texto integral extraído não são publicados.
 
-## Estude doze capítulos em ordem
+## Estude quinze capítulos em ordem
 
 | # | Tema | Atividade |
 | --- | --- | --- |
@@ -24,8 +24,11 @@ Este é um projeto pessoal de Pleniluner, sem vínculo oficial com a Universidad
 | 10 | [Análise de algoritmos](../textbook/10-algorithm-analysis.md) | Contar operações, comparar o crescimento e avaliar a memória adicional |
 | 11 | [Busca sequencial e binária](../textbook/11-searching.md) | Acompanhar limites, duplicatas e valores ausentes |
 | 12 | [Ordenação por seleção, inserção e intercalação](../textbook/12-sorting.md) | Verificar ordem, multiplicidades, estabilidade e busca após ordenar |
+| 13 | [Recursão, retornos e pilha de chamadas](../textbook/13-recursion.md) | Acompanhar casos base, redução, número de chamadas e profundidade máxima |
+| 14 | [Dividir para conquistar e ordenação recursiva por intercalação](../textbook/14-divide-and-conquer.md) | Dividir intervalos, combinar resultados e contar inversões |
+| 15 | [Quicksort e particionamento em três partes](../textbook/15-quick-sort.md) | Verificar partições, duplicatas, piores casos e profundidade da pilha |
 
-Os capítulos 4 a 12 usam Python 3.11 ou superior e incluem 90 programas independentes com as saídas esperadas. Consulte os guias de [programação](../programming-practice.md), [estruturas de dados](../data-structures-practice.md) e [algoritmos](../algorithms-practice.md), em chinês.
+Os capítulos 4 a 15 usam Python 3.11 ou superior e incluem 120 programas independentes com as saídas esperadas. Consulte os guias de [programação](../programming-practice.md), [estruturas de dados](../data-structures-practice.md) e [algoritmos](../algorithms-practice.md), em chinês. [Exercícios de recursão e divisão de problemas (em chinês)](../recursion-practice.md).
 
 Cada capítulo inclui explicações detalhadas, 2 exemplos originais, 3 exercícios com soluções expansíveis, uma autoavaliação e as fontes dos temas. É um primeiro rascunho de IA, sem revisão por especialistas nem teste com estudantes; isso não significa que todos os cursos tenham um livro completo.
 

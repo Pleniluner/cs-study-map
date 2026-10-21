@@ -1,6 +1,6 @@
 # 最后进入的先取出：栈与嵌套处理
 
-[返回教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md)
+[返回教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md)
 
 [上一章：相邻数据怎样连接：单链表与结点引用](07-linked-lists.md) · [下一章：先进入的先处理：队列与循环数组](09-queues.md)
 
@@ -481,4 +481,4 @@ True False False
 
 [上一章：相邻数据怎样连接：单链表与结点引用](07-linked-lists.md) · [下一章：先进入的先处理：队列与循环数组](09-queues.md)
 
-[教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [记录自己的学习](../learning-log-template.md)
+[教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md) · [记录自己的学习](../learning-log-template.md)

@@ -8,7 +8,7 @@ Il progetto serve soprattutto allo studio del manutentore: seleziona argomenti d
 
 È un progetto personale di Pleniluner, senza affiliazione ufficiale con la Tsinghua University o i manutentori upstream. Il repository pubblico contiene strumenti originali, bozze, indici delle fonti e guide AI. Materiali didattici originali, slide, compiti, codice degli studenti e testi estratti integralmente non sono pubblicati.
 
-## Studia dodici capitoli in ordine
+## Studia quindici capitoli in ordine
 
 | # | Argomento | Attività |
 | --- | --- | --- |
@@ -24,8 +24,11 @@ Il progetto serve soprattutto allo studio del manutentore: seleziona argomenti d
 | 10 | [Analisi degli algoritmi](../textbook/10-algorithm-analysis.md) | Contare le operazioni, confrontare la crescita e valutare la memoria aggiuntiva |
 | 11 | [Ricerca sequenziale e binaria](../textbook/11-searching.md) | Seguire limiti, duplicati e valori assenti |
 | 12 | [Ordinamento per selezione, inserimento e fusione](../textbook/12-sorting.md) | Verificare ordine, molteplicità, stabilità e ricerca dopo l’ordinamento |
+| 13 | [Ricorsione, valori restituiti e pila delle chiamate](../textbook/13-recursion.md) | Seguire casi base, riduzione, numero di chiamate e profondità massima |
+| 14 | [Divide et impera e ordinamento ricorsivo per fusione](../textbook/14-divide-and-conquer.md) | Dividere intervalli, combinare risultati e contare inversioni |
+| 15 | [Quicksort e partizionamento a tre vie](../textbook/15-quick-sort.md) | Verificare partizioni, duplicati, casi peggiori e profondità della pila |
 
-I capitoli dal 4 al 12 usano Python 3.11 o successivo e includono 90 programmi autonomi con l’output atteso. Consulta le guide alla [programmazione](../programming-practice.md), alle [strutture dati](../data-structures-practice.md) e agli [algoritmi](../algorithms-practice.md), in cinese.
+I capitoli dal 4 al 15 usano Python 3.11 o successivo e includono 120 programmi autonomi con l’output atteso. Consulta le guide alla [programmazione](../programming-practice.md), alle [strutture dati](../data-structures-practice.md) e agli [algoritmi](../algorithms-practice.md), in cinese. [Esercizi su ricorsione e divide et impera (in cinese)](../recursion-practice.md).
 
 Ogni capitolo contiene spiegazioni dettagliate, 2 esempi originali, 3 esercizi con soluzioni espandibili, un’autoverifica e le fonti degli argomenti. È una prima bozza AI, non revisionata da esperti né sperimentata con studenti; non significa che tutti i corsi abbiano un manuale completo.
 

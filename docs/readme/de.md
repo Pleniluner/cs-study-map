@@ -8,7 +8,7 @@ Dieses Projekt dient vor allem dem Selbststudium des Maintainers. Es wählt geei
 
 Dies ist ein persönliches Lernprojekt von Pleniluner ohne offizielle Verbindung zur Tsinghua-Universität oder den Betreuern des Ursprungsprojekts. Das öffentliche Repository enthält eigene Werkzeuge, Lehrbuchentwürfe, Quellenverzeichnisse und KI-Leitfäden. Originale Kursmaterialien, Folien, Aufgaben, studentischer Quellcode und vollständig extrahierte Texte werden nicht veröffentlicht.
 
-## Zwölf Kapitel der Reihe nach lernen
+## Fünfzehn Kapitel der Reihe nach lernen
 
 | # | Thema | Übung |
 | --- | --- | --- |
@@ -24,8 +24,11 @@ Dies ist ein persönliches Lernprojekt von Pleniluner ohne offizielle Verbindung
 | 10 | [Algorithmenanalyse](../textbook/10-algorithm-analysis.md) | Operationen zählen, Wachstum vergleichen und Zusatzspeicher berücksichtigen |
 | 11 | [Lineare und binäre Suche](../textbook/11-searching.md) | Grenzen, doppelte Werte und fehlende Ziele verfolgen |
 | 12 | [Sortieren durch Auswahl, Einfügen und Zusammenführen](../textbook/12-sorting.md) | Reihenfolge, Häufigkeiten, Stabilität und Suche nach dem Sortieren prüfen |
+| 13 | [Rekursion, Rückgaben und Aufrufstapel](../textbook/13-recursion.md) | Basisfälle, Verkleinerung, Aufrufzahl und maximale Tiefe verfolgen |
+| 14 | [Teile und herrsche und rekursives Mergesort](../textbook/14-divide-and-conquer.md) | Bereiche teilen, Ergebnisse kombinieren und Inversionen zählen |
+| 15 | [Quicksort und Dreiwegepartitionierung](../textbook/15-quick-sort.md) | Partitionen, Duplikate, schlechteste Fälle und Stapeltiefe prüfen |
 
-Kapitel 4–12 verwenden Python ab Version 3.11 und enthalten 90 eigenständig ausführbare Programme mit erwarteten Ausgaben. Siehe die Leitfäden für [Programmierübungen](../programming-practice.md), [Datenstrukturen](../data-structures-practice.md) und [Algorithmen](../algorithms-practice.md), alle auf Chinesisch.
+Kapitel 4–15 verwenden Python ab Version 3.11 und enthalten 120 eigenständig ausführbare Programme mit erwarteten Ausgaben. Siehe die Leitfäden für [Programmierübungen](../programming-practice.md), [Datenstrukturen](../data-structures-practice.md) und [Algorithmen](../algorithms-practice.md), alle auf Chinesisch. [Übungen zu Rekursion und Teile und herrsche (auf Chinesisch)](../recursion-practice.md).
 
 Jedes Kapitel enthält ausführliche Erklärungen, 2 eigene Beispiele, 3 Aufgaben mit ausklappbaren Lösungen, einen Selbsttest und Themenquellen. Es handelt sich um einen KI-Erstentwurf ohne fachliche Begutachtung oder Erprobung durch Lernende. Das bedeutet nicht, dass für jeden Kurs ein Lehrbuch vorliegt.
 

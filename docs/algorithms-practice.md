@@ -77,3 +77,5 @@ cs-study-map study --chapter 12-sorting --status reading
 ```
 
 只在独立完成练习和自测后，再自行将状态改为 `completed`。本轮实际程序执行、参考模型与边界核对见[验证记录](verification.md)；这些检查不替代学科专家审读与学习者试学。
+
+完成这三章后，按[递归与分治练习指引](recursion-practice.md)继续学习第 13–15 章。先用调用与返回追踪建立递归模型，再比较自顶向下归并与快速排序的分解、组合和空间成本。

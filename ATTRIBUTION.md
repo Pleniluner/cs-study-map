@@ -12,6 +12,8 @@
 
 算法分析、查找与排序章节另参考 Sedgewick 与 Wayne 的 [Algorithms 4/e 作者网站](https://algs4.cs.princeton.edu/home/)、[Cornell CS312 渐近复杂度讲义](https://www.cs.cornell.edu/courses/cs312/2003sp/lectures/lec12.html)及 Python 官方 `bisect`、排序文档，核对定义、接口与成本边界。计数模型、演示数据、追踪过程、练习及 Python 实现由本项目编写；未复制原书习题、Java 实现或图示，也没有把这些外部核对材料计为上游资料库的新导读。
 
+递归、分治和快速排序章节继续参考 Python 官方函数与递归限制说明，并用 [NIST DADS 分治定义](https://xlinux.nist.gov/dads/HTML/divideAndConquer.html)、[Cornell CS2110 排序讲义](https://www.cs.cornell.edu/courses/cs2110/2025fa/lectures/lec07/)和 Algorithms 4/e 的分区说明核对概念。半开区间、固定末项基准、共享缓冲和长边循环均按本项目实际实现分析；调用轨迹、计数数据、练习与 Python 程序自行设计，不移植课程代码、动画或习题解答。
+
 核查时发现上游许可声明存在差异：根目录 [LICENSE](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/master/LICENSE) 为 CC BY-SA 4.0，而 [README 许可部分](https://github.com/PKUanonym/REKCARC-TSC-UHT#许可) 的链接指向 CC BY-NC-SA 4.0，并明确其他内容版权归各自作者。本项目不替上游消解这一差异，也不为上游材料重新许可。
 
 本项目新编写的程序、教材文本、维护文档和可独立许可的原创贡献采用根目录 MIT 许可。来源材料、可能涉及第三方权利的内容及其许可条件不被该许可覆盖。AI 辅助注释不能改变来源材料的权利，也不保证其判断准确。需要引用或改编具体材料时，应查看该材料适用的声明。

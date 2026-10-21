@@ -321,11 +321,102 @@
         }
       ],
       "title": "怎样把数据排成顺序：选择、插入与归并排序"
+    },
+    {
+      "format": "python",
+      "id": "13-recursion",
+      "references": [
+        {
+          "note": "核对每次函数调用的局部名字与 return 语义；本章调用轨迹和例题另行设计。",
+          "title": "Python 3.11：函数定义与返回",
+          "url": "https://docs.python.org/3.11/tutorial/controlflow.html#defining-functions"
+        },
+        {
+          "note": "核对递归深度限制的含义，不假定固定可用层数，也不把增大限制当成算法改进。",
+          "title": "Python 3.11：解释器递归深度",
+          "url": "https://docs.python.org/3.11/library/sys.html#sys.getrecursionlimit"
+        },
+        {
+          "note": "核对超过解释器递归限制时的异常；正文使用可完成的小输入，不故意执行失控递归。",
+          "title": "Python 3.11：RecursionError",
+          "url": "https://docs.python.org/3.11/library/exceptions.html#RecursionError"
+        }
+      ],
+      "scope": "承接函数与栈，讲清基例、规模严格减少、逐层返回、局部名字和共享列表；以阶乘、后缀和、最大值、Fibonacci 计数及数位、计数、回文练习区分总调用与峰值栈深。限定小规模，不修改递归限制、不运行无限递归。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "函数怎样调用自己：递归、返回与调用栈"
+    },
+    {
+      "format": "python",
+      "id": "14-divide-and-conquer",
+      "references": [
+        {
+          "note": "核对分解、递归求解与组合的定义，以及二分只继续一侧的形式；题目和数据自拟。",
+          "title": "NIST DADS：分治",
+          "url": "https://xlinux.nist.gov/dads/HTML/divideAndConquer.html"
+        },
+        {
+          "note": "核对递归归并、按层计数与共享缓冲的空间分析；本章自行编写 Python 区间实现和逆序对练习。",
+          "title": "Cornell CS2110：归并的递归与复杂度",
+          "url": "https://www.cs.cornell.edu/courses/cs2110/2025fa/lectures/lec07/"
+        }
+      ],
+      "scope": "用半开区间求和讲解拆分、子答案与组合，区分树的总调用与高度、二分的一侧与求和的两侧；实现共享缓冲递归归并，按树层推导工作，再练习范围计数、复用半结果的快速幂和逆序对。核对奇数长度、空区间、稳定性与子区间外不变。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "把问题分小再合起来：分治与递归归并"
+    },
+    {
+      "format": "python",
+      "id": "15-quick-sort",
+      "references": [
+        {
+          "note": "核对分区、重复关键字及三路区域；本章采用自定半开边界与固定末项基准，计数按实际代码推导。",
+          "title": "Algorithms 4/e：快速排序与三路分区",
+          "url": "https://algs4.cs.princeton.edu/23quicksort/index.php"
+        },
+        {
+          "note": "核对不均衡分区、调用栈与稳定性；本章显式用循环处理长边，不假定 Python 自动消除尾调用。",
+          "title": "Cornell CS2110：快速排序的时间与空间",
+          "url": "https://www.cs.cornell.edu/courses/cs2110/2025fa/lectures/lec07/"
+        },
+        {
+          "note": "区分数学上终止与解释器可用深度，普通递归版只用小规模示例。",
+          "title": "Python 3.11：解释器递归深度",
+          "url": "https://docs.python.org/3.11/library/sys.html#sys.getrecursionlimit"
+        }
+      ],
+      "scope": "从末项基准严格小于归左边的二路分区推导递归范围，实测有序和重复值退化；用半开四区域推导三路分区，再以短边递归、长边循环控制栈深。完整讲解不稳定性、复制接口和秩次查询，不混用随机期望与确定性最坏结论。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "先分区再递归：快速排序与三路划分"
     }
   ],
   "learner": "从基础开始自学；先用纸笔和小例子建立概念，再接触课程实验。",
   "planned": [
-    "递归、分治与快速排序（继续补充先修讲解和可运行练习）",
+    "树、二叉搜索树与堆（继续补充先修讲解和可运行练习）",
     "虚拟地址、页表与 TLB（需核对原理及适用架构）",
     "后续按个人学习需要扩展数学、系统、网络等章节"
   ],

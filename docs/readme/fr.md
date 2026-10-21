@@ -8,7 +8,7 @@ Ce projet sert d’abord à l’apprentissage personnel de son mainteneur. Il s�
 
 Ce projet personnel est maintenu par Pleniluner, sans affiliation officielle avec l’Université Tsinghua ni les responsables amont. Le dépôt public contient des outils originaux, des brouillons, des index de sources et des guides IA. Les supports originaux, diapositives, devoirs, codes d’étudiants et textes extraits intégralement ne sont pas publiés.
 
-## Étudier douze chapitres dans l’ordre
+## Étudier quinze chapitres dans l’ordre
 
 | # | Sujet | Activité |
 | --- | --- | --- |
@@ -24,8 +24,11 @@ Ce projet personnel est maintenu par Pleniluner, sans affiliation officielle ave
 | 10 | [Analyse des algorithmes](../textbook/10-algorithm-analysis.md) | Compter les opérations, comparer la croissance et évaluer la mémoire supplémentaire |
 | 11 | [Recherche séquentielle et dichotomique](../textbook/11-searching.md) | Suivre les bornes, les doublons et les valeurs absentes |
 | 12 | [Tris par sélection, insertion et fusion](../textbook/12-sorting.md) | Vérifier l’ordre, les multiplicités, la stabilité et la recherche après tri |
+| 13 | [Récursivité, retours et pile d’appels](../textbook/13-recursion.md) | Suivre les cas de base, la progression, les appels et la profondeur maximale |
+| 14 | [Diviser pour régner et tri fusion récursif](../textbook/14-divide-and-conquer.md) | Découper les intervalles, combiner les résultats et compter les inversions |
+| 15 | [Tri rapide et partitionnement en trois parties](../textbook/15-quick-sort.md) | Vérifier les partitions, les doublons, les pires cas et la profondeur de pile |
 
-Les chapitres 4 à 12 utilisent Python 3.11 ou une version ultérieure et proposent 90 programmes autonomes avec leur sortie attendue. Consultez les guides de [programmation](../programming-practice.md), de [structures de données](../data-structures-practice.md) et d’[algorithmes](../algorithms-practice.md), en chinois.
+Les chapitres 4 à 15 utilisent Python 3.11 ou une version ultérieure et proposent 120 programmes autonomes avec leur sortie attendue. Consultez les guides de [programmation](../programming-practice.md), de [structures de données](../data-structures-practice.md) et d’[algorithmes](../algorithms-practice.md), en chinois. [Exercices de récursivité et de division du problème (en chinois)](../recursion-practice.md).
 
 Chaque chapitre contient des explications détaillées, 2 exemples originaux, 3 exercices avec solutions dépliables, une autoévaluation et les sources des sujets. Il s’agit d’un premier jet produit par IA, sans validation par des spécialistes ni essai auprès d’apprenants ; tous les cours ne disposent pas encore d’un manuel.
 

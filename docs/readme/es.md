@@ -8,7 +8,7 @@ El proyecto está pensado sobre todo para el aprendizaje de quien lo mantiene: s
 
 Es un proyecto personal de Pleniluner, sin vínculo oficial con la Universidad de Tsinghua ni con quienes mantienen el repositorio original. El repositorio público incluye herramientas propias, borradores, índices de fuentes y guías de IA. No publica materiales originales, diapositivas, tareas, código de estudiantes ni texto extraído completo.
 
-## Estudia doce capítulos en orden
+## Estudia quince capítulos en orden
 
 | # | Tema | Actividad |
 | --- | --- | --- |
@@ -24,8 +24,11 @@ Es un proyecto personal de Pleniluner, sin vínculo oficial con la Universidad d
 | 10 | [Análisis de algoritmos](../textbook/10-algorithm-analysis.md) | Contar operaciones, comparar el crecimiento y evaluar la memoria adicional |
 | 11 | [Búsqueda secuencial y binaria](../textbook/11-searching.md) | Seguir límites, duplicados y valores ausentes |
 | 12 | [Ordenación por selección, inserción y mezcla](../textbook/12-sorting.md) | Comprobar orden, multiplicidades, estabilidad y búsqueda tras ordenar |
+| 13 | [Recursión, retornos y pila de llamadas](../textbook/13-recursion.md) | Seguir casos base, reducción, número de llamadas y profundidad máxima |
+| 14 | [Divide y vencerás y ordenación recursiva por mezcla](../textbook/14-divide-and-conquer.md) | Dividir intervalos, combinar resultados y contar inversiones |
+| 15 | [Quicksort y partición en tres vías](../textbook/15-quick-sort.md) | Comprobar particiones, duplicados, peores casos y profundidad de la pila |
 
-Los capítulos del 4 al 12 utilizan Python 3.11 o posterior e incluyen 90 programas independientes con sus salidas esperadas. Consulta las guías de [programación](../programming-practice.md), [estructuras de datos](../data-structures-practice.md) y [algoritmos](../algorithms-practice.md), en chino.
+Los capítulos del 4 al 15 utilizan Python 3.11 o posterior e incluyen 120 programas independientes con sus salidas esperadas. Consulta las guías de [programación](../programming-practice.md), [estructuras de datos](../data-structures-practice.md) y [algoritmos](../algorithms-practice.md), en chino. [Ejercicios de recursión y divide y vencerás (en chino)](../recursion-practice.md).
 
 Cada capítulo incluye explicaciones detalladas, 2 ejemplos originales, 3 ejercicios con soluciones desplegables, una autoevaluación y las fuentes de los temas. Es un primer borrador de IA, sin revisión de especialistas ni pruebas con estudiantes; no significa que todos los cursos tengan un manual terminado.
 

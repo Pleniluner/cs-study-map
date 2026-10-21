@@ -1,6 +1,6 @@
 # 程序怎样作选择和重复：顺序、分支与循环
 
-[返回教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md)
+[返回教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md)
 
 [上一章：空闲空间怎样分给程序：首次适应、拆分与合并](03-first-fit.md) · [下一章：把计算组织成函数：参数、返回值与局部名字](05-functions.md)
 
@@ -417,4 +417,4 @@ print(batches, remaining)
 
 [上一章：空闲空间怎样分给程序：首次适应、拆分与合并](03-first-fit.md) · [下一章：把计算组织成函数：参数、返回值与局部名字](05-functions.md)
 
-[教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [记录自己的学习](../learning-log-template.md)
+[教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md) · [记录自己的学习](../learning-log-template.md)
