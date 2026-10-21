@@ -8,7 +8,7 @@ Il progetto serve soprattutto allo studio del manutentore: seleziona argomenti d
 
 È un progetto personale di Pleniluner, senza affiliazione ufficiale con la Tsinghua University o i manutentori upstream. Il repository pubblico contiene strumenti originali, bozze, indici delle fonti e guide AI. Materiali didattici originali, slide, compiti, codice degli studenti e testi estratti integralmente non sono pubblicati.
 
-## Studia nove capitoli in ordine
+## Studia dodici capitoli in ordine
 
 | # | Argomento | Attività |
 | --- | --- | --- |
@@ -21,8 +21,11 @@ Il progetto serve soprattutto allo studio del manutentore: seleziona argomenti d
 | 7 | [Liste concatenate semplici](../textbook/07-linked-lists.md) | Seguire i riferimenti ed eseguire inserimento, rimozione e inversione |
 | 8 | [Pile](../textbook/08-stacks.md) | Applicare LIFO all’annullamento e al controllo delle parentesi |
 | 9 | [Code e array circolari](../textbook/09-queues.md) | Verificare FIFO, il ritorno all’inizio e gli stati vuoto o pieno |
+| 10 | [Analisi degli algoritmi](../textbook/10-algorithm-analysis.md) | Contare le operazioni, confrontare la crescita e valutare la memoria aggiuntiva |
+| 11 | [Ricerca sequenziale e binaria](../textbook/11-searching.md) | Seguire limiti, duplicati e valori assenti |
+| 12 | [Ordinamento per selezione, inserimento e fusione](../textbook/12-sorting.md) | Verificare ordine, molteplicità, stabilità e ricerca dopo l’ordinamento |
 
-I capitoli dal 4 al 9 usano Python 3.11 o successivo e includono 60 programmi autonomi con l’output atteso. Preparazione e metodo sono nella [guida alla pratica di programmazione](../programming-practice.md) e nella [guida alle strutture dati](../data-structures-practice.md), in cinese.
+I capitoli dal 4 al 12 usano Python 3.11 o successivo e includono 90 programmi autonomi con l’output atteso. Consulta le guide alla [programmazione](../programming-practice.md), alle [strutture dati](../data-structures-practice.md) e agli [algoritmi](../algorithms-practice.md), in cinese.
 
 Ogni capitolo contiene spiegazioni dettagliate, 2 esempi originali, 3 esercizi con soluzioni espandibili, un’autoverifica e le fonti degli argomenti. È una prima bozza AI, non revisionata da esperti né sperimentata con studenti; non significa che tutti i corsi abbiano un manuale completo.
 

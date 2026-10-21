@@ -1,6 +1,6 @@
 # 一组数据怎样按位置存取：数组与顺序表
 
-[返回教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md)
+[返回教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md)
 
 [上一章：把计算组织成函数：参数、返回值与局部名字](05-functions.md) · [下一章：相邻数据怎样连接：单链表与结点引用](07-linked-lists.md)
 
@@ -449,9 +449,9 @@ print(values, empty, single)
 - 主题 1：Python 基础语法的外部学习入口；位置：第 41–80 行。
 - 主题 2：从基础语法到工具与应用的建议阅读顺序；位置：第 121–160 行。
 
-## 语言与结构规则核对
+## 参考资料与规则核对
 
-上游入口用于确定学习方向；下面的参考资料用于核对语言或数据结构规则，例题和练习由本项目重新设计。
+上游入口用于确定学习方向；下面的参考资料用于核对语言语义、数据结构或算法分析规则，例题和练习由本项目重新设计。
 
 - [Python 3.11：列表操作](https://docs.python.org/3.11/tutorial/datastructures.html#more-on-lists)：核对 append、insert、pop、remove、copy 的行为及原地修改的返回值。
 - [Python 3.11：序列索引与切片](https://docs.python.org/3.11/library/stdtypes.html#sequence-types-list-tuple-range)：核对零基下标、负下标、切片及列表浅拷贝。
@@ -461,4 +461,4 @@ print(values, empty, single)
 
 [上一章：把计算组织成函数：参数、返回值与局部名字](05-functions.md) · [下一章：相邻数据怎样连接：单链表与结点引用](07-linked-lists.md)
 
-[教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [记录自己的学习](../learning-log-template.md)
+[教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [记录自己的学习](../learning-log-template.md)

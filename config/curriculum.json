@@ -230,11 +230,102 @@
         }
       ],
       "title": "先进入的先处理：队列与循环数组"
+    },
+    {
+      "format": "python",
+      "id": "10-algorithm-analysis",
+      "references": [
+        {
+          "note": "核对成本模型、输入相关性与增长分析；本章计数对象、数据及实验程序自行设计。",
+          "title": "Algorithms 4/e：算法分析",
+          "url": "https://algs4.cs.princeton.edu/14analysis/"
+        },
+        {
+          "note": "核对指数、对数与 O 上界；取整循环的精确次数按本章代码另行推导。",
+          "title": "Open Data Structures：数学背景",
+          "url": "https://opendatastructures.org/ods-python/1_3_Mathematical_Background.html"
+        },
+        {
+          "note": "核对 O、Θ 及最好最坏与平均输入模型的区分，不移植课程练习。",
+          "title": "Cornell CS312：渐近复杂度",
+          "url": "https://www.cs.cornell.edu/courses/cs312/2003sp/lectures/lec12.html"
+        }
+      ],
+      "scope": "承接循环、函数与列表，从明确规模和计数口径推导线性、矩形与三角循环、向下整除及宽度倍增；解释 O 上界和 Θ 紧确界与最好最坏的不同维度、输出和峰值空间。所有程序独立纯计算，精确次数与公式核对，不把计数等同秒数，不需递归或概率。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "数据变多会怎样：算法分析与增长量级"
+    },
+    {
+      "format": "python",
+      "id": "11-searching",
+      "references": [
+        {
+          "note": "核对有序前提、左右边界及插入搬移的线性成本；正文自己实现循环，数据与题目原创。",
+          "title": "Python 3.11：bisect 的左右插入边界",
+          "url": "https://docs.python.org/3.11/library/bisect.html"
+        },
+        {
+          "note": "核对 and 从左到右短路，在确认下标有效之后才读取元素。",
+          "title": "Python 3.11：布尔短路求值",
+          "url": "https://docs.python.org/3.11/library/stdtypes.html#boolean-operations-and-or-not"
+        }
+      ],
+      "scope": "承接非降序列表与分析，明确顺序首匹配、二分前提、半开候选区间与边界不变式；手写 lower_bound、upper_bound、首末精确匹配、重复与闭区间计数、有序插入副本。处理空表零下标末尾边界重复值，说明验证和数据准备成本，不排序后冒用原下标。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "怎样缩小候选范围：顺序查找与二分查找"
+    },
+    {
+      "format": "python",
+      "id": "12-sorting",
+      "references": [
+        {
+          "note": "核对 sorted 与 list.sort 的返回和修改语义，以及相等关键字的稳定性定义。",
+          "title": "Python 3.11：排序与稳定性",
+          "url": "https://docs.python.org/3.11/howto/sorting.html"
+        },
+        {
+          "note": "核对选择与插入的机制和成本；本章使用保存待插值的移动实现，自行设计例题与计数。",
+          "title": "Algorithms 4/e：初等排序",
+          "url": "https://algs4.cs.princeton.edu/21elementary/"
+        },
+        {
+          "note": "核对非递归归并及线性额外空间；本章用切片和新列表实现并单独分析峰值，不移植 Java 代码。",
+          "title": "Algorithms 4/e：自底向上归并",
+          "url": "https://algs4.cs.princeton.edu/code/javadoc/edu/princeton/cs/algs4/MergeBU.html"
+        }
+      ],
+      "scope": "讲清非降序、元素重数保持、原地与稳定性，完整实现选择、稳定插入、两路合并、自底向上归并，并练习提前停止冒泡、字典记录稳定排序和排序后查找。核对空表重复负数、非二次幂长度、输入不变或原地契约，明确计数与额外空间，不要求递归。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "怎样把数据排成顺序：选择、插入与归并排序"
     }
   ],
   "learner": "从基础开始自学；先用纸笔和小例子建立概念，再接触课程实验。",
   "planned": [
-    "算法分析、查找与排序（需补充可读材料）",
+    "递归、分治与快速排序（继续补充先修讲解和可运行练习）",
     "虚拟地址、页表与 TLB（需核对原理及适用架构）",
     "后续按个人学习需要扩展数学、系统、网络等章节"
   ],

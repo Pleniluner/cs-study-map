@@ -1,6 +1,6 @@
 # 最后进入的先取出：栈与嵌套处理
 
-[返回教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md)
+[返回教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md)
 
 [上一章：相邻数据怎样连接：单链表与结点引用](07-linked-lists.md) · [下一章：先进入的先处理：队列与循环数组](09-queues.md)
 
@@ -470,9 +470,9 @@ True False False
 - 主题 1：Python 基础语法的外部学习入口；位置：第 41–80 行。
 - 主题 2：从基础语法到工具与应用的建议阅读顺序；位置：第 121–160 行。
 
-## 语言与结构规则核对
+## 参考资料与规则核对
 
-上游入口用于确定学习方向；下面的参考资料用于核对语言或数据结构规则，例题和练习由本项目重新设计。
+上游入口用于确定学习方向；下面的参考资料用于核对语言语义、数据结构或算法分析规则，例题和练习由本项目重新设计。
 
 - [Python 3.11：列表作为栈](https://docs.python.org/3.11/tutorial/datastructures.html#using-lists-as-stacks)：核对 append 与末端 pop 的后进先出行为，空保护为本章自定义接口。
 - [Python 3.11：可变序列](https://docs.python.org/3.11/library/stdtypes.html#mutable-sequence-types)：核对 pop 的删除和返回含义；括号、撤销任务与数据均为原创。
@@ -481,4 +481,4 @@ True False False
 
 [上一章：相邻数据怎样连接：单链表与结点引用](07-linked-lists.md) · [下一章：先进入的先处理：队列与循环数组](09-queues.md)
 
-[教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [记录自己的学习](../learning-log-template.md)
+[教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [记录自己的学习](../learning-log-template.md)

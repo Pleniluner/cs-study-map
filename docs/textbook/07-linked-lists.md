@@ -1,6 +1,6 @@
 # 相邻数据怎样连接：单链表与结点引用
 
-[返回教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md)
+[返回教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md)
 
 [上一章：一组数据怎样按位置存取：数组与顺序表](06-arrays.md) · [下一章：最后进入的先取出：栈与嵌套处理](08-stacks.md)
 
@@ -561,9 +561,9 @@ print(chain_values(reverse_chain(None)), chain_values(reverse_chain(make_chain([
 - 主题 1：Python 基础语法的外部学习入口；位置：第 41–80 行。
 - 主题 2：从基础语法到工具与应用的建议阅读顺序；位置：第 121–160 行。
 
-## 语言与结构规则核对
+## 参考资料与规则核对
 
-上游入口用于确定学习方向；下面的参考资料用于核对语言或数据结构规则，例题和练习由本项目重新设计。
+上游入口用于确定学习方向；下面的参考资料用于核对语言语义、数据结构或算法分析规则，例题和练习由本项目重新设计。
 
 - [Python 3.11：字典](https://docs.python.org/3.11/tutorial/datastructures.html#dictionaries)：核对字典键值构造和按键读取；本章只用固定字段表示结点。
 - [Python 3.11：对象、值与类型](https://docs.python.org/3.11/reference/datamodel.html#objects-values-and-types)：核对对象身份、可变性和引用关系；不依赖实际指针地址。
@@ -573,4 +573,4 @@ print(chain_values(reverse_chain(None)), chain_values(reverse_chain(make_chain([
 
 [上一章：一组数据怎样按位置存取：数组与顺序表](06-arrays.md) · [下一章：最后进入的先取出：栈与嵌套处理](08-stacks.md)
 
-[教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [记录自己的学习](../learning-log-template.md)
+[教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [记录自己的学习](../learning-log-template.md)

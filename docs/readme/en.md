@@ -8,7 +8,7 @@ This project is mainly for the maintainer’s own study. It selects useful topic
 
 This is Pleniluner’s personal learning project, with no official affiliation with Tsinghua University or upstream maintainers. The public repository contains original tools, textbook drafts, source indexes, and AI guides. Original course materials, slides, assignments, student source code, and extracted full text are not published.
 
-## Nine chapters to study in order
+## Twelve chapters to study in order
 
 | # | Topic | Activity |
 | --- | --- | --- |
@@ -21,8 +21,11 @@ This is Pleniluner’s personal learning project, with no official affiliation w
 | 7 | [Singly linked lists](../textbook/07-linked-lists.md) | Trace node references, insert, delete, and reverse links |
 | 8 | [Stacks](../textbook/08-stacks.md) | Apply LIFO order to undo history and bracket matching |
 | 9 | [Queues and circular arrays](../textbook/09-queues.md) | Track FIFO order, wraparound, and empty or full states |
+| 10 | [Algorithm analysis](../textbook/10-algorithm-analysis.md) | Count operations, compare growth, and account for extra space |
+| 11 | [Sequential and binary search](../textbook/11-searching.md) | Trace boundaries, duplicates, and missing targets |
+| 12 | [Selection, insertion, and merge sort](../textbook/12-sorting.md) | Check ordering, multiplicities, stability, and search after sorting |
 
-Chapters 4–9 use Python 3.11 or later and include 60 standalone programs with expected outputs. See the [programming practice guide](../programming-practice.md) and [data structures practice guide](../data-structures-practice.md), both in Chinese, for setup and practice steps.
+Chapters 4–12 use Python 3.11 or later and include 90 standalone programs with expected outputs. See the [programming practice guide](../programming-practice.md), [data structures guide](../data-structures-practice.md), and [algorithm practice guide](../algorithms-practice.md), all in Chinese.
 
 Each chapter has detailed explanations, 2 original examples, 3 exercises with expandable solutions, a self-check, and topic sources. This is an AI first draft, not reviewed by subject experts or trial learners; it does not mean every course has a textbook.
 

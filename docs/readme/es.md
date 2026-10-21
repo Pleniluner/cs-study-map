@@ -8,7 +8,7 @@ El proyecto está pensado sobre todo para el aprendizaje de quien lo mantiene: s
 
 Es un proyecto personal de Pleniluner, sin vínculo oficial con la Universidad de Tsinghua ni con quienes mantienen el repositorio original. El repositorio público incluye herramientas propias, borradores, índices de fuentes y guías de IA. No publica materiales originales, diapositivas, tareas, código de estudiantes ni texto extraído completo.
 
-## Estudia nueve capítulos en orden
+## Estudia doce capítulos en orden
 
 | # | Tema | Actividad |
 | --- | --- | --- |
@@ -21,8 +21,11 @@ Es un proyecto personal de Pleniluner, sin vínculo oficial con la Universidad d
 | 7 | [Listas enlazadas simples](../textbook/07-linked-lists.md) | Seguir referencias y realizar inserciones, eliminaciones e inversiones |
 | 8 | [Pilas](../textbook/08-stacks.md) | Aplicar LIFO al historial de deshacer y a la comprobación de paréntesis |
 | 9 | [Colas y arreglos circulares](../textbook/09-queues.md) | Comprobar FIFO, el retorno al inicio y los estados vacío o lleno |
+| 10 | [Análisis de algoritmos](../textbook/10-algorithm-analysis.md) | Contar operaciones, comparar el crecimiento y evaluar la memoria adicional |
+| 11 | [Búsqueda secuencial y binaria](../textbook/11-searching.md) | Seguir límites, duplicados y valores ausentes |
+| 12 | [Ordenación por selección, inserción y mezcla](../textbook/12-sorting.md) | Comprobar orden, multiplicidades, estabilidad y búsqueda tras ordenar |
 
-Los capítulos del 4 al 9 utilizan Python 3.11 o posterior e incluyen 60 programas independientes con sus salidas esperadas. La preparación y el método se explican en la [guía de práctica de programación](../programming-practice.md) y la [guía de estructuras de datos](../data-structures-practice.md), en chino.
+Los capítulos del 4 al 12 utilizan Python 3.11 o posterior e incluyen 90 programas independientes con sus salidas esperadas. Consulta las guías de [programación](../programming-practice.md), [estructuras de datos](../data-structures-practice.md) y [algoritmos](../algorithms-practice.md), en chino.
 
 Cada capítulo incluye explicaciones detalladas, 2 ejemplos originales, 3 ejercicios con soluciones desplegables, una autoevaluación y las fuentes de los temas. Es un primer borrador de IA, sin revisión de especialistas ni pruebas con estudiantes; no significa que todos los cursos tengan un manual terminado.
 

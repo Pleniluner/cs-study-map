@@ -8,7 +8,7 @@ O projeto serve principalmente ao estudo do mantenedor: seleciona temas de [REKC
 
 Este é um projeto pessoal de Pleniluner, sem vínculo oficial com a Universidade Tsinghua ou os mantenedores originais. O repositório público contém ferramentas próprias, rascunhos, índices de fontes e guias de IA. Materiais didáticos originais, slides, tarefas, código de estudantes e texto integral extraído não são publicados.
 
-## Estude nove capítulos em ordem
+## Estude doze capítulos em ordem
 
 | # | Tema | Atividade |
 | --- | --- | --- |
@@ -21,8 +21,11 @@ Este é um projeto pessoal de Pleniluner, sem vínculo oficial com a Universidad
 | 7 | [Listas simplesmente encadeadas](../textbook/07-linked-lists.md) | Seguir referências e realizar inserção, remoção e inversão |
 | 8 | [Pilhas](../textbook/08-stacks.md) | Aplicar LIFO ao histórico de desfazer e à verificação de parênteses |
 | 9 | [Filas e vetores circulares](../textbook/09-queues.md) | Verificar FIFO, o retorno ao início e os estados vazio ou cheio |
+| 10 | [Análise de algoritmos](../textbook/10-algorithm-analysis.md) | Contar operações, comparar o crescimento e avaliar a memória adicional |
+| 11 | [Busca sequencial e binária](../textbook/11-searching.md) | Acompanhar limites, duplicatas e valores ausentes |
+| 12 | [Ordenação por seleção, inserção e intercalação](../textbook/12-sorting.md) | Verificar ordem, multiplicidades, estabilidade e busca após ordenar |
 
-Os capítulos 4 a 9 usam Python 3.11 ou superior e incluem 60 programas independentes com as saídas esperadas. A preparação e o método estão no [guia de prática de programação](../programming-practice.md) e no [guia de estruturas de dados](../data-structures-practice.md), em chinês.
+Os capítulos 4 a 12 usam Python 3.11 ou superior e incluem 90 programas independentes com as saídas esperadas. Consulte os guias de [programação](../programming-practice.md), [estruturas de dados](../data-structures-practice.md) e [algoritmos](../algorithms-practice.md), em chinês.
 
 Cada capítulo inclui explicações detalhadas, 2 exemplos originais, 3 exercícios com soluções expansíveis, uma autoavaliação e as fontes dos temas. É um primeiro rascunho de IA, sem revisão por especialistas nem teste com estudantes; isso não significa que todos os cursos tenham um livro completo.
 

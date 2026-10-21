@@ -8,7 +8,7 @@ Ce projet sert d’abord à l’apprentissage personnel de son mainteneur. Il s�
 
 Ce projet personnel est maintenu par Pleniluner, sans affiliation officielle avec l’Université Tsinghua ni les responsables amont. Le dépôt public contient des outils originaux, des brouillons, des index de sources et des guides IA. Les supports originaux, diapositives, devoirs, codes d’étudiants et textes extraits intégralement ne sont pas publiés.
 
-## Étudier neuf chapitres dans l’ordre
+## Étudier douze chapitres dans l’ordre
 
 | # | Sujet | Activité |
 | --- | --- | --- |
@@ -21,8 +21,11 @@ Ce projet personnel est maintenu par Pleniluner, sans affiliation officielle ave
 | 7 | [Listes simplement chaînées](../textbook/07-linked-lists.md) | Suivre les références et réaliser insertion, suppression et inversion |
 | 8 | [Piles](../textbook/08-stacks.md) | Appliquer LIFO à l’annulation et à la vérification des parenthèses |
 | 9 | [Files et tableaux circulaires](../textbook/09-queues.md) | Vérifier FIFO, le retour en début de tableau et les états vide ou plein |
+| 10 | [Analyse des algorithmes](../textbook/10-algorithm-analysis.md) | Compter les opérations, comparer la croissance et évaluer la mémoire supplémentaire |
+| 11 | [Recherche séquentielle et dichotomique](../textbook/11-searching.md) | Suivre les bornes, les doublons et les valeurs absentes |
+| 12 | [Tris par sélection, insertion et fusion](../textbook/12-sorting.md) | Vérifier l’ordre, les multiplicités, la stabilité et la recherche après tri |
 
-Les chapitres 4 à 9 utilisent Python 3.11 ou une version ultérieure et proposent 60 programmes autonomes avec leur sortie attendue. La préparation et la méthode sont décrites dans le [guide de pratique de la programmation](../programming-practice.md) et le [guide des structures de données](../data-structures-practice.md), en chinois.
+Les chapitres 4 à 12 utilisent Python 3.11 ou une version ultérieure et proposent 90 programmes autonomes avec leur sortie attendue. Consultez les guides de [programmation](../programming-practice.md), de [structures de données](../data-structures-practice.md) et d’[algorithmes](../algorithms-practice.md), en chinois.
 
 Chaque chapitre contient des explications détaillées, 2 exemples originaux, 3 exercices avec solutions dépliables, une autoévaluation et les sources des sujets. Il s’agit d’un premier jet produit par IA, sans validation par des spécialistes ni essai auprès d’apprenants ; tous les cours ne disposent pas encore d’un manuel.
 

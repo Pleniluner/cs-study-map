@@ -1,6 +1,6 @@
 # 程序怎样作选择和重复：顺序、分支与循环
 
-[返回教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md)
+[返回教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md)
 
 [上一章：空闲空间怎样分给程序：首次适应、拆分与合并](03-first-fit.md) · [下一章：把计算组织成函数：参数、返回值与局部名字](05-functions.md)
 
@@ -405,9 +405,9 @@ print(batches, remaining)
 - 主题 1：Python 基础语法的外部学习入口；位置：第 41–80 行。
 - 主题 2：从基础语法到工具与应用的建议阅读顺序；位置：第 121–160 行。
 
-## 语言与结构规则核对
+## 参考资料与规则核对
 
-上游入口用于确定学习方向；下面的参考资料用于核对语言或数据结构规则，例题和练习由本项目重新设计。
+上游入口用于确定学习方向；下面的参考资料用于核对语言语义、数据结构或算法分析规则，例题和练习由本项目重新设计。
 
 - [Python 3.11：数字、赋值与第一段程序](https://docs.python.org/3.11/tutorial/introduction.html)：核对整数运算、赋值、print、比较与缩进；例题数值及场景为本项目原创。
 - [Python 3.11：if、while 与 for 的语义](https://docs.python.org/3.11/reference/compound_stmts.html)：核对分支选择、循环前检查条件、for 逐项迭代与块结构。
@@ -417,4 +417,4 @@ print(batches, remaining)
 
 [上一章：空闲空间怎样分给程序：首次适应、拆分与合并](03-first-fit.md) · [下一章：把计算组织成函数：参数、返回值与局部名字](05-functions.md)
 
-[教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [记录自己的学习](../learning-log-template.md)
+[教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [记录自己的学习](../learning-log-template.md)

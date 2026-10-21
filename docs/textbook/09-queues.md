@@ -1,8 +1,8 @@
 # 先进入的先处理：队列与循环数组
 
-[返回教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md)
+[返回教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md)
 
-[上一章：最后进入的先取出：栈与嵌套处理](08-stacks.md)
+[上一章：最后进入的先取出：栈与嵌套处理](08-stacks.md) · [下一章：数据变多会怎样：算法分析与增长量级](10-algorithm-analysis.md)
 
 [学习目标](#objectives) · [需要的基础](#prerequisites) · [例题](#examples) · [练习](#practice) · [自测](#self-check)
 
@@ -710,9 +710,9 @@ print(take_from_queue(queue, 5), queue_values(queue))
 - 主题 1：Python 基础语法的外部学习入口；位置：第 41–80 行。
 - 主题 2：从基础语法到工具与应用的建议阅读顺序；位置：第 121–160 行。
 
-## 语言与结构规则核对
+## 参考资料与规则核对
 
-上游入口用于确定学习方向；下面的参考资料用于核对语言或数据结构规则，例题和练习由本项目重新设计。
+上游入口用于确定学习方向；下面的参考资料用于核对语言语义、数据结构或算法分析规则，例题和练习由本项目重新设计。
 
 - [Python 3.11：列表作为队列](https://docs.python.org/3.11/tutorial/datastructures.html#using-lists-as-queues)：核对 FIFO 及列表头部操作的搬移代价。
 - [Python 3.11：collections.deque](https://docs.python.org/3.11/library/collections.html#collections.deque)：核对双端容器与 maxlen 的丢弃规则，明确它不同于本章满时拒绝的契约。
@@ -720,6 +720,6 @@ print(take_from_queue(queue, 5), queue_values(queue))
 
 **继续学习**：先独立完成自测，再记录仍需回读的步骤。
 
-[上一章：最后进入的先取出：栈与嵌套处理](08-stacks.md)
+[上一章：最后进入的先取出：栈与嵌套处理](08-stacks.md) · [下一章：数据变多会怎样：算法分析与增长量级](10-algorithm-analysis.md)
 
-[教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [记录自己的学习](../learning-log-template.md)
+[教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [记录自己的学习](../learning-log-template.md)
