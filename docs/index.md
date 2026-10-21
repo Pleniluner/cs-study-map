@@ -4,7 +4,7 @@
 
 上游：[PKUanonym/REKCARC-TSC-UHT](https://github.com/PKUanonym/REKCARC-TSC-UHT)；索引版本：[`37cd19f7a9fb`](https://github.com/PKUanonym/REKCARC-TSC-UHT/commit/37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0)。
 
-共 14633 份文件，92 个课程/资料分组，3 份有效 AI 导读。
+共 14629 份文件，92 个课程/资料分组，3 份有效 AI 导读。
 
 ## 按领域浏览
 
@@ -28,7 +28,7 @@
 | [2023-python课堂](courses/auto-08c98197c876.md) | 待分类 | 1 | 0 / 1 |
 | [Java程序设计与训练](courses/auto-99accf738818.md) | 待分类 | 163 | 0 / 132 |
 | [VLSI设计导论](courses/auto-ae27db564da3.md) | 待分类 | 1 | 0 / 1 |
-| [Week\_1-Qt](courses/programming-7a89ea998e.md) | 程序设计与软件工程 | 563 | 0 / 205 |
+| [Week\_1-Qt](courses/programming-7a89ea998e.md) | 程序设计与软件工程 | 560 | 0 / 205 |
 | [Week\_2-Socket](courses/programming-c829466101.md) | 程序设计与软件工程 | 601 | 0 / 184 |
 | [Week\_3-Python](courses/programming-057bfd34a1.md) | 程序设计与软件工程 | 2076 | 0 / 1491 |
 | [中国近现代史纲要](courses/auto-08deaeed8a00.md) | 待分类 | 3 | 0 / 3 |
@@ -37,7 +37,7 @@
 | [人机交互理论与技术](courses/graphics-hci-439505d259.md) | 图形图像与人机交互 | 714 | 0 / 71 |
 | [仓库说明与其他资料](courses/repository-notes.md) | 待分类 | 17 | 0 / 14 |
 | [保研考试](courses/auto-5ea3ab15b53d.md) | 待分类 | 503 | 0 / 24 |
-| [信号处理原理](courses/physics-electronics-080f0cb0d3.md) | 物理、电子与信号 | 201 | 0 / 115 |
+| [信号处理原理](courses/physics-electronics-080f0cb0d3.md) | 物理、电子与信号 | 200 | 0 / 114 |
 | [信息科学技术概论](courses/systems-bf4ab838ab.md) | 计算机系统与体系结构 | 6 | 0 / 6 |
 | [写作与沟通](courses/auto-3f0ed9a39029.md) | 待分类 | 20 | 0 / 15 |
 | [军事理论](courses/auto-db88dfe1c00f.md) | 待分类 | 11 | 0 / 6 |

@@ -7,6 +7,7 @@ from pathlib import Path
 from urllib.parse import unquote
 
 from .pipeline import context_key
+from .privacy import private_reference
 from .render import effective_result
 from .storage import StudyError, digest, git_blob_sha, read_json, read_jsonl, safe_relative
 
@@ -94,6 +95,8 @@ def audit_tracked(root):
         if secret_pattern.search(text):
             raise StudyError("Potential credential found; publish audit stopped")
         if relative.startswith(("catalog/", "docs/", "config/")):
+            if private_reference(text):
+                raise StudyError("Contact address or local filesystem path found in public data")
             if re.search(r"(?i)(?:[A-Z]:[\\/](?:Users|CodeX|Finder|Academy_of_Sciences)|Bearer\s+[A-Za-z0-9_-]{20,})", text):
                 raise StudyError("Machine-specific path or credential found in public data")
         if relative.startswith("catalog/analyses/"):

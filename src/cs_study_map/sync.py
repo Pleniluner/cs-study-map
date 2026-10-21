@@ -2,6 +2,7 @@
 
 from pathlib import PurePosixPath
 
+from .privacy import private_reference
 from .storage import StudyError, digest, read_json, read_jsonl, safe_relative, write_json, write_jsonl
 
 TEXT_SUFFIXES = {".md", ".txt", ".rst", ".py", ".c", ".cpp", ".cc", ".h", ".hpp", ".java", ".v", ".vhd", ".sql", ".m", ".tex", ".html", ".htm"}
@@ -41,6 +42,8 @@ def make_records(entries, project):
         if item["type"] != "blob":
             continue
         path = safe_relative(item["path"])
+        if private_reference(path):
+            continue
         if path in seen:
             raise StudyError("Duplicate path in upstream inventory")
         seen.add(path)
@@ -57,6 +60,8 @@ def make_records(entries, project):
 
 
 def changes_between(previous, current):
+    previous = [r for r in previous if not private_reference(r["path"])]
+    current = [r for r in current if not private_reference(r["path"])]
     old = {r["path"]: r for r in previous}
     new = {r["path"]: r for r in current}
     added = sorted(new.keys() - old.keys())
@@ -80,7 +85,7 @@ def synchronize(project, github):
     state = read_json(root / "catalog/state.json", {})
     previous = read_jsonl(root / "catalog/files.jsonl")
     commit, tree = github.head(project["source"]["branch"])
-    config_key = digest({"courses": project["courses"], "source": project["source"], "taxonomy": project["taxonomy"], "sync_version": 1})
+    config_key = digest({"courses": project["courses"], "source": project["source"], "taxonomy": project["taxonomy"], "sync_version": 2})
     if state.get("commit") == commit and state.get("config_key") == config_key and previous:
         return {"changed": False, "commit": commit, "files": len(previous)}
     records = make_records(github.tree(tree), project)

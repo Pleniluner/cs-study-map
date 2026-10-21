@@ -4,7 +4,7 @@
 
 ## 课程入口
 
-- [Week\_1-Qt](../courses/programming-7a89ea998e.md)：563 份资料，0 / 205 份可解析资料已有导读。
+- [Week\_1-Qt](../courses/programming-7a89ea998e.md)：560 份资料，0 / 205 份可解析资料已有导读。
 - [Week\_2-Socket](../courses/programming-c829466101.md)：601 份资料，0 / 184 份可解析资料已有导读。
 - [Week\_3-Python](../courses/programming-057bfd34a1.md)：2076 份资料，0 / 1491 份可解析资料已有导读。
 - [数据库专题训练](../courses/programming-41a0af088d.md)：2 份资料，0 / 2 份可解析资料已有导读。
