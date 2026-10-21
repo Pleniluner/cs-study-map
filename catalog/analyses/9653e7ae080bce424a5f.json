@@ -1,0 +1,61 @@
+{
+  "blob_sha": "fe751673ab99d124f9f4a6ecff2a51f9d613c95f",
+  "context_key": "b353a5dd246e14886e8d4cd11b8ae33bf6321d5ddb58aa69ac324a1351c807b5",
+  "coverage": "extracted-text",
+  "evidence": [
+    {
+      "id": "L1-L40",
+      "locator": "第 1–40 行"
+    },
+    {
+      "id": "L41-L80",
+      "locator": "第 41–80 行"
+    },
+    {
+      "id": "L121-L160",
+      "locator": "第 121–160 行"
+    }
+  ],
+  "extractor_version": "1",
+  "model": "Codex 当前会话（未记录具体模型型号）",
+  "path": "大一小学期/Week_3-Python/docs/readme.md",
+  "prompt_version": "1",
+  "result": {
+    "resource_type": "reading",
+    "subjects": [
+      "programming"
+    ],
+    "suggested_exercises": [
+      "建议用原创整数任务练习分支、有限循环和函数，并独立核对边界输入"
+    ],
+    "suggested_prerequisites": [
+      "建议先掌握整数运算和按顺序追踪状态的方法"
+    ],
+    "summary": "这是一份 Python 小学期自学文档的入口说明，列出基础语法、交互工具、数据处理与应用文档，并给出建议阅读顺序。基础语法正文通过外链提供，当前读取的是入口本身，不能据此视为已读完整语法教程或已运行所列 Notebook。",
+    "topics": [
+      {
+        "evidence_ids": [
+          "L41-L80"
+        ],
+        "name": "Python 基础语法的外部学习入口"
+      },
+      {
+        "evidence_ids": [
+          "L121-L160"
+        ],
+        "name": "从基础语法到工具与应用的建议阅读顺序"
+      },
+      {
+        "evidence_ids": [
+          "L1-L40"
+        ],
+        "name": "Python 自学预习材料的目标与文档结构"
+      }
+    ],
+    "uncertain": false
+  },
+  "review_status": "ai-unreviewed",
+  "schema_version": 1,
+  "source_commit": "37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0",
+  "source_repository": "PKUanonym/REKCARC-TSC-UHT"
+}

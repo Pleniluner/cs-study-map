@@ -2,13 +2,33 @@
 
 [返回课程导航](../index.md)
 
-资料索引：2076 份；当前可解析：1491 份；已生成 AI 导读：0 份。
+资料索引：2076 份；当前可解析：1491 份；已生成 AI 导读：1 份。
 
 AI 导读基于可提取片段生成，尚未经学科专家逐条核验。建议基础与练习是学习建议。
 
 ## 已生成的导读
 
-本课程已建立来源索引，AI 导读仍在排队。下方链接可直接查看上游资料。
+### readme.md
+
+[原资料](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0/%E5%A4%A7%E4%B8%80%E5%B0%8F%E5%AD%A6%E6%9C%9F/Week_3-Python/docs/readme.md) · 阅读资料 · 已提取可读文本 · AI 自动判断
+
+这是一份 Python 小学期自学文档的入口说明，列出基础语法、交互工具、数据处理与应用文档，并给出建议阅读顺序。基础语法正文通过外链提供，当前读取的是入口本身，不能据此视为已读完整语法教程或已运行所列 Notebook。
+
+**涉及知识**
+
+- Python 基础语法的外部学习入口（依据：第 41–80 行）
+- 从基础语法到工具与应用的建议阅读顺序（依据：第 121–160 行）
+- Python 自学预习材料的目标与文档结构（依据：第 1–40 行）
+
+**建议先了解**
+
+- 建议先掌握整数运算和按顺序追踪状态的方法
+
+**建议尝试**
+
+- 建议用原创整数任务练习分支、有限循环和函数，并独立核对边界输入
+
+生成模型：Codex 当前会话（未记录具体模型型号）；人工修正：无。
 
 ## 全部资料索引
 
@@ -24,7 +44,7 @@ AI 导读基于可提取片段生成，尚未经学科专家逐条核验。建�
 | [大一小学期/Week\_3-Python/docs/backend/Django\_preparation.pdf](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0/%E5%A4%A7%E4%B8%80%E5%B0%8F%E5%AD%A6%E6%9C%9F/Week_3-Python/docs/backend/Django_preparation.pdf) | 待识别 |
 | [大一小学期/Week\_3-Python/docs/backend/SQL.pdf](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0/%E5%A4%A7%E4%B8%80%E5%B0%8F%E5%AD%A6%E6%9C%9F/Week_3-Python/docs/backend/SQL.pdf) | 待识别 |
 | [大一小学期/Week\_3-Python/docs/crawler/crawler.ipynb](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0/%E5%A4%A7%E4%B8%80%E5%B0%8F%E5%AD%A6%E6%9C%9F/Week_3-Python/docs/crawler/crawler.ipynb) | 待识别 |
-| [大一小学期/Week\_3-Python/docs/readme.md](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0/%E5%A4%A7%E4%B8%80%E5%B0%8F%E5%AD%A6%E6%9C%9F/Week_3-Python/docs/readme.md) | 待识别 |
+| [大一小学期/Week\_3-Python/docs/readme.md](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0/%E5%A4%A7%E4%B8%80%E5%B0%8F%E5%AD%A6%E6%9C%9F/Week_3-Python/docs/readme.md) | 已有导读 |
 | [大一小学期/Week\_3-Python/docs/soup/BeatifulSoup4.ipynb](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0/%E5%A4%A7%E4%B8%80%E5%B0%8F%E5%AD%A6%E6%9C%9F/Week_3-Python/docs/soup/BeatifulSoup4.ipynb) | 待识别 |
 | [大一小学期/Week\_3-Python/docs/soup/Pandas.ipynb](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0/%E5%A4%A7%E4%B8%80%E5%B0%8F%E5%AD%A6%E6%9C%9F/Week_3-Python/docs/soup/Pandas.ipynb) | 待识别 |
 | [大一小学期/Week\_3-Python/docs/soup/Pandas\_refined.ipynb](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0/%E5%A4%A7%E4%B8%80%E5%B0%8F%E5%AD%A6%E6%9C%9F/Week_3-Python/docs/soup/Pandas_refined.ipynb) | 待识别 |

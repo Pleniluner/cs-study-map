@@ -31,6 +31,51 @@ sections 3–5 节；worked_examples 恰好 2 个，每例 3–8 步；exercises
 所有讲解、例题、练习和解析应达到 2500–4500 汉字的教材深度，避免只列提纲。只输出 JSON。
 """
 
+PYTHON_BOOK_PROMPT_VERSION = "2-python"
+PYTHON_BOOK_PROMPT = BOOK_PROMPT + """
+本章使用 Python 3.11 或更新版本。以下代码规则是对上面普通文本规则的明确扩展：
+sections、worked_examples、exercises 的对象各允许增加 program 字段，其结构必须恰好为
+{"code":"完整可单独运行的 Python 源码，使用换行和四空格缩进，不含 Markdown 围栏", "output":"运行后的准确标准输出，保留换行；无输出时为空串"}。
+program.code 可使用正常 Python 比较符号；其他文字字段仍使用普通文本，不放代码或标记。
+每个例题和每道练习必须提供 program；练习的 program 是折叠解答中的参考实现。
+代码必须是原创的、自包含的纯计算小程序，仅用标准内建能力，不读写文件、不联网、不调用 shell、不导入模块、不要求交互输入。
+先讲清新语法和输入范围，再给完整程序。说明边界、停止条件、可观察输出，逐步推导答案。
+official_references 是已经核对的官方语言语义参考说明，不得把路线入口当成语言语义证据。
+"""
+
+
+def writing_prompt(chapter):
+    if chapter.get("format") == "python":
+        return PYTHON_BOOK_PROMPT, PYTHON_BOOK_PROMPT_VERSION
+    return BOOK_PROMPT, BOOK_PROMPT_VERSION
+
+
+def validate_references(references):
+    if not isinstance(references, list) or not 1 <= len(references) <= 6:
+        raise StudyError("Invalid textbook reference list")
+    for reference in references:
+        if not isinstance(reference, dict) or set(reference) != {"title", "url", "note"}:
+            raise StudyError("Invalid textbook reference fields")
+        if any(not isinstance(reference[k], str) or not 1 <= len(reference[k]) <= 300 for k in ("title", "note")):
+            raise StudyError("Invalid textbook reference description")
+        if not isinstance(reference["url"], str) or not re.fullmatch(r"https://[A-Za-z0-9.-]+/[A-Za-z0-9/_.%\-]*(?:#[A-Za-z0-9_.\-]+)?", reference["url"]):
+            raise StudyError("Textbook reference must be a plain HTTPS documentation URL")
+
+
+def validate_program(program):
+    if not isinstance(program, dict) or set(program) != {"code", "output"}:
+        raise StudyError("Invalid textbook program fields")
+    for key, maximum in [("code", 6000), ("output", 3000)]:
+        value = program[key]
+        if not isinstance(value, str) or len(value) > maximum or "```" in value or "\x00" in value:
+            raise StudyError("Invalid textbook program text")
+    if not program["code"].strip():
+        raise StudyError("Textbook program is empty")
+    try:
+        compile(program["code"], "<textbook-program>", "exec", dont_inherit=True)
+    except (SyntaxError, ValueError):
+        raise StudyError("Textbook program has invalid Python syntax") from None
+
 
 def curriculum(project):
     plan = read_json(project["root"] / "config/curriculum.json", {"title": "个人学习教材", "learner": "", "chapters": [], "planned": []})
@@ -41,6 +86,10 @@ def curriculum(project):
         ids.add(chapter["id"])
         if not chapter["sources"]:
             raise StudyError("Chapter needs at least one analyzed source")
+        if chapter.get("format", "prose") not in {"prose", "python"}:
+            raise StudyError("Unknown textbook chapter format")
+        if "references" in chapter:
+            validate_references(chapter["references"])
     return plan
 
 
@@ -72,7 +121,8 @@ def resolve_sources(project, chapter):
 
 
 def chapter_key(plan, chapter, sources):
-    return digest({"learner": plan["learner"], "chapter": chapter, "sources": sources, "prompt": BOOK_PROMPT, "version": BOOK_PROMPT_VERSION})
+    prompt, version = writing_prompt(chapter)
+    return digest({"learner": plan["learner"], "chapter": chapter, "sources": sources, "prompt": prompt, "version": version})
 
 
 def validate_chapter(value, sources):
@@ -97,7 +147,7 @@ def validate_chapter(value, sources):
         for text in items(value[name], low, high):
             prose(text, maximum=400)
     for section in items(value["sections"], 3, 5):
-        if not isinstance(section, dict) or set(section) != {"title", "body", "source_topic_keys"}:
+        if not isinstance(section, dict) or set(section) - {"program"} != {"title", "body", "source_topic_keys"}:
             raise StudyError("Invalid textbook section schema")
         prose(section["title"], maximum=80)
         prose(section["body"], 240, 2000)
@@ -105,31 +155,36 @@ def validate_chapter(value, sources):
             if not isinstance(key, str) or key not in keys:
                 raise StudyError("Textbook section cites an invented source topic")
     for example in items(value["worked_examples"], 2, 2):
-        if not isinstance(example, dict) or set(example) != {"question", "steps", "answer"}:
+        if not isinstance(example, dict) or set(example) - {"program"} != {"question", "steps", "answer"}:
             raise StudyError("Invalid worked example schema")
         prose(example["question"], 10)
         prose(example["answer"], 10)
         for step in items(example["steps"], 3, 8):
             prose(step, 10)
     for exercise in items(value["exercises"], 3, 3):
-        if not isinstance(exercise, dict) or set(exercise) != {"question", "hint", "answer"}:
+        if not isinstance(exercise, dict) or set(exercise) - {"program"} != {"question", "hint", "answer"}:
             raise StudyError("Invalid exercise schema")
-        for text in exercise.values():
-            prose(text, 10)
+        for field in ("question", "hint", "answer"):
+            prose(exercise[field], 10)
     for pitfall in items(value["pitfalls"], 2, 4):
         if not isinstance(pitfall, dict) or set(pitfall) != {"mistake", "correction"}:
             raise StudyError("Invalid misconception schema")
         for text in pitfall.values():
             prose(text, 10)
+    for item in value["sections"] + value["worked_examples"] + value["exercises"]:
+        if "program" in item:
+            validate_program(item["program"])
     return value
 
 
 def validate_document(document):
     expected = {"schema_version", "chapter_id", "title", "context_key", "model", "prompt_version", "review_status", "sources", "content"}
-    if not isinstance(document, dict) or set(document) != expected:
+    if not isinstance(document, dict) or set(document) - {"references"} != expected:
         raise StudyError("Invalid textbook document envelope")
     if document["schema_version"] != 1 or document["review_status"] != "ai-draft":
         raise StudyError("Invalid textbook version or review status")
+    if "references" in document:
+        validate_references(document["references"])
     for source in document["sources"]:
         if set(source) != {"analysis_id", "analysis_digest", "repository", "commit", "path", "blob_sha", "coverage", "topics", "evidence"}:
             raise StudyError("Textbook sources may contain metadata only")
@@ -142,6 +197,9 @@ def validate_document(document):
         if not re.fullmatch(r"[0-9a-f]{40}", source["commit"]):
             raise StudyError("Textbook source must use a fixed commit")
     validate_chapter(document["content"], document["sources"])
+    if document["prompt_version"] == PYTHON_BOOK_PROMPT_VERSION:
+        if any("program" not in item for item in document["content"]["worked_examples"] + document["content"]["exercises"]):
+            raise StudyError("Python chapters require programs for every example and exercise")
     return document
 
 
@@ -172,10 +230,17 @@ def write_chapters(project, client, limit=1, selected=None, require_ai=False):
             attempted += 1
             context = {"learner": plan["learner"], "title": chapter["title"], "scope": chapter["scope"],
                        "source_topics": [{"key": t["key"], "name": t["name"]} for s in sources for t in s["topics"]]}
-            content = validate_chapter(client.generate(context, BOOK_PROMPT, max_tokens=12000), sources)
+            prompt, version = writing_prompt(chapter)
+            if chapter.get("references"):
+                context["official_references"] = chapter["references"]
+            content = validate_chapter(client.generate(context, prompt, max_tokens=12000), sources)
+            if chapter.get("format") == "python" and any("program" not in item for item in content["worked_examples"] + content["exercises"]):
+                raise StudyError("Python chapters require programs for every example and exercise")
             document = {"schema_version": 1, "chapter_id": chapter["id"], "title": chapter["title"],
-                        "context_key": key, "model": client.model, "prompt_version": BOOK_PROMPT_VERSION,
+                        "context_key": key, "model": client.model, "prompt_version": version,
                         "review_status": "ai-draft", "sources": sources, "content": content}
+            if chapter.get("references"):
+                document["references"] = chapter["references"]
             validate_document(document)
             write_json(path, document)
             completed += 1
@@ -200,6 +265,18 @@ def chapter_status(project, plan, chapter, document):
 
 def paragraphs(text):
     return "\n\n".join(md(part) for part in text.splitlines() if part.strip())
+
+
+def program_lines(item):
+    program = item.get("program")
+    if not program:
+        return []
+    lines = ["", "**完整程序**", "", "```python", program["code"].rstrip(), "```", "", "**预期输出**", ""]
+    if program["output"]:
+        lines += ["```text", program["output"].rstrip("\n"), "```", ""]
+    else:
+        lines += ["（无输出）", ""]
+    return lines
 
 
 def chapter_navigation(chapters, index, available):
@@ -228,6 +305,7 @@ def build_textbook(project):
     for filename, label in [("study-guide.md", "三章试学指南"), ("unit-01-review.md", "综合练习与回读指引")]:
         if (root / "docs" / filename).is_file():
             support.append(f"[{label}](../{filename})")
+    programming_support = ["[编程练习与运行](../programming-practice.md)"] if (root / "docs/programming-practice.md").is_file() else []
     for index, chapter in enumerate(plan["chapters"]):
         document = documents[chapter["id"]]
         status = chapter_status(project, plan, chapter, document)
@@ -240,8 +318,9 @@ def build_textbook(project):
         label = "AI 初稿，可开始试学" if status == "current" else "来源或计划变化，待复核"
         rows.append(f"| {index + 1} | [{md(chapter['title'])}]({chapter['id']}.md) | {label} |")
         content = document["content"]
+        chapter_support = programming_support if chapter.get("format") == "python" else support
         navigation = chapter_navigation(plan["chapters"], index, available)
-        lines = [f"# {md(document['title'])}", "", " · ".join(["[返回教材目录](index.md)", *support]), ""]
+        lines = [f"# {md(document['title'])}", "", " · ".join(["[返回教材目录](index.md)", *chapter_support]), ""]
         if navigation:
             lines += [navigation, ""]
         lines += ["[学习目标](#objectives) · [需要的基础](#prerequisites) · [例题](#examples) · [练习](#practice) · [自测](#self-check)", "",
@@ -255,15 +334,15 @@ def build_textbook(project):
         topic_numbers = {t["key"]: i + 1 for i, t in enumerate([t for s in document["sources"] for t in s["topics"]])}
         for section in content["sections"]:
             refs = "、".join(str(topic_numbers[k]) for k in section["source_topic_keys"])
-            lines += ["", f"## {md(section['title'])}", "", paragraphs(section["body"]), "", f"选题关联：来源主题 {refs}（文末列出）。"]
+            lines += ["", f"## {md(section['title'])}", "", paragraphs(section["body"]), *program_lines(section), "", f"选题关联：来源主题 {refs}（文末列出）。"]
         lines += ["", '<a id="examples"></a>', "", "## 跟着做：原创例题", ""]
         for i, example in enumerate(content["worked_examples"], 1):
             lines += [f"### 例题 {i}", "", paragraphs(example["question"]), ""]
             lines += [f"{n}. {md(step)}" for n, step in enumerate(example["steps"], 1)]
-            lines += ["", "**结果与核对**", "", paragraphs(example["answer"]), ""]
+            lines += ["", "**结果与核对**", "", paragraphs(example["answer"]), *program_lines(example), ""]
         lines += ['<a id="practice"></a>', "", "## 自己做：先完成再看解答", ""]
         for i, exercise in enumerate(content["exercises"], 1):
-            lines += [f"### 练习 {i}", "", paragraphs(exercise["question"]), "", "<details>", "<summary>提示</summary>", "", paragraphs(exercise["hint"]), "", "</details>", "", "<details>", "<summary>解答与检查</summary>", "", paragraphs(exercise["answer"]), "", "</details>", ""]
+            lines += [f"### 练习 {i}", "", paragraphs(exercise["question"]), "", "<details>", "<summary>提示</summary>", "", paragraphs(exercise["hint"]), "", "</details>", "", "<details>", "<summary>解答与检查</summary>", "", paragraphs(exercise["answer"]), *program_lines(exercise), "", "</details>", ""]
         lines += ['<a id="pitfalls"></a>', "", "## 容易混淆的地方", ""]
         for item in content["pitfalls"]:
             lines += [f"- **{md(item['mistake'])}** {md(item['correction'])}"]
@@ -278,16 +357,20 @@ def build_textbook(project):
             for topic in source["topics"]:
                 locators = "、".join(md(pointers[e]) for e in topic["evidence_ids"])
                 lines += [f"- 主题 {topic_numbers[topic['key']]}：{md(topic['name'])}；位置：{locators}。"]
+        if document.get("references"):
+            lines += ["", "## 语言语义核对", "", "上游入口用于确定学习方向；下面的官方文档用于核对语言规则，例题和练习由本项目重新设计。", ""]
+            for reference in document["references"]:
+                lines += [f"- [{md(reference['title'])}]({reference['url']})：{md(reference['note'])}"]
         lines += ["", "**继续学习**：先独立完成自测，再记录仍需回读的步骤。", ""]
         if navigation:
             lines += [navigation, ""]
-        lines += [" · ".join(["[教材目录](index.md)", *support, "[记录自己的学习](../learning-log-template.md)"]), ""]
+        lines += [" · ".join(["[教材目录](index.md)", *chapter_support, "[记录自己的学习](../learning-log-template.md)"]), ""]
         pages[f"docs/textbook/{chapter['id']}.md"] = "\n".join(lines)
     lines = [f"# {md(plan['title'])}", "", "[项目说明](../../README.md) · [资料地图](../index.md) · [记录自己的学习](../learning-log-template.md)", "",
              "目标是给自己一条能学下去的路线：读讲解 → 跟例题 → 独立做题 → 用自测找出卡点 → 回到资料深入。课程目录为选材提供线索，章节按先修关系组织。", "",
              f"当前可试学 {current} 章，待复核 {stale} 章，待编写 {len(plan['chapters']) - current - stale} 章。每章含讲解、2 个原创例题、3 道练习及解答。当前章节均为 AI 初稿，尚未经过学科专家或学习者实际试学验收。", "",
              "## 从这里开始", "", "先按下表顺序阅读。能独立解释并做对自测再前进；卡住时在本机学习记录中写下具体问题，后续据此调整教材。", "",
-             *([" · ".join(support), ""] if support else []),
+             *([" · ".join(support + programming_support), ""] if support or programming_support else []),
              "| 顺序 | 章节 | 状态 |", "| ---: | --- | --- |", *rows, "", "## 后续路线（尚未写成教材）", ""]
     lines += ["- " + md(t) for t in plan["planned"]]
     lines += ["", "## 更新怎样影响教材", "", "同步先比较来源内容，变化会使旧导读失效。教材记录使用的分析版本；来源分析、编写范围或生成规则改变后会标为待复核。只有拿到有效资料分析后，写作命令才会按既定计划生成新稿。原资料不会并入教材仓库。", ""]

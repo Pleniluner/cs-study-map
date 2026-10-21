@@ -8,13 +8,17 @@ This project is mainly for the maintainer’s own study. It selects useful topic
 
 This is Pleniluner’s personal learning project, with no official affiliation with Tsinghua University or upstream maintainers. The public repository contains original tools, textbook drafts, source indexes, and AI guides. Original course materials, slides, assignments, student source code, and extracted full text are not published.
 
-## Three starter chapters
+## Five chapters to study in order
 
 | # | Topic | Activity |
 | --- | --- | --- |
 | 1 | [Binary, bytes, and little-endian order](../textbook/01-data-and-bytes.md) | Split a number into bytes, then reconstruct it from memory |
 | 2 | [Registers, memory, and the stack](../textbook/02-execution-and-stack.md) | Trace a toy machine state step by step |
 | 3 | [First fit, splitting, and coalescing](../textbook/03-first-fit.md) | Simulate allocation and release; explain external fragmentation |
+| 4 | [Sequence, branches, and loops](../textbook/04-control-flow.md) | Trace variables, write repeated calculations, and check boundaries and termination |
+| 5 | [Parameters, return values, and functions](../textbook/05-functions.md) | Compose functions and distinguish printing, returning, and local names |
+
+Chapters 4 and 5 use Python 3.11 or later and include 20 standalone programs with expected outputs. See the [programming practice guide](../programming-practice.md) (in Chinese) for setup and practice steps.
 
 Each chapter has detailed explanations, 2 original examples, 3 exercises with expandable solutions, a self-check, and topic sources. This is an AI first draft, not reviewed by subject experts or trial learners; it does not mean every course has a textbook.
 

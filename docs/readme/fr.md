@@ -8,13 +8,17 @@ Ce projet sert d’abord à l’apprentissage personnel de son mainteneur. Il s�
 
 Ce projet personnel est maintenu par Pleniluner, sans affiliation officielle avec l’Université Tsinghua ni les responsables amont. Le dépôt public contient des outils originaux, des brouillons, des index de sources et des guides IA. Les supports originaux, diapositives, devoirs, codes d’étudiants et textes extraits intégralement ne sont pas publiés.
 
-## Commencer par trois chapitres
+## Étudier cinq chapitres dans l’ordre
 
 | # | Sujet | Activité |
 | --- | --- | --- |
 | 1 | [Binaire, octets et ordre petit-boutiste](../textbook/01-data-and-bytes.md) | Décomposer un nombre en octets, puis le reconstituer depuis la mémoire |
 | 2 | [Registres, mémoire et pile](../textbook/02-execution-and-stack.md) | Suivre pas à pas l’état d’une machine simplifiée |
 | 3 | [Premier ajustement, division et fusion](../textbook/03-first-fit.md) | Simuler allocation et libération, puis expliquer la fragmentation externe |
+| 4 | [Séquences, conditions et boucles](../textbook/04-control-flow.md) | Suivre les variables et vérifier les limites et la terminaison des boucles |
+| 5 | [Paramètres, valeurs de retour et fonctions](../textbook/05-functions.md) | Combiner des fonctions et distinguer affichage, retour et noms locaux |
+
+Les chapitres 4 et 5 utilisent Python 3.11 ou une version ultérieure et proposent 20 programmes autonomes avec leur sortie attendue. La préparation et la méthode sont décrites dans le [guide de pratique de la programmation](../programming-practice.md), en chinois.
 
 Chaque chapitre contient des explications détaillées, 2 exemples originaux, 3 exercices avec solutions dépliables, une autoévaluation et les sources des sujets. Il s’agit d’un premier jet produit par IA, sans validation par des spécialistes ni essai auprès d’apprenants ; tous les cours ne disposent pas encore d’un manuel.
 

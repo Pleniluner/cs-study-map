@@ -1,5 +1,6 @@
 """Check Git snapshots and metadata without echoing rejected private values."""
 
+import json
 import re
 import shlex
 import subprocess
@@ -19,12 +20,24 @@ def git(*args):
     return subprocess.check_output(['git', *args], stderr=subprocess.DEVNULL)
 
 
-def check(data):
-    text = unquote(data.decode('utf-8'))
-    if LOCAL.search(text) or any(not NOREPLY.fullmatch(m.group()) and
-                                 m.group().split('@')[1].lower() not in EXAMPLE_DOMAINS
-                                 for m in EMAIL.finditer(text)):
-        raise ValueError('Personal email or absolute local path detected; private value omitted.')
+def check(data, *, json_document=False):
+    values = [data.decode('utf-8')]
+    if json_document:
+        try:
+            # Keep every key/value pair, even when a JSON key occurs twice.
+            values = [json.loads(values[0], object_pairs_hook=list)]
+        except ValueError:
+            pass
+    while values:
+        item = values.pop()
+        if isinstance(item, (list, tuple)):
+            values.extend(item)
+        elif isinstance(item, str):
+            text = unquote(item)
+            if LOCAL.search(text) or any(not NOREPLY.fullmatch(m.group()) and
+                                         m.group().split('@')[1].lower() not in EXAMPLE_DOMAINS
+                                         for m in EMAIL.finditer(text)):
+                raise ValueError('Personal email or absolute local path detected; private value omitted.')
 
 
 def identity(value):
@@ -47,9 +60,11 @@ def snapshot(tree=None, seen=None):
         check(name)
         if mode == b'160000':
             raise ValueError('Submodule content cannot be privacy-audited.')
-        if oid not in seen:
-            check(git('cat-file', 'blob', oid.decode()))
-            seen.add(oid)
+        json_document = name.lower().endswith(b'.json')
+        scan_key = (oid, json_document)
+        if scan_key not in seen:
+            check(git('cat-file', 'blob', oid.decode()), json_document=json_document)
+            seen.add(scan_key)
 
 
 def history(revision):

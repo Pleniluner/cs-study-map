@@ -8,13 +8,17 @@ Il progetto serve soprattutto allo studio del manutentore: seleziona argomenti d
 
 È un progetto personale di Pleniluner, senza affiliazione ufficiale con la Tsinghua University o i manutentori upstream. Il repository pubblico contiene strumenti originali, bozze, indici delle fonti e guide AI. Materiali didattici originali, slide, compiti, codice degli studenti e testi estratti integralmente non sono pubblicati.
 
-## Inizia da tre capitoli
+## Studia cinque capitoli in ordine
 
 | # | Argomento | Attività |
 | --- | --- | --- |
 | 1 | [Binario, byte e ordine little-endian](../textbook/01-data-and-bytes.md) | Scomporre un numero in byte e ricostruirlo dalla memoria |
 | 2 | [Registri, memoria e stack](../textbook/02-execution-and-stack.md) | Seguire passo per passo lo stato di una macchina semplificata |
 | 3 | [Primo adattamento, divisione e fusione](../textbook/03-first-fit.md) | Simulare allocazione e rilascio e spiegare la frammentazione esterna |
+| 4 | [Sequenze, condizioni e cicli](../textbook/04-control-flow.md) | Seguire le variabili e verificare i casi limite e la terminazione dei cicli |
+| 5 | [Parametri, valori restituiti e funzioni](../textbook/05-functions.md) | Combinare funzioni e distinguere stampa, restituzione e nomi locali |
+
+I capitoli 4 e 5 usano Python 3.11 o successivo e includono 20 programmi autonomi con l’output atteso. Preparazione e metodo sono nella [guida alla pratica di programmazione](../programming-practice.md), in cinese.
 
 Ogni capitolo contiene spiegazioni dettagliate, 2 esempi originali, 3 esercizi con soluzioni espandibili, un’autoverifica e le fonti degli argomenti. È una prima bozza AI, non revisionata da esperti né sperimentata con studenti; non significa che tutti i corsi abbiano un manuale completo.
 

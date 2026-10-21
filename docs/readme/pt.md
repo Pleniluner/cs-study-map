@@ -8,13 +8,17 @@ O projeto serve principalmente ao estudo do mantenedor: seleciona temas de [REKC
 
 Este é um projeto pessoal de Pleniluner, sem vínculo oficial com a Universidade Tsinghua ou os mantenedores originais. O repositório público contém ferramentas próprias, rascunhos, índices de fontes e guias de IA. Materiais didáticos originais, slides, tarefas, código de estudantes e texto integral extraído não são publicados.
 
-## Comece por três capítulos
+## Estude cinco capítulos em ordem
 
 | # | Tema | Atividade |
 | --- | --- | --- |
 | 1 | [Binário, bytes e ordem little-endian](../textbook/01-data-and-bytes.md) | Dividir um número em bytes e reconstruí-lo a partir da memória |
 | 2 | [Registradores, memória e pilha](../textbook/02-execution-and-stack.md) | Acompanhar passo a passo o estado de uma máquina simplificada |
 | 3 | [Primeiro ajuste, divisão e fusão](../textbook/03-first-fit.md) | Simular alocação e liberação e explicar a fragmentação externa |
+| 4 | [Sequências, condições e laços](../textbook/04-control-flow.md) | Acompanhar variáveis e verificar limites e condições de término |
+| 5 | [Parâmetros, valores de retorno e funções](../textbook/05-functions.md) | Combinar funções e distinguir impressão, retorno e nomes locais |
+
+Os capítulos 4 e 5 usam Python 3.11 ou superior e incluem 20 programas independentes com as saídas esperadas. A preparação e o método estão no [guia de prática de programação](../programming-practice.md), em chinês.
 
 Cada capítulo inclui explicações detalhadas, 2 exemplos originais, 3 exercícios com soluções expansíveis, uma autoavaliação e as fontes dos temas. É um primeiro rascunho de IA, sem revisão por especialistas nem teste com estudantes; isso não significa que todos os cursos tenham um livro completo.
 

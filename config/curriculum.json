@@ -1,31 +1,120 @@
 {
-  "title": "给自己的计算机入门教材",
-  "learner": "从基础开始自学；先用纸笔和小例子建立概念，再接触课程实验。",
   "chapters": [
     {
       "id": "01-data-and-bytes",
-      "title": "数字怎样存进计算机：二进制、字节与小端序",
       "scope": "面向只会四则运算的读者，从位权解释二进制和十六进制；区分数值、书写方式、字节和地址；用明确指定的无符号 16 位示意模型讲小端序。原创例题须包含完整换算与反向验算，不讲浮点数或符号扩展。",
-      "sources": [{"analysis_id": "38d5ec3acdab10097cfe", "topic_indexes": [3, 4]}]
+      "sources": [
+        {
+          "analysis_id": "38d5ec3acdab10097cfe",
+          "topic_indexes": [
+            3,
+            4
+          ]
+        }
+      ],
+      "title": "数字怎样存进计算机：二进制、字节与小端序"
     },
     {
       "id": "02-execution-and-stack",
-      "title": "程序怎样一步步执行：寄存器、内存与栈",
       "scope": "承接第一章，用自己明确规定语义的玩具机器讲寄存器、立即数、读写内存、顺序执行和后进先出。完整追踪一个短指令序列及一个压栈出栈序列。指令用中文描述而非借用 ERISC 指令语法，不声称模拟了真实 ERISC；所有地址、初始值、栈方向、容量都先定义，避免依赖未学过的函数或指针。",
-      "sources": [{"analysis_id": "38d5ec3acdab10097cfe", "topic_indexes": [2, 3, 4, 5, 6]}]
+      "sources": [
+        {
+          "analysis_id": "38d5ec3acdab10097cfe",
+          "topic_indexes": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        }
+      ],
+      "title": "程序怎样一步步执行：寄存器、内存与栈"
     },
     {
       "id": "03-first-fit",
-      "title": "空闲空间怎样分给程序：首次适应、拆分与合并",
       "scope": "承接地址与内存概念，从固定大小分配单元出发，详细规定 First-Fit 的地址升序扫描、低地址端分配、半开区间、释放及相邻合并规则。原创完整例子展示至少三次分配和两次释放，每步列出空闲区间并核对总量守恒；用总空闲量足够但最大连续块不足解释外部碎片。只讲连续分配，不把它当页表地址转换；不移植学生代码或声称实现 uCore。",
-      "sources": [{"analysis_id": "0abe7cbd91adde24eb30", "topic_indexes": [0]}]
+      "sources": [
+        {
+          "analysis_id": "0abe7cbd91adde24eb30",
+          "topic_indexes": [
+            0
+          ]
+        }
+      ],
+      "title": "空闲空间怎样分给程序：首次适应、拆分与合并"
+    },
+    {
+      "format": "python",
+      "id": "04-control-flow",
+      "references": [
+        {
+          "note": "核对整数运算、赋值、print、比较与缩进；例题数值及场景为本项目原创。",
+          "title": "Python 3.11：数字、赋值与第一段程序",
+          "url": "https://docs.python.org/3.11/tutorial/introduction.html"
+        },
+        {
+          "note": "核对分支选择、循环前检查条件、for 逐项迭代与块结构。",
+          "title": "Python 3.11：if、while 与 for 的语义",
+          "url": "https://docs.python.org/3.11/reference/compound_stmts.html"
+        },
+        {
+          "note": "核对 range 不包含停止值；本章只使用默认步长为 1 的形式。",
+          "title": "Python 3.11：range 与控制流程",
+          "url": "https://docs.python.org/3.11/tutorial/controlflow.html#the-range-function"
+        }
+      ],
+      "scope": "承接纸笔状态追踪，面向没有编程经验的学习者使用 Python 3.11+。先教整数变量、赋值、print、比较、缩进，再讲互斥分支、while、for 与 range、余数筛选、累加与计数。每个程序完整自包含，输入用变量赋值，不读写文件或联网。定义输入范围、零次循环、边界与终止；每个例题和练习含可运行程序及准确输出。上游入口只作基础语法学习路线线索，具体语义核对官方文档，不移植原作业或官方例题。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "程序怎样作选择和重复：顺序、分支与循环"
+    },
+    {
+      "format": "python",
+      "id": "05-functions",
+      "references": [
+        {
+          "note": "核对 def、形参、函数调用以及未显式返回值时的 None。",
+          "title": "Python 3.11：定义和调用函数",
+          "url": "https://docs.python.org/3.11/tutorial/controlflow.html#defining-functions"
+        },
+        {
+          "note": "核对 return 结束当前函数调用并把结果交给调用者。",
+          "title": "Python 3.11：return 语句",
+          "url": "https://docs.python.org/3.11/reference/simple_stmts.html#the-return-statement"
+        },
+        {
+          "note": "核对参数和局部名字的作用范围；不把整数重新绑定推广成所有对象的复制。",
+          "title": "Python 3.11：名字与绑定",
+          "url": "https://docs.python.org/3.11/reference/executionmodel.html#naming-and-binding"
+        }
+      ],
+      "scope": "承接第4章 Python 整数、分支、for、while 与 range。解释 def 与调用、形参与实参、按位置绑定、整数参数重新赋值、return 与 print/None、局部名字与每次调用、单一职责和组合调用。所有示例只用整数或布尔值、标准内建功能，自包含且不读写文件联网。完整追踪两例，三道练习含程序和输出；规定非负数或正除数等输入契约，覆盖零与边界，暂不教递归、可变参数、默认值或可变容器。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "把计算组织成函数：参数、返回值与局部名字"
     }
   ],
+  "learner": "从基础开始自学；先用纸笔和小例子建立概念，再接触课程实验。",
   "planned": [
-    "程序设计基本控制结构与函数",
     "数组、链表、栈与队列的实现",
     "算法分析、查找与排序（需补充可读材料）",
     "虚拟地址、页表与 TLB（需核对原理及适用架构）",
     "后续按个人学习需要扩展数学、系统、网络等章节"
-  ]
+  ],
+  "title": "给自己的计算机入门教材"
 }

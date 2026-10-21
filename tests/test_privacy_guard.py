@@ -1,3 +1,4 @@
+import json
 import os
 import subprocess
 import sys
@@ -74,3 +75,16 @@ class GitPrivacyGuardTests(unittest.TestCase):
         self.stage('docs/guide.md and https://github.com/example/project')
         self.run_git('commit', '-qm', 'Add public guide')
         self.run_git('push', 'origin', 'HEAD:main')
+
+    def test_json_programs_pass_but_private_keys_and_values_still_fail(self):
+        code = '\n'.join(['n = 2', 'while n:', '    n = n - 1'])
+        path = self.root / 'lesson.json'
+        path.write_text(json.dumps({'code': code}), encoding='utf-8')
+        self.run_git('add', 'lesson.json')
+        self.run_git('commit', '-qm', 'Add original program')
+        private = 'Q:' + chr(92) + 'notes'
+        for value in (json.dumps({'nested': [private]}), json.dumps({private: 'safe'}),
+                      '{"key": ' + json.dumps(private) + ', "key": "safe"}'):
+            path.write_text(value, encoding='utf-8')
+            self.run_git('add', 'lesson.json')
+            self.guard('index', success=False)

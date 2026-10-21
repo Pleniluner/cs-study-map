@@ -4,7 +4,7 @@
 
 上游：[PKUanonym/REKCARC-TSC-UHT](https://github.com/PKUanonym/REKCARC-TSC-UHT)；索引版本：[`37cd19f7a9fb`](https://github.com/PKUanonym/REKCARC-TSC-UHT/commit/37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0)。
 
-共 14629 份文件，92 个课程/资料分组，3 份有效 AI 导读。
+共 14629 份文件，92 个课程/资料分组，4 份有效 AI 导读。
 
 ## 按领域浏览
 
@@ -30,7 +30,7 @@
 | [VLSI设计导论](courses/auto-ae27db564da3.md) | 待分类 | 1 | 0 / 1 |
 | [Week\_1-Qt](courses/programming-7a89ea998e.md) | 程序设计与软件工程 | 560 | 0 / 205 |
 | [Week\_2-Socket](courses/programming-c829466101.md) | 程序设计与软件工程 | 601 | 0 / 184 |
-| [Week\_3-Python](courses/programming-057bfd34a1.md) | 程序设计与软件工程 | 2076 | 0 / 1491 |
+| [Week\_3-Python](courses/programming-057bfd34a1.md) | 程序设计与软件工程 | 2076 | 1 / 1491 |
 | [中国近现代史纲要](courses/auto-08deaeed8a00.md) | 待分类 | 3 | 0 / 3 |
 | [人工智能导论](courses/ai-data-2705a5ed1a.md) | 人工智能与数据科学 | 21 | 0 / 17 |
 | [人工神经网络](courses/ai-data-4cb35a28a6.md) | 人工智能与数据科学 | 45 | 0 / 45 |

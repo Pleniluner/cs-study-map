@@ -4,21 +4,25 @@
 
 主要供本人自学：从 [REKCARC-TSC-UHT](https://github.com/PKUanonym/REKCARC-TSC-UHT) 识别可以学习的知识，按照先修关系重新组织成中文教材，补上概念讲解、原创例题、练习解答和自测。自动同步、分类与资料导读为教材选材和更新提供支持。
 
-**[开始读教材](docs/textbook/index.md)** · [三章试学指南](docs/study-guide.md) · [综合练习](docs/unit-01-review.md) · [查找参考资料](docs/index.md) · [覆盖状态](docs/status.md) · [使用与运行](docs/usage.md) · [来源与许可](ATTRIBUTION.md)
+**[开始读教材](docs/textbook/index.md)** · [前三章试学指南](docs/study-guide.md) · [综合练习](docs/unit-01-review.md) · [编程练习与运行](docs/programming-practice.md) · [查找参考资料](docs/index.md) · [覆盖状态](docs/status.md) · [使用与运行](docs/usage.md) · [来源与许可](ATTRIBUTION.md)
 
 这是 Pleniluner 维护的个人学习项目，与清华大学及上游维护者没有官方隶属关系。公开仓库包含原创工具、教材草稿、来源索引和 AI 导读。原始教材、课件、作业、学生源码和提取全文不会随本仓库发布。
 
-## 先从三章开始
+## 按五章顺序学习
 
 | 顺序 | 学什么 | 动手任务 |
 | --- | --- | --- |
 | 1 | [二进制、字节与小端序](docs/textbook/01-data-and-bytes.md) | 把一个数拆成字节，再从内存还原 |
 | 2 | [寄存器、内存与栈](docs/textbook/02-execution-and-stack.md) | 逐步追踪玩具机器的状态变化 |
 | 3 | [首次适应、拆分与合并](docs/textbook/03-first-fit.md) | 手算分配和释放，解释外部碎片 |
+| 4 | [顺序、分支与循环](docs/textbook/04-control-flow.md) | 追踪变量、编写判断与重复计算，检查边界和停止条件 |
+| 5 | [参数、返回值与函数](docs/textbook/05-functions.md) | 把计算拆成可组合的函数，区分打印、返回和局部名字 |
 
 每章有实质讲解、2 个原创例题、3 道练习与折叠解答、自测以及选题来源。先按入门者的需要编排，后续根据本人的学习卡点调整。它还是 AI 教材初稿，尚未经过学科专家或学习者试学验收；现阶段不代表全部课程已经写成教材。
 
 第一次阅读可先看[试学指南](docs/study-guide.md)，分清三章使用的不同存储单位；读完后用 [6 道综合练习](docs/unit-01-review.md)检查掌握情况，每题都有折叠解答与回读指引。已安装项目时，可用 `cs-study-map study` 查看本机进度，记录方法见[运行说明](docs/usage.md#study)。
+
+前三章用纸笔建立模型，第 4、5 章开始编写 Python 程序。两章合计提供 20 段可独立运行的程序及预期输出，包含例题和练习的参考实现；先预测结果，再运行和改变边界输入。环境准备和练习方法见[编程练习与运行](docs/programming-practice.md)。
 
 ## 可以做什么
 

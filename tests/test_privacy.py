@@ -1,3 +1,4 @@
+import json
 import unittest
 import tempfile
 from pathlib import Path
@@ -38,3 +39,24 @@ class PrivacyTests(unittest.TestCase):
         self.assertEqual([r['path'] for r in records], ['course/README.md'])
         previous = [{'path': private, 'blob_sha': 'a' * 40}, *records]
         self.assertEqual(changes_between(previous, records), {'added': [], 'removed': [], 'modified': [], 'moved': []})
+
+    def test_json_program_newlines_do_not_hide_private_strings(self):
+        code = '\n'.join(['n = 2', 'while n:', '    n = n - 1'])
+        public = json.dumps({'program': {'code': code, 'output': ''}})
+        self.assertFalse(private_reference(public, json_document=True))
+        private_values = ['Q:' + '/notes', 'Q:' + chr(92) + 'notes',
+                          'Q%3A' + '%2Fnotes', 'student' + '@' + 'example.test']
+        for value in private_values:
+            with self.subTest(kind='value'):
+                self.assertTrue(private_reference(json.dumps({'safe': [value]}), json_document=True))
+            with self.subTest(kind='key'):
+                self.assertTrue(private_reference(json.dumps({value: 'safe'}), json_document=True))
+        duplicate = '{"value": ' + json.dumps(private_values[0]) + ', "value": "safe"}'
+        self.assertTrue(private_reference(duplicate, json_document=True))
+        self.assertTrue(private_reference('{broken ' + private_values[0], json_document=True))
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            (root / 'docs').mkdir()
+            (root / 'docs/lesson.json').write_text(public, encoding='utf-8')
+            with patch('cs_study_map.validate.subprocess.run', return_value=SimpleNamespace(stdout=b'docs/lesson.json\0')), patch('cs_study_map.validate.read_jsonl', return_value=[]):
+                self.assertEqual(audit_tracked(root), 1)

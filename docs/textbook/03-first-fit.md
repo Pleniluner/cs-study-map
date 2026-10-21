@@ -2,7 +2,7 @@
 
 [返回教材目录](index.md) · [三章试学指南](../study-guide.md) · [综合练习与回读指引](../unit-01-review.md)
 
-[上一章：程序怎样一步步执行：寄存器、内存与栈](02-execution-and-stack.md)
+[上一章：程序怎样一步步执行：寄存器、内存与栈](02-execution-and-stack.md) · [下一章：程序怎样作选择和重复：顺序、分支与循环](04-control-flow.md)
 
 [学习目标](#objectives) · [需要的基础](#prerequisites) · [例题](#examples) · [练习](#practice) · [自测](#self-check)
 
@@ -204,6 +204,6 @@ P 长 6，释放后连接 \[0,4) 与 \[10,14)，空闲表变为 \[0,14)、\[18,2
 
 **继续学习**：先独立完成自测，再记录仍需回读的步骤。
 
-[上一章：程序怎样一步步执行：寄存器、内存与栈](02-execution-and-stack.md)
+[上一章：程序怎样一步步执行：寄存器、内存与栈](02-execution-and-stack.md) · [下一章：程序怎样作选择和重复：顺序、分支与循环](04-control-flow.md)
 
 [教材目录](index.md) · [三章试学指南](../study-guide.md) · [综合练习与回读指引](../unit-01-review.md) · [记录自己的学习](../learning-log-template.md)

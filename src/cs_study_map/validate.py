@@ -57,7 +57,7 @@ def validate(project, tracked=False):
             raise StudyError("Chapter identifier does not match its filename")
     manifests = read_json(root / "docs/generated-manifest.json") + read_json(root / "docs/textbook-manifest.json", [])
     # Keep maintained reading guides under the same link checks as generated pages.
-    manual_pages = ["docs/usage.md", "docs/learning-log-template.md", "docs/study-guide.md", "docs/unit-01-review.md"]
+    manual_pages = ["docs/usage.md", "docs/learning-log-template.md", "docs/study-guide.md", "docs/unit-01-review.md", "docs/programming-practice.md"]
     manifests += [name for name in manual_pages if (root / name).is_file()]
     for relative in manifests:
         safe_relative(relative)
@@ -98,7 +98,7 @@ def audit_tracked(root):
         if secret_pattern.search(text):
             raise StudyError("Potential credential found; publish audit stopped")
         if relative.startswith(("catalog/", "docs/", "config/")):
-            if private_reference(text):
+            if private_reference(text, json_document=path.suffix.lower() == ".json"):
                 raise StudyError("Contact address or local filesystem path found in public data")
             if re.search(r"(?i)(?:[A-Z]:[\\/](?:Users|CodeX|Finder|Academy_of_Sciences)|Bearer\s+[A-Za-z0-9_-]{20,})", text):
                 raise StudyError("Machine-specific path or credential found in public data")

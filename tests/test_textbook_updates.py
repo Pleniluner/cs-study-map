@@ -18,7 +18,7 @@ from cs_study_map.pipeline import analyze
 from cs_study_map.render import build
 from cs_study_map.storage import StudyError, git_blob_sha, load_project, read_json, read_jsonl, write_json
 from cs_study_map.sync import synchronize
-from cs_study_map.textbook import build_textbook, resolve_sources, validate_chapter, write_chapters
+from cs_study_map.textbook import PYTHON_BOOK_PROMPT, PYTHON_BOOK_PROMPT_VERSION, build_textbook, resolve_sources, validate_chapter, write_chapters
 from cs_study_map.validate import audit_tracked, validate
 from test_pipeline import FakeGitHub, FakeModel, ROOT
 
@@ -98,6 +98,41 @@ class BookAndUpdateTests(unittest.TestCase):
         self.assertEqual(build_textbook(self.project)["needs_review"], 1)
         self.assertEqual(write_chapters(self.project, self.model)["failed"], 1)
         self.assertEqual(self.model.calls, 1)
+
+    def test_python_writing_preserves_references_and_keeps_solutions_folded(self):
+        self.prepare()
+        chapter = self.plan["chapters"][0]
+        chapter["format"] = "python"
+        chapter["references"] = [{"title": "Python documentation", "url": "https://docs.python.org/3.11/", "note": "Language reference for this test."}]
+        write_json(self.root / "config/curriculum.json", self.plan)
+        sources = resolve_sources(self.project, chapter)
+        content = chapter_fixture(sources[0]["topics"][0]["key"])
+        program = {"code": "value = 3\nif value <= 4:\n    print(value)\n", "output": "3\n"}
+        for item in content["worked_examples"] + content["exercises"]:
+            item["program"] = copy.deepcopy(program)
+        with patch.object(self.model, "generate", return_value=content) as generated:
+            self.assertEqual(write_chapters(self.project, self.model)["completed"], 1)
+        self.assertEqual(generated.call_args.args[1], PYTHON_BOOK_PROMPT)
+        self.assertEqual(generated.call_args.args[0]["official_references"], chapter["references"])
+        saved = read_json(self.root / "catalog/chapters/01-start.json")
+        self.assertEqual(saved["prompt_version"], PYTHON_BOOK_PROMPT_VERSION)
+        self.assertEqual(saved["references"], chapter["references"])
+        build(self.project)
+        page = (self.root / "docs/textbook/01-start.md").read_text(encoding="utf-8")
+        practice = page.split('<a id="practice"></a>')[1].split('<a id="pitfalls"></a>')[0]
+        answers = practice.split("<summary>解答与检查</summary>")[1:]
+        self.assertEqual(len(answers), 3)
+        for answer in answers:
+            self.assertIn("```python\n" + program["code"] + "```", answer.split("</details>")[0])
+        self.assertIn("https://docs.python.org/3.11/", page)
+
+        # A changed plan with incomplete model output must leave the valid draft intact.
+        chapter["scope"] += " revised"
+        write_json(self.root / "config/curriculum.json", self.plan)
+        del content["exercises"][0]["program"]
+        with patch.object(self.model, "generate", return_value=content):
+            self.assertEqual(write_chapters(self.project, self.model)["failed"], 1)
+        self.assertEqual(read_json(self.root / "catalog/chapters/01-start.json"), saved)
 
     def test_manual_analysis_correction_invalidates_book(self):
         self.prepare()
