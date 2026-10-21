@@ -4,7 +4,7 @@
 
 主要供本人自学：从 [REKCARC-TSC-UHT](https://github.com/PKUanonym/REKCARC-TSC-UHT) 识别可以学习的知识，按照先修关系重新组织成中文教材，补上概念讲解、原创例题、练习解答和自测。自动同步、分类与资料导读为教材选材和更新提供支持。
 
-**[开始读教材](docs/textbook/index.md)** · [查找参考资料](docs/index.md) · [覆盖状态](docs/status.md) · [使用与运行](docs/usage.md) · [来源与许可](ATTRIBUTION.md)
+**[开始读教材](docs/textbook/index.md)** · [三章试学指南](docs/study-guide.md) · [综合练习](docs/unit-01-review.md) · [查找参考资料](docs/index.md) · [覆盖状态](docs/status.md) · [使用与运行](docs/usage.md) · [来源与许可](ATTRIBUTION.md)
 
 这是 Pleniluner 维护的个人学习项目，与清华大学及上游维护者没有官方隶属关系。公开仓库包含原创工具、教材草稿、来源索引和 AI 导读。原始教材、课件、作业、学生源码和提取全文不会随本仓库发布。
 
@@ -17,6 +17,8 @@
 | 3 | [首次适应、拆分与合并](docs/textbook/03-first-fit.md) | 手算分配和释放，解释外部碎片 |
 
 每章有实质讲解、2 个原创例题、3 道练习与折叠解答、自测以及选题来源。先按入门者的需要编排，后续根据本人的学习卡点调整。它还是 AI 教材初稿，尚未经过学科专家或学习者试学验收；现阶段不代表全部课程已经写成教材。
+
+第一次阅读可先看[试学指南](docs/study-guide.md)，分清三章使用的不同存储单位；读完后用 [6 道综合练习](docs/unit-01-review.md)检查掌握情况，每题都有折叠解答与回读指引。已安装项目时，可用 `cs-study-map study` 查看本机进度，记录方法见[运行说明](docs/usage.md#study)。
 
 ## 可以做什么
 

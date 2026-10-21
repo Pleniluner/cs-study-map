@@ -11,6 +11,7 @@ from .fetch_updates import fetch_updates
 from .pipeline import analyze
 from .render import build
 from .storage import StudyError, load_project
+from .study import STATUSES, study
 from .sync import synchronize
 from .textbook import write_chapters
 from .validate import validate
@@ -22,6 +23,10 @@ def main(argv=None):
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("sync", help="Synchronize upstream file metadata only")
     commands.add_parser("build", help="Generate GitHub Markdown navigation")
+    learning = commands.add_parser("study", help="查看或记录本机学习进度，不调用模型或网络")
+    learning.add_argument("--chapter", help="Chapter id from config/curriculum.json")
+    learning.add_argument("--status", choices=STATUSES, help="个人自测状态：未开始、学习中、待复习、已完成")
+    learning.add_argument("--note", help="追加一条本机学习笔记（最多 2000 字）")
     fetch = commands.add_parser("fetch-updates", help="Download new/modified content to ignored cache after comparing a local snapshot")
     fetch.add_argument("--baseline-dir", type=Path, required=True)
     fetch.add_argument("--workers", type=int, default=4)
@@ -42,8 +47,10 @@ def main(argv=None):
     args = parser.parse_args(argv)
     try:
         project = load_project(args.root)
-        github = GitHub(project["source"]["repository"], os.getenv("GITHUB_TOKEN") or os.getenv("GH_TOKEN"))
+        github = GitHub(project["source"]["repository"], os.getenv("GITHUB_TOKEN") or os.getenv("GH_TOKEN")) if args.command in {"fetch-updates", "sync", "run", "analyze"} else None
         results = {}
+        if args.command == "study":
+            results["study"] = study(project, args.chapter, args.status, args.note)
         if args.command == "fetch-updates":
             results["updates"] = fetch_updates(project, github, args.baseline_dir, args.workers, args.plan_only)
         if args.command in {"sync", "run"}:

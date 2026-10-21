@@ -202,14 +202,34 @@ def paragraphs(text):
     return "\n\n".join(md(part) for part in text.splitlines() if part.strip())
 
 
+def chapter_navigation(chapters, index, available):
+    links = []
+    for offset, label in [(-1, "上一章"), (1, "下一章")]:
+        neighbor = index + offset
+        if 0 <= neighbor < len(chapters):
+            chapter = chapters[neighbor]
+            title = md(chapter["title"])
+            if chapter["id"] in available:
+                links.append(f"[{label}：{title}]({chapter['id']}.md)")
+            else:
+                links.append(f"{label}：{title}（待编写）")
+    return " · ".join(links)
+
+
 def build_textbook(project):
     root = project["root"]
     plan = curriculum(project)
     pages = {}
     current = stale = 0
     rows = []
+    documents = {c["id"]: read_json(root / "catalog/chapters" / (c["id"] + ".json"), {}) for c in plan["chapters"]}
+    available = {identifier for identifier, document in documents.items() if document}
+    support = []
+    for filename, label in [("study-guide.md", "三章试学指南"), ("unit-01-review.md", "综合练习与回读指引")]:
+        if (root / "docs" / filename).is_file():
+            support.append(f"[{label}](../{filename})")
     for index, chapter in enumerate(plan["chapters"]):
-        document = read_json(root / "catalog/chapters" / (chapter["id"] + ".json"), {})
+        document = documents[chapter["id"]]
         status = chapter_status(project, plan, chapter, document)
         if not document:
             rows.append(f"| {index + 1} | {md(chapter['title'])} | 待编写 |")
@@ -220,30 +240,34 @@ def build_textbook(project):
         label = "AI 初稿，可开始试学" if status == "current" else "来源或计划变化，待复核"
         rows.append(f"| {index + 1} | [{md(chapter['title'])}]({chapter['id']}.md) | {label} |")
         content = document["content"]
-        lines = [f"# {md(document['title'])}", "", "[返回教材目录](index.md)", "",
+        navigation = chapter_navigation(plan["chapters"], index, available)
+        lines = [f"# {md(document['title'])}", "", " · ".join(["[返回教材目录](index.md)", *support]), ""]
+        if navigation:
+            lines += [navigation, ""]
+        lines += ["[学习目标](#objectives) · [需要的基础](#prerequisites) · [例题](#examples) · [练习](#practice) · [自测](#self-check)", "",
                  f"状态：**{label}**。生成模型：{md(document['model'])}。", "",
                  "本章围绕资料中识别到的知识点重新编写；讲解、数值模型、例题与练习为 AI 原创组织，不是原课程题目或答案。主题出处只说明选题关联，不证明全部推导已经正确。", ""]
         if status == "needs-review":
             lines += ["> 本章保留的是旧版讲解，当前资料或学习计划已经变化。请先核对来源，再用作学习依据。", ""]
-        lines += [paragraphs(content["introduction"]), "", "## 学完要能做到", ""]
+        lines += [paragraphs(content["introduction"]), "", '<a id="objectives"></a>', "", "## 学完要能做到", ""]
         lines += ["- " + md(t) for t in content["objectives"]]
-        lines += ["", "## 需要的基础", ""] + ["- " + md(t) for t in content["prerequisites"]]
+        lines += ["", '<a id="prerequisites"></a>', "", "## 需要的基础", ""] + ["- " + md(t) for t in content["prerequisites"]]
         topic_numbers = {t["key"]: i + 1 for i, t in enumerate([t for s in document["sources"] for t in s["topics"]])}
         for section in content["sections"]:
             refs = "、".join(str(topic_numbers[k]) for k in section["source_topic_keys"])
             lines += ["", f"## {md(section['title'])}", "", paragraphs(section["body"]), "", f"选题关联：来源主题 {refs}（文末列出）。"]
-        lines += ["", "## 跟着做：原创例题", ""]
+        lines += ["", '<a id="examples"></a>', "", "## 跟着做：原创例题", ""]
         for i, example in enumerate(content["worked_examples"], 1):
             lines += [f"### 例题 {i}", "", paragraphs(example["question"]), ""]
             lines += [f"{n}. {md(step)}" for n, step in enumerate(example["steps"], 1)]
             lines += ["", "**结果与核对**", "", paragraphs(example["answer"]), ""]
-        lines += ["## 自己做：先完成再看解答", ""]
+        lines += ['<a id="practice"></a>', "", "## 自己做：先完成再看解答", ""]
         for i, exercise in enumerate(content["exercises"], 1):
             lines += [f"### 练习 {i}", "", paragraphs(exercise["question"]), "", "<details>", "<summary>提示</summary>", "", paragraphs(exercise["hint"]), "", "</details>", "", "<details>", "<summary>解答与检查</summary>", "", paragraphs(exercise["answer"]), "", "</details>", ""]
-        lines += ["## 容易混淆的地方", ""]
+        lines += ['<a id="pitfalls"></a>', "", "## 容易混淆的地方", ""]
         for item in content["pitfalls"]:
             lines += [f"- **{md(item['mistake'])}** {md(item['correction'])}"]
-        lines += ["", "## 离开这一章前", ""] + ["- [ ] " + md(t) for t in content["self_checks"]]
+        lines += ["", '<a id="self-check"></a>', "", "## 离开这一章前", ""] + ["- [ ] " + md(t) for t in content["self_checks"]]
         lines += ["", "## 本章边界", ""] + ["- " + md(t) for t in content["limitations"]]
         lines += ["", "## 选题来源与覆盖", "", "来源含学生报告时，仅将其作为选题线索；具体机制仍需结合后续实验或权威资料核对。", ""]
         for source in document["sources"]:
@@ -254,12 +278,16 @@ def build_textbook(project):
             for topic in source["topics"]:
                 locators = "、".join(md(pointers[e]) for e in topic["evidence_ids"])
                 lines += [f"- 主题 {topic_numbers[topic['key']]}：{md(topic['name'])}；位置：{locators}。"]
-        lines += ["", "**继续学习**：回到[教材目录](index.md)，完成自测后再进入下一章；学习记录请保存在本机 `.local/`。", ""]
+        lines += ["", "**继续学习**：先独立完成自测，再记录仍需回读的步骤。", ""]
+        if navigation:
+            lines += [navigation, ""]
+        lines += [" · ".join(["[教材目录](index.md)", *support, "[记录自己的学习](../learning-log-template.md)"]), ""]
         pages[f"docs/textbook/{chapter['id']}.md"] = "\n".join(lines)
     lines = [f"# {md(plan['title'])}", "", "[项目说明](../../README.md) · [资料地图](../index.md) · [记录自己的学习](../learning-log-template.md)", "",
              "目标是给自己一条能学下去的路线：读讲解 → 跟例题 → 独立做题 → 用自测找出卡点 → 回到资料深入。课程目录为选材提供线索，章节按先修关系组织。", "",
              f"当前可试学 {current} 章，待复核 {stale} 章，待编写 {len(plan['chapters']) - current - stale} 章。每章含讲解、2 个原创例题、3 道练习及解答。当前章节均为 AI 初稿，尚未经过学科专家或学习者实际试学验收。", "",
              "## 从这里开始", "", "先按下表顺序阅读。能独立解释并做对自测再前进；卡住时在本机学习记录中写下具体问题，后续据此调整教材。", "",
+             *([" · ".join(support), ""] if support else []),
              "| 顺序 | 章节 | 状态 |", "| ---: | --- | --- |", *rows, "", "## 后续路线（尚未写成教材）", ""]
     lines += ["- " + md(t) for t in plan["planned"]]
     lines += ["", "## 更新怎样影响教材", "", "同步先比较来源内容，变化会使旧导读失效。教材记录使用的分析版本；来源分析、编写范围或生成规则改变后会标为待复核。只有拿到有效资料分析后，写作命令才会按既定计划生成新稿。原资料不会并入教材仓库。", ""]

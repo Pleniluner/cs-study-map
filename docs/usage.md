@@ -11,6 +11,8 @@
 | `cs-study-map analyze --course 操作系统 --limit 2` | 限定课程；`--course` 可重复 |
 | `cs-study-map analyze --path '大三下/操作系统/README.md'` | 限定精确上游路径，路径必须实际存在 |
 | `cs-study-map build` | 从当前有效结果生成 Markdown |
+| `cs-study-map study` | 离线查看本机学习进度及下一章 |
+| `cs-study-map study --chapter 01-data-and-bytes --status reading` | 记录开始学习，进度保存在 `.local/` |
 | `cs-study-map write --limit 1 --require-ai` | 根据学习路线生成最多 1 章原创教材并验证 |
 | `cs-study-map write --chapter 01-data-and-bytes` | 只处理指定章节；输入未变时复用现有章节 |
 | `cs-study-map validate --tracked` | 检查来源、页面链接及 Git 跟踪文件 |
@@ -18,6 +20,31 @@
 | `cs-study-map fetch-updates --baseline-dir '<本地上游旧快照>'` | 按真实内容比对，只把新增/修改文件下载到忽略缓存 |
 
 可用 `--root` 指定项目目录。模型调用前只读解析原资料，不执行课程程序、Notebook 单元、宏或构建脚本。`--limit` 限制尝试次数，解析失败也计入上限；接口故障会提前停止，避免重复请求。
+
+<a id="study"></a>
+
+## 本机学习进度
+
+阅读教材不需要安装程序。安装后，`study` 命令可以保存个人状态和短笔记；它完全使用本机教材，不访问网络或调用 AI。仅查看进度不会新建或改写记录。
+
+```bash
+# 查看全部章节的进度与下一步
+cs-study-map study
+# 开始一章，也可只传 --chapter 查看本章自测清单
+cs-study-map study --chapter 01-data-and-bytes --status reading
+# 追加卡点，不改变已有完成状态或确认教材的新版本
+cs-study-map study --chapter 01-data-and-bytes --note "高字节增加 1，整个数为什么增加 256？"
+# 独立完成章末自测后，由自己标记完成
+cs-study-map study --chapter 01-data-and-bytes --status completed
+```
+
+状态可选 `not-started`（未开始）、`reading`（学习中）、`review`（待复习）、`completed`（已完成自测）。可以随时改回 `reading` 或 `review`；改为 `not-started` 会重置该章状态并保留笔记。完成状态是个人确认，程序不会自动判分，也不会据此声称掌握全部知识。
+
+进度和笔记写入 `.local/study-progress.json`，不会进入公开教材。命令输出仅含笔记数量，不回显笔记正文；较长的过程可另记在 `.local/study-log.md`。Git 仓库中只有确认进度文件被忽略后才允许保存。
+
+记录状态时会保存本次学习的章节版本。正文修订后，旧的完成记录显示为“待复习”；来源或计划变化导致教材待复核时，也不会计入当前已完成数量。仅追加笔记不能消除这种提醒，复习后需重新明确标记完成。待编写章节无法记录学习状态，来源待复核的章节不能标记完成。
+
+`next_chapter` 按教材顺序返回第一章未完成的章节；若它尚未编写或来源待复核，请先查看输出中的 `availability`，不要把它当作已有的新教材。移出路线的个人记录仍留在本机，输出中的 `archived_records` 表示其数量。
 
 ## 本地 API 配置
 
