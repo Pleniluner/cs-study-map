@@ -8,7 +8,7 @@ El proyecto está pensado sobre todo para el aprendizaje de quien lo mantiene: s
 
 Es un proyecto personal de Pleniluner, sin vínculo oficial con la Universidad de Tsinghua ni con quienes mantienen el repositorio original. El repositorio público incluye herramientas propias, borradores, índices de fuentes y guías de IA. No publica materiales originales, diapositivas, tareas, código de estudiantes ni texto extraído completo.
 
-## Estudia cinco capítulos en orden
+## Estudia nueve capítulos en orden
 
 | # | Tema | Actividad |
 | --- | --- | --- |
@@ -17,8 +17,12 @@ Es un proyecto personal de Pleniluner, sin vínculo oficial con la Universidad d
 | 3 | [Primer ajuste, división y fusión](../textbook/03-first-fit.md) | Simular asignación y liberación y explicar la fragmentación externa |
 | 4 | [Secuencias, condiciones y bucles](../textbook/04-control-flow.md) | Seguir variables y comprobar límites y condiciones de terminación |
 | 5 | [Parámetros, valores de retorno y funciones](../textbook/05-functions.md) | Combinar funciones y distinguir impresión, retorno y nombres locales |
+| 6 | [Arreglos y listas secuenciales](../textbook/06-arrays.md) | Seguir índices, capacidad, listas compartidas y desplazamientos |
+| 7 | [Listas enlazadas simples](../textbook/07-linked-lists.md) | Seguir referencias y realizar inserciones, eliminaciones e inversiones |
+| 8 | [Pilas](../textbook/08-stacks.md) | Aplicar LIFO al historial de deshacer y a la comprobación de paréntesis |
+| 9 | [Colas y arreglos circulares](../textbook/09-queues.md) | Comprobar FIFO, el retorno al inicio y los estados vacío o lleno |
 
-Los capítulos 4 y 5 utilizan Python 3.11 o posterior e incluyen 20 programas independientes con sus salidas esperadas. La preparación y el método se explican en la [guía de práctica de programación](../programming-practice.md), en chino.
+Los capítulos del 4 al 9 utilizan Python 3.11 o posterior e incluyen 60 programas independientes con sus salidas esperadas. La preparación y el método se explican en la [guía de práctica de programación](../programming-practice.md) y la [guía de estructuras de datos](../data-structures-practice.md), en chino.
 
 Cada capítulo incluye explicaciones detalladas, 2 ejemplos originales, 3 ejercicios con soluciones desplegables, una autoevaluación y las fuentes de los temas. Es un primer borrador de IA, sin revisión de especialistas ni pruebas con estudiantes; no significa que todos los cursos tengan un manual terminado.
 

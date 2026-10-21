@@ -1,8 +1,8 @@
 # 把计算组织成函数：参数、返回值与局部名字
 
-[返回教材目录](index.md) · [编程练习与运行](../programming-practice.md)
+[返回教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md)
 
-[上一章：程序怎样作选择和重复：顺序、分支与循环](04-control-flow.md)
+[上一章：程序怎样作选择和重复：顺序、分支与循环](04-control-flow.md) · [下一章：一组数据怎样按位置存取：数组与顺序表](06-arrays.md)
 
 [学习目标](#objectives) · [需要的基础](#prerequisites) · [例题](#examples) · [练习](#practice) · [自测](#self-check)
 
@@ -438,9 +438,9 @@ print(days_to_reach(0), days_to_reach(1), days_to_reach(21))
 - 主题 1：Python 基础语法的外部学习入口；位置：第 41–80 行。
 - 主题 2：从基础语法到工具与应用的建议阅读顺序；位置：第 121–160 行。
 
-## 语言语义核对
+## 语言与结构规则核对
 
-上游入口用于确定学习方向；下面的官方文档用于核对语言规则，例题和练习由本项目重新设计。
+上游入口用于确定学习方向；下面的参考资料用于核对语言或数据结构规则，例题和练习由本项目重新设计。
 
 - [Python 3.11：定义和调用函数](https://docs.python.org/3.11/tutorial/controlflow.html#defining-functions)：核对 def、形参、函数调用以及未显式返回值时的 None。
 - [Python 3.11：return 语句](https://docs.python.org/3.11/reference/simple_stmts.html#the-return-statement)：核对 return 结束当前函数调用并把结果交给调用者。
@@ -448,6 +448,6 @@ print(days_to_reach(0), days_to_reach(1), days_to_reach(21))
 
 **继续学习**：先独立完成自测，再记录仍需回读的步骤。
 
-[上一章：程序怎样作选择和重复：顺序、分支与循环](04-control-flow.md)
+[上一章：程序怎样作选择和重复：顺序、分支与循环](04-control-flow.md) · [下一章：一组数据怎样按位置存取：数组与顺序表](06-arrays.md)
 
-[教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [记录自己的学习](../learning-log-template.md)
+[教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [记录自己的学习](../learning-log-template.md)

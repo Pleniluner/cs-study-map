@@ -8,7 +8,7 @@ O projeto serve principalmente ao estudo do mantenedor: seleciona temas de [REKC
 
 Este é um projeto pessoal de Pleniluner, sem vínculo oficial com a Universidade Tsinghua ou os mantenedores originais. O repositório público contém ferramentas próprias, rascunhos, índices de fontes e guias de IA. Materiais didáticos originais, slides, tarefas, código de estudantes e texto integral extraído não são publicados.
 
-## Estude cinco capítulos em ordem
+## Estude nove capítulos em ordem
 
 | # | Tema | Atividade |
 | --- | --- | --- |
@@ -17,8 +17,12 @@ Este é um projeto pessoal de Pleniluner, sem vínculo oficial com a Universidad
 | 3 | [Primeiro ajuste, divisão e fusão](../textbook/03-first-fit.md) | Simular alocação e liberação e explicar a fragmentação externa |
 | 4 | [Sequências, condições e laços](../textbook/04-control-flow.md) | Acompanhar variáveis e verificar limites e condições de término |
 | 5 | [Parâmetros, valores de retorno e funções](../textbook/05-functions.md) | Combinar funções e distinguir impressão, retorno e nomes locais |
+| 6 | [Vetores e listas sequenciais](../textbook/06-arrays.md) | Acompanhar índices, capacidade, listas compartilhadas e deslocamentos |
+| 7 | [Listas simplesmente encadeadas](../textbook/07-linked-lists.md) | Seguir referências e realizar inserção, remoção e inversão |
+| 8 | [Pilhas](../textbook/08-stacks.md) | Aplicar LIFO ao histórico de desfazer e à verificação de parênteses |
+| 9 | [Filas e vetores circulares](../textbook/09-queues.md) | Verificar FIFO, o retorno ao início e os estados vazio ou cheio |
 
-Os capítulos 4 e 5 usam Python 3.11 ou superior e incluem 20 programas independentes com as saídas esperadas. A preparação e o método estão no [guia de prática de programação](../programming-practice.md), em chinês.
+Os capítulos 4 a 9 usam Python 3.11 ou superior e incluem 60 programas independentes com as saídas esperadas. A preparação e o método estão no [guia de prática de programação](../programming-practice.md) e no [guia de estruturas de dados](../data-structures-practice.md), em chinês.
 
 Cada capítulo inclui explicações detalhadas, 2 exemplos originais, 3 exercícios com soluções expansíveis, uma autoavaliação e as fontes dos temas. É um primeiro rascunho de IA, sem revisão por especialistas nem teste com estudantes; isso não significa que todos os cursos tenham um livro completo.
 

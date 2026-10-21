@@ -8,7 +8,7 @@ Dieses Projekt dient vor allem dem Selbststudium des Maintainers. Es wählt geei
 
 Dies ist ein persönliches Lernprojekt von Pleniluner ohne offizielle Verbindung zur Tsinghua-Universität oder den Betreuern des Ursprungsprojekts. Das öffentliche Repository enthält eigene Werkzeuge, Lehrbuchentwürfe, Quellenverzeichnisse und KI-Leitfäden. Originale Kursmaterialien, Folien, Aufgaben, studentischer Quellcode und vollständig extrahierte Texte werden nicht veröffentlicht.
 
-## Fünf Kapitel der Reihe nach lernen
+## Neun Kapitel der Reihe nach lernen
 
 | # | Thema | Übung |
 | --- | --- | --- |
@@ -17,8 +17,12 @@ Dies ist ein persönliches Lernprojekt von Pleniluner ohne offizielle Verbindung
 | 3 | [First Fit, Aufteilen und Zusammenführen](../textbook/03-first-fit.md) | Zuweisung und Freigabe durchrechnen und externe Fragmentierung erklären |
 | 4 | [Sequenzen, Verzweigungen und Schleifen](../textbook/04-control-flow.md) | Variablen verfolgen sowie Grenzfälle und Schleifenenden prüfen |
 | 5 | [Parameter, Rückgabewerte und Funktionen](../textbook/05-functions.md) | Funktionen kombinieren und Ausgabe, Rückgabe und lokale Namen unterscheiden |
+| 6 | [Arrays und sequenzielle Listen](../textbook/06-arrays.md) | Indizes, Kapazität, gemeinsame Listen und Elementverschiebungen verfolgen |
+| 7 | [Einfach verkettete Listen](../textbook/07-linked-lists.md) | Knotenreferenzen verfolgen sowie Einfügen, Löschen und Umkehren üben |
+| 8 | [Stapel](../textbook/08-stacks.md) | LIFO zum Rückgängigmachen und zur Klammerprüfung anwenden |
+| 9 | [Warteschlangen und Ringpuffer](../textbook/09-queues.md) | FIFO, umlaufende Indizes und leere oder volle Zustände prüfen |
 
-Kapitel 4 und 5 verwenden Python ab Version 3.11 und enthalten 20 eigenständig ausführbare Programme mit erwarteten Ausgaben. Einrichtung und Vorgehen stehen im [Leitfaden für Programmierübungen](../programming-practice.md) auf Chinesisch.
+Kapitel 4–9 verwenden Python ab Version 3.11 und enthalten 60 eigenständig ausführbare Programme mit erwarteten Ausgaben. Einrichtung und Vorgehen stehen im [Leitfaden für Programmierübungen](../programming-practice.md) und im [Leitfaden für Datenstrukturen](../data-structures-practice.md), beide auf Chinesisch.
 
 Jedes Kapitel enthält ausführliche Erklärungen, 2 eigene Beispiele, 3 Aufgaben mit ausklappbaren Lösungen, einen Selbsttest und Themenquellen. Es handelt sich um einen KI-Erstentwurf ohne fachliche Begutachtung oder Erprobung durch Lernende. Das bedeutet nicht, dass für jeden Kurs ein Lehrbuch vorliegt.
 

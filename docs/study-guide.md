@@ -43,4 +43,4 @@
 
 ## 本单元之后
 
-三章都能独立完成时，先做综合练习并回看错误，再进入[第 4 章：顺序、分支与循环](textbook/04-control-flow.md)和[第 5 章：函数](textbook/05-functions.md)。先读[编程练习与运行](programming-practice.md)，用 Python 把纸笔状态追踪变成可执行的小程序。数组、链表等后续内容仍在编写计划中；当前教材与练习均为 AI 草稿，尚未经过学科专家或学习者试学验收。
+三章都能独立完成时，先做综合练习并回看错误，再进入[第 4 章：顺序、分支与循环](textbook/04-control-flow.md)和[第 5 章：函数](textbook/05-functions.md)。先读[编程练习与运行](programming-practice.md)，用 Python 把纸笔状态追踪变成可执行的小程序，再按[数据结构练习指引](data-structures-practice.md)学习第 6–9 章的数组、链表、栈和队列。当前教材与练习均为 AI 草稿，尚未经过学科专家或学习者试学验收。

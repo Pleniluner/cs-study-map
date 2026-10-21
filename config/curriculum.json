@@ -107,11 +107,133 @@
         }
       ],
       "title": "把计算组织成函数：参数、返回值与局部名字"
+    },
+    {
+      "format": "python",
+      "id": "06-arrays",
+      "references": [
+        {
+          "note": "核对 append、insert、pop、remove、copy 的行为及原地修改的返回值。",
+          "title": "Python 3.11：列表操作",
+          "url": "https://docs.python.org/3.11/tutorial/datastructures.html#more-on-lists"
+        },
+        {
+          "note": "核对零基下标、负下标、切片及列表浅拷贝。",
+          "title": "Python 3.11：序列索引与切片",
+          "url": "https://docs.python.org/3.11/library/stdtypes.html#sequence-types-list-tuple-range"
+        },
+        {
+          "note": "区分连续的引用数组与被引用对象，不把实现描述推广为整数对象连续存放。",
+          "title": "CPython 列表实现说明",
+          "url": "https://docs.python.org/3.11/faq/design.html#how-are-lists-implemented-in-cpython"
+        }
+      ],
+      "scope": "承接函数与循环，用 Python list 解释索引、遍历、基本方法、共享与浅拷贝，并明确它与经典固定数组的差别。手写固定容量顺序表的插入删除，定义 size、容量、越界拒绝与搬移方向；例题和练习包含完整自包含程序、准确输出、空表负数重复值和首尾边界。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "一组数据怎样按位置存取：数组与顺序表"
+    },
+    {
+      "format": "python",
+      "id": "07-linked-lists",
+      "references": [
+        {
+          "note": "核对字典键值构造和按键读取；本章只用固定字段表示结点。",
+          "title": "Python 3.11：字典",
+          "url": "https://docs.python.org/3.11/tutorial/datastructures.html#dictionaries"
+        },
+        {
+          "note": "核对对象身份、可变性和引用关系；不依赖实际指针地址。",
+          "title": "Python 3.11：对象、值与类型",
+          "url": "https://docs.python.org/3.11/reference/datamodel.html#objects-values-and-types"
+        },
+        {
+          "note": "核对结点后继、头部操作与遍历代价；本章自行设计无尾缓存、字典结点的入门实现。",
+          "title": "Open Data Structures：单链表",
+          "url": "https://opendatastructures.org/newhtml/ods/latex/linkedlists.html"
+        }
+      ],
+      "scope": "承接列表与可变共享，使用 value/next 字典结点，先教必要字段语法和 None 身份判断，再讲头引用、遍历、头插、已知结点后插、删除首个匹配及原地逆序。限定有限无环链，完整处理空链单结点重复值与首尾；解释保存后继、调用者接回新头、查找与改链接成本。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "相邻数据怎样连接：单链表与结点引用"
+    },
+    {
+      "format": "python",
+      "id": "08-stacks",
+      "references": [
+        {
+          "note": "核对 append 与末端 pop 的后进先出行为，空保护为本章自定义接口。",
+          "title": "Python 3.11：列表作为栈",
+          "url": "https://docs.python.org/3.11/tutorial/datastructures.html#using-lists-as-stacks"
+        },
+        {
+          "note": "核对 pop 的删除和返回含义；括号、撤销任务与数据均为原创。",
+          "title": "Python 3.11：可变序列",
+          "url": "https://docs.python.org/3.11/library/stdtypes.html#mutable-sequence-types"
+        }
+      ],
+      "scope": "用 list 尾端实现后进先出，明确整数 peek/pop_safe 的 None 空结果、普通与受限容量，讲逆序复制与整数撤销，再做单类及两类括号匹配。区分前缀检查、类型和扫描结束检查；全部程序自包含，覆盖空栈零元素重复值、满时不变与非法字符。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "最后进入的先取出：栈与嵌套处理"
+    },
+    {
+      "format": "python",
+      "id": "09-queues",
+      "references": [
+        {
+          "note": "核对 FIFO 及列表头部操作的搬移代价。",
+          "title": "Python 3.11：列表作为队列",
+          "url": "https://docs.python.org/3.11/tutorial/datastructures.html#using-lists-as-queues"
+        },
+        {
+          "note": "核对双端容器与 maxlen 的丢弃规则，明确它不同于本章满时拒绝的契约。",
+          "title": "Python 3.11：collections.deque",
+          "url": "https://docs.python.org/3.11/library/collections.html#collections.deque"
+        },
+        {
+          "note": "核对循环下标与逻辑区间；本章固定容量且拒绝满队列，不采用书中的动态扩容接口。",
+          "title": "Open Data Structures：数组队列",
+          "url": "https://opendatastructures.org/newhtml/ods/latex/arrays.html"
+        }
+      ],
+      "scope": "承接列表字典与栈，以固定列表加 head/size 字段手写循环队列，解释取余、有效顺序与槽位区别，明确非正容量拒绝、整数数据、空返回 None、满入队失败完全不变和所有槽均可用。两例展示回绕与有限工作量轮流服务；三练习覆盖peek、脚本追踪、批量取出，完整程序与输出。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "先进入的先处理：队列与循环数组"
     }
   ],
   "learner": "从基础开始自学；先用纸笔和小例子建立概念，再接触课程实验。",
   "planned": [
-    "数组、链表、栈与队列的实现",
     "算法分析、查找与排序（需补充可读材料）",
     "虚拟地址、页表与 TLB（需核对原理及适用架构）",
     "后续按个人学习需要扩展数学、系统、网络等章节"

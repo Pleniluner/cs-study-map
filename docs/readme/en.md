@@ -8,7 +8,7 @@ This project is mainly for the maintainer’s own study. It selects useful topic
 
 This is Pleniluner’s personal learning project, with no official affiliation with Tsinghua University or upstream maintainers. The public repository contains original tools, textbook drafts, source indexes, and AI guides. Original course materials, slides, assignments, student source code, and extracted full text are not published.
 
-## Five chapters to study in order
+## Nine chapters to study in order
 
 | # | Topic | Activity |
 | --- | --- | --- |
@@ -17,8 +17,12 @@ This is Pleniluner’s personal learning project, with no official affiliation w
 | 3 | [First fit, splitting, and coalescing](../textbook/03-first-fit.md) | Simulate allocation and release; explain external fragmentation |
 | 4 | [Sequence, branches, and loops](../textbook/04-control-flow.md) | Trace variables, write repeated calculations, and check boundaries and termination |
 | 5 | [Parameters, return values, and functions](../textbook/05-functions.md) | Compose functions and distinguish printing, returning, and local names |
+| 6 | [Arrays and sequential lists](../textbook/06-arrays.md) | Track indices, capacity, shared lists, and element shifts |
+| 7 | [Singly linked lists](../textbook/07-linked-lists.md) | Trace node references, insert, delete, and reverse links |
+| 8 | [Stacks](../textbook/08-stacks.md) | Apply LIFO order to undo history and bracket matching |
+| 9 | [Queues and circular arrays](../textbook/09-queues.md) | Track FIFO order, wraparound, and empty or full states |
 
-Chapters 4 and 5 use Python 3.11 or later and include 20 standalone programs with expected outputs. See the [programming practice guide](../programming-practice.md) (in Chinese) for setup and practice steps.
+Chapters 4–9 use Python 3.11 or later and include 60 standalone programs with expected outputs. See the [programming practice guide](../programming-practice.md) and [data structures practice guide](../data-structures-practice.md), both in Chinese, for setup and practice steps.
 
 Each chapter has detailed explanations, 2 original examples, 3 exercises with expandable solutions, a self-check, and topic sources. This is an AI first draft, not reviewed by subject experts or trial learners; it does not mean every course has a textbook.
 

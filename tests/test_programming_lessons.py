@@ -165,7 +165,7 @@ for target in range(251):
         for chapter in plan["chapters"]:
             document = read_json(ROOT / "catalog/chapters" / (chapter["id"] + ".json"))
             self.assertEqual(chapter_status(project, plan, chapter, document), "current")
-            if chapter["id"] in CHAPTERS:
+            if chapter.get("format") == "python":
                 self.assertEqual(document["references"], chapter["references"])
             else:
                 self.assertEqual(writing_prompt(chapter), (BOOK_PROMPT, BOOK_PROMPT_VERSION))

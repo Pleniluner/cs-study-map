@@ -8,7 +8,7 @@ Il progetto serve soprattutto allo studio del manutentore: seleziona argomenti d
 
 È un progetto personale di Pleniluner, senza affiliazione ufficiale con la Tsinghua University o i manutentori upstream. Il repository pubblico contiene strumenti originali, bozze, indici delle fonti e guide AI. Materiali didattici originali, slide, compiti, codice degli studenti e testi estratti integralmente non sono pubblicati.
 
-## Studia cinque capitoli in ordine
+## Studia nove capitoli in ordine
 
 | # | Argomento | Attività |
 | --- | --- | --- |
@@ -17,8 +17,12 @@ Il progetto serve soprattutto allo studio del manutentore: seleziona argomenti d
 | 3 | [Primo adattamento, divisione e fusione](../textbook/03-first-fit.md) | Simulare allocazione e rilascio e spiegare la frammentazione esterna |
 | 4 | [Sequenze, condizioni e cicli](../textbook/04-control-flow.md) | Seguire le variabili e verificare i casi limite e la terminazione dei cicli |
 | 5 | [Parametri, valori restituiti e funzioni](../textbook/05-functions.md) | Combinare funzioni e distinguere stampa, restituzione e nomi locali |
+| 6 | [Array e liste sequenziali](../textbook/06-arrays.md) | Seguire indici, capacità, liste condivise e spostamenti degli elementi |
+| 7 | [Liste concatenate semplici](../textbook/07-linked-lists.md) | Seguire i riferimenti ed eseguire inserimento, rimozione e inversione |
+| 8 | [Pile](../textbook/08-stacks.md) | Applicare LIFO all’annullamento e al controllo delle parentesi |
+| 9 | [Code e array circolari](../textbook/09-queues.md) | Verificare FIFO, il ritorno all’inizio e gli stati vuoto o pieno |
 
-I capitoli 4 e 5 usano Python 3.11 o successivo e includono 20 programmi autonomi con l’output atteso. Preparazione e metodo sono nella [guida alla pratica di programmazione](../programming-practice.md), in cinese.
+I capitoli dal 4 al 9 usano Python 3.11 o successivo e includono 60 programmi autonomi con l’output atteso. Preparazione e metodo sono nella [guida alla pratica di programmazione](../programming-practice.md) e nella [guida alle strutture dati](../data-structures-practice.md), in cinese.
 
 Ogni capitolo contiene spiegazioni dettagliate, 2 esempi originali, 3 esercizi con soluzioni espandibili, un’autoverifica e le fonti degli argomenti. È una prima bozza AI, non revisionata da esperti né sperimentata con studenti; non significa che tutti i corsi abbiano un manuale completo.
 

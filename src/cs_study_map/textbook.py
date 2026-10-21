@@ -306,6 +306,8 @@ def build_textbook(project):
         if (root / "docs" / filename).is_file():
             support.append(f"[{label}](../{filename})")
     programming_support = ["[编程练习与运行](../programming-practice.md)"] if (root / "docs/programming-practice.md").is_file() else []
+    if (root / "docs/data-structures-practice.md").is_file():
+        programming_support.append("[数据结构练习指引](../data-structures-practice.md)")
     for index, chapter in enumerate(plan["chapters"]):
         document = documents[chapter["id"]]
         status = chapter_status(project, plan, chapter, document)
@@ -358,7 +360,7 @@ def build_textbook(project):
                 locators = "、".join(md(pointers[e]) for e in topic["evidence_ids"])
                 lines += [f"- 主题 {topic_numbers[topic['key']]}：{md(topic['name'])}；位置：{locators}。"]
         if document.get("references"):
-            lines += ["", "## 语言语义核对", "", "上游入口用于确定学习方向；下面的官方文档用于核对语言规则，例题和练习由本项目重新设计。", ""]
+            lines += ["", "## 语言与结构规则核对", "", "上游入口用于确定学习方向；下面的参考资料用于核对语言或数据结构规则，例题和练习由本项目重新设计。", ""]
             for reference in document["references"]:
                 lines += [f"- [{md(reference['title'])}]({reference['url']})：{md(reference['note'])}"]
         lines += ["", "**继续学习**：先独立完成自测，再记录仍需回读的步骤。", ""]
