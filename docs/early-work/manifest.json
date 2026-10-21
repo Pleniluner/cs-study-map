@@ -1,0 +1,321 @@
+{
+  "files": [
+    {
+      "bytes": 152854,
+      "path": "README.md",
+      "sha256": "0850f6defd218f5a701d387785916ec30949c7e6483237e1982e9f10f05efc9d"
+    },
+    {
+      "bytes": 15360,
+      "path": "01_程序设计与软件工程/Java台湾小学期/README.md",
+      "sha256": "b22b0edcfbd2e1a6f67bcc68bf094b7a6642246b721a17707f187ef58fc85f40"
+    },
+    {
+      "bytes": 14021,
+      "path": "01_程序设计与软件工程/Java程序设计与训练/README.md",
+      "sha256": "0d8dfdcc8020c4456835b969c0d55c28d8486f1406972f70c0e9a655b5a4a39a"
+    },
+    {
+      "bytes": 18879,
+      "path": "01_程序设计与软件工程/README.md",
+      "sha256": "c217f63cf2af4e482d1daf8a9f38c3bfe207bb1fd150ae170972f94bd93b220c"
+    },
+    {
+      "bytes": 16699,
+      "path": "01_程序设计与软件工程/Week_1-Qt/README.md",
+      "sha256": "8439ab03244374269dd44ab9fcd0f3ed694419f6ec8a8b38f9d6160a50fa5872"
+    },
+    {
+      "bytes": 20254,
+      "path": "01_程序设计与软件工程/Week_2-Socket/README.md",
+      "sha256": "a29aeec866c71209777f6bcc901513bebafa51c7069b00d928b04f317929cd24"
+    },
+    {
+      "bytes": 16596,
+      "path": "01_程序设计与软件工程/Week_3-Python/README.md",
+      "sha256": "e2c48298ecc4e3171b82938c95ca595270af816b78290ac7a96c051c01f64569"
+    },
+    {
+      "bytes": 13662,
+      "path": "01_程序设计与软件工程/数据库专题训练/README.md",
+      "sha256": "35c7b1c9bfbd45f360ab22a52777ba8448cd230c7f27c667cd7f3fde42c3e498"
+    },
+    {
+      "bytes": 16412,
+      "path": "01_程序设计与软件工程/程序设计基础/README.md",
+      "sha256": "a169c7aa73f75f6bb4fd94debeac9591372788a61e043d36231507bfdae8950c"
+    },
+    {
+      "bytes": 21587,
+      "path": "01_程序设计与软件工程/软件工程/README.md",
+      "sha256": "8bf30f18d97e88bf543ffc09223ea0f11fbdf2c4baa546392bed7a151ffc40cb"
+    },
+    {
+      "bytes": 20997,
+      "path": "01_程序设计与软件工程/面向对象程序设计基础/README.md",
+      "sha256": "9898955f833610546a08c85d6d3b1b32849dacf13182b07638d6537a8c71378c"
+    },
+    {
+      "bytes": 16020,
+      "path": "02_算法、理论与编译/形式语言与自动机/readme.md",
+      "sha256": "af3569b898ffad1897c7167ca876d49347c4ebad405e138db13306c1b7501d81"
+    },
+    {
+      "bytes": 15957,
+      "path": "02_算法、理论与编译/数据结构/readme.md",
+      "sha256": "a1bd198ce08d47612c2f80f2fb074a35d5402916456a6d95a86843d5dc6058a6"
+    },
+    {
+      "bytes": 22558,
+      "path": "02_算法、理论与编译/编译原理/readme.md",
+      "sha256": "9213bfbaeb67710ebbcfc6d91771be01a5ef7448afe9f0661232258d4a705f17"
+    },
+    {
+      "bytes": 6222,
+      "path": "03_计算机系统与体系结构/信息科学技术概论/readme.md",
+      "sha256": "3f9a48dae1bfe80bfa8ff481121b8af316da3577d063c84a439602818160ae9e"
+    },
+    {
+      "bytes": 6415,
+      "path": "03_计算机系统与体系结构/存储技术基础/README.md",
+      "sha256": "93d97f0185628ad78004e175abb7a45b758ceca64118edb3217471958b0d8b70"
+    },
+    {
+      "bytes": 5856,
+      "path": "03_计算机系统与体系结构/嵌入式系统/readme.md",
+      "sha256": "a25a19dd2c7d57ff45acd5e79c30c4a5aa47536a0cae9c83792030c11f94f804"
+    },
+    {
+      "bytes": 6620,
+      "path": "03_计算机系统与体系结构/并行计算机体系结构与编程/README.md",
+      "sha256": "2c9eaa67e565b155121d9764b319f1ac7ba97d85209154df0280fb0fa0660bd5"
+    },
+    {
+      "bytes": 6652,
+      "path": "03_计算机系统与体系结构/操作系统/README.md",
+      "sha256": "75ae18e1ee723b9cb1b10d6d8473c7da3a9c10561569fd05191686ed80cd6d68"
+    },
+    {
+      "bytes": 6546,
+      "path": "03_计算机系统与体系结构/汇编语言程序设计/README.md",
+      "sha256": "0d0f2e1c35457457b044d4dd62e1955b6d363413fd96ca18ba7a54823060991c"
+    },
+    {
+      "bytes": 5733,
+      "path": "03_计算机系统与体系结构/计算机科学导论/README.md",
+      "sha256": "b8d58043055d24d7d142d0f287419d33acbf2858447e3c19c5d3fd3f1865326b"
+    },
+    {
+      "bytes": 6319,
+      "path": "03_计算机系统与体系结构/计算机系统结构/README.md",
+      "sha256": "242b6ae342a806a14e6144a5f1f982ea74475bec7ebee492f7cb8c1499acc692"
+    },
+    {
+      "bytes": 8062,
+      "path": "03_计算机系统与体系结构/计算机组成原理/readme.md",
+      "sha256": "61d6e0e55007591ed0ab91aa0e9ccadae30a2eee23c852e961d41c055896127c"
+    },
+    {
+      "bytes": 7632,
+      "path": "04_网络与信息安全/现代密码学/README.md",
+      "sha256": "bd291fa33cd2519cd6b59581747a78764c387c8d405f59464d559db38fc1ec9d"
+    },
+    {
+      "bytes": 6734,
+      "path": "04_网络与信息安全/网络安全工程与实践/readme.md",
+      "sha256": "702933cc0e4048d89b26f359ceb6d14a0629e039a7484986b937d9d1ac1bb44a"
+    },
+    {
+      "bytes": 6437,
+      "path": "04_网络与信息安全/计算机网络专题训练/README.md",
+      "sha256": "9b006ea8235bb7484ca6f18033bd4c0f87ae70444cc24ba75e508f33a0847ec2"
+    },
+    {
+      "bytes": 6977,
+      "path": "04_网络与信息安全/计算机网络原理/readme.md",
+      "sha256": "a33f258ccb629a594e1493de17f69d7c913e446e08c5eed26a5415268f176494"
+    },
+    {
+      "bytes": 6697,
+      "path": "04_网络与信息安全/计算机网络安全技术/readme.md",
+      "sha256": "fdc241cbd87d39a6948b8fe2589fca2e18afea355ee919754ffdfa3ff120b68a"
+    },
+    {
+      "bytes": 6464,
+      "path": "05_人工智能与数据科学/人工智能导论/README.md",
+      "sha256": "084ccb7195fb111e55ae0724a2dcfb40cfbfbc69b9b8c510749bb8d07cc0ec29"
+    },
+    {
+      "bytes": 5997,
+      "path": "05_人工智能与数据科学/人工神经网络/readme.md",
+      "sha256": "498b265bd76d2d65aa5c518973dc0334d6f1bb97629d18fdf11c76569b3ca0a5"
+    },
+    {
+      "bytes": 7064,
+      "path": "05_人工智能与数据科学/搜索引擎技术基础/readme.md",
+      "sha256": "fe93c425daa92532e54931b66e5328ad3cd609be5001beeb24db80bfeedfb95f"
+    },
+    {
+      "bytes": 5576,
+      "path": "05_人工智能与数据科学/数据挖掘/README.md",
+      "sha256": "c5dc505bcd05241c4914494953ac87f3a8abc718d4a071a7eb7685c8543874e3"
+    },
+    {
+      "bytes": 7020,
+      "path": "05_人工智能与数据科学/机器学习概论/README.md",
+      "sha256": "e658aeaad0e85f55650bf67109be8f204ea06dfb1ec4fd60d10eaddada0ac5fd"
+    },
+    {
+      "bytes": 6490,
+      "path": "05_人工智能与数据科学/模式识别/README.md",
+      "sha256": "9aa25fbbf76528848ae437cd1ae2d458e82605726635bf29e79a339309fa3aba"
+    },
+    {
+      "bytes": 7995,
+      "path": "06_图形图像与人机交互/人机交互理论与技术/README.md",
+      "sha256": "49ef2eac2e74ee1da756b90f06b23a03f70977c0e5ade4dec1de6a6d58e8913b"
+    },
+    {
+      "bytes": 7581,
+      "path": "06_图形图像与人机交互/多媒体技术/README.md",
+      "sha256": "b837d621ece17aa55ccedb4bc1cf7d110650f3e0a73b154675041a3833346aef"
+    },
+    {
+      "bytes": 6412,
+      "path": "06_图形图像与人机交互/数字图像处理/readme.md",
+      "sha256": "9e143dd1611615fa0b5e49966a2b5e5ee7233d72fb69c2424400364189c96396"
+    },
+    {
+      "bytes": 6790,
+      "path": "06_图形图像与人机交互/计算机图形学基础/readme.md",
+      "sha256": "7f5a8a3b9722fd3eee9eff9127c437b2600f40d7035af6a4b92fecdd7cab19cf"
+    },
+    {
+      "bytes": 5676,
+      "path": "07_数学基础/初等数论/readme.md",
+      "sha256": "fe147ac2a6382cc004b8e978bd726b330e4d09bf39b54bea9db91de85e5cbc78"
+    },
+    {
+      "bytes": 5831,
+      "path": "07_数学基础/复变函数引论/readme.md",
+      "sha256": "4fb5df6dea6a536769a25fe78c2610d46e77ba903b8a3c7cc91a0de609850f67"
+    },
+    {
+      "bytes": 5961,
+      "path": "07_数学基础/微积分A(1)/readme.md",
+      "sha256": "0cd89b8c7d1a6a4e25199c5a6c6fae94e8538c70ede0783d867ede9d739f437d"
+    },
+    {
+      "bytes": 6026,
+      "path": "07_数学基础/微积分A(2)/README.md",
+      "sha256": "d8253d46197c9723ac13b422b06066f9905f87d3a17905caff438f2237fc61d2"
+    },
+    {
+      "bytes": 6858,
+      "path": "07_数学基础/数值分析/README.md",
+      "sha256": "5f73972449c9f2f4dc76a5eafbc691bf0238b5fe5599b5bb1cf6c37657fa2998"
+    },
+    {
+      "bytes": 6555,
+      "path": "07_数学基础/数学实验/README.md",
+      "sha256": "cedd3301a6460a2eaf251ade3c0d7b4bc86343fc333d8995e6cc760375391506"
+    },
+    {
+      "bytes": 6064,
+      "path": "07_数学基础/概率论数理统计/README.md",
+      "sha256": "45074ea022ceb9bc2e95ea9325a25bd8a9869e91d9c1c93aa48900f771b5dcec"
+    },
+    {
+      "bytes": 5652,
+      "path": "07_数学基础/离散数学(1)/README.md",
+      "sha256": "f4fe672bdb0983c6c9f231df850a653794cd99241f866e0d84241b64c62759c8"
+    },
+    {
+      "bytes": 5763,
+      "path": "07_数学基础/离散数学(2)/README.md",
+      "sha256": "287f154a978373d4bdb84b3c07430dbba0d826b5efbe2bceaf1f3110a54a35b8"
+    },
+    {
+      "bytes": 5585,
+      "path": "07_数学基础/线性代数(1)/README.md",
+      "sha256": "437110abac9c8fee01901fddc66ae58b48055a089ab6b7af7bab8ee50f15e163"
+    },
+    {
+      "bytes": 5702,
+      "path": "07_数学基础/线性代数(2)/README.md",
+      "sha256": "c98a217f13ac73627939d3a883b391bbc977679d4699f7396526c447dba018b2"
+    },
+    {
+      "bytes": 5876,
+      "path": "07_数学基础/组合数学/README.md",
+      "sha256": "2496909520bf882940e747c4f0eef02ccbfb0239beb294bf98eada898b15776d"
+    },
+    {
+      "bytes": 5473,
+      "path": "07_数学基础/随机数学方法/readme.md",
+      "sha256": "51dae18a6f2b6604f4ec4ebb6cfb8502c68d670c6941c9eac1757daa458fcda6"
+    },
+    {
+      "bytes": 8179,
+      "path": "08_物理、电子与信号/信号处理原理/readme.md",
+      "sha256": "e7012f58b1947c159b8461a35677f0c62b982ff312fe85ae9a97031070974a12"
+    },
+    {
+      "bytes": 6886,
+      "path": "08_物理、电子与信号/大学物理B(1)/README.md",
+      "sha256": "49bf44d7e9cb92cea88c6dc12c630ee325ed1093b5bfad0d8d7a1dbc6df5d7d0"
+    },
+    {
+      "bytes": 7655,
+      "path": "08_物理、电子与信号/大学物理B(2)/readme.md",
+      "sha256": "9ed03b5631b952f0caf04f8e9dcc0c0ff148724da0280cbc19583e9fa521a2df"
+    },
+    {
+      "bytes": 6695,
+      "path": "08_物理、电子与信号/大学物理英-老毕（资料集1）/README.md",
+      "sha256": "04660d753691af26154f086c7bdd90186cc29f4911ee9d606917e638cba303be"
+    },
+    {
+      "bytes": 6590,
+      "path": "08_物理、电子与信号/大学物理英-老毕（资料集2）/README.md",
+      "sha256": "b894a6edb2adac7bd226002955c978d51878354156a2d8f6a8cd2ca93c4d4c95"
+    },
+    {
+      "bytes": 6706,
+      "path": "08_物理、电子与信号/数字逻辑实验/readme.md",
+      "sha256": "8d60504fa714be0d0790480896c4e834476a023570e97ba8b4f17d4e01f3bbea"
+    },
+    {
+      "bytes": 6738,
+      "path": "08_物理、电子与信号/数字逻辑电路/readme.md",
+      "sha256": "ce7580c41807dc98b034edb4961480379e9fa98de00c1cd7ce1707d86983abeb"
+    },
+    {
+      "bytes": 8109,
+      "path": "08_物理、电子与信号/物理实验B(1)/readme.md",
+      "sha256": "0c44289af40645134572745f7fd9926b20f3092289bab21e8af5b62b8d64f638"
+    },
+    {
+      "bytes": 7879,
+      "path": "08_物理、电子与信号/物理实验B(2)/readme.md",
+      "sha256": "01672cbf026e89b786e389fdf40c29a8ff60c06b7e515236258b268c1b27963a"
+    },
+    {
+      "bytes": 8295,
+      "path": "08_物理、电子与信号/电子学基础/readme.md",
+      "sha256": "9ee51f00aabef223303e31e372df68dbaee8e0cf553649cc5e180cfc562763c7"
+    },
+    {
+      "bytes": 5931,
+      "path": "08_物理、电子与信号/电子学基础实验/readme.md",
+      "sha256": "2a419fa51ed975687560c6014ecb891bd818e44544c9bf8af81643b9c7931174"
+    },
+    {
+      "bytes": 5640,
+      "path": "知识探索教材/README.md",
+      "sha256": "c12df06ff37bd283f6e598354604511cac25e779272003f1dd501dae1286f97a"
+    }
+  ],
+  "import_date": "2026-10-22",
+  "note": "Early documents imported at the actual commit time. Local paths and filesystem timestamps are omitted. Checksums describe the public, privacy-cleaned copies."
+}

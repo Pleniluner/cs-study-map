@@ -98,3 +98,5 @@ cs-study-map validate --tracked
 请通过 Issue 报告分类或导读错误，通过 PR 修改程序、分类映射或人工修正规则。请阅读 [贡献说明](CONTRIBUTING.md)。
 
 本项目原创程序、教材文本与维护文档采用 MIT 许可；来源材料及其权利不因此改变，详见 [来源说明](ATTRIBUTION.md)。
+
+早期成果：[总知识图与 60 份课程指南归档](docs/early-work/index.md)，保留项目建立当前 Git 仓库前的 README 与教材说明。
