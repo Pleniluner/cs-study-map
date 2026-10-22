@@ -1,6 +1,6 @@
 # 一组数据怎样按位置存取：数组与顺序表
 
-[返回教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md) · [树与堆练习指引](../trees-practice.md)
+[返回教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md) · [树与堆练习指引](../trees-practice.md) · [哈希表与图练习指引](../hash-graphs-practice.md)
 
 [上一章：把计算组织成函数：参数、返回值与局部名字](05-functions.md) · [下一章：相邻数据怎样连接：单链表与结点引用](07-linked-lists.md)
 
@@ -461,4 +461,4 @@ print(values, empty, single)
 
 [上一章：把计算组织成函数：参数、返回值与局部名字](05-functions.md) · [下一章：相邻数据怎样连接：单链表与结点引用](07-linked-lists.md)
 
-[教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md) · [树与堆练习指引](../trees-practice.md) · [记录自己的学习](../learning-log-template.md)
+[教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md) · [树与堆练习指引](../trees-practice.md) · [哈希表与图练习指引](../hash-graphs-practice.md) · [记录自己的学习](../learning-log-template.md)

@@ -8,7 +8,7 @@
 
 這是 Pleniluner 維護的個人學習專案，與清華大學及上游維護者沒有官方隸屬關係。公開儲存庫包含原創工具、教材草稿、來源索引和 AI 導讀；不發布原始教材、課件、作業、學生原始碼或擷取全文。
 
-## 依十八章順序學習
+## 依二十一章順序學習
 
 | # | 主題 | 實作 |
 | --- | --- | --- |
@@ -30,8 +30,11 @@
 | 16 | [樹、二元樹與走訪](../textbook/16-trees.md) | 追蹤高度、走訪順序、鏡像與完全性 |
 | 17 | [二元搜尋樹](../textbook/17-binary-search-trees.md) | 維護全域鍵值順序、刪除連結、範圍查詢與高度界限 |
 | 18 | [二元堆積與優先佇列](../textbook/18-heaps.md) | 實作上浮、下沉、建堆與堆積排序，處理最大的 k 項與多路合併 |
+| 19 | [雜湊表、碰撞與擴容](../textbook/19-hash-tables.md) | 維護鍵值與獨立桶，區分期望、最壞與攤銷成本 |
+| 20 | [圖與儲存表示](../textbook/20-graphs.md) | 建立有向與無向模型，核對鄰接串列、矩陣、度數與反向邊 |
+| 21 | [DFS、BFS 與無權最短路徑](../textbook/21-graph-traversal.md) | 追蹤發現時刻、還原路徑，處理連通分量與多源距離 |
 
-第 4–18 章使用 Python 3.11 或更新版本，共提供 150 段可獨立執行的程式及預期輸出。練習方法見[程式練習指南](../programming-practice.md)、[資料結構練習指引](../data-structures-practice.md)與[演算法練習指引](../algorithms-practice.md)（簡體中文）。 [遞迴與分治練習指引（簡體中文）](../recursion-practice.md). [樹與堆積練習指引（簡體中文）](../trees-practice.md).
+第 4–21 章使用 Python 3.11 或更新版本，共提供 180 段可獨立執行的程式及預期輸出。練習方法見[程式練習指南](../programming-practice.md)、[資料結構練習指引](../data-structures-practice.md)與[演算法練習指引](../algorithms-practice.md)（簡體中文）。 [遞迴與分治練習指引（簡體中文）](../recursion-practice.md). [樹與堆積練習指引（簡體中文）](../trees-practice.md). [雜湊表與圖練習指引（簡體中文）](../hash-graphs-practice.md).
 
 每章包含詳細講解、2 個原創例題、3 道附可展開解答的練習、自我檢測與選題來源。目前是 AI 初稿，尚未經學科專家審查或學習者試學，不代表所有課程都已完成教材。
 

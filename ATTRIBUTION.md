@@ -16,6 +16,8 @@
 
 树、二叉搜索树和堆章节用 [NIST DADS 完全二叉树定义](https://xlinux.nist.gov/dads/HTML/completeBinaryTree.html)、Open Data Structures 的树与堆章节、Algorithms 4/e 的搜索树与优先队列说明，以及 [Python 3.11 heapq 文档](https://docs.python.org/3.11/library/heapq.html)核对形状、键序、接口与成本。本项目自行设计字典结点、示例树、删除轨迹、堆数组、练习和测试；图示由本项目示例生成，未复制原书图表或练习解答。空树高度、重复键和空堆返回约定按正文明确说明，未将这些参考核对计为上游资料库的新导读。
 
+哈希表、图与基础图遍历章节参考 [NIST DADS 散列函数定义](https://xlinux.nist.gov/dads/HTML/hash.html)、[Open Data Structures 分离链接说明](https://opendatastructures.org/ods-python/5_1_ChainedHashTable_Hashin.html)、[图的表示](https://opendatastructures.org/ods-python/12_Graphs.html)与[图遍历](https://opendatastructures.org/ods-python/12_3_Graph_Traversal.html)，并核对 Python 3.11 取余和递归深度语义。桶记录、图实例、栈帧、队列轨迹和练习由本项目设计；固定取余不继承随机散列的期望保证，带查重的建图也单独计算成本。原书图表、代码与习题解答未纳入公开内容，参考核对不增加上游导读覆盖。
+
 核查时发现上游许可声明存在差异：根目录 [LICENSE](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/master/LICENSE) 为 CC BY-SA 4.0，而 [README 许可部分](https://github.com/PKUanonym/REKCARC-TSC-UHT#许可) 的链接指向 CC BY-NC-SA 4.0，并明确其他内容版权归各自作者。本项目不替上游消解这一差异，也不为上游材料重新许可。
 
 本项目新编写的程序、教材文本、维护文档和可独立许可的原创贡献采用根目录 MIT 许可。来源材料、可能涉及第三方权利的内容及其许可条件不被该许可覆盖。AI 辅助注释不能改变来源材料的权利，也不保证其判断准确。需要引用或改编具体材料时，应查看该材料适用的声明。

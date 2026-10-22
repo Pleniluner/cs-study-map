@@ -17,5 +17,8 @@
   "docs/textbook/16-trees.md",
   "docs/textbook/17-binary-search-trees.md",
   "docs/textbook/18-heaps.md",
+  "docs/textbook/19-hash-tables.md",
+  "docs/textbook/20-graphs.md",
+  "docs/textbook/21-graph-traversal.md",
   "docs/textbook/index.md"
 ]

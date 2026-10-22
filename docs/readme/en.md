@@ -8,7 +8,7 @@ This project is mainly for the maintainer’s own study. It selects useful topic
 
 This is Pleniluner’s personal learning project, with no official affiliation with Tsinghua University or upstream maintainers. The public repository contains original tools, textbook drafts, source indexes, and AI guides. Original course materials, slides, assignments, student source code, and extracted full text are not published.
 
-## Eighteen chapters to study in order
+## Twenty-one chapters to study in order
 
 | # | Topic | Activity |
 | --- | --- | --- |
@@ -30,8 +30,11 @@ This is Pleniluner’s personal learning project, with no official affiliation w
 | 16 | [Trees, binary trees, and traversals](../textbook/16-trees.md) | Track height, traversal order, mirroring, and completeness |
 | 17 | [Binary search trees](../textbook/17-binary-search-trees.md) | Maintain global key order, deletion links, range queries, and height bounds |
 | 18 | [Binary heaps and priority queues](../textbook/18-heaps.md) | Repair heap order, build heaps, sort, select top k, and merge streams |
+| 19 | [Hash tables, collisions, and resizing](../textbook/19-hash-tables.md) | Maintain key-value buckets and distinguish expected, worst-case, and amortized costs |
+| 20 | [Graphs and storage representations](../textbook/20-graphs.md) | Model direction and check adjacency lists, matrices, degrees, and reversed edges |
+| 21 | [DFS, BFS, and unweighted shortest paths](../textbook/21-graph-traversal.md) | Track discovery, recover paths, and handle components and multiple sources |
 
-Chapters 4–18 use Python 3.11 or later and include 150 standalone programs with expected outputs. See the [programming practice guide](../programming-practice.md), [data structures guide](../data-structures-practice.md), and [algorithm practice guide](../algorithms-practice.md), all in Chinese. [Recursion and divide-and-conquer exercises (in Chinese)](../recursion-practice.md). [Tree and heap exercises (in Chinese)](../trees-practice.md).
+Chapters 4–21 use Python 3.11 or later and include 180 standalone programs with expected outputs. See the [programming practice guide](../programming-practice.md), [data structures guide](../data-structures-practice.md), and [algorithm practice guide](../algorithms-practice.md), all in Chinese. [Recursion and divide-and-conquer exercises (in Chinese)](../recursion-practice.md). [Tree and heap exercises (in Chinese)](../trees-practice.md). [Hash table and graph exercises (in Chinese)](../hash-graphs-practice.md).
 
 Each chapter has detailed explanations, 2 original examples, 3 exercises with expandable solutions, a self-check, and topic sources. This is an AI first draft, not reviewed by subject experts or trial learners; it does not mean every course has a textbook.
 

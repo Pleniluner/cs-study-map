@@ -8,7 +8,7 @@ O projeto serve principalmente ao estudo do mantenedor: seleciona temas de [REKC
 
 Este é um projeto pessoal de Pleniluner, sem vínculo oficial com a Universidade Tsinghua ou os mantenedores originais. O repositório público contém ferramentas próprias, rascunhos, índices de fontes e guias de IA. Materiais didáticos originais, slides, tarefas, código de estudantes e texto integral extraído não são publicados.
 
-## Estude dezoito capítulos em ordem
+## Estude vinte e um capítulos em ordem
 
 | # | Tema | Atividade |
 | --- | --- | --- |
@@ -30,8 +30,11 @@ Este é um projeto pessoal de Pleniluner, sem vínculo oficial com a Universidad
 | 16 | [Árvores, árvores binárias e percursos](../textbook/16-trees.md) | Verificar altura, ordem de visita, espelhamento e completude |
 | 17 | [Árvores binárias de busca](../textbook/17-binary-search-trees.md) | Manter ordem global, ligações na remoção, consultas por intervalo e altura |
 | 18 | [Heaps binários e filas de prioridade](../textbook/18-heaps.md) | Restaurar a ordem, construir e ordenar heaps, selecionar os k maiores e intercalar listas |
+| 19 | [Tabelas hash, colisões e expansão](../textbook/19-hash-tables.md) | Manter chaves e valores e distinguir custos esperados, de pior caso e amortizados |
+| 20 | [Grafos e representações](../textbook/20-graphs.md) | Verificar direção, listas de adjacência, matrizes, graus e arestas invertidas |
+| 21 | [DFS, BFS e caminhos mínimos sem pesos](../textbook/21-graph-traversal.md) | Acompanhar descobertas, reconstruir caminhos e tratar componentes e múltiplas origens |
 
-Os capítulos 4 a 18 usam Python 3.11 ou superior e incluem 150 programas independentes com as saídas esperadas. Consulte os guias de [programação](../programming-practice.md), [estruturas de dados](../data-structures-practice.md) e [algoritmos](../algorithms-practice.md), em chinês. [Exercícios de recursão e divisão de problemas (em chinês)](../recursion-practice.md). [Exercícios sobre árvores e heaps (em chinês)](../trees-practice.md).
+Os capítulos 4 a 21 usam Python 3.11 ou superior e incluem 180 programas independentes com as saídas esperadas. Consulte os guias de [programação](../programming-practice.md), [estruturas de dados](../data-structures-practice.md) e [algoritmos](../algorithms-practice.md), em chinês. [Exercícios de recursão e divisão de problemas (em chinês)](../recursion-practice.md). [Exercícios sobre árvores e heaps (em chinês)](../trees-practice.md). [Exercícios sobre tabelas hash e grafos (em chinês)](../hash-graphs-practice.md).
 
 Cada capítulo inclui explicações detalhadas, 2 exemplos originais, 3 exercícios com soluções expansíveis, uma autoavaliação e as fontes dos temas. É um primeiro rascunho de IA, sem revisão por especialistas nem teste com estudantes; isso não significa que todos os cursos tenham um livro completo.
 

@@ -1,6 +1,6 @@
 # 把计算组织成函数：参数、返回值与局部名字
 
-[返回教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md) · [树与堆练习指引](../trees-practice.md)
+[返回教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md) · [树与堆练习指引](../trees-practice.md) · [哈希表与图练习指引](../hash-graphs-practice.md)
 
 [上一章：程序怎样作选择和重复：顺序、分支与循环](04-control-flow.md) · [下一章：一组数据怎样按位置存取：数组与顺序表](06-arrays.md)
 
@@ -450,4 +450,4 @@ print(days_to_reach(0), days_to_reach(1), days_to_reach(21))
 
 [上一章：程序怎样作选择和重复：顺序、分支与循环](04-control-flow.md) · [下一章：一组数据怎样按位置存取：数组与顺序表](06-arrays.md)
 
-[教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md) · [树与堆练习指引](../trees-practice.md) · [记录自己的学习](../learning-log-template.md)
+[教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md) · [树与堆练习指引](../trees-practice.md) · [哈希表与图练习指引](../hash-graphs-practice.md) · [记录自己的学习](../learning-log-template.md)

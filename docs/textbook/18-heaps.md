@@ -1,8 +1,8 @@
 # 让最值留在根部：二叉堆与优先队列
 
-[返回教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md) · [树与堆练习指引](../trees-practice.md)
+[返回教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md) · [树与堆练习指引](../trees-practice.md) · [哈希表与图练习指引](../hash-graphs-practice.md)
 
-[上一章：用大小约束引导查找：二叉搜索树](17-binary-search-trees.md)
+[上一章：用大小约束引导查找：二叉搜索树](17-binary-search-trees.md) · [下一章：按键定位记录：哈希表、冲突与扩容](19-hash-tables.md)
 
 [学习目标](#objectives) · [需要的基础](#prerequisites) · [例题](#examples) · [练习](#practice) · [自测](#self-check)
 
@@ -723,6 +723,6 @@ print(merge_sorted_groups([[], []]))
 
 **继续学习**：先独立完成自测，再记录仍需回读的步骤。
 
-[上一章：用大小约束引导查找：二叉搜索树](17-binary-search-trees.md)
+[上一章：用大小约束引导查找：二叉搜索树](17-binary-search-trees.md) · [下一章：按键定位记录：哈希表、冲突与扩容](19-hash-tables.md)
 
-[教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md) · [树与堆练习指引](../trees-practice.md) · [记录自己的学习](../learning-log-template.md)
+[教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md) · [树与堆练习指引](../trees-practice.md) · [哈希表与图练习指引](../hash-graphs-practice.md) · [记录自己的学习](../learning-log-template.md)

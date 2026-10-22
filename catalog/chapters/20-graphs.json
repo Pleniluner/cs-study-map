@@ -1,0 +1,228 @@
+{
+  "chapter_id": "20-graphs",
+  "content": {
+    "exercises": [
+      {
+        "answer": "无向 [[1,2],[0],[0]] 有 2 条边，有向 [[1],[2],[0]] 有 3 条边，空图有 0 条边。因为 len(row) 为常数，这个统计只扫描 n 行，时间 Θ(n+1)，额外空间 O(1)，无需逐项遍历邻居。算法依赖输入已合法；不应把整除结果当成对称性校验。",
+        "hint": "外层长度是顶点数。累加所有行的长度得到邻接项数，再按模式决定是否除以 2。",
+        "program": {
+          "code": "def edge_count(adjacency, directed):\n    total = 0\n    for neighbors in adjacency:\n        total = total + len(neighbors)\n    if directed:\n        return total\n    return total // 2\n\nprint(edge_count([[1, 2], [0], [0]], False))\nprint(edge_count([[1], [2], [0]], True))\nprint(edge_count([], False))\n",
+          "output": "2\n3\n0\n"
+        },
+        "question": "实现 edge_count(adjacency,directed)。输入保证符合本章相应模式的合法简单图，返回数学边数。检查三点两边无向图、有向三环和空图，说明为何不能只看外层列表长度。"
+      },
+      {
+        "answer": "从 [[2,1],[0],[0,3],[2],[]] 删除无向边 0—2，得到 [[1],[0],[3],[2],[]]；再删一次返回 False。顶点数保持 5，不能连同孤立顶点一起删去。无向删除最坏 O(d(u)+d(v)+1)，有向删除 O(d(u)+1)，工作区 O(1)。未找到或端点非法时图应完全不变。",
+        "hint": "先检查端点，再在 source 行中找 target。只有确实找到时才在无向模式删除对应反向项；列表中间 pop 会搬移尾部。",
+        "program": {
+          "code": "def empty_graph(n):\n    adjacency = []\n    for vertex in range(n):\n        adjacency.append([])\n    return adjacency\n\ndef valid_vertex(adjacency, vertex):\n    return 0 <= vertex < len(adjacency)\n\ndef has_edge(adjacency, source, target):\n    if not valid_vertex(adjacency, source) or not valid_vertex(adjacency, target):\n        return False\n    for neighbor in adjacency[source]:\n        if neighbor == target:\n            return True\n    return False\n\ndef add_edge(adjacency, source, target, directed):\n    if not valid_vertex(adjacency, source) or not valid_vertex(adjacency, target):\n        return False\n    if source == target or has_edge(adjacency, source, target):\n        return False\n    adjacency[source].append(target)\n    if not directed:\n        adjacency[target].append(source)\n    return True\n\ndef build_graph(n, edges, directed):\n    if n < 0:\n        return None\n    adjacency = empty_graph(n)\n    for edge in edges:\n        source = edge[0]\n        target = edge[1]\n        if not valid_vertex(adjacency, source) or not valid_vertex(adjacency, target):\n            return None\n        if source == target:\n            return None\n        add_edge(adjacency, source, target, directed)\n    return adjacency\n\ndef remove_neighbor(neighbors, target):\n    for i in range(len(neighbors)):\n        if neighbors[i] == target:\n            neighbors.pop(i)\n            return True\n    return False\n\ndef remove_edge(adjacency, source, target, directed):\n    if not valid_vertex(adjacency, source) or not valid_vertex(adjacency, target):\n        return False\n    if source == target:\n        return False\n    removed = remove_neighbor(adjacency[source], target)\n    if removed and not directed:\n        remove_neighbor(adjacency[target], source)\n    return removed\n\ngraph = [[2, 1], [0], [0, 3], [2], []]\nprint(remove_edge(graph, 0, 2, False))\nprint(graph)\nprint(remove_edge(graph, 0, 2, False), remove_edge(graph, -1, 2, False))\nprint(graph)\n",
+          "output": "True\n[[1], [0], [3], [2], []]\nFalse False\n[[1], [0], [3], [2], []]\n"
+        },
+        "question": "写 remove_edge，原地删除指定边。删除成功返回 True，缺失、越界或自环请求返回 False；无向模式必须同时删除反向项，并保持其余邻居的相对顺序。输入图保证已合法。"
+      },
+      {
+        "answer": "[[0,0,1],[1,0,0],[0,0,0]] 转为 [[2],[0],[]]；空矩阵转为空表。原图 [[2,1],[],[]] 经过矩阵会变成 [[1,2],[],[]]，边集没变。扫描所有位置需 Θ(n²+1) 时间，结果占 Θ(n+a+1) 空间，输入不变。这里不验证任意畸形矩阵，调用者负责方形、取值与对角线前提。",
+        "hint": "每行都重新建立一个列表，列值为 1 时追加列号。转换只表示边的存在，不保存原邻居次序。",
+        "program": {
+          "code": "def to_matrix(adjacency):\n    n = len(adjacency)\n    matrix = []\n    for source in range(n):\n        row = []\n        for target in range(n):\n            row.append(0)\n        matrix.append(row)\n    for source in range(n):\n        for target in adjacency[source]:\n            matrix[source][target] = 1\n    return matrix\n\ndef matrix_to_lists(matrix):\n    result = []\n    for source in range(len(matrix)):\n        neighbors = []\n        for target in range(len(matrix)):\n            if matrix[source][target] == 1:\n                neighbors.append(target)\n        result.append(neighbors)\n    return result\n\nprint(matrix_to_lists([[0, 0, 1], [1, 0, 0], [0, 0, 0]]))\nprint(matrix_to_lists([]))\ngraph = [[2, 1], [], []]\nprint(matrix_to_lists(to_matrix(graph)))\nprint(graph)\n",
+          "output": "[[2], [0], []]\n[]\n[[1, 2], [], []]\n[[2, 1], [], []]\n"
+        },
+        "question": "写 matrix_to_lists，把 n 行 n 列的 0/1 矩阵转成邻接表。输入保证对角线为零，每行独立；可有向也可无向。按列编号递增输出邻居，检查空矩阵以及邻接表先转矩阵再转回。"
+      }
+    ],
+    "introduction": "树把关系组织成层次，但道路、引用和依赖关系往往存在环，也可能分成互不相通的部分。图用顶点代表对象、边代表两个对象之间的关系，不要求有根或唯一父亲。本章先约定方向、重复与编号规则，再把同一个图写成邻接表和邻接矩阵，练习度数、路线核查、反向边和删边。表示清楚以后，下一章才讨论怎样系统地访问所有可达顶点；本章的局部邻接检查还不能代替整张图上的搜索。",
+    "limitations": [
+      "限定无权简单图、整数连续编号；不支持自环、平行边、权重或动态删除顶点。",
+      "除构造与指定边操作的显式检查外，函数假定邻接表合法，遍历期间不得修改图。",
+      "有向与无向模式由调用者保持一致，不从行的对称性自动猜测。",
+      "尚未实现拓扑排序、强连通分量、带权最短路或最小生成树。"
+    ],
+    "objectives": [
+      "根据实际关系选择有向或无向模型，说明顶点、边和孤立顶点。",
+      "用独立内层列表构造简单图，处理重复、越界与自环输入。",
+      "在邻接表与矩阵之间转换，并比较查询、遍历和存储成本。",
+      "用度数总和、反向边和合法路线检查图表示的一致性。"
+    ],
+    "pitfalls": [
+      {
+        "correction": "孤立要求没有入边和出边；方向由关系的含义决定，不能从图画的布局推断。",
+        "mistake": "把一个零出度顶点认作孤立点，或把有向边自动补成双向。"
+      },
+      {
+        "correction": "逐行分配新对象，修改某一行后检查其他行与输入是否保持。",
+        "mistake": "创建多行时共享同一个可变列表。"
+      },
+      {
+        "correction": "建图需扫描 q 条输入并执行查重；遍历已有图的成本不能替代构造成本。",
+        "mistake": "声称带线性查重的建图必为 O(n+e)。"
+      },
+      {
+        "correction": "按端点关系比较边集；邻居次序影响后续遍历次序，但不改变可达关系。",
+        "mistake": "把两次转置或矩阵往返后的列表顺序变化当成丢边。"
+      }
+    ],
+    "prerequisites": [
+      "掌握列表、嵌套列表、函数和布尔判断。",
+      "知道树的无环与父子约束，理解一般图不需要这些限制。",
+      "能区分输入规模、输出空间与循环内部调用的成本。"
+    ],
+    "sections": [
+      {
+        "body": "图由顶点集合和边集合构成。我们用从 0 到 n−1 的整数给顶点编号；n 是非负整数，即使某顶点没有边，也保留它的位置。编号是标识，不表示优先级、距离或访问次序。有向边 u→v 表示从 u 可以直接沿边走到 v，不自动包含反向边。双向道路适合无向边，单向依赖则必须说明箭头究竟从先修指向后续，还是反过来。\n\n本章限定无权简单图：不接受自己连自己的自环，也不重复存相同方向的边；无向边反着输入仍是同一条边。有向的 u→v 与 v→u 可以同时存在，它们是两条不同边。图可以有环、孤立点，也可以完全没有顶点或没有边。与第 16 章的树相比，多个顶点可以共同指向同一个顶点，因此不再存在统一的父孩子结构。\n\nbuild_graph 的 edges 是二整数列表组成的列表，directed 是布尔值。负 n、越界端点或自环返回 None，重复边被合并；其他类型与畸形边不在输入契约内。失败时构造中的局部列表被丢弃，不修改输入 edges。空图的合法表示是空列表，须用是否为 None 判断失败，不能用列表真假把空图也误判。示例中的前三个顶点形成有向环，另有 3→4；从 0 到 1 有边不代表从 1 到 0 有边。",
+        "program": {
+          "code": "def empty_graph(n):\n    adjacency = []\n    for vertex in range(n):\n        adjacency.append([])\n    return adjacency\n\ndef valid_vertex(adjacency, vertex):\n    return 0 <= vertex < len(adjacency)\n\ndef has_edge(adjacency, source, target):\n    if not valid_vertex(adjacency, source) or not valid_vertex(adjacency, target):\n        return False\n    for neighbor in adjacency[source]:\n        if neighbor == target:\n            return True\n    return False\n\ndef add_edge(adjacency, source, target, directed):\n    if not valid_vertex(adjacency, source) or not valid_vertex(adjacency, target):\n        return False\n    if source == target or has_edge(adjacency, source, target):\n        return False\n    adjacency[source].append(target)\n    if not directed:\n        adjacency[target].append(source)\n    return True\n\ndef build_graph(n, edges, directed):\n    if n < 0:\n        return None\n    adjacency = empty_graph(n)\n    for edge in edges:\n        source = edge[0]\n        target = edge[1]\n        if not valid_vertex(adjacency, source) or not valid_vertex(adjacency, target):\n            return None\n        if source == target:\n            return None\n        add_edge(adjacency, source, target, directed)\n    return adjacency\n\nedges = [[0, 1], [1, 2], [2, 0], [3, 4]]\ngraph = build_graph(5, edges, True)\nprint(graph)\nprint(has_edge(graph, 0, 1), has_edge(graph, 1, 0))\nprint(build_graph(0, [], True), build_graph(2, [[0, 2]], True))\n",
+          "output": "[[1], [2], [0], [4], []]\nTrue False\n[] None\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "顶点与边：先决定关系是否有方向"
+      },
+      {
+        "body": "adjacency[u] 保存从 u 出发可直接到达的顶点，按首次加入该行的顺序排列。有向边只存一项；无向边要在两个端点的行中各存对方。因而无向图必须保持对称性，删边也要成对删除。每行是一个新列表，不能让多个顶点共享同一个可变行；否则给一个顶点加邻居，会使其他顶点的邻接关系也被改动。\n\n设 n 为顶点数，e 为数学意义上的边数，a 为所有邻接行的长度总和。有向图 a=e，无向简单图 a=2e。邻接表空间为 Θ(n+a)，既算顶点行也算存储项。枚举 u 的邻居需 Θ(d(u)+1)，其中 d(u) 是该行长度；has_edge 线性查行，最坏 O(d(u)+1)，不能把任意两点是否有边说成常数查询。\n\nadd_edge 为防止重复，追加前先查行。因此即使列表追加按摊还常数计，本实现一次加边仍有查重成本。q 条输入记录的建图时间可写为 O(n+q+各次查行长度之和)，简单图下粗略上界 O(n+q(n+1))。q 包含重复输入，不能直接用最终 e 替代。若调用者已保证边合法且唯一，另写只追加的构造器才可达到 O(n+q)；本章不把那个结论套到当前函数。例子把无向边 0—2 正反输入各一次，最终只保存一对邻接项，顶点 4 仍保留空行。",
+        "program": {
+          "code": "def empty_graph(n):\n    adjacency = []\n    for vertex in range(n):\n        adjacency.append([])\n    return adjacency\n\ndef valid_vertex(adjacency, vertex):\n    return 0 <= vertex < len(adjacency)\n\ndef has_edge(adjacency, source, target):\n    if not valid_vertex(adjacency, source) or not valid_vertex(adjacency, target):\n        return False\n    for neighbor in adjacency[source]:\n        if neighbor == target:\n            return True\n    return False\n\ndef add_edge(adjacency, source, target, directed):\n    if not valid_vertex(adjacency, source) or not valid_vertex(adjacency, target):\n        return False\n    if source == target or has_edge(adjacency, source, target):\n        return False\n    adjacency[source].append(target)\n    if not directed:\n        adjacency[target].append(source)\n    return True\n\ndef build_graph(n, edges, directed):\n    if n < 0:\n        return None\n    adjacency = empty_graph(n)\n    for edge in edges:\n        source = edge[0]\n        target = edge[1]\n        if not valid_vertex(adjacency, source) or not valid_vertex(adjacency, target):\n            return None\n        if source == target:\n            return None\n        add_edge(adjacency, source, target, directed)\n    return adjacency\n\ngraph = build_graph(5, [[0, 2], [0, 1], [2, 3], [2, 0]], False)\nprint(graph)\nprint(add_edge(graph, 0, 2, False))\nprint(add_edge(graph, -1, 3, False))\nprint(graph)\n",
+          "output": "[[2, 1], [0], [0, 3], [2], []]\nFalse\nFalse\n[[2, 1], [0], [0, 3], [2], []]\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "邻接表：把每个顶点的邻居单独保存"
+      },
+      {
+        "body": "邻接矩阵是 n 行 n 列的表，行表示出发点，列表示到达点。矩阵位置 u、v 为 1 表示有边，为 0 表示没有边。本章无权，0 不是权重零；以后若引入权重，要重新定义无边标记。无向图的矩阵关于对角线对称，无自环意味着对角线全为 0。有向图不要求对称，但一张对称矩阵本身也不能告诉我们建模者原来选了哪种模式。\n\nto_matrix 先逐行创建独立的零列表，再扫描已有邻接项置 1。即使原图只有一条边，创建矩阵仍要填写 n² 个位置，所以构造时间 O(n²+a+1)，输出空间 Θ(n²+1)。本章简单图的 a 不超过二次数量级，但把初始化与填边分开计算有助于避免漏项。矩阵由新列表组成，修改它不会反向改变原邻接表。\n\n端点合法时，检查一个矩阵位置是 O(1)。然而枚举某个顶点所有邻居必须扫描整行，需 Θ(n)，即使实际只有一个邻居也一样。稀疏图使用邻接表通常更节省存储；经常查询任意两点是否直接相连且能承受 n² 空间时，矩阵有价值。图的抽象关系没有变化，变化的是操作成本与邻居列举次序。示例三点无向图中，0 连向 1 和 2，两条边在矩阵中占四个非零位置。",
+        "program": {
+          "code": "def to_matrix(adjacency):\n    n = len(adjacency)\n    matrix = []\n    for source in range(n):\n        row = []\n        for target in range(n):\n            row.append(0)\n        matrix.append(row)\n    for source in range(n):\n        for target in adjacency[source]:\n            matrix[source][target] = 1\n    return matrix\n\ngraph = [[1, 2], [0], [0]]\nmatrix = to_matrix(graph)\nfor row in matrix:\n    print(row)\nprint(matrix[1][2], matrix[2][0])\nprint(graph)\n",
+          "output": "[0, 1, 1]\n[1, 0, 0]\n[1, 0, 0]\n0 1\n[[1, 2], [0], [0]]\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "邻接矩阵：用空间换取直接查边"
+      },
+      {
+        "body": "无向顶点的度是与它相连的边数；在本章无自环、无重边的前提下，就是对应行的长度。每条无向边有两个不同端点，因此全体度数之和等于 2e。把行长相加后直接当无向边数，会重复计算每条边。这个等式是很好的总量检查，但偶数总和本身不能证明每条反向项都存在。\n\n有向图分别记录出度与入度。出度是本行长度，入度是该编号在所有行中出现的次数。每条有向边为出发点贡献一个出度，为到达点贡献一个入度，所以全体出度之和、全体入度之和都等于 e。程序的 arcs 字段统计实际邻接项数 a；只有有向模式下才直接等于边数，无向模式下应除以 2。\n\ndegree_report 初始化两个长度为 n 的计数列表，随后扫描每个邻接项一次，时间 Θ(n+a+1)，输出空间 Θ(n+1)。不能为每个顶点重新扫描所有行，否则会增加一个 n 因子。示例中顶点 4 出度为零但入度为一，它没有出路，却不是孤立点；孤立点要求入度和出度都为零。全零行也不说明有向图中没有任何边能到达该点。度数只描述直接关联，不能独自判断两点是否通过多步相通，这要留给遍历解决。",
+        "program": {
+          "code": "def degree_report(adjacency):\n    incoming = []\n    outgoing = []\n    for vertex in range(len(adjacency)):\n        incoming.append(0)\n        outgoing.append(len(adjacency[vertex]))\n    arcs = 0\n    for neighbors in adjacency:\n        for target in neighbors:\n            incoming[target] = incoming[target] + 1\n            arcs = arcs + 1\n    return {\"out\": outgoing, \"in\": incoming, \"arcs\": arcs}\n\ngraph = [[1], [2], [0], [4], []]\nprint(degree_report(graph))\nprint(degree_report([[1, 2], [0], [0]]))\nprint(degree_report([]))\n",
+          "output": "{'out': [1, 1, 1, 1, 0], 'in': [1, 1, 1, 0, 1], 'arcs': 4}\n{'out': [2, 1, 1], 'in': [2, 1, 1], 'arcs': 4}\n{'out': [], 'in': [], 'arcs': 0}\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "度数与总量检查：一条边贡献几次"
+      },
+      {
+        "body": "为避免术语混淆，本书把相邻顶点都有对应边的序列称为游走，允许重复顶点和边；顶点不重复时称为简单路径。路线的长度按经过的边数计算，含 k 个顶点的非空路线长度为 k−1。单个合法顶点构成长为零的路径，表示它能到达自己。空序列在本接口中不表示路线，返回 False。这些约定要先写出，才能解释边界结果。\n\nis_walk 先确认序列中所有顶点合法，再逐对检查方向。0→1→2→0 是合法闭合游走，但重复了 0，不能当作简单路径。序列只有顶点 3 时，即使 3 是孤立点也成立；1→0 若没有直接边则失败。判断整数编号前先检查范围，避免 Python 的负下标悄悄引用末行。程序不生成新路线，也不因为遇到重复顶点就拒绝。\n\n设路线有 k 个顶点，检查时间上界为 O(k+沿途被查行长度之和+1)，工作区 O(1)，原图和路线不变。某条给定路线不合法，并不说明两端不连通，可能存在另一条绕行路线。可达性问的是是否存在某条路线，下一章将用 visited 状态系统寻找。对于无权图，最短路线可以取成简单路径：若有重复顶点，就能删掉中间绕回的那段，使边数更少。这个观察为后面的 BFS 距离提供直觉，不要求现在枚举全部路径。",
+        "program": {
+          "code": "def empty_graph(n):\n    adjacency = []\n    for vertex in range(n):\n        adjacency.append([])\n    return adjacency\n\ndef valid_vertex(adjacency, vertex):\n    return 0 <= vertex < len(adjacency)\n\ndef has_edge(adjacency, source, target):\n    if not valid_vertex(adjacency, source) or not valid_vertex(adjacency, target):\n        return False\n    for neighbor in adjacency[source]:\n        if neighbor == target:\n            return True\n    return False\n\ndef add_edge(adjacency, source, target, directed):\n    if not valid_vertex(adjacency, source) or not valid_vertex(adjacency, target):\n        return False\n    if source == target or has_edge(adjacency, source, target):\n        return False\n    adjacency[source].append(target)\n    if not directed:\n        adjacency[target].append(source)\n    return True\n\ndef build_graph(n, edges, directed):\n    if n < 0:\n        return None\n    adjacency = empty_graph(n)\n    for edge in edges:\n        source = edge[0]\n        target = edge[1]\n        if not valid_vertex(adjacency, source) or not valid_vertex(adjacency, target):\n            return None\n        if source == target:\n            return None\n        add_edge(adjacency, source, target, directed)\n    return adjacency\n\ndef is_walk(adjacency, route):\n    if len(route) == 0:\n        return False\n    for vertex in route:\n        if not valid_vertex(adjacency, vertex):\n            return False\n    for i in range(1, len(route)):\n        if not has_edge(adjacency, route[i - 1], route[i]):\n            return False\n    return True\n\ngraph = [[1], [2], [0], []]\nfor route in [[0, 1, 2, 0], [1, 0], [3], [], [-1]]:\n    print(route, is_walk(graph, route))\n",
+          "output": "[0, 1, 2, 0] True\n[1, 0] False\n[3] True\n[] False\n[-1] False\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "路线与可达性：检查给定序列还不是搜索"
+      }
+    ],
+    "self_checks": [
+      "给出同一对编号在有向和无向模式下的存储差异。",
+      "用 n=0、孤立点、重复正反边、非法端点和自环核对构造约定。",
+      "手算入度、出度与 a，并证明它们各自等于什么。",
+      "比较查一条边和枚举全部邻居在两种表示下的成本。",
+      "解释合法游走、简单路径与可达性三个问题的区别。"
+    ],
+    "worked_examples": [
+      {
+        "answer": "入度为 [0,0,2,2,1,0]，共有 5 条有向边。课程 0、1 入度零但有出边，因此不是孤立点。这个表示只记录依赖，不自动给出可行的课程安排，也没有在本例执行环检测或拓扑排序；后续使用时仍需另行验证相关条件。",
+        "program": {
+          "code": "def empty_graph(n):\n    adjacency = []\n    for vertex in range(n):\n        adjacency.append([])\n    return adjacency\n\ndef valid_vertex(adjacency, vertex):\n    return 0 <= vertex < len(adjacency)\n\ndef has_edge(adjacency, source, target):\n    if not valid_vertex(adjacency, source) or not valid_vertex(adjacency, target):\n        return False\n    for neighbor in adjacency[source]:\n        if neighbor == target:\n            return True\n    return False\n\ndef add_edge(adjacency, source, target, directed):\n    if not valid_vertex(adjacency, source) or not valid_vertex(adjacency, target):\n        return False\n    if source == target or has_edge(adjacency, source, target):\n        return False\n    adjacency[source].append(target)\n    if not directed:\n        adjacency[target].append(source)\n    return True\n\ndef build_graph(n, edges, directed):\n    if n < 0:\n        return None\n    adjacency = empty_graph(n)\n    for edge in edges:\n        source = edge[0]\n        target = edge[1]\n        if not valid_vertex(adjacency, source) or not valid_vertex(adjacency, target):\n            return None\n        if source == target:\n            return None\n        add_edge(adjacency, source, target, directed)\n    return adjacency\n\ndef degree_report(adjacency):\n    incoming = []\n    outgoing = []\n    for vertex in range(len(adjacency)):\n        incoming.append(0)\n        outgoing.append(len(adjacency[vertex]))\n    arcs = 0\n    for neighbors in adjacency:\n        for target in neighbors:\n            incoming[target] = incoming[target] + 1\n            arcs = arcs + 1\n    return {\"out\": outgoing, \"in\": incoming, \"arcs\": arcs}\n\nedges = [[0, 2], [1, 2], [2, 3], [2, 4], [4, 3]]\ngraph = build_graph(6, edges, True)\nprint(graph)\nprint(degree_report(graph))\nprint(edges)\n",
+          "output": "[[2], [2], [3, 4], [], [3], []]\n{'out': [1, 1, 2, 0, 1, 0], 'in': [0, 0, 2, 2, 1, 0], 'arcs': 5}\n[[0, 2], [1, 2], [2, 3], [2, 4], [4, 3]]\n"
+        },
+        "question": "六门课程编号 0–5。0 和 1 都是 2 的先修，2 是 3、4 的先修，4 也是 3 的先修，5 没有依赖。规定箭头从先修指向后续，构造图并求入度、出度和边数。",
+        "steps": [
+          "把文字逐条写成 0→2、1→2、2→3、2→4、4→3，不能凭“互相关联”补反向边。",
+          "创建六行，保留课程 5 的空行；课程 3 也无出边，但有先修。",
+          "行长度给出出度 [1,1,2,0,1,0]；按每条边的终点累加入度。",
+          "两份度数总和均为 5；课程 5 入出度均零，课程 3 入度为 2。"
+        ]
+      },
+      {
+        "answer": "两次转置恢复的是顶点与边的关系，不承诺恢复邻居的原排列。对合法简单图，反向不会制造重复，因此可直接追加，无需调用含查重的加边函数。时间 Θ(n+a+1)，新图空间 Θ(n+a+1)，原图不变。这个过程也说明图关系相等与嵌套列表逐项相等是不同的检查目标。",
+        "program": {
+          "code": "def empty_graph(n):\n    adjacency = []\n    for vertex in range(n):\n        adjacency.append([])\n    return adjacency\n\ndef valid_vertex(adjacency, vertex):\n    return 0 <= vertex < len(adjacency)\n\ndef has_edge(adjacency, source, target):\n    if not valid_vertex(adjacency, source) or not valid_vertex(adjacency, target):\n        return False\n    for neighbor in adjacency[source]:\n        if neighbor == target:\n            return True\n    return False\n\ndef add_edge(adjacency, source, target, directed):\n    if not valid_vertex(adjacency, source) or not valid_vertex(adjacency, target):\n        return False\n    if source == target or has_edge(adjacency, source, target):\n        return False\n    adjacency[source].append(target)\n    if not directed:\n        adjacency[target].append(source)\n    return True\n\ndef build_graph(n, edges, directed):\n    if n < 0:\n        return None\n    adjacency = empty_graph(n)\n    for edge in edges:\n        source = edge[0]\n        target = edge[1]\n        if not valid_vertex(adjacency, source) or not valid_vertex(adjacency, target):\n            return None\n        if source == target:\n            return None\n        add_edge(adjacency, source, target, directed)\n    return adjacency\n\ndef reverse_edges(adjacency):\n    result = empty_graph(len(adjacency))\n    for source in range(len(adjacency)):\n        for target in adjacency[source]:\n            result[target].append(source)\n    return result\n\ngraph = [[2, 1], [2], [], [1], []]\nreverse = reverse_edges(graph)\nprint(reverse)\nprint(reverse_edges(reverse))\nprint(graph)\n",
+          "output": "[[], [0, 3], [0, 1], [], []]\n[[1, 2], [2], [], [1], []]\n[[2, 1], [2], [], [1], []]\n"
+        },
+        "question": "把有向邻接表 [[2,1],[2],[],[1],[]] 的每条边反向，得到转置图。再反向一次，是否必须逐行得到原先完全相同的列表？",
+        "steps": [
+          "原图有 0→2、0→1、1→2、3→1，顶点 4 保留空行。",
+          "扫描 source 行中的 target，把 source 加到新图 target 行。",
+          "得到 [[],[0,3],[0,1],[],[]]，新图的出邻居对应原图的入邻居。",
+          "第二次反向恢复每条有向边，但按扫描顺序重建的第 0 行变成 [1,2]。"
+        ]
+      }
+    ]
+  },
+  "context_key": "24b4ef0302c1dd355bf51861384915d3452653277d810040ee14c02396996a49",
+  "model": "Codex 当前会话（未记录具体模型型号）",
+  "prompt_version": "2-python",
+  "references": [
+    {
+      "note": "核对方向、编号、可达关系；本章显式区分允许重复的游走与简单路径，并限定无自环简单图。",
+      "title": "Open Data Structures：图的定义与接口",
+      "url": "https://opendatastructures.org/ods-python/12_Graphs.html"
+    },
+    {
+      "note": "核对逐位置查边、枚举行和二次存储；本章使用原创 0/1 列表矩阵。",
+      "title": "Open Data Structures：邻接矩阵",
+      "url": "https://opendatastructures.org/ods-python/12_1_AdjacencyMatrix_Repres.html"
+    },
+    {
+      "note": "核对线性查行成本；本章构造额外去重，不能套用直接追加的常数加边结论。",
+      "title": "Open Data Structures：邻接表",
+      "url": "https://opendatastructures.org/ods-python/12_2_AdjacencyLists_Graph_a.html"
+    }
+  ],
+  "review_status": "ai-draft",
+  "schema_version": 1,
+  "sources": [
+    {
+      "analysis_digest": "9888da07b670886c773f0c27f93b693f8b97ca9f8dbee6a241b394b6c3a05c25",
+      "analysis_id": "9653e7ae080bce424a5f",
+      "blob_sha": "fe751673ab99d124f9f4a6ecff2a51f9d613c95f",
+      "commit": "37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0",
+      "coverage": "extracted-text",
+      "evidence": [
+        {
+          "id": "L1-L40",
+          "locator": "第 1–40 行"
+        },
+        {
+          "id": "L41-L80",
+          "locator": "第 41–80 行"
+        },
+        {
+          "id": "L121-L160",
+          "locator": "第 121–160 行"
+        }
+      ],
+      "path": "大一小学期/Week_3-Python/docs/readme.md",
+      "repository": "PKUanonym/REKCARC-TSC-UHT",
+      "topics": [
+        {
+          "evidence_ids": [
+            "L41-L80"
+          ],
+          "key": "9653e7ae080bce424a5f:0",
+          "name": "Python 基础语法的外部学习入口"
+        },
+        {
+          "evidence_ids": [
+            "L121-L160"
+          ],
+          "key": "9653e7ae080bce424a5f:1",
+          "name": "从基础语法到工具与应用的建议阅读顺序"
+        }
+      ]
+    }
+  ],
+  "title": "用顶点和边表达关系：图与存储表示"
+}

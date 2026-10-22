@@ -508,11 +508,112 @@
         }
       ],
       "title": "让最值留在根部：二叉堆与优先队列"
+    },
+    {
+      "format": "python",
+      "id": "19-hash-tables",
+      "references": [
+        {
+          "note": "核对键映射到有限整数范围的定义；本章固定取余只作教学示范，不保证随机分布。",
+          "title": "NIST DADS：散列函数",
+          "url": "https://xlinux.nist.gov/dads/HTML/hash.html"
+        },
+        {
+          "note": "核对桶内查找、装载因子、扩容和分布假设。本章原创键值接口与取余实现没有采用书中的随机乘法散列，不能继承其期望保证。",
+          "title": "Open Data Structures：分离链接哈希表",
+          "url": "https://opendatastructures.org/ods-python/5_1_ChainedHashTable_Hashin.html"
+        },
+        {
+          "note": "核对正除数下负整数键的非负余数；大整数位成本与单位操作模型另作区分。",
+          "title": "Python 3.11：整数取余语义",
+          "url": "https://docs.python.org/3.11/reference/expressions.html#binary-arithmetic-operations"
+        }
+      ],
+      "scope": "用整数键和独立列表桶实现映射查询、覆盖、删除与倍增重散列，区分 None 值与缺失、期望扫描和搬家摊还、装载因子与最长桶。以频次、重复检测和两数配对练习前缀不变式及输入顺序。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "按键定位记录：哈希表、冲突与扩容"
+    },
+    {
+      "format": "python",
+      "id": "20-graphs",
+      "references": [
+        {
+          "note": "核对方向、编号、可达关系；本章显式区分允许重复的游走与简单路径，并限定无自环简单图。",
+          "title": "Open Data Structures：图的定义与接口",
+          "url": "https://opendatastructures.org/ods-python/12_Graphs.html"
+        },
+        {
+          "note": "核对逐位置查边、枚举行和二次存储；本章使用原创 0/1 列表矩阵。",
+          "title": "Open Data Structures：邻接矩阵",
+          "url": "https://opendatastructures.org/ods-python/12_1_AdjacencyMatrix_Repres.html"
+        },
+        {
+          "note": "核对线性查行成本；本章构造额外去重，不能套用直接追加的常数加边结论。",
+          "title": "Open Data Structures：邻接表",
+          "url": "https://opendatastructures.org/ods-python/12_2_AdjacencyLists_Graph_a.html"
+        }
+      ],
+      "scope": "约定无权简单有向或无向图、连续编号、重复合并与非法边拒绝；实现邻接表构造、矩阵转换、度数、游走核查、转置、边数和删边。严格计算带查重的建图成本、邻接项与边数差别，以及边集和行顺序的区别。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "用顶点和边表达关系：图与存储表示"
+    },
+    {
+      "format": "python",
+      "id": "21-graph-traversal",
+      "references": [
+        {
+          "note": "核对深度推进、发现与完成的区别；本章显式帧逐条扫描邻居，按实际程序验证与递归同序。",
+          "title": "NIST DADS：深度优先搜索",
+          "url": "https://xlinux.nist.gov/dads/HTML/depthfirst.html"
+        },
+        {
+          "note": "核对队列安排与逐层推进；本章使用列表游标并计入保留前缀。",
+          "title": "NIST DADS：广度优先搜索",
+          "url": "https://xlinux.nist.gov/dads/HTML/breadthfirst.html"
+        },
+        {
+          "note": "核对单源访问、BFS 最少边数与父边恢复；图、数值、轨迹和 Python 实现重新设计，多源与矩阵练习另作性质验证。",
+          "title": "Open Data Structures：图遍历",
+          "url": "https://opendatastructures.org/ods-python/12_3_Graph_Traversal.html"
+        },
+        {
+          "note": "区分终止证明与运行栈可容纳深度；长链验证使用循环版本，不提高递归限制。",
+          "title": "Python 3.11：解释器递归深度",
+          "url": "https://docs.python.org/3.11/library/sys.html#sys.getrecursionlimit"
+        }
+      ],
+      "scope": "从发现时标记推导递归 DFS、逐边显式帧、BFS 分层与父边路径，处理空图、无效起点、环、共同邻居和非连通情况。用无向分量、进入完成事件、队列快照、可达矩阵与多源距离练习；区分权重、方向、初始化与轨迹复制成本。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "沿边系统探索：DFS、BFS 与无权最短路径"
     }
   ],
   "learner": "从基础开始自学；先用纸笔和小例子建立概念，再接触课程实验。",
   "planned": [
-    "哈希表、图与基础图遍历（继续补充先修讲解和可运行练习）",
+    "拓扑排序、带权最短路与最小生成树（需继续补充证明、适用条件和可运行练习）",
     "虚拟地址、页表与 TLB（需核对原理及适用架构）",
     "后续按个人学习需要扩展数学、系统、网络等章节"
   ],

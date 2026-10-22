@@ -1,0 +1,233 @@
+{
+  "chapter_id": "21-graph-traversal",
+  "content": {
+    "exercises": [
+      {
+        "answer": "在 [[2,1],[3],[3],[],[]] 中，从 0 出发距离 1 的结果为 [1,2]，虽然 BFS 入队顺序是 2 在前；距离 0 为 [0]，距离 2 为 [3]。正常查询时间 O(n+a+1)，状态与输出 O(n+1)，负 k 可直接常数返回。不可达的 4 不属于任何非负距离层。",
+        "hint": "使用 BFS 距离，随后按编号扫描距离列表。先排除负 k，避免把 −1 的未发现标记当成一层。",
+        "program": {
+          "code": "def filled(n, value):\n    result = []\n    for i in range(n):\n        result.append(value)\n    return result\n\ndef breadth_first(adjacency, start):\n    distance = filled(len(adjacency), -1)\n    parent = filled(len(adjacency), None)\n    queue = []\n    if 0 <= start < len(adjacency):\n        distance[start] = 0\n        queue.append(start)\n    head = 0\n    while head < len(queue):\n        vertex = queue[head]\n        head = head + 1\n        for neighbor in adjacency[vertex]:\n            if distance[neighbor] == -1:\n                distance[neighbor] = distance[vertex] + 1\n                parent[neighbor] = vertex\n                queue.append(neighbor)\n    return {\"order\": queue, \"distance\": distance, \"parent\": parent}\n\ndef vertices_at_distance(adjacency, start, k):\n    if k < 0:\n        return []\n    distance = breadth_first(adjacency, start)[\"distance\"]\n    result = []\n    for vertex in range(len(adjacency)):\n        if distance[vertex] == k:\n            result.append(vertex)\n    return result\n\ngraph = [[2, 1], [3], [3], [], []]\nfor k in [0, 1, 2, -1, 9]:\n    print(k, vertices_at_distance(graph, 0, k))\n",
+          "output": "0 [0]\n1 [1, 2]\n2 [3]\n-1 []\n9 []\n"
+        },
+        "question": "写 vertices_at_distance，返回距起点恰好 k 条边的顶点，并按编号递增。k 为整数，负 k 返回空表；无效起点也返回空表。检查 k=0、2、−1 和不可达顶点。"
+      },
+      {
+        "answer": "结果前三行分别为 [1,1,1,0]、[0,1,1,0]、[0,0,1,0]，孤立点行是 [0,0,0,1]。它表达多步可达，区别于对角线为零的本章邻接矩阵。做 n 次搜索，总时间上界 O(n(n+a)+1)，输出 O(n²+1)，除输出外临时搜索状态 O(n+1)。空图返回 []，不凭空补一个顶点。",
+        "hint": "依次把每个顶点作为 BFS 起点，用非负距离填写一行。这次每个起点都需要独立状态，不能沿用连通分量的共享标记。",
+        "program": {
+          "code": "def filled(n, value):\n    result = []\n    for i in range(n):\n        result.append(value)\n    return result\n\ndef breadth_first(adjacency, start):\n    distance = filled(len(adjacency), -1)\n    parent = filled(len(adjacency), None)\n    queue = []\n    if 0 <= start < len(adjacency):\n        distance[start] = 0\n        queue.append(start)\n    head = 0\n    while head < len(queue):\n        vertex = queue[head]\n        head = head + 1\n        for neighbor in adjacency[vertex]:\n            if distance[neighbor] == -1:\n                distance[neighbor] = distance[vertex] + 1\n                parent[neighbor] = vertex\n                queue.append(neighbor)\n    return {\"order\": queue, \"distance\": distance, \"parent\": parent}\n\ndef reachability_matrix(adjacency):\n    matrix = []\n    for start in range(len(adjacency)):\n        distance = breadth_first(adjacency, start)[\"distance\"]\n        row = []\n        for value in distance:\n            if value == -1:\n                row.append(0)\n            else:\n                row.append(1)\n        matrix.append(row)\n    return matrix\n\nfor row in reachability_matrix([[1], [2], [], []]):\n    print(row)\nprint(reachability_matrix([]))\n",
+          "output": "[1, 1, 1, 0]\n[0, 1, 1, 0]\n[0, 0, 1, 0]\n[0, 0, 0, 1]\n[]\n"
+        },
+        "question": "为有向或无向图计算可达矩阵，位置 s、t 为 1 表示从 s 能沿方向到达 t，否则为 0。零步也算可达，因此所有存在的顶点在对角线为 1。检查 [[1],[2],[],[]] 和空图。"
+      },
+      {
+        "answer": "对无向链 0—1—2—3—4 加孤立点 5，以 [0,4,0] 为起点得到 [0,1,2,1,0,-1]。所有源同时处在第零层，按层展开保证得到各单源距离的最小有限值。设起点记录数为 s，时间 O(n+a+s+1)，状态 O(n+1)。有向图计算的是从任一源出发到各点的距离；若问题反问各点到最近站点，必须先反向图。",
+        "hint": "先把所有合法起点的距离设为 0 并去重入队，再进行同一套 BFS 扩展。不能先把某个起点完整搜索完再加入下一个。",
+        "program": {
+          "code": "def filled(n, value):\n    result = []\n    for i in range(n):\n        result.append(value)\n    return result\n\ndef multi_source_distances(adjacency, sources):\n    distance = filled(len(adjacency), -1)\n    queue = []\n    for start in sources:\n        if start < 0 or start >= len(adjacency):\n            return None\n        if distance[start] == -1:\n            distance[start] = 0\n            queue.append(start)\n    head = 0\n    while head < len(queue):\n        vertex = queue[head]\n        head = head + 1\n        for neighbor in adjacency[vertex]:\n            if distance[neighbor] == -1:\n                distance[neighbor] = distance[vertex] + 1\n                queue.append(neighbor)\n    return distance\n\ngraph = [[1], [0, 2], [1, 3], [2, 4], [3], []]\nprint(multi_source_distances(graph, [0, 4, 0]))\nprint(multi_source_distances(graph, []))\nprint(multi_source_distances(graph, [-1]))\nprint(multi_source_distances([], []))\n",
+          "output": "[0, 1, 2, 1, 0, -1]\n[-1, -1, -1, -1, -1, -1]\nNone\n[]\n"
+        },
+        "question": "写 multi_source_distances，给定起点列表，返回每个顶点距任一起点的最少边数，不可达为 −1。起点可重复，任何越界编号都使调用返回 None；无起点返回全 −1，空图与空起点返回 []。"
+      }
+    ],
+    "introduction": "已经知道每个顶点的直接邻居后，下一步是沿边探索更远的位置。树遍历可以依赖无环、无共享的前提，图却会让多条路线汇合，也可能绕回起点。因此本章把“第一次发现”作为共同规则，再分别用栈和队列安排后续工作。我们会实现递归与显式栈 DFS、BFS 距离和路径恢复，最后访问多个连通部分。所有函数读取已有的合法邻接表，不把建图成本藏进遍历结论，也不在遍历期间修改图。",
+    "limitations": [
+      "输入保证为前章的合法无权邻接表，编号为整数，搜索期间不改图；分量函数仅用于无向模式。",
+      "递归 DFS 只用于小规模示例，长链使用显式栈；没有提高解释器递归限制。",
+      "只返回一条最短路径，不枚举全部路径，不求带权最短路、强连通或拓扑次序。",
+      "邻接排列影响访问次序与等长路径的父边选择，不影响单源可达集合及最短边数。"
+    ],
+    "objectives": [
+      "解释 visited 或距离标记如何保证带环图终止并避免重复访问。",
+      "用显式帧模拟递归 DFS，保持同一邻接顺序下的发现次序与父边。",
+      "证明 BFS 首次发现时的距离最短，并恢复一条无权最短路径。",
+      "处理孤立点、无效起点、非连通图与多个起点，计算实际扫描成本。"
+    ],
+    "pitfalls": [
+      {
+        "correction": "发现时就标记；否则共同邻居重复入队，环还可能使递归无法结束。",
+        "mistake": "把标记推迟到出队，或在递归返回后才标记。"
+      },
+      {
+        "correction": "DFS 不按距离分层；本章 BFS 最短性只对边数成立。",
+        "mistake": "用 DFS 父边长度当最短距离，或让 BFS 处理任意权重最短路。"
+      },
+      {
+        "correction": "单源只访问可达部分；无向分量和有向强连通是不同问题。",
+        "mistake": "用一次搜索代表全图，或把有向搜索森林当强连通分量。"
+      },
+      {
+        "correction": "按实际存活对象收费；普通遍历、完整输出和复制调试轨迹的空间分别计算。",
+        "mistake": "只计算活跃队列宽度，忽略游标前缀、全长状态和轨迹副本。"
+      }
+    ],
+    "prerequisites": [
+      "掌握第 20 章编号、方向、邻接表、游走与路径约定。",
+      "掌握第 8、9 章栈和队列，以及第 13、16 章递归调用与树遍历。",
+      "知道列表游标不会删除前面的存储，能区分工作区与返回结果。"
+    ],
+    "sections": [
+      {
+        "body": "深度优先搜索 DFS 从一个顶点出发，先把某个尚未发现的邻居探索到底，再回到当前顶点继续下一个邻居。图中可能有环或共同邻居，若照搬树递归而不记录已发现状态，就可能反复绕圈。dfs_visit 一进入便把 seen 设为 True，再记录发现次序；只有尚未发现的邻居才递归进入。父边只在第一次发现时设置，不会被后来的另一条边覆盖。\n\n示例邻接表为 [[1,2],[3],[3],[0],[]]。从 0 先走 1，再走 3；3 的邻居 0 已见，于是返回。之后 0 才发现 2，而 2 指向的 3 也已见。发现顺序是 0、1、3、2，4 不可达。这里的 parent 是本次搜索选出的父亲，不是原图本来就只有一个父亲。根与不可达顶点的 parent 都为 None，必须结合 order 或可达状态区分。\n\nfilled 只用于重复填入布尔值、整数或 None 这些不可变标量，不能拿它复制可变邻接行。函数初始化长度为 n 的状态，随后每个可达顶点只进入一次，每个可达顶点的邻接项只扫描一次。若这些项共 aᵣ 个，时间 Θ(n+aᵣ+1)，最坏 O(n+a+1)，空间 O(n+1)，其中递归链可能长达 n。数学上必终止不等于 Python 能容纳任意深的调用；长链应使用下一节的循环版本，而不是提高递归限制。",
+        "program": {
+          "code": "def filled(n, value):\n    result = []\n    for i in range(n):\n        result.append(value)\n    return result\n\ndef dfs_visit(adjacency, vertex, seen, order, parent):\n    seen[vertex] = True\n    order.append(vertex)\n    for neighbor in adjacency[vertex]:\n        if not seen[neighbor]:\n            parent[neighbor] = vertex\n            dfs_visit(adjacency, neighbor, seen, order, parent)\n\ndef dfs_recursive(adjacency, start):\n    seen = filled(len(adjacency), False)\n    parent = filled(len(adjacency), None)\n    order = []\n    if 0 <= start < len(adjacency):\n        dfs_visit(adjacency, start, seen, order, parent)\n    return {\"order\": order, \"parent\": parent}\n\ngraph = [[1, 2], [3], [3], [0], []]\nprint(dfs_recursive(graph, 0))\nprint(dfs_recursive(graph, 4))\nprint(dfs_recursive(graph, -1))\n",
+          "output": "{'order': [0, 1, 3, 2], 'parent': [None, 0, 0, 1, None]}\n{'order': [4], 'parent': [None, None, None, None, None]}\n{'order': [], 'parent': [None, None, None, None, None]}\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "从树到图：发现时立刻标记"
+      },
+      {
+        "body": "要保留递归 DFS 的顺序，栈中不能只写一个顶点，还要记住它的邻居处理到哪里。每个帧保存两个整数：当前顶点和下一邻居下标。栈顶帧相当于当前函数调用；找到新邻居时，先把父帧的游标向后移，再为孩子压入从零开始的新帧。孩子结束弹栈，父帧就能从原来的暂停点继续。\n\n当游标等于该行长度时，所有出边都已检查，可以弹出帧。否则只看当前这一条边，已见则继续当前帧，未见则立刻标记、记录父边与发现次序，再深入孩子。这个逐边处理过程与递归 for 循环一一对应，所以相同起点和相同邻接顺序产生相同发现序列及 parent。把全部邻居一次性压栈并提前标记，可能预先占用本该由更深路径发现的顶点，不能仅靠反转邻居列表就宣称父边一定相同。\n\n每次循环或者推进一个邻接项，或者完成一个顶点，因此总工作仍是 Θ(n+aᵣ+1)。同时存活的帧数不超过已发现顶点数，显式栈最坏 O(n)；seen、parent 和输出也需 O(n)。本版本没有 Python 递归调用，可以处理较长链，但仍受可用内存约束。示例不排序邻接行，得到的次序依赖输入排列；改变排列可能得到另一棵正确的搜索树，可达顶点集合保持不变。",
+        "program": {
+          "code": "def filled(n, value):\n    result = []\n    for i in range(n):\n        result.append(value)\n    return result\n\ndef dfs_stack(adjacency, start):\n    seen = filled(len(adjacency), False)\n    parent = filled(len(adjacency), None)\n    order = []\n    if start < 0 or start >= len(adjacency):\n        return {\"order\": order, \"parent\": parent}\n    seen[start] = True\n    order.append(start)\n    stack = [[start, 0]]\n    while len(stack) > 0:\n        frame = stack[len(stack) - 1]\n        vertex = frame[0]\n        position = frame[1]\n        if position == len(adjacency[vertex]):\n            stack.pop()\n        else:\n            neighbor = adjacency[vertex][position]\n            frame[1] = position + 1\n            if not seen[neighbor]:\n                seen[neighbor] = True\n                parent[neighbor] = vertex\n                order.append(neighbor)\n                stack.append([neighbor, 0])\n    return {\"order\": order, \"parent\": parent}\n\ngraph = [[1, 2], [3], [3], [0], []]\nprint(dfs_stack(graph, 0))\nprint(dfs_stack([], 0))\nprint(graph)\n",
+          "output": "{'order': [0, 1, 3, 2], 'parent': [None, 0, 0, 1, None]}\n{'order': [], 'parent': []}\n[[1, 2], [3], [3], [0], []]\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "显式栈保存下一步：精确模拟递归"
+      },
+      {
+        "body": "广度优先搜索 BFS 使用先入先出的队列。起点距离为 0，所有尚未发现的顶点距离为 −1。取出距离 d 的顶点后，把它尚未发现的邻居标成 d+1 并入队。distance 同时承担距离和发现标记，赋值发生在入队之前，保证同一个顶点不会被两个已发现的前驱重复入队。根也要在开始时标记，否则环能把起点再次加入。\n\n正确性来自队列的层次次序：距离 d 层的顶点总在 d+1 层之前处理，任何经由 d 层的新路线长度都是 d+1。如果某个首次发现的顶点还有更短路线，那么更短路线上的前驱应更早被处理，并已发现该点，产生矛盾。因此第一次写入的距离就是最少边数，之后不需要改小它。DFS 只保证找到可达顶点，不保持这种层次次序，父边也不保证构成最短路径。\n\n本实现用列表和 head 游标模拟队列，不调用 pop(0) 搬移剩余元素。head 前面的元素仍在列表里，最后整个列表直接作为 order 返回，所以占用 O(r) 而非只按当前队列宽度收费；r 是可达顶点数。初始化全长距离和父边需 Θ(n)，扫描成本为 Θ(aᵣ)，总时间 Θ(n+aᵣ+1)。动态列表追加按摊还成本计算。示例的 3 可以经 1 或 2 到达，两条路线同长，按当前行顺序先发现它的是 1。",
+        "program": {
+          "code": "def filled(n, value):\n    result = []\n    for i in range(n):\n        result.append(value)\n    return result\n\ndef breadth_first(adjacency, start):\n    distance = filled(len(adjacency), -1)\n    parent = filled(len(adjacency), None)\n    queue = []\n    if 0 <= start < len(adjacency):\n        distance[start] = 0\n        queue.append(start)\n    head = 0\n    while head < len(queue):\n        vertex = queue[head]\n        head = head + 1\n        for neighbor in adjacency[vertex]:\n            if distance[neighbor] == -1:\n                distance[neighbor] = distance[vertex] + 1\n                parent[neighbor] = vertex\n                queue.append(neighbor)\n    return {\"order\": queue, \"distance\": distance, \"parent\": parent}\n\ngraph = [[1, 2], [3], [3], [0], []]\nprint(breadth_first(graph, 0))\nprint(breadth_first(graph, 4))\nprint(breadth_first([], 0))\n",
+          "output": "{'order': [0, 1, 2, 3], 'distance': [0, 1, 1, 2, -1], 'parent': [None, 0, 0, 1, None]}\n{'order': [4], 'distance': [-1, -1, -1, -1, 0], 'parent': [None, None, None, None, None]}\n{'order': [], 'distance': [], 'parent': []}\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "广度优先搜索：队列按距离逐层推进"
+      },
+      {
+        "body": "BFS 首次发现 v 时，把当前顶点存为 parent[v]。沿父边从目标反向追踪，每一步距离减少一，最终到达起点并遇到 None，因此不会在父链上绕环。把收集到的顶点反转，就得到从起点到目标的一条路线。恢复后应核查每一对相邻顶点确有对应方向的边，且边数等于目标距离。\n\nshortest_path 对无效起点、无效目标或不可达目标返回空列表；合法的起点等于目标时返回只含该点的列表，表示长度零。BFS 原接口对无效起点返回空 order、全为 −1 的距离和全为 None 的父边。明确这些返回约定可以避免把不可达和“还没走一步”混为一谈，也防止负编号被当作 Python 倒数下标。\n\n本程序先完成一次 BFS，再恢复目标路径。若路径有 p 个顶点，恢复需 Θ(p) 时间，反向临时列表和输出各占 O(p)；包括搜索状态的总空间 O(n+1)，搜索时间 Θ(n+aᵣ+1)。它没有实现发现目标后提前停止。两条等长最短路线存在时，邻接顺序决定保留哪一条，距离仍不变。这里最短指边数最少；若一条直达边耗时 100，两条边的绕路各耗时 1，BFS 仍偏向直达边，不能用来求任意权重下的最小总耗时。",
+        "program": {
+          "code": "def filled(n, value):\n    result = []\n    for i in range(n):\n        result.append(value)\n    return result\n\ndef breadth_first(adjacency, start):\n    distance = filled(len(adjacency), -1)\n    parent = filled(len(adjacency), None)\n    queue = []\n    if 0 <= start < len(adjacency):\n        distance[start] = 0\n        queue.append(start)\n    head = 0\n    while head < len(queue):\n        vertex = queue[head]\n        head = head + 1\n        for neighbor in adjacency[vertex]:\n            if distance[neighbor] == -1:\n                distance[neighbor] = distance[vertex] + 1\n                parent[neighbor] = vertex\n                queue.append(neighbor)\n    return {\"order\": queue, \"distance\": distance, \"parent\": parent}\n\ndef shortest_path(adjacency, start, target):\n    n = len(adjacency)\n    if start < 0 or start >= n or target < 0 or target >= n:\n        return []\n    result = breadth_first(adjacency, start)\n    if result[\"distance\"][target] == -1:\n        return []\n    reverse = []\n    vertex = target\n    while vertex is not None:\n        reverse.append(vertex)\n        vertex = result[\"parent\"][vertex]\n    path = []\n    for i in range(len(reverse) - 1, -1, -1):\n        path.append(reverse[i])\n    return path\n\ngraph = [[1, 2], [3], [3], [0], []]\nprint(shortest_path(graph, 0, 3))\nprint(shortest_path(graph, 3, 2))\nprint(shortest_path(graph, 0, 4))\nprint(shortest_path(graph, 2, 2))\n",
+          "output": "[0, 1, 3]\n[3, 0, 2]\n[]\n[2]\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "从父边恢复路径：一条最短路径不等于全部"
+      },
+      {
+        "body": "单一起点只能覆盖它可达的部分。若想访问全图，可从编号小到大检查每个顶点，遇到未发现者就启动新搜索，所有搜索共用标记。每次启动得到一棵搜索树，合起来叫搜索森林。不能在每次启动时重置全图标记，否则会重复扫描已经完成的部分，也会失去分组意义。\n\n对无向图，可达关系具有双向性，每轮恰好得到一个连通分量。components 以组号充当发现标记，发现时立即编号，使用 BFS 收集该组。一个孤立顶点也是独立分量；空图返回空标签和空分组。本节输入必须是合法无向邻接表，不在函数内重复验证对称性。组号由最小尚未编号顶点决定，组内顺序由 BFS 与邻接排列决定。\n\n对有向图，相同的外层循环只能形成搜索森林，不能据此宣称求出了强连通分量。比如只有 1→0，从 0 开始先结束一棵树，随后从 1 开始又是一棵；这与把方向忽略后的连通划分也不同。强连通要求两两可互达，需要专门算法，本章不实现。无向版本整个过程中每顶点只入队一次，每邻接项只扫描一次，时间 Θ(n+a+1)，包括标签、各组输出与队列引用的空间 O(n+1)。外层循环并没有把复杂度再乘 n，因为内层只处理尚未发现的部分。",
+        "program": {
+          "code": "def filled(n, value):\n    result = []\n    for i in range(n):\n        result.append(value)\n    return result\n\ndef components(adjacency):\n    label = filled(len(adjacency), -1)\n    groups = []\n    for start in range(len(adjacency)):\n        if label[start] == -1:\n            number = len(groups)\n            label[start] = number\n            queue = [start]\n            head = 0\n            while head < len(queue):\n                vertex = queue[head]\n                head = head + 1\n                for neighbor in adjacency[vertex]:\n                    if label[neighbor] == -1:\n                        label[neighbor] = number\n                        queue.append(neighbor)\n            groups.append(queue)\n    return {\"label\": label, \"groups\": groups}\n\ngraph = [[1], [0, 2], [1], [4], [3], []]\nprint(components(graph))\nprint(components([[]]))\nprint(components([]))\n",
+          "output": "{'label': [0, 0, 0, 1, 1, 2], 'groups': [[0, 1, 2], [3, 4], [5]]}\n{'label': [0], 'groups': [[0]]}\n{'label': [], 'groups': []}\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "多个连通部分：共享标记形成搜索森林"
+      }
+    ],
+    "self_checks": [
+      "手画含环和共同邻居的图，逐步标出发现时刻及父边归属。",
+      "在同一邻接顺序下比对递归与显式帧 DFS 的次序和父边。",
+      "证明 BFS 首次发现距离最短，并检查恢复路径每条边和总长度。",
+      "对空图、孤立点、断开的部分与越界起点核对接口返回值。",
+      "用单源距离的逐点最小值验证多源 BFS，并解释有向图中的方向。"
+    ],
+    "worked_examples": [
+      {
+        "answer": "每个可达顶点恰好一条进入和一条完成记录，共八条。父帧暂停、子帧完成再返回构成嵌套区间；原图的其他边仍存在，搜索事件只记录一次访问过程。下面用显式帧输出事件，时间 Θ(n+aᵣ+1)，事件输出 O(r)，其他状态 O(n+1)。完成次序不应直接当作本章未验证的课程安排。",
+        "program": {
+          "code": "def filled(n, value):\n    result = []\n    for i in range(n):\n        result.append(value)\n    return result\n\ndef dfs_events(adjacency, start):\n    seen = filled(len(adjacency), False)\n    events = []\n    if start < 0 or start >= len(adjacency):\n        return events\n    seen[start] = True\n    events.append([\"enter\", start])\n    stack = [[start, 0]]\n    while len(stack) > 0:\n        frame = stack[len(stack) - 1]\n        vertex = frame[0]\n        position = frame[1]\n        if position == len(adjacency[vertex]):\n            events.append([\"leave\", vertex])\n            stack.pop()\n        else:\n            neighbor = adjacency[vertex][position]\n            frame[1] = position + 1\n            if not seen[neighbor]:\n                seen[neighbor] = True\n                events.append([\"enter\", neighbor])\n                stack.append([neighbor, 0])\n    return events\n\ngraph = [[1, 2], [3], [3], [0], []]\nprint(dfs_events(graph, 0))\n",
+          "output": "[['enter', 0], ['enter', 1], ['enter', 3], ['leave', 3], ['leave', 1], ['enter', 2], ['leave', 2], ['leave', 0]]\n"
+        },
+        "question": "对 [[1,2],[3],[3],[0],[]] 从 0 执行 DFS，记录每个顶点的进入和完成事件。说明为什么 3 完成后才进入 2，而原图并没有因此变成一条链。",
+        "steps": [
+          "进入 0、1、3，三个帧依次叠在栈中。",
+          "3 遇到已见的 0，不能再次进入；完成 3 后弹栈，1 也完成。",
+          "回到 0 的下一邻居 2，进入它；3 已见，不再产生第二次进入。",
+          "完成 2，最后完成 0；孤立且不可达的 4 没有事件。"
+        ]
+      },
+      {
+        "answer": "最终距离 [0,1,1,2,3]。快照应保存副本，否则事后看到的会是同一份最终状态。bfs_trace 每轮复制全长距离和队列后缀，若可达点有 r 个，时间上界 O(n+aᵣ+r(n+r)+1)，轨迹空间 O(r(n+r)+1)；最坏均会多出二次项。普通 BFS 不保存这些快照，仍保持线性界。",
+        "program": {
+          "code": "def filled(n, value):\n    result = []\n    for i in range(n):\n        result.append(value)\n    return result\n\ndef bfs_trace(adjacency, start):\n    distance = filled(len(adjacency), -1)\n    queue = []\n    steps = []\n    if 0 <= start < len(adjacency):\n        distance[start] = 0\n        queue.append(start)\n    head = 0\n    while head < len(queue):\n        vertex = queue[head]\n        head = head + 1\n        for neighbor in adjacency[vertex]:\n            if distance[neighbor] == -1:\n                distance[neighbor] = distance[vertex] + 1\n                queue.append(neighbor)\n        steps.append([vertex, queue[head:], distance.copy()])\n    return {\"distance\": distance, \"steps\": steps}\n\ntrace = bfs_trace([[1, 2], [3], [3], [4], []], 0)\nfor step in trace[\"steps\"]:\n    print(step)\nprint(trace[\"distance\"])\n",
+          "output": "[0, [1, 2], [0, 1, 1, -1, -1]]\n[1, [2, 3], [0, 1, 1, 2, -1]]\n[2, [3], [0, 1, 1, 2, -1]]\n[3, [4], [0, 1, 1, 2, 3]]\n[4, [], [0, 1, 1, 2, 3]]\n[0, 1, 1, 2, 3]\n"
+        },
+        "question": "对 [[1,2],[3],[3],[4],[]] 从 0 执行 BFS。每次处理完一个顶点，记录该顶点、尚未处理的队列和距离副本，确认 3 不会重复入队。",
+        "steps": [
+          "处理 0 后队列为 1、2，二者距离均为 1。",
+          "处理 1 时首次发现 3，写距离 2 并入队；此时待处理的是 2、3。",
+          "处理 2 时见到 3 已有距离，不能再次入队，也不改其首次发现信息。",
+          "处理 3 时发现距离为 3 的顶点 4，随后处理 4，队列清空。"
+        ]
+      }
+    ]
+  },
+  "context_key": "36130ba70dada1160a1895e116be9de3411135206de51fd6d595602a9aac5a30",
+  "model": "Codex 当前会话（未记录具体模型型号）",
+  "prompt_version": "2-python",
+  "references": [
+    {
+      "note": "核对深度推进、发现与完成的区别；本章显式帧逐条扫描邻居，按实际程序验证与递归同序。",
+      "title": "NIST DADS：深度优先搜索",
+      "url": "https://xlinux.nist.gov/dads/HTML/depthfirst.html"
+    },
+    {
+      "note": "核对队列安排与逐层推进；本章使用列表游标并计入保留前缀。",
+      "title": "NIST DADS：广度优先搜索",
+      "url": "https://xlinux.nist.gov/dads/HTML/breadthfirst.html"
+    },
+    {
+      "note": "核对单源访问、BFS 最少边数与父边恢复；图、数值、轨迹和 Python 实现重新设计，多源与矩阵练习另作性质验证。",
+      "title": "Open Data Structures：图遍历",
+      "url": "https://opendatastructures.org/ods-python/12_3_Graph_Traversal.html"
+    },
+    {
+      "note": "区分终止证明与运行栈可容纳深度；长链验证使用循环版本，不提高递归限制。",
+      "title": "Python 3.11：解释器递归深度",
+      "url": "https://docs.python.org/3.11/library/sys.html#sys.getrecursionlimit"
+    }
+  ],
+  "review_status": "ai-draft",
+  "schema_version": 1,
+  "sources": [
+    {
+      "analysis_digest": "9888da07b670886c773f0c27f93b693f8b97ca9f8dbee6a241b394b6c3a05c25",
+      "analysis_id": "9653e7ae080bce424a5f",
+      "blob_sha": "fe751673ab99d124f9f4a6ecff2a51f9d613c95f",
+      "commit": "37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0",
+      "coverage": "extracted-text",
+      "evidence": [
+        {
+          "id": "L1-L40",
+          "locator": "第 1–40 行"
+        },
+        {
+          "id": "L41-L80",
+          "locator": "第 41–80 行"
+        },
+        {
+          "id": "L121-L160",
+          "locator": "第 121–160 行"
+        }
+      ],
+      "path": "大一小学期/Week_3-Python/docs/readme.md",
+      "repository": "PKUanonym/REKCARC-TSC-UHT",
+      "topics": [
+        {
+          "evidence_ids": [
+            "L41-L80"
+          ],
+          "key": "9653e7ae080bce424a5f:0",
+          "name": "Python 基础语法的外部学习入口"
+        },
+        {
+          "evidence_ids": [
+            "L121-L160"
+          ],
+          "key": "9653e7ae080bce424a5f:1",
+          "name": "从基础语法到工具与应用的建议阅读顺序"
+        }
+      ]
+    }
+  ],
+  "title": "沿边系统探索：DFS、BFS 与无权最短路径"
+}
