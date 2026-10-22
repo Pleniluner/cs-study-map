@@ -4,13 +4,13 @@
 
 目标是给自己一条能学下去的路线：读讲解 → 跟例题 → 独立做题 → 用自测找出卡点 → 回到资料深入。课程目录为选材提供线索，章节按先修关系组织。
 
-当前可试学 21 章，待复核 0 章，待编写 0 章。每章含讲解、2 个原创例题、3 道练习及解答。当前章节均为 AI 初稿，尚未经过学科专家或学习者实际试学验收。
+当前可试学 24 章，待复核 0 章，待编写 0 章。每章含讲解、2 个原创例题、3 道练习及解答。当前章节均为 AI 初稿，尚未经过学科专家或学习者实际试学验收。
 
 ## 从这里开始
 
 先按下表顺序阅读。能独立解释并做对自测再前进；卡住时在本机学习记录中写下具体问题，后续据此调整教材。
 
-[三章试学指南](../study-guide.md) · [综合练习与回读指引](../unit-01-review.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md) · [树与堆练习指引](../trees-practice.md) · [哈希表与图练习指引](../hash-graphs-practice.md)
+[三章试学指南](../study-guide.md) · [综合练习与回读指引](../unit-01-review.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md) · [树与堆练习指引](../trees-practice.md) · [哈希表与图练习指引](../hash-graphs-practice.md) · [拓扑排序与带权图练习指引](../weighted-graphs-practice.md)
 
 | 顺序 | 章节 | 状态 |
 | ---: | --- | --- |
@@ -35,10 +35,12 @@
 | 19 | [按键定位记录：哈希表、冲突与扩容](19-hash-tables.md) | AI 初稿，可开始试学 |
 | 20 | [用顶点和边表达关系：图与存储表示](20-graphs.md) | AI 初稿，可开始试学 |
 | 21 | [沿边系统探索：DFS、BFS 与无权最短路径](21-graph-traversal.md) | AI 初稿，可开始试学 |
+| 22 | [安排有向依赖：拓扑排序与 DAG 应用](22-topological-sort.md) | AI 初稿，可开始试学 |
+| 23 | [比较路线总费用：带权最短路与松弛](23-weighted-shortest-paths.md) | AI 初稿，可开始试学 |
+| 24 | [以最低总费用连接全图：最小生成树与并查集](24-minimum-spanning-trees.md) | AI 初稿，可开始试学 |
 
 ## 后续路线（尚未写成教材）
 
-- 拓扑排序、带权最短路与最小生成树（需继续补充证明、适用条件和可运行练习）
 - 虚拟地址、页表与 TLB（需核对原理及适用架构）
 - 后续按个人学习需要扩展数学、系统、网络等章节
 

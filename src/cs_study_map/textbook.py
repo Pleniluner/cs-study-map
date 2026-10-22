@@ -316,6 +316,8 @@ def build_textbook(project):
         programming_support.append("[树与堆练习指引](../trees-practice.md)")
     if (root / "docs/hash-graphs-practice.md").is_file():
         programming_support.append("[哈希表与图练习指引](../hash-graphs-practice.md)")
+    if (root / "docs/weighted-graphs-practice.md").is_file():
+        programming_support.append("[拓扑排序与带权图练习指引](../weighted-graphs-practice.md)")
     for index, chapter in enumerate(plan["chapters"]):
         document = documents[chapter["id"]]
         status = chapter_status(project, plan, chapter, document)

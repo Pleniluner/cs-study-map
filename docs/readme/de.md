@@ -8,7 +8,7 @@ Dieses Projekt dient vor allem dem Selbststudium des Maintainers. Es wählt geei
 
 Dies ist ein persönliches Lernprojekt von Pleniluner ohne offizielle Verbindung zur Tsinghua-Universität oder den Betreuern des Ursprungsprojekts. Das öffentliche Repository enthält eigene Werkzeuge, Lehrbuchentwürfe, Quellenverzeichnisse und KI-Leitfäden. Originale Kursmaterialien, Folien, Aufgaben, studentischer Quellcode und vollständig extrahierte Texte werden nicht veröffentlicht.
 
-## Einundzwanzig Kapitel der Reihe nach lernen
+## Vierundzwanzig Kapitel der Reihe nach lernen
 
 | # | Thema | Übung |
 | --- | --- | --- |
@@ -33,8 +33,11 @@ Dies ist ein persönliches Lernprojekt von Pleniluner ohne offizielle Verbindung
 | 19 | [Hashtabellen, Kollisionen und Vergrößerung](../textbook/19-hash-tables.md) | Schlüssel-Wert-Paare verwalten und erwartete, schlechteste und amortisierte Kosten unterscheiden |
 | 20 | [Graphen und Speicherformen](../textbook/20-graphs.md) | Richtung, Adjazenzlisten, Matrizen, Grade und umgekehrte Kanten prüfen |
 | 21 | [DFS, BFS und ungewichtete kürzeste Wege](../textbook/21-graph-traversal.md) | Entdeckung und Pfade verfolgen sowie Komponenten und mehrere Startpunkte behandeln |
+| 22 | [Topologische Sortierung und DAG-Anwendungen](../textbook/22-topological-sort.md) | Abhängigkeiten verwalten, Zyklen finden und Aufgaben planen |
+| 23 | [Gewichtete kürzeste Wege und Relaxation](../textbook/23-weighted-shortest-paths.md) | Dijkstra, Bellman–Ford, DAG-Reihenfolge und begrenzte Kantenzahl vergleichen |
+| 24 | [Minimale Spannbäume und disjunkte Mengen](../textbook/24-minimum-spanning-trees.md) | Prim und Kruskal erklären sowie Wälder und neue Kanten prüfen |
 
-Kapitel 4–21 verwenden Python ab Version 3.11 und enthalten 180 eigenständig ausführbare Programme mit erwarteten Ausgaben. Siehe die Leitfäden für [Programmierübungen](../programming-practice.md), [Datenstrukturen](../data-structures-practice.md) und [Algorithmen](../algorithms-practice.md), alle auf Chinesisch. [Übungen zu Rekursion und Teile und herrsche (auf Chinesisch)](../recursion-practice.md). [Übungen zu Bäumen und Heaps (auf Chinesisch)](../trees-practice.md). [Übungen zu Hashtabellen und Graphen (auf Chinesisch)](../hash-graphs-practice.md).
+Kapitel 4–24 verwenden Python ab Version 3.11 und enthalten 210 eigenständig ausführbare Programme mit erwarteten Ausgaben. Siehe die Leitfäden für [Programmierübungen](../programming-practice.md), [Datenstrukturen](../data-structures-practice.md) und [Algorithmen](../algorithms-practice.md), alle auf Chinesisch. [Übungen zu Rekursion und Teile und herrsche (auf Chinesisch)](../recursion-practice.md). [Übungen zu Bäumen und Heaps (auf Chinesisch)](../trees-practice.md). [Übungen zu Hashtabellen und Graphen (auf Chinesisch)](../hash-graphs-practice.md). [Übungen zu topologischer Sortierung und gewichteten Graphen (auf Chinesisch)](../weighted-graphs-practice.md).
 
 Jedes Kapitel enthält ausführliche Erklärungen, 2 eigene Beispiele, 3 Aufgaben mit ausklappbaren Lösungen, einen Selbsttest und Themenquellen. Es handelt sich um einen KI-Erstentwurf ohne fachliche Begutachtung oder Erprobung durch Lernende. Das bedeutet nicht, dass für jeden Kurs ein Lehrbuch vorliegt.
 

@@ -8,7 +8,7 @@ Il progetto serve soprattutto allo studio del manutentore: seleziona argomenti d
 
 È un progetto personale di Pleniluner, senza affiliazione ufficiale con la Tsinghua University o i manutentori upstream. Il repository pubblico contiene strumenti originali, bozze, indici delle fonti e guide AI. Materiali didattici originali, slide, compiti, codice degli studenti e testi estratti integralmente non sono pubblicati.
 
-## Studia ventuno capitoli in ordine
+## Studia ventiquattro capitoli in ordine
 
 | # | Argomento | Attività |
 | --- | --- | --- |
@@ -33,8 +33,11 @@ Il progetto serve soprattutto allo studio del manutentore: seleziona argomenti d
 | 19 | [Tabelle hash, collisioni e ridimensionamento](../textbook/19-hash-tables.md) | Gestire chiavi e valori e distinguere costi attesi, peggiori e ammortizzati |
 | 20 | [Grafi e rappresentazioni](../textbook/20-graphs.md) | Verificare direzione, liste di adiacenza, matrici, gradi e archi invertiti |
 | 21 | [DFS, BFS e cammini minimi senza pesi](../textbook/21-graph-traversal.md) | Tracciare la scoperta, ricostruire percorsi e gestire componenti e più sorgenti |
+| 22 | [Ordinamento topologico e applicazioni ai DAG](../textbook/22-topological-sort.md) | Gestire dipendenze, ricostruire cicli e pianificare attività |
+| 23 | [Cammini minimi pesati e rilassamento](../textbook/23-weighted-shortest-paths.md) | Confrontare Dijkstra, Bellman–Ford, ordine dei DAG e limiti sugli archi |
+| 24 | [Alberi ricoprenti minimi e insiemi disgiunti](../textbook/24-minimum-spanning-trees.md) | Spiegare Prim e Kruskal, verificare foreste e aggiunta di archi |
 
-I capitoli dal 4 al 21 usano Python 3.11 o successivo e includono 180 programmi autonomi con l’output atteso. Consulta le guide alla [programmazione](../programming-practice.md), alle [strutture dati](../data-structures-practice.md) e agli [algoritmi](../algorithms-practice.md), in cinese. [Esercizi su ricorsione e divide et impera (in cinese)](../recursion-practice.md). [Esercizi su alberi e heap (in cinese)](../trees-practice.md). [Esercizi su tabelle hash e grafi (in cinese)](../hash-graphs-practice.md).
+I capitoli dal 4 al 24 usano Python 3.11 o successivo e includono 210 programmi autonomi con l’output atteso. Consulta le guide alla [programmazione](../programming-practice.md), alle [strutture dati](../data-structures-practice.md) e agli [algoritmi](../algorithms-practice.md), in cinese. [Esercizi su ricorsione e divide et impera (in cinese)](../recursion-practice.md). [Esercizi su alberi e heap (in cinese)](../trees-practice.md). [Esercizi su tabelle hash e grafi (in cinese)](../hash-graphs-practice.md). [Esercizi su ordinamento topologico e grafi pesati (in cinese)](../weighted-graphs-practice.md).
 
 Ogni capitolo contiene spiegazioni dettagliate, 2 esempi originali, 3 esercizi con soluzioni espandibili, un’autoverifica e le fonti degli argomenti. È una prima bozza AI, non revisionata da esperti né sperimentata con studenti; non significa che tutti i corsi abbiano un manuale completo.
 

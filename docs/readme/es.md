@@ -8,7 +8,7 @@ El proyecto está pensado sobre todo para el aprendizaje de quien lo mantiene: s
 
 Es un proyecto personal de Pleniluner, sin vínculo oficial con la Universidad de Tsinghua ni con quienes mantienen el repositorio original. El repositorio público incluye herramientas propias, borradores, índices de fuentes y guías de IA. No publica materiales originales, diapositivas, tareas, código de estudiantes ni texto extraído completo.
 
-## Estudia veintiún capítulos en orden
+## Estudia veinticuatro capítulos en orden
 
 | # | Tema | Actividad |
 | --- | --- | --- |
@@ -33,8 +33,11 @@ Es un proyecto personal de Pleniluner, sin vínculo oficial con la Universidad d
 | 19 | [Tablas hash, colisiones y ampliación](../textbook/19-hash-tables.md) | Mantener claves y valores y distinguir costes esperados, de peor caso y amortizados |
 | 20 | [Grafos y representaciones](../textbook/20-graphs.md) | Comprobar dirección, listas de adyacencia, matrices, grados y aristas invertidas |
 | 21 | [DFS, BFS y caminos mínimos sin pesos](../textbook/21-graph-traversal.md) | Seguir descubrimientos, reconstruir caminos y tratar componentes y múltiples orígenes |
+| 22 | [Ordenación topológica y aplicaciones en DAG](../textbook/22-topological-sort.md) | Gestionar dependencias, recuperar ciclos y programar tareas |
+| 23 | [Caminos mínimos ponderados y relajación](../textbook/23-weighted-shortest-paths.md) | Comparar Dijkstra, Bellman–Ford, orden de DAG y límites de aristas |
+| 24 | [Árboles de expansión mínimos y conjuntos disjuntos](../textbook/24-minimum-spanning-trees.md) | Explicar Prim y Kruskal, verificar bosques y añadir una arista |
 
-Los capítulos del 4 al 21 utilizan Python 3.11 o posterior e incluyen 180 programas independientes con sus salidas esperadas. Consulta las guías de [programación](../programming-practice.md), [estructuras de datos](../data-structures-practice.md) y [algoritmos](../algorithms-practice.md), en chino. [Ejercicios de recursión y divide y vencerás (en chino)](../recursion-practice.md). [Ejercicios sobre árboles y montículos (en chino)](../trees-practice.md). [Ejercicios sobre tablas hash y grafos (en chino)](../hash-graphs-practice.md).
+Los capítulos del 4 al 24 utilizan Python 3.11 o posterior e incluyen 210 programas independientes con sus salidas esperadas. Consulta las guías de [programación](../programming-practice.md), [estructuras de datos](../data-structures-practice.md) y [algoritmos](../algorithms-practice.md), en chino. [Ejercicios de recursión y divide y vencerás (en chino)](../recursion-practice.md). [Ejercicios sobre árboles y montículos (en chino)](../trees-practice.md). [Ejercicios sobre tablas hash y grafos (en chino)](../hash-graphs-practice.md). [Ejercicios de ordenación topológica y grafos ponderados (en chino)](../weighted-graphs-practice.md).
 
 Cada capítulo incluye explicaciones detalladas, 2 ejemplos originales, 3 ejercicios con soluciones desplegables, una autoevaluación y las fuentes de los temas. Es un primer borrador de IA, sin revisión de especialistas ni pruebas con estudiantes; no significa que todos los cursos tengan un manual terminado.
 

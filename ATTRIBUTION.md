@@ -18,6 +18,8 @@
 
 哈希表、图与基础图遍历章节参考 [NIST DADS 散列函数定义](https://xlinux.nist.gov/dads/HTML/hash.html)、[Open Data Structures 分离链接说明](https://opendatastructures.org/ods-python/5_1_ChainedHashTable_Hashin.html)、[图的表示](https://opendatastructures.org/ods-python/12_Graphs.html)与[图遍历](https://opendatastructures.org/ods-python/12_3_Graph_Traversal.html)，并核对 Python 3.11 取余和递归深度语义。桶记录、图实例、栈帧、队列轨迹和练习由本项目设计；固定取余不继承随机散列的期望保证，带查重的建图也单独计算成本。原书图表、代码与习题解答未纳入公开内容，参考核对不增加上游导读覆盖。
 
+拓扑排序、带权最短路与最小生成树章节用 [NIST 拓扑排序定义](https://xlinux.nist.gov/dads/HTML/topologicalSort.html)、[Aalto DFS 拓扑排序说明](https://tarjotin.cs.aalto.fi/CS-A1140/2020/notes/graphs-topological.html)、[Algorithms 4/e 最短路](https://algs4.cs.princeton.edu/44sp/index.php)、[最小生成树](https://algs4.cs.princeton.edu/43mst/index.php)及作者的并查集接口说明核对适用条件。部分作者页面通过搜索索引读取，直接打开返回 403 或超时。图、数值、轨迹、Python 实现及练习重新设计；懒堆旧记录、展平边表、完整路径压缩和失败接口均按本项目代码分析，未移植 Java 程序、教材图表或习题解答。章节中的上游 Python 学习入口只用于选题关联，不作为图算法证明来源，也未增加上游导读覆盖。
+
 核查时发现上游许可声明存在差异：根目录 [LICENSE](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/master/LICENSE) 为 CC BY-SA 4.0，而 [README 许可部分](https://github.com/PKUanonym/REKCARC-TSC-UHT#许可) 的链接指向 CC BY-NC-SA 4.0，并明确其他内容版权归各自作者。本项目不替上游消解这一差异，也不为上游材料重新许可。
 
 本项目新编写的程序、教材文本、维护文档和可独立许可的原创贡献采用根目录 MIT 许可。来源材料、可能涉及第三方权利的内容及其许可条件不被该许可覆盖。AI 辅助注释不能改变来源材料的权利，也不保证其判断准确。需要引用或改编具体材料时，应查看该材料适用的声明。

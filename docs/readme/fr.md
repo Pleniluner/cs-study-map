@@ -8,7 +8,7 @@ Ce projet sert d’abord à l’apprentissage personnel de son mainteneur. Il s�
 
 Ce projet personnel est maintenu par Pleniluner, sans affiliation officielle avec l’Université Tsinghua ni les responsables amont. Le dépôt public contient des outils originaux, des brouillons, des index de sources et des guides IA. Les supports originaux, diapositives, devoirs, codes d’étudiants et textes extraits intégralement ne sont pas publiés.
 
-## Étudier vingt et un chapitres dans l’ordre
+## Étudier vingt-quatre chapitres dans l’ordre
 
 | # | Sujet | Activité |
 | --- | --- | --- |
@@ -33,8 +33,11 @@ Ce projet personnel est maintenu par Pleniluner, sans affiliation officielle ave
 | 19 | [Tables de hachage, collisions et redimensionnement](../textbook/19-hash-tables.md) | Gérer les paires clé-valeur et distinguer coûts espérés, au pire et amortis |
 | 20 | [Graphes et représentations](../textbook/20-graphs.md) | Vérifier orientation, listes d’adjacence, matrices, degrés et arcs inversés |
 | 21 | [DFS, BFS et plus courts chemins sans poids](../textbook/21-graph-traversal.md) | Suivre la découverte, reconstruire les chemins et traiter composantes et sources multiples |
+| 22 | [Tri topologique et applications aux DAG](../textbook/22-topological-sort.md) | Suivre les dépendances, retrouver les cycles et planifier les tâches |
+| 23 | [Plus courts chemins pondérés et relaxation](../textbook/23-weighted-shortest-paths.md) | Comparer Dijkstra, Bellman–Ford, l’ordre d’un DAG et les limites de parcours |
+| 24 | [Arbres couvrants minimaux et ensembles disjoints](../textbook/24-minimum-spanning-trees.md) | Expliquer Prim et Kruskal, vérifier les forêts et l’ajout d’une arête |
 
-Les chapitres 4 à 21 utilisent Python 3.11 ou une version ultérieure et proposent 180 programmes autonomes avec leur sortie attendue. Consultez les guides de [programmation](../programming-practice.md), de [structures de données](../data-structures-practice.md) et d’[algorithmes](../algorithms-practice.md), en chinois. [Exercices de récursivité et de division du problème (en chinois)](../recursion-practice.md). [Exercices sur les arbres et les tas (en chinois)](../trees-practice.md). [Exercices sur les tables de hachage et les graphes (en chinois)](../hash-graphs-practice.md).
+Les chapitres 4 à 24 utilisent Python 3.11 ou une version ultérieure et proposent 210 programmes autonomes avec leur sortie attendue. Consultez les guides de [programmation](../programming-practice.md), de [structures de données](../data-structures-practice.md) et d’[algorithmes](../algorithms-practice.md), en chinois. [Exercices de récursivité et de division du problème (en chinois)](../recursion-practice.md). [Exercices sur les arbres et les tas (en chinois)](../trees-practice.md). [Exercices sur les tables de hachage et les graphes (en chinois)](../hash-graphs-practice.md). [Exercices sur le tri topologique et les graphes pondérés (en chinois)](../weighted-graphs-practice.md).
 
 Chaque chapitre contient des explications détaillées, 2 exemples originaux, 3 exercices avec solutions dépliables, une autoévaluation et les sources des sujets. Il s’agit d’un premier jet produit par IA, sans validation par des spécialistes ni essai auprès d’apprenants ; tous les cours ne disposent pas encore d’un manuel.
 

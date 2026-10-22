@@ -20,5 +20,8 @@
   "docs/textbook/19-hash-tables.md",
   "docs/textbook/20-graphs.md",
   "docs/textbook/21-graph-traversal.md",
+  "docs/textbook/22-topological-sort.md",
+  "docs/textbook/23-weighted-shortest-paths.md",
+  "docs/textbook/24-minimum-spanning-trees.md",
   "docs/textbook/index.md"
 ]

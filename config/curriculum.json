@@ -609,11 +609,101 @@
         }
       ],
       "title": "沿边系统探索：DFS、BFS 与无权最短路径"
+    },
+    {
+      "format": "python",
+      "id": "22-topological-sort",
+      "references": [
+        {
+          "note": "核对按偏序安排项目的定义；本章图、数值和全部 Python 程序为原创教学示例。",
+          "title": "NIST DADS：拓扑排序",
+          "url": "https://xlinux.nist.gov/dads/HTML/topologicalSort.html"
+        },
+        {
+          "note": "核对有向无环条件、完成次序和灰色状态。这里使用显式帧恢复一条闭合环，并独立验证排程与计数练习。",
+          "title": "Aalto CS-A1140：拓扑排序与 DFS",
+          "url": "https://tarjotin.cs.aalto.fi/CS-A1140/2020/notes/graphs-topological.html"
+        },
+        {
+          "note": "核对队列式拓扑排序及存在性条件；本章返回阻塞前缀和剩余点，接口与 Java 实现不同，不将剩余点等同于环成员。",
+          "title": "Algorithms 4/e：TopologicalX",
+          "url": "https://algs4.cs.princeton.edu/code/javadoc/edu/princeton/cs/algs4/TopologicalX.html"
+        }
+      ],
+      "scope": "用位置表检验拓扑序，讲解 Kahn 剩余入度、三色显式 DFS 与闭环恢复，区分环成员和受阻后继；推导单位任务分层、最早完工、唯一性、路径计数和字典序最小。按实际代码计入状态快照与大整数成本。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "安排有向依赖：拓扑排序与 DAG 应用"
+    },
+    {
+      "format": "python",
+      "id": "23-weighted-shortest-paths",
+      "references": [
+        {
+          "note": "核对松弛、非负权贪心、DAG 次序和负环适用条件。页面由搜索索引读取；本章明确拒绝全部负权的 Dijkstra 接口、懒堆空间及同步限步实现均按原创代码重新分析。",
+          "title": "Algorithms 4/e：最短路径",
+          "url": "https://algs4.cs.princeton.edu/44sp/index.php"
+        },
+        {
+          "note": "核对允许正负零权及只报告源可达负环。官方为队列版本；本章为展平边表的完整轮次版本，空间另计 O(n+a)，并非照搬官方实现或复杂度。",
+          "title": "Algorithms 4/e：BellmanFordSP",
+          "url": "https://algs4.cs.princeton.edu/code/javadoc/edu/princeton/cs/algs4/BellmanFordSP.html"
+        }
+      ],
+      "scope": "定义整数加权邻接表、None 不可达与严格松弛；实现扫描和懒堆 Dijkstra、边表轮次 Bellman–Ford、父边恢复、DAG 最短路及至多 k 边费用。明确全图负权拒绝、源可达负环、旧堆记录及同步数组的不同约束。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "比较路线总费用：带权最短路与松弛"
+    },
+    {
+      "format": "python",
+      "id": "24-minimum-spanning-trees",
+      "references": [
+        {
+          "note": "通过搜索索引核对树、割性质、等权与负权；本章明确等权最轻边属于某个最优解，图例、轨迹及扩展练习为原创，不复制教材例题。",
+          "title": "Algorithms 4/e：最小生成树",
+          "url": "https://algs4.cs.princeton.edu/43mst/index.php"
+        },
+        {
+          "note": "核对集合接口和按大小合并的对数高度。本章另加完整路径压缩，但只使用不变差的单次对数安全上界，不声称官方无压缩实现包含压缩。",
+          "title": "Algorithms 4/e：按大小合并",
+          "url": "https://algs4.cs.princeton.edu/code/javadoc/edu/princeton/cs/algs4/WeightedQuickUnionUF.html"
+        },
+        {
+          "note": "核对路径压缩只改变辅助父指针，不改变集合关系。本章采用先找根再完整压缩的两遍实现，并非页面的路径减半版本。",
+          "title": "Algorithms 4/e：带路径减半的按大小合并",
+          "url": "https://algs4.cs.princeton.edu/15uf/WeightedQuickUnionPathHalvingUF.java.html"
+        }
+      ],
+      "scope": "区分 MST 与最短路树，给出割性质交换论证，独立实现扫描 Prim、按大小合并及路径压缩、堆排序选边 Kruskal。处理负权、等权、孤立点和空图，练习完整树、固定分量数与新增边改进，并用森林结构和最优权重双重验收。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "以最低总费用连接全图：最小生成树与并查集"
     }
   ],
   "learner": "从基础开始自学；先用纸笔和小例子建立概念，再接触课程实验。",
   "planned": [
-    "拓扑排序、带权最短路与最小生成树（需继续补充证明、适用条件和可运行练习）",
     "虚拟地址、页表与 TLB（需核对原理及适用架构）",
     "后续按个人学习需要扩展数学、系统、网络等章节"
   ],
