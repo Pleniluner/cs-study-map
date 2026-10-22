@@ -14,6 +14,8 @@
 
 递归、分治和快速排序章节继续参考 Python 官方函数与递归限制说明，并用 [NIST DADS 分治定义](https://xlinux.nist.gov/dads/HTML/divideAndConquer.html)、[Cornell CS2110 排序讲义](https://www.cs.cornell.edu/courses/cs2110/2025fa/lectures/lec07/)和 Algorithms 4/e 的分区说明核对概念。半开区间、固定末项基准、共享缓冲和长边循环均按本项目实际实现分析；调用轨迹、计数数据、练习与 Python 程序自行设计，不移植课程代码、动画或习题解答。
 
+树、二叉搜索树和堆章节用 [NIST DADS 完全二叉树定义](https://xlinux.nist.gov/dads/HTML/completeBinaryTree.html)、Open Data Structures 的树与堆章节、Algorithms 4/e 的搜索树与优先队列说明，以及 [Python 3.11 heapq 文档](https://docs.python.org/3.11/library/heapq.html)核对形状、键序、接口与成本。本项目自行设计字典结点、示例树、删除轨迹、堆数组、练习和测试；图示由本项目示例生成，未复制原书图表或练习解答。空树高度、重复键和空堆返回约定按正文明确说明，未将这些参考核对计为上游资料库的新导读。
+
 核查时发现上游许可声明存在差异：根目录 [LICENSE](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/master/LICENSE) 为 CC BY-SA 4.0，而 [README 许可部分](https://github.com/PKUanonym/REKCARC-TSC-UHT#许可) 的链接指向 CC BY-NC-SA 4.0，并明确其他内容版权归各自作者。本项目不替上游消解这一差异，也不为上游材料重新许可。
 
 本项目新编写的程序、教材文本、维护文档和可独立许可的原创贡献采用根目录 MIT 许可。来源材料、可能涉及第三方权利的内容及其许可条件不被该许可覆盖。AI 辅助注释不能改变来源材料的权利，也不保证其判断准确。需要引用或改编具体材料时，应查看该材料适用的声明。

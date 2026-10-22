@@ -1,6 +1,6 @@
 # 怎样把数据排成顺序：选择、插入与归并排序
 
-[返回教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md)
+[返回教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md) · [树与堆练习指引](../trees-practice.md)
 
 [上一章：怎样缩小候选范围：顺序查找与二分查找](11-searching.md) · [下一章：函数怎样调用自己：递归、返回与调用栈](13-recursion.md)
 
@@ -612,4 +612,4 @@ print(values)
 
 [上一章：怎样缩小候选范围：顺序查找与二分查找](11-searching.md) · [下一章：函数怎样调用自己：递归、返回与调用栈](13-recursion.md)
 
-[教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md) · [记录自己的学习](../learning-log-template.md)
+[教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md) · [树与堆练习指引](../trees-practice.md) · [记录自己的学习](../learning-log-template.md)

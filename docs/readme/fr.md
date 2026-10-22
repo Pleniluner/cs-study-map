@@ -8,7 +8,7 @@ Ce projet sert d’abord à l’apprentissage personnel de son mainteneur. Il s�
 
 Ce projet personnel est maintenu par Pleniluner, sans affiliation officielle avec l’Université Tsinghua ni les responsables amont. Le dépôt public contient des outils originaux, des brouillons, des index de sources et des guides IA. Les supports originaux, diapositives, devoirs, codes d’étudiants et textes extraits intégralement ne sont pas publiés.
 
-## Étudier quinze chapitres dans l’ordre
+## Étudier dix-huit chapitres dans l’ordre
 
 | # | Sujet | Activité |
 | --- | --- | --- |
@@ -27,8 +27,11 @@ Ce projet personnel est maintenu par Pleniluner, sans affiliation officielle ave
 | 13 | [Récursivité, retours et pile d’appels](../textbook/13-recursion.md) | Suivre les cas de base, la progression, les appels et la profondeur maximale |
 | 14 | [Diviser pour régner et tri fusion récursif](../textbook/14-divide-and-conquer.md) | Découper les intervalles, combiner les résultats et compter les inversions |
 | 15 | [Tri rapide et partitionnement en trois parties](../textbook/15-quick-sort.md) | Vérifier les partitions, les doublons, les pires cas et la profondeur de pile |
+| 16 | [Arbres, arbres binaires et parcours](../textbook/16-trees.md) | Vérifier hauteur, ordre de parcours, miroir et complétude |
+| 17 | [Arbres binaires de recherche](../textbook/17-binary-search-trees.md) | Maintenir l’ordre global, les liens après suppression, les intervalles et la hauteur |
+| 18 | [Tas binaires et files de priorité](../textbook/18-heaps.md) | Rétablir l’ordre, construire et trier un tas, sélectionner les k plus grands et fusionner |
 
-Les chapitres 4 à 15 utilisent Python 3.11 ou une version ultérieure et proposent 120 programmes autonomes avec leur sortie attendue. Consultez les guides de [programmation](../programming-practice.md), de [structures de données](../data-structures-practice.md) et d’[algorithmes](../algorithms-practice.md), en chinois. [Exercices de récursivité et de division du problème (en chinois)](../recursion-practice.md).
+Les chapitres 4 à 18 utilisent Python 3.11 ou une version ultérieure et proposent 150 programmes autonomes avec leur sortie attendue. Consultez les guides de [programmation](../programming-practice.md), de [structures de données](../data-structures-practice.md) et d’[algorithmes](../algorithms-practice.md), en chinois. [Exercices de récursivité et de division du problème (en chinois)](../recursion-practice.md). [Exercices sur les arbres et les tas (en chinois)](../trees-practice.md).
 
 Chaque chapitre contient des explications détaillées, 2 exemples originaux, 3 exercices avec solutions dépliables, une autoévaluation et les sources des sujets. Il s’agit d’un premier jet produit par IA, sans validation par des spécialistes ni essai auprès d’apprenants ; tous les cours ne disposent pas encore d’un manuel.
 

@@ -8,7 +8,7 @@ Il progetto serve soprattutto allo studio del manutentore: seleziona argomenti d
 
 È un progetto personale di Pleniluner, senza affiliazione ufficiale con la Tsinghua University o i manutentori upstream. Il repository pubblico contiene strumenti originali, bozze, indici delle fonti e guide AI. Materiali didattici originali, slide, compiti, codice degli studenti e testi estratti integralmente non sono pubblicati.
 
-## Studia quindici capitoli in ordine
+## Studia diciotto capitoli in ordine
 
 | # | Argomento | Attività |
 | --- | --- | --- |
@@ -27,8 +27,11 @@ Il progetto serve soprattutto allo studio del manutentore: seleziona argomenti d
 | 13 | [Ricorsione, valori restituiti e pila delle chiamate](../textbook/13-recursion.md) | Seguire casi base, riduzione, numero di chiamate e profondità massima |
 | 14 | [Divide et impera e ordinamento ricorsivo per fusione](../textbook/14-divide-and-conquer.md) | Dividere intervalli, combinare risultati e contare inversioni |
 | 15 | [Quicksort e partizionamento a tre vie](../textbook/15-quick-sort.md) | Verificare partizioni, duplicati, casi peggiori e profondità della pila |
+| 16 | [Alberi, alberi binari e visite](../textbook/16-trees.md) | Verificare altezza, ordine di visita, riflessione e completezza |
+| 17 | [Alberi binari di ricerca](../textbook/17-binary-search-trees.md) | Mantenere ordine globale, collegamenti dopo la rimozione, intervalli e altezza |
+| 18 | [Heap binari e code con priorità](../textbook/18-heaps.md) | Ripristinare l’ordine, costruire e ordinare heap, scegliere i k maggiori e fondere liste |
 
-I capitoli dal 4 al 15 usano Python 3.11 o successivo e includono 120 programmi autonomi con l’output atteso. Consulta le guide alla [programmazione](../programming-practice.md), alle [strutture dati](../data-structures-practice.md) e agli [algoritmi](../algorithms-practice.md), in cinese. [Esercizi su ricorsione e divide et impera (in cinese)](../recursion-practice.md).
+I capitoli dal 4 al 18 usano Python 3.11 o successivo e includono 150 programmi autonomi con l’output atteso. Consulta le guide alla [programmazione](../programming-practice.md), alle [strutture dati](../data-structures-practice.md) e agli [algoritmi](../algorithms-practice.md), in cinese. [Esercizi su ricorsione e divide et impera (in cinese)](../recursion-practice.md). [Esercizi su alberi e heap (in cinese)](../trees-practice.md).
 
 Ogni capitolo contiene spiegazioni dettagliate, 2 esempi originali, 3 esercizi con soluzioni espandibili, un’autoverifica e le fonti degli argomenti. È una prima bozza AI, non revisionata da esperti né sperimentata con studenti; non significa che tutti i corsi abbiano un manuale completo.
 

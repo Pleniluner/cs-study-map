@@ -8,7 +8,7 @@ Dieses Projekt dient vor allem dem Selbststudium des Maintainers. Es wählt geei
 
 Dies ist ein persönliches Lernprojekt von Pleniluner ohne offizielle Verbindung zur Tsinghua-Universität oder den Betreuern des Ursprungsprojekts. Das öffentliche Repository enthält eigene Werkzeuge, Lehrbuchentwürfe, Quellenverzeichnisse und KI-Leitfäden. Originale Kursmaterialien, Folien, Aufgaben, studentischer Quellcode und vollständig extrahierte Texte werden nicht veröffentlicht.
 
-## Fünfzehn Kapitel der Reihe nach lernen
+## Achtzehn Kapitel der Reihe nach lernen
 
 | # | Thema | Übung |
 | --- | --- | --- |
@@ -27,8 +27,11 @@ Dies ist ein persönliches Lernprojekt von Pleniluner ohne offizielle Verbindung
 | 13 | [Rekursion, Rückgaben und Aufrufstapel](../textbook/13-recursion.md) | Basisfälle, Verkleinerung, Aufrufzahl und maximale Tiefe verfolgen |
 | 14 | [Teile und herrsche und rekursives Mergesort](../textbook/14-divide-and-conquer.md) | Bereiche teilen, Ergebnisse kombinieren und Inversionen zählen |
 | 15 | [Quicksort und Dreiwegepartitionierung](../textbook/15-quick-sort.md) | Partitionen, Duplikate, schlechteste Fälle und Stapeltiefe prüfen |
+| 16 | [Bäume, Binärbäume und Traversierungen](../textbook/16-trees.md) | Höhe, Besuchsreihenfolge, Spiegelung und Vollständigkeit prüfen |
+| 17 | [Binäre Suchbäume](../textbook/17-binary-search-trees.md) | Globale Schlüsselordnung, Löschverknüpfungen, Bereichssuche und Höhe prüfen |
+| 18 | [Binäre Heaps und Prioritätswarteschlangen](../textbook/18-heaps.md) | Heapordnung reparieren, Heaps aufbauen und sortieren, die k größten Werte wählen und Listen zusammenführen |
 
-Kapitel 4–15 verwenden Python ab Version 3.11 und enthalten 120 eigenständig ausführbare Programme mit erwarteten Ausgaben. Siehe die Leitfäden für [Programmierübungen](../programming-practice.md), [Datenstrukturen](../data-structures-practice.md) und [Algorithmen](../algorithms-practice.md), alle auf Chinesisch. [Übungen zu Rekursion und Teile und herrsche (auf Chinesisch)](../recursion-practice.md).
+Kapitel 4–18 verwenden Python ab Version 3.11 und enthalten 150 eigenständig ausführbare Programme mit erwarteten Ausgaben. Siehe die Leitfäden für [Programmierübungen](../programming-practice.md), [Datenstrukturen](../data-structures-practice.md) und [Algorithmen](../algorithms-practice.md), alle auf Chinesisch. [Übungen zu Rekursion und Teile und herrsche (auf Chinesisch)](../recursion-practice.md). [Übungen zu Bäumen und Heaps (auf Chinesisch)](../trees-practice.md).
 
 Jedes Kapitel enthält ausführliche Erklärungen, 2 eigene Beispiele, 3 Aufgaben mit ausklappbaren Lösungen, einen Selbsttest und Themenquellen. Es handelt sich um einen KI-Erstentwurf ohne fachliche Begutachtung oder Erprobung durch Lernende. Das bedeutet nicht, dass für jeden Kurs ein Lehrbuch vorliegt.
 

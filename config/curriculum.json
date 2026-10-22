@@ -412,11 +412,107 @@
         }
       ],
       "title": "先分区再递归：快速排序与三路划分"
+    },
+    {
+      "format": "python",
+      "id": "16-trees",
+      "references": [
+        {
+          "note": "核对边计高度、空基例与遍历概念；本章用原创字典模型、数值和轨迹，不移植 Java 实现。",
+          "title": "Open Data Structures：二叉树与遍历",
+          "url": "https://opendatastructures.org/ods-java/6_1_BinaryTree_Basic_Binary.html"
+        },
+        {
+          "note": "核对空树、根和左右子树的递归定义；本章补充对象身份前提。",
+          "title": "NIST DADS：二叉树",
+          "url": "https://xlinux.nist.gov/dads/HTML/binarytree.html"
+        },
+        {
+          "note": "核对层填满与最深层靠左的形状规则；程序使用零基下标，不混用参考中的一起始索引。",
+          "title": "NIST DADS：完全二叉树",
+          "url": "https://xlinux.nist.gov/dads/HTML/completeBinaryTree.html"
+        }
+      ],
+      "scope": "解释有根树与左右有别的二叉树、边计高度与空树约定、大小叶子统计、递归三序、显式栈中序和逐层遍历；练习镜像、深度查询与完全性。严格区分对象身份、输出和工作区，输入保证无环无共享。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "从链到层次：树、二叉树与遍历"
+    },
+    {
+      "format": "python",
+      "id": "17-binary-search-trees",
+      "references": [
+        {
+          "note": "核对全子树严格大小约束、路径查找与后继摘除；例子和 Python 实现自行设计。",
+          "title": "Open Data Structures：未平衡二叉搜索树",
+          "url": "https://opendatastructures.org/ods-java/6_2_BinarySearchTree_Unbala.html"
+        },
+        {
+          "note": "核对有序查询、后继删除与高度成本；本章采用整数集合与复制键删除，不承诺稳定结点句柄或自动平衡。",
+          "title": "Algorithms 4/e：二叉搜索树",
+          "url": "https://algs4.cs.princeton.edu/32bst/"
+        }
+      ],
+      "scope": "以唯一整数键集合实现普通 BST 的循环查找、递归插入、三类删除、中序与 floor；说明后继可有右孩子、根接回与复制键身份变化。练习全局上下界验证、范围剪枝和有序序列一次构造，以高度分析最坏成本。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "用大小约束引导查找：二叉搜索树"
+    },
+    {
+      "format": "python",
+      "id": "18-heaps",
+      "references": [
+        {
+          "note": "核对零基最小堆不变式和线性 heapify；本章原创实现不导入库，空堆返回 None 而非抛异常。",
+          "title": "Python 3.11：heapq",
+          "url": "https://docs.python.org/3.11/library/heapq.html"
+        },
+        {
+          "note": "核对完全形状、父子索引与把扩缩容成本分开摊还的分析；不涉及可合并堆实现。",
+          "title": "Open Data Structures：二叉堆",
+          "url": "https://opendatastructures.org/newhtml/ods/latex/heaps.html"
+        },
+        {
+          "note": "核对向下建堆总预算、堆排序最坏上界与稳定性；计数和测试按本章实际代码完成。",
+          "title": "Algorithms 4/e：优先队列与堆排序",
+          "url": "https://algs4.cs.princeton.edu/24pq/"
+        },
+        {
+          "note": "核对多路归并中三整数列表的字典序比较，以及 list 的末尾取出与浅复制语义。",
+          "title": "Python 3.11：序列比较",
+          "url": "https://docs.python.org/3.11/tutorial/datastructures.html#comparing-sequences-and-other-types"
+        }
+      ],
+      "scope": "实现零基列表最小堆、上浮、有效前缀下沉、取出与线性建堆，再实现循环最大堆排序。明确列表摊还成本、堆序与全序、最坏时间与不稳定性，练习排序副本、最大 k 项及多路归并。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "让最值留在根部：二叉堆与优先队列"
     }
   ],
   "learner": "从基础开始自学；先用纸笔和小例子建立概念，再接触课程实验。",
   "planned": [
-    "树、二叉搜索树与堆（继续补充先修讲解和可运行练习）",
+    "哈希表、图与基础图遍历（继续补充先修讲解和可运行练习）",
     "虚拟地址、页表与 TLB（需核对原理及适用架构）",
     "后续按个人学习需要扩展数学、系统、网络等章节"
   ],

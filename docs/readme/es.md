@@ -8,7 +8,7 @@ El proyecto está pensado sobre todo para el aprendizaje de quien lo mantiene: s
 
 Es un proyecto personal de Pleniluner, sin vínculo oficial con la Universidad de Tsinghua ni con quienes mantienen el repositorio original. El repositorio público incluye herramientas propias, borradores, índices de fuentes y guías de IA. No publica materiales originales, diapositivas, tareas, código de estudiantes ni texto extraído completo.
 
-## Estudia quince capítulos en orden
+## Estudia dieciocho capítulos en orden
 
 | # | Tema | Actividad |
 | --- | --- | --- |
@@ -27,8 +27,11 @@ Es un proyecto personal de Pleniluner, sin vínculo oficial con la Universidad d
 | 13 | [Recursión, retornos y pila de llamadas](../textbook/13-recursion.md) | Seguir casos base, reducción, número de llamadas y profundidad máxima |
 | 14 | [Divide y vencerás y ordenación recursiva por mezcla](../textbook/14-divide-and-conquer.md) | Dividir intervalos, combinar resultados y contar inversiones |
 | 15 | [Quicksort y partición en tres vías](../textbook/15-quick-sort.md) | Comprobar particiones, duplicados, peores casos y profundidad de la pila |
+| 16 | [Árboles, árboles binarios y recorridos](../textbook/16-trees.md) | Comprobar altura, orden de recorrido, reflejo y completitud |
+| 17 | [Árboles binarios de búsqueda](../textbook/17-binary-search-trees.md) | Mantener el orden global, enlaces al eliminar, consultas de rango y altura |
+| 18 | [Montículos binarios y colas de prioridad](../textbook/18-heaps.md) | Restaurar el orden, construir y ordenar montículos, elegir los k mayores y fusionar listas |
 
-Los capítulos del 4 al 15 utilizan Python 3.11 o posterior e incluyen 120 programas independientes con sus salidas esperadas. Consulta las guías de [programación](../programming-practice.md), [estructuras de datos](../data-structures-practice.md) y [algoritmos](../algorithms-practice.md), en chino. [Ejercicios de recursión y divide y vencerás (en chino)](../recursion-practice.md).
+Los capítulos del 4 al 18 utilizan Python 3.11 o posterior e incluyen 150 programas independientes con sus salidas esperadas. Consulta las guías de [programación](../programming-practice.md), [estructuras de datos](../data-structures-practice.md) y [algoritmos](../algorithms-practice.md), en chino. [Ejercicios de recursión y divide y vencerás (en chino)](../recursion-practice.md). [Ejercicios sobre árboles y montículos (en chino)](../trees-practice.md).
 
 Cada capítulo incluye explicaciones detalladas, 2 ejemplos originales, 3 ejercicios con soluciones desplegables, una autoevaluación y las fuentes de los temas. Es un primer borrador de IA, sin revisión de especialistas ni pruebas con estudiantes; no significa que todos los cursos tengan un manual terminado.
 
