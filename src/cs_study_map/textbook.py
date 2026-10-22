@@ -380,11 +380,13 @@ def build_textbook(project):
         pages[f"docs/textbook/{chapter['id']}.md"] = "\n".join(lines)
     lines = [f"# {md(plan['title'])}", "", "[项目说明](../../README.md) · [资料地图](../index.md) · [记录自己的学习](../learning-log-template.md)", "",
              "目标是给自己一条能学下去的路线：读讲解 → 跟例题 → 独立做题 → 用自测找出卡点 → 回到资料深入。课程目录为选材提供线索，章节按先修关系组织。", "",
-             f"当前可试学 {current} 章，待复核 {stale} 章，待编写 {len(plan['chapters']) - current - stale} 章。每章含讲解、2 个原创例题、3 道练习及解答。当前章节均为 AI 初稿，尚未经过学科专家或学习者实际试学验收。", "",
+             f"已登记的具体章节中，可试学 {current} 章，待复核 {stale} 章，待编写 {len(plan['chapters']) - current - stale} 章。后续待写方向另列于下方，尚未计入具体章节数量。每章含讲解、2 个原创例题、3 道练习及解答。当前章节均为 AI 初稿，尚未经过学科专家或学习者实际试学验收。", "",
              "## 从这里开始", "", "先按下表顺序阅读。能独立解释并做对自测再前进；卡住时在本机学习记录中写下具体问题，后续据此调整教材。", "",
              *([" · ".join(support + programming_support), ""] if support or programming_support else []),
              "| 顺序 | 章节 | 状态 |", "| ---: | --- | --- |", *rows, "", "## 后续路线（尚未写成教材）", ""]
     lines += ["- " + md(t) for t in plan["planned"]]
+    if (root / "docs/roadmap.md").is_file():
+        lines += ["", "具体未完成任务、里程碑和验收条件见[未完成清单与维护计划](../roadmap.md)。"]
     lines += ["", "## 更新怎样影响教材", "", "同步先比较来源内容，变化会使旧导读失效。教材记录使用的分析版本；来源分析、编写范围或生成规则改变后会标为待复核。只有拿到有效资料分析后，写作命令才会按既定计划生成新稿。原资料不会并入教材仓库。", ""]
     pages["docs/textbook/index.md"] = "\n".join(lines)
     for old in read_json(root / "docs/textbook-manifest.json", []):
