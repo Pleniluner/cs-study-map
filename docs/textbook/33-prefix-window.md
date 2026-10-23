@@ -2,7 +2,7 @@
 
 [返回教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md) · [树与堆练习指引](../trees-practice.md) · [哈希表与图练习指引](../hash-graphs-practice.md) · [拓扑排序与带权图练习指引](../weighted-graphs-practice.md)
 
-[上一章：把共同开头存成路径：Trie 与前缀检索](32-trie.md)
+[上一章：把共同开头存成路径：Trie 与前缀检索](32-trie.md) · [下一章：淘汰不再有用的候选：单调栈与单调队列](34-monotonic-structures.md)
 
 [学习目标](#objectives) · [需要的基础](#prerequisites) · [例题](#examples) · [练习](#practice) · [自测](#self-check)
 
@@ -604,6 +604,6 @@ print(subarray_sum_count([], 0))
 
 **继续学习**：先独立完成自测，再记录仍需回读的步骤。
 
-[上一章：把共同开头存成路径：Trie 与前缀检索](32-trie.md)
+[上一章：把共同开头存成路径：Trie 与前缀检索](32-trie.md) · [下一章：淘汰不再有用的候选：单调栈与单调队列](34-monotonic-structures.md)
 
 [教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md) · [树与堆练习指引](../trees-practice.md) · [哈希表与图练习指引](../hash-graphs-practice.md) · [拓扑排序与带权图练习指引](../weighted-graphs-practice.md) · [记录自己的学习](../learning-log-template.md)

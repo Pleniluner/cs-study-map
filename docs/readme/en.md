@@ -8,7 +8,7 @@ This project is mainly for the maintainer’s own study. It selects useful topic
 
 This is Pleniluner’s personal learning project, with no official affiliation with Tsinghua University or upstream maintainers. The public repository contains original tools, textbook drafts, source indexes, and AI guides. Original course materials, slides, assignments, student source code, and extracted full text are not published.
 
-## Thirty-three chapters to study in order
+## Thirty-six chapters to study in order
 
 | # | Topic | Activity |
 | --- | --- | --- |
@@ -45,8 +45,11 @@ This is Pleniluner’s personal learning project, with no official affiliation w
 | 31 | [String matching and KMP](../textbook/31-string-matching.md) | Track prefix fallback, overlaps, chunk boundaries, and rotations |
 | 32 | [Tries and prefix queries](../textbook/32-trie.md) | Maintain duplicate words, deletion, enumeration, and prefix counts |
 | 33 | [Prefix sums, two pointers, and sliding windows](../textbook/33-prefix-window.md) | Prove interval boundaries, monotonicity, and counting rules |
+| 34 | [Monotonic stacks and queues](../textbook/34-monotonic-structures.md) | Prove candidate removal and verify intervals with negative values |
+| 35 | [Fenwick trees and frequency ranks](../textbook/35-fenwick-tree.md) | Maintain prefix blocks, differences, and nonnegative ranks |
+| 36 | [Segment trees and lazy propagation](../textbook/36-segment-tree.md) | Merge summaries and trace query order and pending updates |
 
-Chapters 4–33 use Python 3.11 or later and include 300 standalone programs with expected outputs. See the [programming practice guide](../programming-practice.md), [data structures guide](../data-structures-practice.md), and [algorithm practice guide](../algorithms-practice.md), all in Chinese. [Recursion and divide-and-conquer exercises (in Chinese)](../recursion-practice.md). [Tree and heap exercises (in Chinese)](../trees-practice.md). [Hash table and graph exercises (in Chinese)](../hash-graphs-practice.md). [Topological sorting and weighted graph exercises (in Chinese)](../weighted-graphs-practice.md). [Backtracking, greedy, and dynamic programming exercises (in Chinese)](../strategy-practice.md). [Advanced dynamic programming exercises (in Chinese)](../advanced-dp-practice.md). [String, trie, and interval exercises (in Chinese)](../string-window-practice.md).
+Chapters 4–36 use Python 3.11 or later and include 330 standalone programs with expected outputs. See the [programming practice guide](../programming-practice.md), [data structures guide](../data-structures-practice.md), and [algorithm practice guide](../algorithms-practice.md), all in Chinese. [Recursion and divide-and-conquer exercises (in Chinese)](../recursion-practice.md). [Tree and heap exercises (in Chinese)](../trees-practice.md). [Hash table and graph exercises (in Chinese)](../hash-graphs-practice.md). [Topological sorting and weighted graph exercises (in Chinese)](../weighted-graphs-practice.md). [Backtracking, greedy, and dynamic programming exercises (in Chinese)](../strategy-practice.md). [Advanced dynamic programming exercises (in Chinese)](../advanced-dp-practice.md). [String, trie, and interval exercises (in Chinese)](../string-window-practice.md). [Monotonic structures and dynamic range query exercises (in Chinese)](../range-structures-practice.md).
 
 Each chapter has detailed explanations, 2 original examples, 3 exercises with expandable solutions, a self-check, and topic sources. This is an AI first draft, not reviewed by subject experts or trial learners; it does not mean every course has a textbook.
 

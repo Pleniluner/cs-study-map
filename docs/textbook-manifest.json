@@ -32,5 +32,8 @@
   "docs/textbook/31-string-matching.md",
   "docs/textbook/32-trie.md",
   "docs/textbook/33-prefix-window.md",
+  "docs/textbook/34-monotonic-structures.md",
+  "docs/textbook/35-fenwick-tree.md",
+  "docs/textbook/36-segment-tree.md",
   "docs/textbook/index.md"
 ]

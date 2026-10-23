@@ -102,6 +102,8 @@ def build(project):
              "## 按领域浏览", ""]
     if (root / "config/curriculum.json").exists():
         index[2] += " · [开始读教材](textbook/index.md)"
+    if (root / "docs/course-writing-plan.md").is_file():
+        index[2] += " · [按原课程学习与续写](course-writing-plan.md)"
     for identifier, title in project["taxonomy"]["subjects"].items():
         if subject_courses[identifier] or analyzed_by_subject[identifier]:
             index.append(f"- [{md(title)}](subjects/{identifier}.md)")

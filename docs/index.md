@@ -1,6 +1,6 @@
 # 计算机学习地图
 
-[项目说明](../README.md) · [运行与覆盖状态](status.md) · [开始读教材](textbook/index.md)
+[项目说明](../README.md) · [运行与覆盖状态](status.md) · [开始读教材](textbook/index.md) · [按原课程学习与续写](course-writing-plan.md)
 
 上游：[PKUanonym/REKCARC-TSC-UHT](https://github.com/PKUanonym/REKCARC-TSC-UHT)；索引版本：[`37cd19f7a9fb`](https://github.com/PKUanonym/REKCARC-TSC-UHT/commit/37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0)。
 

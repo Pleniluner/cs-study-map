@@ -988,12 +988,103 @@
         }
       ],
       "title": "复用区间信息：前缀和、双指针与滑动窗口"
+    },
+    {
+      "format": "python",
+      "id": "34-monotonic-structures",
+      "references": [
+        {
+          "note": "核对最近更小位置的候选替代理由和总入出栈次数；本章自定严格关系、下标输出及等值示例，未移植页面程序和题目。",
+          "title": "USACO Guide：单调栈",
+          "url": "https://usaco.guide/gold/stacks"
+        },
+        {
+          "note": "核对单调队列的过期和支配删除概念；本章使用自行编写的环形列表实现，另行证明最新最大值和含负数的前缀候选契约。",
+          "title": "USACO Guide：滑动窗口",
+          "url": "https://usaco.guide/gold/sliding-window"
+        },
+        {
+          "note": "仅参考候选不必保存全队列的抽象与摊还计数；矩阵、跨度和限长最大和例题及独立穷举均由本项目设计。",
+          "title": "Algorithms for Competitive Programming：最小栈与最小队列",
+          "url": "https://cp-algorithms.com/data_structures/stack_queue_modification.html"
+        }
+      ],
+      "scope": "所属课程：数据结构；单元：区间结构与查询；语言：Python 3.11+。承接前缀和与窗口，区分答案确定、候选被支配和位置过期；实现严格邻居、柱状图、环形候选队列、含负数的最短达标区间。以二值矩阵、连续跨度、循环邻居、极差和限长最大和说明比较符、平局与摊还复杂度。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "淘汰不再有用的候选：单调栈与单调队列"
+    },
+    {
+      "format": "python",
+      "id": "35-fenwick-tree",
+      "references": [
+        {
+          "note": "核对按位与及无限符号扩展补码语义；本章只新增已审读的 & 语法，未引入第三方运行依赖。",
+          "title": "Python 3.11：整数的按位操作",
+          "url": "https://docs.python.org/3.11/library/stdtypes.html#bitwise-operations-on-integer-types"
+        },
+        {
+          "note": "核对块和、线性构建及范围操作的概念；本章重新采用外部零起点半开接口，推导加权差分并自定拒绝、空结构及排名更新规则，未移植页面代码或题目。",
+          "title": "Algorithms for Competitive Programming：Fenwick Tree",
+          "url": "https://cp-algorithms.com/data_structures/fenwick.html"
+        }
+      ],
+      "scope": "所属课程：数据结构；单元：区间结构与查询；语言：Python 3.11+。定义零起点半开范围与内部一编号块，推导 lowbit、点增加、前缀查询、点赋值及线性构建。维护非负频次排名，组合差分范围加、给定坐标逆序对、双树范围和与中位数桶；注明验证、复制和大整数成本。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "动态维护前缀：树状数组与频次排名"
+    },
+    {
+      "format": "python",
+      "id": "36-segment-tree",
+      "references": [
+        {
+          "note": "核对结合性、单位元与常数合并成本的前提；本章原创三字段摘要及半开接口，不移植库代码、竞赛题或示例。",
+          "title": "AtCoder Library：Segtree",
+          "url": "https://atcoder.github.io/ac-library/production/document_en/segtree.html"
+        },
+        {
+          "note": "核对更新映射可组合并与摘要相容的条件；本章只推导整数范围加法，不宣称实现通用映射库。",
+          "title": "AtCoder Library：Lazy Segtree",
+          "url": "https://atcoder.github.io/ac-library/production/document_en/lazysegtree.html"
+        },
+        {
+          "note": "核对完整覆盖停止、部分覆盖下推的概念；本章自定递归半开结构、空范围与非法操作契约，并用直接数组模型核验。",
+          "title": "Algorithms for Competitive Programming：Segment Tree",
+          "url": "https://cp-algorithms.com/data_structures/segment_tree.html"
+        }
+      ],
+      "scope": "所属课程：数据结构；单元：区间结构与查询；语言：Python 3.11+。从结合性与空单位元实现和、最小值、长度摘要；构建补齐树、点赋值及双侧顺序查询，再以独立递归结构实现区间加与区间和。例题追踪下推，练习最早阈值位置、允许空段的最大子段摘要与非交换拼接，区分逻辑值和内部表示。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "合并区间摘要：线段树与延迟更新"
     }
   ],
   "learner": "从基础开始自学；先用纸笔和小例子建立概念，再接触课程实验。",
   "planned": [
-    "动态规划进一步专题（多重与分组背包、区间优化、换根与树上背包）、编码与归一化、字形簇、多模式匹配与后缀结构、二维前缀和及单调队列",
-    "数据结构进阶：平衡树、树状数组、线段树、开放寻址哈希与索引堆",
+    "动态规划进一步专题（多重与分组背包、区间优化、换根与树上背包）、编码与归一化、字形簇、多模式匹配与后缀结构、二维前缀和",
+    "数据结构进一步专题：平衡树、开放寻址哈希、索引堆、二维范围结构、持久化、动态开点与复杂延迟标签",
     "图算法进阶：强连通分量、桥与割点、全点对最短路、匹配与网络流",
     "算法分析与理论：递推式、摊还证明、随机化、排序下界与复杂度入门",
     "程序开发基础：文件、异常、模块、对象、调试与完整小项目",

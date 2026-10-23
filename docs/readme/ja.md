@@ -8,7 +8,7 @@
 
 Plenilunerが管理する個人学習プロジェクトで、清華大学や上流の管理者との公式な関係はありません。公開リポジトリには独自ツール、教材の草稿、出典索引、AIガイドを含みます。原資料、講義スライド、課題、学生のソースコード、抽出全文は公開しません。
 
-## 33章を順番に学ぶ
+## 36章を順番に学ぶ
 
 | # | テーマ | 実践 |
 | --- | --- | --- |
@@ -45,8 +45,11 @@ Plenilunerが管理する個人学習プロジェクトで、清華大学や上�
 | 31 | [文字列照合と KMP](../textbook/31-string-matching.md) | 接頭辞への戻り、重複一致、分割入力と回転を追跡する |
 | 32 | [トライ木と接頭辞検索](../textbook/32-trie.md) | 重複語、削除、列挙と接頭辞の件数を管理する |
 | 33 | [累積和・二つのポインタ・スライディングウィンドウ](../textbook/33-prefix-window.md) | 区間の境界、単調性と数え上げを検証する |
+| 34 | [単調スタックと単調キュー](../textbook/34-monotonic-structures.md) | 候補を除く理由と負数を含む区間を検証する |
+| 35 | [Fenwick 木と頻度順位](../textbook/35-fenwick-tree.md) | 累積区間、差分と非負頻度の順位を管理する |
+| 36 | [セグメント木と遅延伝播](../textbook/36-segment-tree.md) | 区間情報の結合、問い合わせ順序と更新の伝播を追う |
 
-第 4–33 章では Python 3.11 以降を使い、単独で実行できる 300 個のプログラムと予想出力を示します。[プログラミング練習ガイド](../programming-practice.md)、[データ構造練習ガイド](../data-structures-practice.md)、[アルゴリズム練習ガイド](../algorithms-practice.md)（中国語）を参照してください。 [再帰と分割統治の練習ガイド（中国語）](../recursion-practice.md). [木とヒープの練習ガイド（中国語）](../trees-practice.md). [ハッシュ表とグラフの練習ガイド（中国語）](../hash-graphs-practice.md). [トポロジカルソートと重み付きグラフの練習ガイド（中国語）](../weighted-graphs-practice.md). [バックトラッキング・貪欲法・動的計画法の練習ガイド（中国語）](../strategy-practice.md). [動的計画法の発展練習ガイド（中国語）](../advanced-dp-practice.md). [文字列・トライ木・区間の練習ガイド（中国語）](../string-window-practice.md).
+第 4–36 章では Python 3.11 以降を使い、単独で実行できる 330 個のプログラムと予想出力を示します。[プログラミング練習ガイド](../programming-practice.md)、[データ構造練習ガイド](../data-structures-practice.md)、[アルゴリズム練習ガイド](../algorithms-practice.md)（中国語）を参照してください。 [再帰と分割統治の練習ガイド（中国語）](../recursion-practice.md). [木とヒープの練習ガイド（中国語）](../trees-practice.md). [ハッシュ表とグラフの練習ガイド（中国語）](../hash-graphs-practice.md). [トポロジカルソートと重み付きグラフの練習ガイド（中国語）](../weighted-graphs-practice.md). [バックトラッキング・貪欲法・動的計画法の練習ガイド（中国語）](../strategy-practice.md). [動的計画法の発展練習ガイド（中国語）](../advanced-dp-practice.md). [文字列・トライ木・区間の練習ガイド（中国語）](../string-window-practice.md). [単調構造と動的区間クエリの練習ガイド（中国語）](../range-structures-practice.md).
 
 各章には詳しい解説、独自の例題 2 問、解答を展開できる練習 3 問、自己確認、出典があります。AI による初稿であり、専門家の査読や学習者による試用は未実施です。全科目の教材が完成したことを意味しません。
 

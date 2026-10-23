@@ -32,6 +32,12 @@
 
 发现出处错误、导读过度复述或不适合公开的信息，可通过本仓库 Issue 指明路径。维护者会核查并更正或移除当前展示内容；普通提交历史的处理需要另行评估。
 
+## 单调结构与动态范围查询
+
+第 34–36 章另核对 USACO Guide 的[单调栈](https://usaco.guide/gold/stacks)与[滑动窗口](https://usaco.guide/gold/sliding-window)、Algorithms for Competitive Programming 的[候选队列](https://cp-algorithms.com/data_structures/stack_queue_modification.html)、[树状数组](https://cp-algorithms.com/data_structures/fenwick.html)和[线段树](https://cp-algorithms.com/data_structures/segment_tree.html)，以及 [AtCoder Library 摘要结合条件](https://atcoder.github.io/ac-library/production/document_en/segtree.html)、[延迟映射条件](https://atcoder.github.io/ac-library/production/document_en/lazysegtree.html)与 [Python 按位运算语义](https://docs.python.org/3.11/library/stdtypes.html#bitwise-operations-on-integer-types)。这些列出页面可以直接读取，具体核对范围另见章末说明。
+
+正文按本项目的零起点半开接口、严格大小关系、平局、非负频次、空单位元和失败不改状态要求重新编写。环形候选队列、三字段摘要、追踪图、练习数据和独立数组参照由本项目设计，未移植课程作业或参考代码。上游 Python 学习入口仍只作选题关联；本批外部原理核对不增加上游有效导读数量，也不代表完整课程或学科专家审读已经完成。
+
 ## 早期 README 成果
 
 [早期成果归档](docs/early-work/index.md)收录维护者先前在本地整理的总知识图、分类总览、60 份课程指南及教材 README，共 63 份。公开副本保留学习内容，并移除本地绝对路径；归档清单仅记录相对路径、公开副本大小与 SHA-256；此次提交是既有成果补录，提交日期不冒充创作日期。历史状态仍为早期文档自述；相对资料引用保留，本地绝对路径已移除，涉及来源材料的权利继续适用上述边界。

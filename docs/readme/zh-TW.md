@@ -8,7 +8,7 @@
 
 這是 Pleniluner 維護的個人學習專案，與清華大學及上游維護者沒有官方隸屬關係。公開儲存庫包含原創工具、教材草稿、來源索引和 AI 導讀；不發布原始教材、課件、作業、學生原始碼或擷取全文。
 
-## 依三十三章順序學習
+## 依三十六章順序學習
 
 | # | 主題 | 實作 |
 | --- | --- | --- |
@@ -45,8 +45,11 @@
 | 31 | [字串比對與 KMP](../textbook/31-string-matching.md) | 追蹤前綴回退、重疊、跨區塊狀態與旋轉 |
 | 32 | [Trie 與前綴查詢](../textbook/32-trie.md) | 維護重複詞、空詞、刪除、列舉與前綴計數 |
 | 33 | [前綴和、雙指標與滑動視窗](../textbook/33-prefix-window.md) | 核對區間邊界、單調性與計數規則 |
+| 34 | [單調堆疊與單調佇列](../textbook/34-monotonic-structures.md) | 證明候選淘汰並核對負數區間 |
+| 35 | [樹狀陣列與頻次排名](../textbook/35-fenwick-tree.md) | 維護前綴區塊、差分與非負排名 |
+| 36 | [線段樹與延遲更新](../textbook/36-segment-tree.md) | 合併摘要並追蹤查詢順序與標記下推 |
 
-第 4–33 章使用 Python 3.11 或更新版本，共提供 300 段可獨立執行的程式及預期輸出。練習方法見[程式練習指南](../programming-practice.md)、[資料結構練習指引](../data-structures-practice.md)與[演算法練習指引](../algorithms-practice.md)（簡體中文）。 [遞迴與分治練習指引（簡體中文）](../recursion-practice.md). [樹與堆積練習指引（簡體中文）](../trees-practice.md). [雜湊表與圖練習指引（簡體中文）](../hash-graphs-practice.md). [拓撲排序與帶權圖練習指引（簡體中文）](../weighted-graphs-practice.md). [回溯、貪心與動態規劃練習指引（簡體中文）](../strategy-practice.md). [動態規劃進階練習指引（簡體中文）](../advanced-dp-practice.md). [字串、Trie 與區間技巧練習指引（簡體中文）](../string-window-practice.md).
+第 4–36 章使用 Python 3.11 或更新版本，共提供 330 段可獨立執行的程式及預期輸出。練習方法見[程式練習指南](../programming-practice.md)、[資料結構練習指引](../data-structures-practice.md)與[演算法練習指引](../algorithms-practice.md)（簡體中文）。 [遞迴與分治練習指引（簡體中文）](../recursion-practice.md). [樹與堆積練習指引（簡體中文）](../trees-practice.md). [雜湊表與圖練習指引（簡體中文）](../hash-graphs-practice.md). [拓撲排序與帶權圖練習指引（簡體中文）](../weighted-graphs-practice.md). [回溯、貪心與動態規劃練習指引（簡體中文）](../strategy-practice.md). [動態規劃進階練習指引（簡體中文）](../advanced-dp-practice.md). [字串、Trie 與區間技巧練習指引（簡體中文）](../string-window-practice.md). [單調結構與動態區間查詢練習指引（簡體中文）](../range-structures-practice.md).
 
 每章包含詳細講解、2 個原創例題、3 道附可展開解答的練習、自我檢測與選題來源。目前是 AI 初稿，尚未經學科專家審查或學習者試學，不代表所有課程都已完成教材。
 

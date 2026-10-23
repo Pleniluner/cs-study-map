@@ -8,7 +8,7 @@
 
 Pleniluner가 관리하는 개인 학습 프로젝트이며 칭화대학교나 상류 저장소 관리자와 공식 관계가 없습니다. 공개 저장소에는 자체 도구, 교재 초안, 출처 색인, AI 안내가 포함됩니다. 원본 교재, 강의자료, 과제, 학생 소스 코드, 추출 전문은 공개하지 않습니다.
 
-## 33장을 순서대로 학습하기
+## 36장을 순서대로 학습하기
 
 | # | 주제 | 실습 |
 | --- | --- | --- |
@@ -45,8 +45,11 @@ Pleniluner가 관리하는 개인 학습 프로젝트이며 칭화대학교나 �
 | 31 | [문자열 검색과 KMP](../textbook/31-string-matching.md) | 접두사 복귀, 겹치는 일치, 블록 경계와 회전 추적하기 |
 | 32 | [트라이와 접두사 검색](../textbook/32-trie.md) | 중복 단어, 삭제, 열거와 접두사 개수 관리하기 |
 | 33 | [누적 합, 두 포인터와 슬라이딩 윈도](../textbook/33-prefix-window.md) | 구간 경계, 단조성과 개수 계산 증명하기 |
+| 34 | [단조 스택과 단조 큐](../textbook/34-monotonic-structures.md) | 후보 제거를 증명하고 음수가 포함된 구간 검증하기 |
+| 35 | [펜윅 트리와 빈도 순위](../textbook/35-fenwick-tree.md) | 누적 구간, 차분과 음이 아닌 빈도의 순위 관리하기 |
+| 36 | [세그먼트 트리와 지연 전파](../textbook/36-segment-tree.md) | 요약을 결합하고 질의 순서와 갱신 전파 추적하기 |
 
-4–33장은 Python 3.11 이상을 사용하며, 독립적으로 실행할 수 있는 프로그램 300개와 예상 출력을 제공합니다. 중국어로 작성된 [프로그래밍 연습 안내](../programming-practice.md), [자료 구조 연습 안내](../data-structures-practice.md), [알고리즘 연습 안내](../algorithms-practice.md)를 참고하세요. [재귀와 분할 정복 연습 안내(중국어)](../recursion-practice.md). [트리와 힙 연습 안내(중국어)](../trees-practice.md). [해시 테이블과 그래프 연습 안내(중국어)](../hash-graphs-practice.md). [위상 정렬과 가중 그래프 연습 안내(중국어)](../weighted-graphs-practice.md). [백트래킹, 탐욕 알고리즘, 동적 계획법 연습 안내(중국어)](../strategy-practice.md). [동적 계획법 심화 연습 안내(중국어)](../advanced-dp-practice.md). [문자열, 트라이와 구간 연습 안내(중국어)](../string-window-practice.md).
+4–36장은 Python 3.11 이상을 사용하며, 독립적으로 실행할 수 있는 프로그램 330개와 예상 출력을 제공합니다. 중국어로 작성된 [프로그래밍 연습 안내](../programming-practice.md), [자료 구조 연습 안내](../data-structures-practice.md), [알고리즘 연습 안내](../algorithms-practice.md)를 참고하세요. [재귀와 분할 정복 연습 안내(중국어)](../recursion-practice.md). [트리와 힙 연습 안내(중국어)](../trees-practice.md). [해시 테이블과 그래프 연습 안내(중국어)](../hash-graphs-practice.md). [위상 정렬과 가중 그래프 연습 안내(중국어)](../weighted-graphs-practice.md). [백트래킹, 탐욕 알고리즘, 동적 계획법 연습 안내(중국어)](../strategy-practice.md). [동적 계획법 심화 연습 안내(중국어)](../advanced-dp-practice.md). [문자열, 트라이와 구간 연습 안내(중국어)](../string-window-practice.md). [단조 구조와 동적 구간 질의 연습 안내(중국어)](../range-structures-practice.md).
 
 각 장에는 자세한 설명, 창작 예제 2개, 펼쳐 볼 수 있는 풀이가 있는 연습문제 3개, 자가 점검과 출처가 있습니다. AI 초안이며 분야 전문가 검토나 학습자 시범 학습을 거치지 않았습니다. 모든 과목의 교재가 완성되었다는 뜻은 아닙니다.
 

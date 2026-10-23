@@ -1,0 +1,222 @@
+{
+  "chapter_id": "35-fenwick-tree",
+  "content": {
+    "exercises": [
+      {
+        "answer": "答案为 4。两次出现的 3 不互相构成逆序对，故查询终点要用 r+1，把相等值也从“更大”中排除。程序完整检查坐标严格递增和所有值确实存在，失败返回 None，未修改输入；空列表和空坐标返回 0。设 n 项、m 个坐标，含验证、二分和初始化，时间 O(m+n log(m+1)+n+1)，保存秩和树的空间 O(n+m+1)。坐标表是本题给定输入，若自行排序压缩，还须另计准备成本。",
+        "hint": "先二分求每个值的坐标秩，再从左向右维护已见频次。处理秩 r 时，已见总数减去截至 r 的前缀频次，得到严格更大者个数。",
+        "program": {
+          "code": "def fenwick_new(size):\n    if size < 0:\n        return None\n    return {'size': size, 'tree': [0] * (size + 1)}\n\ndef fenwick_add(state, index, delta):\n    if index < 0 or index >= state['size']:\n        return False\n    i = index + 1\n    while i <= state['size']:\n        state['tree'][i] = state['tree'][i] + delta\n        i = i + (i & -i)\n    return True\n\ndef fenwick_prefix(state, stop):\n    if stop < 0 or stop > state['size']:\n        return None\n    total = 0\n    i = stop\n    while i > 0:\n        total = total + state['tree'][i]\n        i = i - (i & -i)\n    return total\n\ndef inversion_count(values, coordinates):\n    for i in range(1, len(coordinates)):\n        if coordinates[i] <= coordinates[i - 1]:\n            return None\n    ranks = []\n    for value in values:\n        left = 0\n        right = len(coordinates)\n        while left < right:\n            middle = (left + right) // 2\n            if coordinates[middle] < value:\n                left = middle + 1\n            else:\n                right = middle\n        if left == len(coordinates) or coordinates[left] != value:\n            return None\n        ranks.append(left)\n    bit = fenwick_new(len(coordinates))\n    result = 0\n    for i in range(len(ranks)):\n        result = result + i - fenwick_prefix(bit, ranks[i] + 1)\n        fenwick_add(bit, ranks[i], 1)\n    return result\n\nprint(inversion_count([3, 1, 3, 0], [0, 1, 3]))\nprint(inversion_count([], []))\nprint(inversion_count([2], [0, 1, 3]))\nprint(inversion_count([1], [1, 1]))\n",
+          "output": "4\n0\nNone\nNone\n"
+        },
+        "question": "给定整数列表及包含所有值的严格升序坐标表，统计逆序对：较早位置的值严格大于较晚位置。求 [3,1,3,0]，坐标表 [0,1,3]。"
+      },
+      {
+        "answer": "两棵树分别维护 D[i] 与 i×D[i]，prefix(stop)=stop×B1.prefix(stop)−B2.prefix(stop)。范围增加在 l 加 delta、在 r 减 delta，第二棵相应加 l×delta、减 r×delta。最终查询为 9 和 10；空范围为 0。包括末尾哨兵的构建时间、空间均 O(n+1)，每次操作 O(log(n+2))。所有四次写入之前统一验证范围；不能混用从一开始的权重公式。此方法依赖加法和线性权重，不能直接换成区间最小值。",
+        "hint": "差分 D[i] 会在前 stop 项里贡献 stop−i 次，前提是 i 在 [0,stop)。因此前缀总和等于 stop 乘以这些差分之和，再减去 i×D[i] 之和。",
+        "program": {
+          "code": "def fenwick_new(size):\n    if size < 0:\n        return None\n    return {'size': size, 'tree': [0] * (size + 1)}\n\ndef fenwick_add(state, index, delta):\n    if index < 0 or index >= state['size']:\n        return False\n    i = index + 1\n    while i <= state['size']:\n        state['tree'][i] = state['tree'][i] + delta\n        i = i + (i & -i)\n    return True\n\ndef fenwick_prefix(state, stop):\n    if stop < 0 or stop > state['size']:\n        return None\n    total = 0\n    i = stop\n    while i > 0:\n        total = total + state['tree'][i]\n        i = i - (i & -i)\n    return total\n\ndef fenwick_build(values):\n    tree = [0] + values.copy()\n    for i in range(1, len(tree)):\n        parent = i + (i & -i)\n        if parent < len(tree):\n            tree[parent] = tree[parent] + tree[i]\n    return {'size': len(values), 'tree': tree}\n\ndef dual_new(values):\n    differences = []\n    weighted = []\n    previous = 0\n    for i in range(len(values)):\n        delta = values[i] - previous\n        differences.append(delta)\n        weighted.append(i * delta)\n        previous = values[i]\n    differences.append(-previous)\n    weighted.append(-len(values) * previous)\n    return {'size': len(values), 'plain': fenwick_build(differences), 'weighted': fenwick_build(weighted)}\n\ndef dual_add(state, start, stop, delta):\n    if start < 0 or stop < start or stop > state['size']:\n        return False\n    fenwick_add(state['plain'], start, delta)\n    fenwick_add(state['plain'], stop, -delta)\n    fenwick_add(state['weighted'], start, start * delta)\n    fenwick_add(state['weighted'], stop, -stop * delta)\n    return True\n\ndef dual_prefix(state, stop):\n    if stop < 0 or stop > state['size']:\n        return None\n    return stop * fenwick_prefix(state['plain'], stop) - fenwick_prefix(state['weighted'], stop)\n\ndef dual_range(state, start, stop):\n    if start < 0 or stop < start or stop > state['size']:\n        return None\n    return dual_prefix(state, stop) - dual_prefix(state, start)\n\nstate = dual_new([2, 0, 3, 1])\ndual_add(state, 1, 4, 2)\ndual_add(state, 0, 2, -1)\nprint(dual_range(state, 1, 4), dual_range(state, 0, 4))\nprint(dual_range(state, 2, 2), dual_range(state, -1, 3))\nprint(dual_range(dual_new([]), 0, 0))\n",
+          "output": "9 10\n0 None\n0\n"
+        },
+        "question": "在允许交错操作的情况下实现范围增加与范围求和。沿用 [2,0,3,1] 的两次更新，查询 [1,4) 和全段。请从零起点差分推导双树公式。"
+      },
+      {
+        "answer": "四项时返回 [1,3]；增加后五项返回 [3,3]。奇数项的两个排名相同，偶数项可能落在同桶，也可能落在不同桶；函数返回桶号，不计算两个桶值的算术平均。空集合返回 []，频次创建和更新仍须通过非负接口。对 n 个桶，除已有构造外，一次查询 O(log(n+1)+1) 时间、O(1) 辅助空间；哪怕某桶频次很大，也不分配同样多的元素槽。",
+        "hint": "总数 N 非零时，两项的从一开始排名分别为 (N+1)//2 与 N//2+1。调用排名函数，不展开重复元素。",
+        "program": {
+          "code": "def fenwick_new(size):\n    if size < 0:\n        return None\n    return {'size': size, 'tree': [0] * (size + 1)}\n\ndef fenwick_add(state, index, delta):\n    if index < 0 or index >= state['size']:\n        return False\n    i = index + 1\n    while i <= state['size']:\n        state['tree'][i] = state['tree'][i] + delta\n        i = i + (i & -i)\n    return True\n\ndef fenwick_prefix(state, stop):\n    if stop < 0 or stop > state['size']:\n        return None\n    total = 0\n    i = stop\n    while i > 0:\n        total = total + state['tree'][i]\n        i = i - (i & -i)\n    return total\n\ndef fenwick_build(values):\n    tree = [0] + values.copy()\n    for i in range(1, len(tree)):\n        parent = i + (i & -i)\n        if parent < len(tree):\n            tree[parent] = tree[parent] + tree[i]\n    return {'size': len(values), 'tree': tree}\n\ndef frequency_new(counts):\n    for count in counts:\n        if count < 0:\n            return None\n    return {'counts': counts.copy(), 'bit': fenwick_build(counts)}\n\ndef frequency_change(state, index, delta):\n    if index < 0 or index >= len(state['counts']):\n        return False\n    updated = state['counts'][index] + delta\n    if updated < 0:\n        return False\n    state['counts'][index] = updated\n    return fenwick_add(state['bit'], index, delta)\n\ndef frequency_select(state, rank):\n    bit = state['bit']\n    size = bit['size']\n    if rank <= 0 or rank > fenwick_prefix(bit, size):\n        return None\n    step = 1\n    while step * 2 <= size:\n        step = step * 2\n    position = 0\n    remaining = rank\n    while step > 0:\n        following = position + step\n        if following <= size and bit['tree'][following] < remaining:\n            remaining = remaining - bit['tree'][following]\n            position = following\n        step = step // 2\n    return position\n\ndef median_buckets(state):\n    total = fenwick_prefix(state['bit'], len(state['counts']))\n    if total == 0:\n        return []\n    lower = frequency_select(state, (total + 1) // 2)\n    upper = frequency_select(state, total // 2 + 1)\n    return [lower, upper]\n\nstate = frequency_new([0, 2, 0, 2])\nprint(median_buckets(state))\nfrequency_change(state, 3, 1)\nprint(median_buckets(state))\nprint(median_buckets(frequency_new([0, 0])))\n",
+          "output": "[1, 3]\n[3, 3]\n[]\n"
+        },
+        "question": "非负频次表按桶号表示一个有序多重集合，返回下中位数和上中位数所在桶号。求 [0,2,0,2]；再给桶 3 增加一次。"
+      }
+    ],
+    "introduction": "前缀和能快速回答静态区间和，但修改一个元素后，后面的许多前缀值都会变化。树状数组把前缀拆成少量二进制对齐的块，使修改与查询只访问对数个位置。本章先解释每个槽究竟保存哪一段，再实现单点增加、区间求和、线性构建与频次排名。所有公开下标从零开始、区间采用半开形式，内部编号从一开始，两套编号始终分开。",
+    "limitations": [
+      "接口约定整数参数和由构造器生成的有效状态，不提供任意类型转换或对内部破坏的自动修复。",
+      "本章仅实现一维加法结构与非负频次排名；二维树状数组、通用非可逆聚合和持久化版本尚未展开。",
+      "对数结论按单位整数操作计算；Python 大整数的按位与、加减乘、比较和存储需要额外位成本。"
+    ],
+    "objectives": [
+      "解释 lowbit 与每个树状数组槽的区间含义。",
+      "实现单点增加、点赋值和前缀、区间求和，区别增量与新值。",
+      "证明线性构建正确，并用非负频次完成排名定位。",
+      "由差分推导范围加单点查与双树范围求和，核对停止边界。"
+    ],
+    "pitfalls": [
+      {
+        "correction": "更新外部 index 从 index+1 开始，前缀 stop 直接表示边界，零只作为停止条件。",
+        "mistake": "从内部编号零开始更新，或把查询终点写成元素下标加错一次。"
+      },
+      {
+        "correction": "先得到当前点值，再增加新旧之差；输入快照可能已经过时。",
+        "mistake": "把点赋值的新值直接当作增加量。"
+      },
+      {
+        "correction": "排名要求前缀计数单调，构造和每次频次更新都必须保持非负。",
+        "mistake": "通用树支持负数，就认为频次排名也允许负数。"
+      },
+      {
+        "correction": "半开 stop 可以等于 n，差分需要 n+1 槽；权重 i 始终使用外部零起点编号。",
+        "mistake": "省掉末尾差分槽，或两棵树中使用不同的编号约定。"
+      }
+    ],
+    "prerequisites": [
+      "第 6、10、11 章的列表、复杂度和二分边界。",
+      "第 18 章用列表表示树的编号习惯。",
+      "第 33 章的前缀和、差分与半开范围。"
+    ],
+    "sections": [
+      {
+        "body": "对正整数 i，lowbit(i)=i & −i 得到二进制中最低的那个 1 所代表的值。例如 12 的二进制为 1100，lowbit 是 4；13 为 1101，lowbit 是 1。符号 & 表示逐位与，只有两边对应位都为 1 才保留。对正数取负的补码表示，在最低有效 1 以下仍全为零、该位仍为 1，更高位与原数互补，因此按位与只留下这一位。\n\nPython 按位运算的语义相当于具有无限符号扩展的补码，不需要自行截断为某个机器字长。零的 lowbit 仍为零，若拿它推进编号，循环会停滞；所以内部使用正编号，前缀查询到零就结束。这里不是用数值大小猜块长，而是在利用编号的二进制结构。\n\n定义 tree[i] 保存外部区间 [i−lowbit(i),i) 的和。内部 i 是一个右边界编号，不是外部元素 i 的下标。前 stop 项可从右向左拆块：先取结束于 stop 的块，再减去块长，重复直到零。stop=13 对应 [12,13)、[8,12)、[0,8)，块之间不重叠，拼起来恰为 [0,13)。\n\n每次减 lowbit 都清除最低的一个 1，最多执行与二进制位数相同的次数。prefix_blocks 约定 stop 为非负整数，负数返回 None，零返回 []；时间和输出空间 O(log(stop+1)+1)。学习时先把每个块画在数轴上，再写求和循环，能避免把外部下标、内部编号和区间终点混为一谈。本节只展示块分解，真正保存各块之和的结构从下一节开始。",
+        "program": {
+          "code": "def prefix_blocks(stop):\n    if stop < 0:\n        return None\n    blocks = []\n    i = stop\n    while i > 0:\n        low = i & -i\n        blocks.append([i - low, i])\n        i = i - low\n    return blocks\n\nprint(prefix_blocks(13))\nprint(prefix_blocks(0), prefix_blocks(-1))\n",
+          "output": "[[12, 13], [8, 12], [0, 8]]\n[] None\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "lowbit：一个编号对应一块怎样的区间"
+      },
+      {
+        "body": "长度 n 的树状数组使用 n+1 个槽，tree[0] 不存有效块，初始值全零。外部位置 index 的单点增加从内部编号 index+1 开始，每次把 delta 加到当前槽，再令 i 增加 lowbit(i)，直到超过 n。查询前 stop 项则从 i=stop 出发，累加槽值并减 lowbit(i)，直到零。\n\n查询路径正是上一节的不重叠前缀分解。更新路径为什么相反地增加？当前块已经包含被修改的那一点；i+lowbit(i) 把它提升到更大的对齐块，其中也包含这点。沿此路径恰好访问所有包含该外部元素的块，其他槽代表不含它的区间，无需改变。于是每次更新之后，所有 tree[i] 的块和定义仍成立。\n\n对四个位置依次增加 1、2、3、4，内部表成为 [0,1,3,3,10]。其中 tree[4] 汇总前四项，tree[3] 只保存第三项；查询前 3 项取 tree[3]+tree[2]=3+3=6。表格看上去不像原数组，不应直接把 tree[index] 当作当前位置值。\n\nfenwick_new 拒绝负长度，零长度合法。增加操作先检查位置，非法返回 False 且不改变结构；查询终点允许 0 与 n，越界返回 None。所有接口要求 state 来自本章构造器且未被调用者改坏，不在每次查询时重验整棵树。初始化 O(n+1)，每次增加或前缀查询 O(log(n+1)+1)，结构 O(n+1) 空间。示例逐点插入 n 项需 O(n log(n+1)+1) 时间，不能因为单次操作快就把建树也写成线性。",
+        "program": {
+          "code": "def fenwick_new(size):\n    if size < 0:\n        return None\n    return {'size': size, 'tree': [0] * (size + 1)}\n\ndef fenwick_add(state, index, delta):\n    if index < 0 or index >= state['size']:\n        return False\n    i = index + 1\n    while i <= state['size']:\n        state['tree'][i] = state['tree'][i] + delta\n        i = i + (i & -i)\n    return True\n\ndef fenwick_prefix(state, stop):\n    if stop < 0 or stop > state['size']:\n        return None\n    total = 0\n    i = stop\n    while i > 0:\n        total = total + state['tree'][i]\n        i = i - (i & -i)\n    return total\n\nstate = fenwick_new(4)\nfor i in range(4):\n    fenwick_add(state, i, i + 1)\nprint(state['tree'])\nprint(fenwick_prefix(state, 3), fenwick_prefix(state, 0))\nprint(fenwick_add(state, 4, 8), fenwick_prefix(state, 5))\n",
+          "output": "[0, 1, 3, 3, 10]\n6 0\nFalse None\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "单点增加与前缀查询：沿两种方向访问块"
+      },
+      {
+        "body": "外部区间 [start,stop) 的和仍是前 stop 项减前 start 项。树状数组只改变前缀信息的维护方式，没有改变第 33 章的相减恒等式。范围必须满足零起点、不倒置、不越过 n；空区间合法且和为零，非法返回 None。一般整数值允许为负，区间求和不要求前缀单调。\n\n点赋值与点增加尤其容易混淆。若当前位置是 −2，要改为 7，应该增加 9，而不是增加 7。fenwick_set 先查询这个单元素区间取得旧值，再把新值减旧值作为 delta 交给增加函数。无需额外维护一份同步原数组，也不会误把已经过时的输入快照当作当前值。\n\n示例先得到 [4,−2,5]，查询 [1,3) 为 3；把位置 1 设为 7 后，整段和为 16。连续两次设为同一个值，第二次增量为零，结果保持一致；连续两次增加同一个非零量则会重复累积。这种区别应从题目要求决定，不能靠函数名之外的猜测。\n\n赋值在任何读取或写入前检查下标，非法返回 False。区间函数也先检查两个边界，所以不会拿某次失败查询的 None 做减法。空结构只允许 [0,0) 查询，没有合法元素可赋值。点赋值由常数次对数操作组成，仍为 O(log(n+1)+1) 时间、O(1) 辅助空间；区间查询同阶。验证范围只需几个比较；若调用者手改内部 tree 或 size，函数没有承诺修复这类失效状态。",
+        "program": {
+          "code": "def fenwick_new(size):\n    if size < 0:\n        return None\n    return {'size': size, 'tree': [0] * (size + 1)}\n\ndef fenwick_add(state, index, delta):\n    if index < 0 or index >= state['size']:\n        return False\n    i = index + 1\n    while i <= state['size']:\n        state['tree'][i] = state['tree'][i] + delta\n        i = i + (i & -i)\n    return True\n\ndef fenwick_prefix(state, stop):\n    if stop < 0 or stop > state['size']:\n        return None\n    total = 0\n    i = stop\n    while i > 0:\n        total = total + state['tree'][i]\n        i = i - (i & -i)\n    return total\n\ndef fenwick_range(state, start, stop):\n    if start < 0 or stop < start or stop > state['size']:\n        return None\n    return fenwick_prefix(state, stop) - fenwick_prefix(state, start)\n\ndef fenwick_set(state, index, value):\n    if index < 0 or index >= state['size']:\n        return False\n    old = fenwick_range(state, index, index + 1)\n    return fenwick_add(state, index, value - old)\n\nstate = fenwick_new(3)\nfenwick_add(state, 0, 4)\nfenwick_add(state, 1, -2)\nfenwick_add(state, 2, 5)\nprint(fenwick_range(state, 1, 3))\nprint(fenwick_set(state, 1, 7), fenwick_range(state, 0, 3))\nprint(fenwick_range(state, 2, 2), fenwick_range(state, 2, 1))\n",
+          "output": "3\nTrue 16\n0 None\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "区间求和与点赋值：把接口语义写清楚"
+      },
+      {
+        "body": "已有完整整数列表时，可以避免逐点增加。先令 tree=[0]+values 的独立副本，再按内部编号从小到大处理 i：把 tree[i] 加到 parent=i+lowbit(i)，若 parent 已超过 n 就不再传递。这里只向一个父块转交一次，而非沿更新路径转交所有祖先。\n\n为什么这样足够？处理 i 之前，所有编号更小、应归入它的直接子块都已完成，并把各自整块之和传来。它们的范围互不重叠，加上最初放在 i 的那个元素，恰好组成 [i−lowbit(i),i)。现在 tree[i] 已是最终块和，可以整体送给父块；更远祖先会在父块处理时收到它，避免重复计算。\n\n对 [4,−2,0,5,1]，初始槽为 [0,4,−2,0,5,1]。编号 1 把 4 交给 2，编号 2 把已汇总的 2 交给 4，编号 3 再把 0 交给 4，最后得到 [0,4,2,0,7,1]。第五个槽仍只负责最后一项，并不要求根式的单一槽覆盖所有元素；整段查询会按前缀分解访问多个块。\n\nparent 总比 i 大，这是递增处理能成立的依赖顺序。每个编号最多一次转交，连同复制与初始化，构建时间 O(n+1)、结构空间 O(n+1)。零长度得到 size=0、tree=[0]，与前几节接口兼容。values 后来变化不会自动改变树，树上的更新也不会改原列表；测试应分别检查不变量与输入独立性。线性构建和逐点构建得到同样的块值，但对拍两种实现不足以替代直接求每块之和的独立核验。",
+        "program": {
+          "code": "def fenwick_build(values):\n    tree = [0] + values.copy()\n    for i in range(1, len(tree)):\n        parent = i + (i & -i)\n        if parent < len(tree):\n            tree[parent] = tree[parent] + tree[i]\n    return {'size': len(values), 'tree': tree}\n\nvalues = [4, -2, 0, 5, 1]\nprint(fenwick_build(values)['tree'])\nprint(fenwick_build([]))\nprint(values)\n",
+          "output": "[0, 4, 2, 0, 7, 1]\n{'size': 0, 'tree': [0]}\n[4, -2, 0, 5, 1]\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "线性构建：把已经完成的小块交给父块"
+      },
+      {
+        "body": "假设桶号按顺序排列，每桶保存非负整数频次。第 rank 项使用从 1 开始的排名，求它落在哪个零起点桶。例 [0,2,0,3] 表示前两个元素在桶 1，后三个在桶 3；第 1 项落在 1，第 3 项落在 3。零频次桶允许跳过，空表或总频次为零时没有合法排名。\n\n所有频次非负，前缀计数才不会下降。寻找的桶是第一个使包含它的前缀计数达到 rank 的位置。程序维护已跳过的前缀长度 position，以及尚需跨过的排名 remaining，从不超过 n 的最大二次幂开始尝试块长。若候选块累计数仍严格小于 remaining，就整块跳过并扣除其频次，否则保留当前位置；然后把步长减半。\n\n每轮 position 是更大步长组成的边界，因此试探 following=position+step 时，tree[following] 正好覆盖尚未跳过的那一块。结束时 position 是计数仍不足原排名的最长前缀长度，也恰为答案的零起点桶号。比较必须严格：若一块刚好达到排名，目标仍在该块内，不能把它整个跳过。这个过程直接读取槽，而不是每轮再做一次前缀查询。\n\n对上述频次找第 3 项：步长 4 时整块计数 5，不能跳过；步长 2 时前两桶计数 2，跳过后 position=2、remaining=1；步长 1 时下一桶计数为零，继续跳到 position=3。步长归零，答案就是桶 3。注意剩余排名减少的是桶内元素数，position 增加的是桶数，两种单位不可互换。\n\nfrequency_new 完整拒绝负频次并复制输入。以后只用 frequency_change 修改，它先检查下标及更新后非负，再同时改 counts 和内部树；失败不变。若错误允许 [2,−2,2]，前两桶的总数零会诱使程序整块跳过，尽管第一个前缀早已达到排名 1，正说明单调性不是可省略的形式条件。绕过专用接口调用通用增加函数可能破坏前提。构建 O(n+1)，一次修改或排名查询 O(log(n+1)+1)，空间 O(n+1)。没有按总频次展开元素，所以巨大计数不会分配同样多的元素槽；整数位数的算术成本仍须另计。",
+        "program": {
+          "code": "def fenwick_new(size):\n    if size < 0:\n        return None\n    return {'size': size, 'tree': [0] * (size + 1)}\n\ndef fenwick_add(state, index, delta):\n    if index < 0 or index >= state['size']:\n        return False\n    i = index + 1\n    while i <= state['size']:\n        state['tree'][i] = state['tree'][i] + delta\n        i = i + (i & -i)\n    return True\n\ndef fenwick_prefix(state, stop):\n    if stop < 0 or stop > state['size']:\n        return None\n    total = 0\n    i = stop\n    while i > 0:\n        total = total + state['tree'][i]\n        i = i - (i & -i)\n    return total\n\ndef fenwick_build(values):\n    tree = [0] + values.copy()\n    for i in range(1, len(tree)):\n        parent = i + (i & -i)\n        if parent < len(tree):\n            tree[parent] = tree[parent] + tree[i]\n    return {'size': len(values), 'tree': tree}\n\ndef frequency_new(counts):\n    for count in counts:\n        if count < 0:\n            return None\n    return {'counts': counts.copy(), 'bit': fenwick_build(counts)}\n\ndef frequency_change(state, index, delta):\n    if index < 0 or index >= len(state['counts']):\n        return False\n    updated = state['counts'][index] + delta\n    if updated < 0:\n        return False\n    state['counts'][index] = updated\n    return fenwick_add(state['bit'], index, delta)\n\ndef frequency_select(state, rank):\n    bit = state['bit']\n    size = bit['size']\n    if rank <= 0 or rank > fenwick_prefix(bit, size):\n        return None\n    step = 1\n    while step * 2 <= size:\n        step = step * 2\n    position = 0\n    remaining = rank\n    while step > 0:\n        following = position + step\n        if following <= size and bit['tree'][following] < remaining:\n            remaining = remaining - bit['tree'][following]\n            position = following\n        step = step // 2\n    return position\n\nstate = frequency_new([0, 2, 0, 3])\nprint(frequency_select(state, 1), frequency_select(state, 3))\nprint(frequency_select(state, 0), frequency_select(state, 6))\nprint(frequency_change(state, 1, -3), state['counts'])\nprint(frequency_change(state, 1, -2), frequency_select(state, 1))\n",
+          "output": "1 3\nNone None\nFalse [0, 2, 0, 3]\nTrue 3\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "非负频次的排名：沿二进制块定位第 k 项"
+      }
+    ],
+    "self_checks": [
+      "画出内部编号 1 到 8 各自覆盖的半开区间。",
+      "手算外部位置 2 更新时会改变哪些槽，并逐个核对是否包含该点。",
+      "解释线性构建时父编号为何总晚于子编号处理。",
+      "对频次 [0,0,4,0] 分别定位排名 1、4、5。",
+      "展开长度 3 的所有差分贡献，推导双树前缀公式而不背诵。"
+    ],
+    "worked_examples": [
+      {
+        "answer": "查询结果为 9 和 12，输入 [3,0,5,2] 不变。通用树允许负值，是否禁止某类业务计数变负应由另一个明确接口维护，本例两次修改都合法。设 n 项、q 次交错操作，线性构建后总时间 O(n+q log(n+1)+q+1)，空间 O(n+1)；独立测试直接更新一份列表，再逐区间求和。",
+        "program": {
+          "code": "def fenwick_new(size):\n    if size < 0:\n        return None\n    return {'size': size, 'tree': [0] * (size + 1)}\n\ndef fenwick_add(state, index, delta):\n    if index < 0 or index >= state['size']:\n        return False\n    i = index + 1\n    while i <= state['size']:\n        state['tree'][i] = state['tree'][i] + delta\n        i = i + (i & -i)\n    return True\n\ndef fenwick_prefix(state, stop):\n    if stop < 0 or stop > state['size']:\n        return None\n    total = 0\n    i = stop\n    while i > 0:\n        total = total + state['tree'][i]\n        i = i - (i & -i)\n    return total\n\ndef fenwick_build(values):\n    tree = [0] + values.copy()\n    for i in range(1, len(tree)):\n        parent = i + (i & -i)\n        if parent < len(tree):\n            tree[parent] = tree[parent] + tree[i]\n    return {'size': len(values), 'tree': tree}\n\ndef fenwick_range(state, start, stop):\n    if start < 0 or stop < start or stop > state['size']:\n        return None\n    return fenwick_prefix(state, stop) - fenwick_prefix(state, start)\n\ndef fenwick_set(state, index, value):\n    if index < 0 or index >= state['size']:\n        return False\n    old = fenwick_range(state, index, index + 1)\n    return fenwick_add(state, index, value - old)\n\nvalues = [3, 0, 5, 2]\nstate = fenwick_build(values)\nfenwick_set(state, 1, 4)\nfenwick_add(state, 2, -2)\nprint(fenwick_range(state, 1, 4), fenwick_range(state, 0, 4))\nprint(values)\nprint(fenwick_set(state, -1, 99))\n",
+          "output": "9 12\n[3, 0, 5, 2]\nFalse\n"
+        },
+        "question": "四个位置的测量计数为 [3,0,5,2]。先把位置 1 改为 4，再把位置 2 减少 2，随后查询 [1,4) 与全段。说明原始输入为何不能继续充当当前值。",
+        "steps": [
+          "用线性构建保存初始块和，原列表仍为初始快照。",
+          "点赋值读取当前位置 1 的旧值 0，增加 4，逻辑列表变成 [3,4,5,2]。",
+          "位置 2 增加 −2，逻辑列表变成 [3,4,3,2]。",
+          "前缀相减得到 [1,4) 的和 9、全段和 12；越界赋值在写入前被拒绝。"
+        ]
+      },
+      {
+        "answer": "最终四点为 1、1、5、3。difference_add 的所有边界先检查，非法返回 False 且不变；点查询只允许 0 到 n−1，哨兵不是额外数据点。零长度仍有一项差分哨兵，允许空更新而无合法点查询。构建 O(n+1)，每次操作 O(log(n+2))，空间 O(n+1)。这里求前缀是为了恢复一个点，不能把差分树的前缀误当原列表区间总和。",
+        "program": {
+          "code": "def fenwick_new(size):\n    if size < 0:\n        return None\n    return {'size': size, 'tree': [0] * (size + 1)}\n\ndef fenwick_add(state, index, delta):\n    if index < 0 or index >= state['size']:\n        return False\n    i = index + 1\n    while i <= state['size']:\n        state['tree'][i] = state['tree'][i] + delta\n        i = i + (i & -i)\n    return True\n\ndef fenwick_prefix(state, stop):\n    if stop < 0 or stop > state['size']:\n        return None\n    total = 0\n    i = stop\n    while i > 0:\n        total = total + state['tree'][i]\n        i = i - (i & -i)\n    return total\n\ndef fenwick_build(values):\n    tree = [0] + values.copy()\n    for i in range(1, len(tree)):\n        parent = i + (i & -i)\n        if parent < len(tree):\n            tree[parent] = tree[parent] + tree[i]\n    return {'size': len(values), 'tree': tree}\n\ndef difference_new(values):\n    differences = []\n    previous = 0\n    for value in values:\n        differences.append(value - previous)\n        previous = value\n    differences.append(-previous)\n    return {'size': len(values), 'bit': fenwick_build(differences)}\n\ndef difference_add(state, start, stop, delta):\n    if start < 0 or stop < start or stop > state['size']:\n        return False\n    fenwick_add(state['bit'], start, delta)\n    fenwick_add(state['bit'], stop, -delta)\n    return True\n\ndef difference_point(state, index):\n    if index < 0 or index >= state['size']:\n        return None\n    return fenwick_prefix(state['bit'], index + 1)\n\nstate = difference_new([2, 0, 3, 1])\ndifference_add(state, 1, 4, 2)\ndifference_add(state, 0, 2, -1)\nprint(difference_point(state, 0), difference_point(state, 1), difference_point(state, 2), difference_point(state, 3))\nprint(difference_add(state, 4, 4, 9), difference_point(state, 4))\nprint(difference_add(difference_new([]), 0, 0, 7))\n",
+          "output": "1 1 5 3\nTrue None\nTrue\n"
+        },
+        "question": "初始 [2,0,3,1]，给 [1,4) 加 2，再给 [0,2) 加 −1。要求每次更新后可立即查某一个位置，如何把差分变成动态结构？",
+        "steps": [
+          "相邻差构成 [2,−2,3,−2]，末尾再放 −1 作为停止哨兵，差分表长度 n+1。",
+          "范围增加只改 start 处加 delta、stop 处减 delta；stop=n 时仍有合法哨兵槽。",
+          "某位置的真实值是差分前 index+1 项之和，树状数组可立即返回这个前缀值。",
+          "两次更新后各点为 [1,1,5,3]；空区间的开始与停止事件在同一位置相消。"
+        ]
+      }
+    ]
+  },
+  "context_key": "5a7773e9cdbb9aea2dab33094fadb6629fe0e9befe2f92321602e089b27bd525",
+  "model": "Codex 当前会话（未记录具体模型型号）",
+  "prompt_version": "2-python",
+  "references": [
+    {
+      "note": "核对按位与及无限符号扩展补码语义；本章只新增已审读的 & 语法，未引入第三方运行依赖。",
+      "title": "Python 3.11：整数的按位操作",
+      "url": "https://docs.python.org/3.11/library/stdtypes.html#bitwise-operations-on-integer-types"
+    },
+    {
+      "note": "核对块和、线性构建及范围操作的概念；本章重新采用外部零起点半开接口，推导加权差分并自定拒绝、空结构及排名更新规则，未移植页面代码或题目。",
+      "title": "Algorithms for Competitive Programming：Fenwick Tree",
+      "url": "https://cp-algorithms.com/data_structures/fenwick.html"
+    }
+  ],
+  "review_status": "ai-draft",
+  "schema_version": 1,
+  "sources": [
+    {
+      "analysis_digest": "9888da07b670886c773f0c27f93b693f8b97ca9f8dbee6a241b394b6c3a05c25",
+      "analysis_id": "9653e7ae080bce424a5f",
+      "blob_sha": "fe751673ab99d124f9f4a6ecff2a51f9d613c95f",
+      "commit": "37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0",
+      "coverage": "extracted-text",
+      "evidence": [
+        {
+          "id": "L1-L40",
+          "locator": "第 1–40 行"
+        },
+        {
+          "id": "L41-L80",
+          "locator": "第 41–80 行"
+        },
+        {
+          "id": "L121-L160",
+          "locator": "第 121–160 行"
+        }
+      ],
+      "path": "大一小学期/Week_3-Python/docs/readme.md",
+      "repository": "PKUanonym/REKCARC-TSC-UHT",
+      "topics": [
+        {
+          "evidence_ids": [
+            "L41-L80"
+          ],
+          "key": "9653e7ae080bce424a5f:0",
+          "name": "Python 基础语法的外部学习入口"
+        },
+        {
+          "evidence_ids": [
+            "L121-L160"
+          ],
+          "key": "9653e7ae080bce424a5f:1",
+          "name": "从基础语法到工具与应用的建议阅读顺序"
+        }
+      ]
+    }
+  ],
+  "title": "动态维护前缀：树状数组与频次排名"
+}

@@ -384,7 +384,12 @@ def build_textbook(project):
              "## 从这里开始", "", "先按下表顺序阅读。能独立解释并做对自测再前进；卡住时在本机学习记录中写下具体问题，后续据此调整教材。", "",
              *([" · ".join(support + programming_support), ""] if support or programming_support else []),
              "| 顺序 | 章节 | 状态 |", "| ---: | --- | --- |", *rows, "", "## 后续路线（尚未写成教材）", ""]
-    lines += ["- " + md(t) for t in plan["planned"]]
+    if (root / "docs/course-writing-plan.md").is_file():
+        lines[2] += " · [按原课程学习与续写](../course-writing-plan.md)"
+        lines[4] = "先从[原课程编写总表](../course-writing-plan.md)选择领域、课程和课程内单元，再读讲解、跟例题、做练习和自测。下表保留已发布章节的顺序与稳定链接；跨课程借读复用同一正文。"
+        lines += ["后续按原领域、原课程和课程内单元编写，具体先修、已写范围和待写内容见[课程编写总表](../course-writing-plan.md)。新增单元按课程所需的语言、数学模型或实验方式验收；现有算法章节归入对应课程继续使用。"]
+    else:
+        lines += ["- " + md(t) for t in plan["planned"]]
     if (root / "docs/roadmap.md").is_file():
         lines += ["", "具体未完成任务、里程碑和验收条件见[未完成清单与维护计划](../roadmap.md)。"]
     lines += ["", "## 更新怎样影响教材", "", "同步先比较来源内容，变化会使旧导读失效。教材记录使用的分析版本；来源分析、编写范围或生成规则改变后会标为待复核。只有拿到有效资料分析后，写作命令才会按既定计划生成新稿。原资料不会并入教材仓库。", ""]
