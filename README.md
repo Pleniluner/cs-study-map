@@ -6,7 +6,7 @@
 
 **[开始读教材](docs/textbook/index.md)** · [前三章试学指南](docs/study-guide.md) · [综合练习](docs/unit-01-review.md) · [编程练习与运行](docs/programming-practice.md) · [查找参考资料](docs/index.md) · [覆盖状态](docs/status.md) · [使用与运行](docs/usage.md) · [来源与许可](ATTRIBUTION.md)
 
-项目仍在建设中。[未完成清单与维护计划](docs/roadmap.md)列明下一批第 25–27 章、后续课程缺口和软件维护任务，并分别记录现有成果与未来验收标准。
+项目仍在建设中。[项目概况与可复现成果](docs/project-brief.md)说明已有工具、验证依据与使用范围；[未完成清单与维护计划](docs/roadmap.md)列明下一批第 25–27 章、后续课程缺口和软件维护任务，并分别记录现有成果与未来验收标准。
 
 这是 Pleniluner 维护的个人学习项目，与清华大学及上游维护者没有官方隶属关系。公开仓库包含原创工具、教材草稿、来源索引和 AI 导读。原始教材、课件、作业、学生源码和提取全文不会随本仓库发布。
 
