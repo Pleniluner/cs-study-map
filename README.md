@@ -1,149 +1,155 @@
 # cs-study-map · 给自己的计算机教材
 
-| 简体中文 | [繁體中文](docs/readme/zh-TW.md) | [English](docs/readme/en.md) | [日本語](docs/readme/ja.md) | [Русский](docs/readme/ru.md) | [Français](docs/readme/fr.md) | [Deutsch](docs/readme/de.md) | [Italiano](docs/readme/it.md) | [Português](docs/readme/pt.md) | [Español](docs/readme/es.md) | [العربية](docs/readme/ar.md) | [한국어](docs/readme/ko.md) |
+简体中文 · [繁體中文](docs/readme/zh-TW.md) · [English](docs/readme/en.md) · [日本語](docs/readme/ja.md) · [Русский](docs/readme/ru.md) · [Français](docs/readme/fr.md) · [Deutsch](docs/readme/de.md) · [Italiano](docs/readme/it.md) · [Português](docs/readme/pt.md) · [Español](docs/readme/es.md) · [العربية](docs/readme/ar.md) · [한국어](docs/readme/ko.md)
 
-主要供本人自学：从 [REKCARC-TSC-UHT](https://github.com/PKUanonym/REKCARC-TSC-UHT) 识别可以学习的知识，按照先修关系重新组织成中文教材，补上概念讲解、原创例题、练习解答和自测。自动同步、分类与资料导读为教材选材和更新提供支持。
+把分散的计算机课程资料整理成可以循序学习、动手练习、回查来源的中文教材。
 
-**[按原课程学习与续写](docs/course-writing-plan.md)** · [已发布章节索引](docs/textbook/index.md) · [前三章试学指南](docs/study-guide.md) · [综合练习](docs/unit-01-review.md) · [编程练习与运行](docs/programming-practice.md) · [查找参考资料](docs/index.md) · [覆盖状态](docs/status.md) · [使用与运行](docs/usage.md) · [来源与许可](ATTRIBUTION.md)
+这是 Pleniluner 的个人自学项目：以 [REKCARC-TSC-UHT](https://github.com/PKUanonym/REKCARC-TSC-UHT) 为主要资料来源，追踪资料版本，识别知识点，再按先修关系重新组织讲解、原创例题、练习和自测。仓库同时提供阅读内容和维护这些内容的 Python 工具。
 
-项目仍在建设中。[项目概况与可复现成果](docs/project-brief.md)说明已有工具、验证依据与使用范围；[未完成清单与维护计划](docs/roadmap.md)记录已完成的第 25–36 章、后续课程缺口和软件维护任务，并分别列出现有成果与未来验收标准。
+**[开始学习](docs/textbook/index.md)** · **[按课程选方向](docs/course-writing-plan.md)** · [查找资料](docs/index.md) · [运行说明](docs/usage.md) · [后续计划](docs/roadmap.md)
 
-这是 Pleniluner 维护的个人学习项目，与清华大学及上游维护者没有官方隶属关系。公开仓库包含原创工具、教材草稿、来源索引和 AI 导读。原始教材、课件、作业、学生源码和提取全文不会随本仓库发布。
+## 从哪里开始
 
-## 按原课程组织教材
+直接打开 Markdown 即可阅读，无需安装程序或配置模型账号。
 
-后续按“原领域 → 原课程 → 课程内单元”编写。[课程编写总表](docs/course-writing-plan.md)逐门列出先修、已有正文、待写单元和验收方式，覆盖现有分类中的 65 个课程／资料分组；八个专业领域及通识入口均保留原名称。已有章节按主要课程归属复用，跨课程借读不重复计数。
+| 你想做什么 | 从这里进入 |
+| --- | --- |
+| 从基础概念开始试学 | [前三章试学指南](docs/study-guide.md)：字节、程序执行与内存分配 |
+| 按顺序读教材 | [36 章教材索引](docs/textbook/index.md)：讲解、例题、练习解答与自测 |
+| 按原课程安排学习 | [课程编写总表](docs/course-writing-plan.md)：先修、已有正文、待写单元与验收方式 |
+| 运行例题和练习代码 | [编程练习指引](docs/programming-practice.md)：环境准备、运行步骤与预期输出 |
+| 检查前三章的理解 | [综合练习](docs/unit-01-review.md)：6 道题、折叠解答与回读指引 |
+| 查原始资料及导读 | [资料地图](docs/index.md)与[覆盖状态](docs/status.md) |
+| 记录卡点和复习过程 | [学习记录模板](docs/learning-log-template.md)与[本机进度命令](docs/usage.md#study) |
 
-先补“程序设计与软件工程 → 程序设计基础”的 C++ 语言与工程单元，再衔接面向对象及相关实践课；数学和系统课程按各自先修展开。Python 算法章节可以帮助理解概念，C++、Java、Qt、汇编及实验课程仍按自身语言和模型完成讲解与验证。
+建议先读讲解，自己推演例题，再完成练习和自测。编程题先预测输出，再运行程序、修改边界输入；遇到卡点时记下具体问题，回到对应章节核对。
 
-## 按三十六章顺序学习
+## 已经写到哪里
 
-| 顺序 | 学什么 | 动手任务 |
-| --- | --- | --- |
-| 1 | [二进制、字节与小端序](docs/textbook/01-data-and-bytes.md) | 把一个数拆成字节，再从内存还原 |
-| 2 | [寄存器、内存与栈](docs/textbook/02-execution-and-stack.md) | 逐步追踪玩具机器的状态变化 |
-| 3 | [首次适应、拆分与合并](docs/textbook/03-first-fit.md) | 手算分配和释放，解释外部碎片 |
-| 4 | [顺序、分支与循环](docs/textbook/04-control-flow.md) | 追踪变量、编写判断与重复计算，检查边界和停止条件 |
-| 5 | [参数、返回值与函数](docs/textbook/05-functions.md) | 把计算拆成可组合的函数，区分打印、返回和局部名字 |
-| 6 | [数组与顺序表](docs/textbook/06-arrays.md) | 追踪下标、共享与复制，手写插入删除的元素搬移 |
-| 7 | [单链表与结点引用](docs/textbook/07-linked-lists.md) | 画出链接，完成插入、删除和原地逆序 |
-| 8 | [栈与嵌套处理](docs/textbook/08-stacks.md) | 按后进先出实现撤销、受限入栈和括号匹配 |
-| 9 | [队列与循环数组](docs/textbook/09-queues.md) | 追踪先进先出、空满与回绕，模拟轮流服务 |
-| 10 | [算法分析与增长量级](docs/textbook/10-algorithm-analysis.md) | 先定计数口径，再推导循环次数、最好最坏与额外空间 |
-| 11 | [顺序查找与二分查找](docs/textbook/11-searching.md) | 追踪半开区间、左右边界，处理重复值与缺失目标 |
-| 12 | [选择、插入与归并排序](docs/textbook/12-sorting.md) | 检查排序过程、元素重数、稳定性与排序后查询 |
-| 13 | [递归、返回与调用栈](docs/textbook/13-recursion.md) | 写清基例与缩小量，分别追踪总调用和峰值栈深 |
-| 14 | [分治与递归归并](docs/textbook/14-divide-and-conquer.md) | 拆分半开区间、组合子答案，处理快速幂与逆序对 |
-| 15 | [快速排序与三路划分](docs/textbook/15-quick-sort.md) | 验证分区、重复值与最坏情况，用短边递归控制栈深 |
-| 16 | [树、二叉树与遍历](docs/textbook/16-trees.md) | 追踪高度、三种深度优先与逐层访问，检查镜像和完全性 |
-| 17 | [二叉搜索树](docs/textbook/17-binary-search-trees.md) | 维护全局键序与增删链接，核对后继、范围查询和高度退化 |
-| 18 | [二叉堆与优先队列](docs/textbook/18-heaps.md) | 实现上浮、下沉、线性建堆和堆排序，处理最大 k 项与多路归并 |
-| 19 | [哈希表、冲突与扩容](docs/textbook/19-hash-tables.md) | 维护键值与独立桶，区分分布、最坏扫描和扩容摊还 |
-| 20 | [图与存储表示](docs/textbook/20-graphs.md) | 建立有向和无向模型，核对邻接表、矩阵、度数与反向边 |
-| 21 | [DFS、BFS 与无权最短路径](docs/textbook/21-graph-traversal.md) | 追踪发现与完成、栈帧和队列，恢复路径并处理连通分量与多源距离 |
-| 22 | [拓扑排序与 DAG 应用](docs/textbook/22-topological-sort.md) | 维护剩余入度，恢复有向环，安排任务并计数路径 |
-| 23 | [带权最短路与松弛](docs/textbook/23-weighted-shortest-paths.md) | 比较 Dijkstra、Bellman–Ford 和 DAG 次序，处理负权与限步路线 |
-| 24 | [最小生成树与并查集](docs/textbook/24-minimum-spanning-trees.md) | 用割性质解释 Prim、Kruskal，核验森林并处理固定分量与新边 |
-| 25 | [回溯与搜索剪枝](docs/textbook/25-backtracking.md) | 枚举选择、恢复路径状态，验证剪枝不会遗漏零值与重复项答案 |
-| 26 | [贪心算法与交换论证](docs/textbook/26-greedy-algorithms.md) | 构造反例、证明区间选择，核验合并与前缀码的最优代价 |
-| 27 | [动态规划入门](docs/textbook/27-dynamic-programming.md) | 定义状态与转移，处理不可达、恢复方案并检查压缩更新顺序 |
-| 28 | [背包问题与方案计数](docs/textbook/28-knapsack.md) | 区分容量上限、恰好重量与使用次数，恢复方案并计数组合与序列 |
-| 29 | [序列动态规划](docs/textbook/29-sequence-dp.md) | 比较 LCS、编辑距离、LIS 与连续子串，核对位置和对齐 |
-| 30 | [区间与树形动态规划](docs/textbook/30-interval-tree-dp.md) | 恢复矩阵链和相邻合并，验证森林并求独立集、覆盖及计数 |
-| 31 | [字符串匹配与 KMP](docs/textbook/31-string-matching.md) | 推导前缀表，检查重叠、跨块状态、周期与旋转 |
-| 32 | [Trie 与前缀检索](docs/textbook/32-trie.md) | 维护重复词、空词与子树计数，完成删除、枚举和前缀查询 |
-| 33 | [前缀和、双指针与滑动窗口](docs/textbook/33-prefix-window.md) | 追踪半开区间、差分与窗口，证明单调性并核对区间计数 |
-| 34 | [单调栈与单调队列](docs/textbook/34-monotonic-structures.md) | 证明候选淘汰，核对严格邻居、矩形面积与含负数窗口 |
-| 35 | [树状数组与频次排名](docs/textbook/35-fenwick-tree.md) | 维护二进制块、动态前缀与差分，定位非负频次排名 |
-| 36 | [线段树与延迟更新](docs/textbook/36-segment-tree.md) | 合并区间摘要，保持查询顺序，验证范围更新和下推 |
+目前有 **36 章中文教材草稿**。每章包含讲解、2 个原创例题、3 道练习及折叠解答、自测与来源说明。第 4–36 章使用 Python，合计提供 **330 段可独立运行的程序及预期输出**；验证方法和记录见[验证说明](docs/verification.md)。
 
-每章有实质讲解、2 个原创例题、3 道练习与折叠解答、自测以及选题来源。先按入门者的需要编排，后续根据本人的学习卡点调整。它还是 AI 教材初稿，尚未经过学科专家或学习者试学验收；现阶段不代表全部课程已经写成教材。
+| 章节 | 学习内容 |
+| --- | --- |
+| 1–5 | 二进制与字节、执行与栈、内存分配、控制结构、函数 |
+| 6–12 | 数组、链表、栈、队列、算法分析、查找与排序 |
+| 13–18 | 递归、分治、快速排序、树、二叉搜索树与堆 |
+| 19–24 | 哈希表、图、DFS / BFS、拓扑排序、最短路与最小生成树 |
+| 25–30 | 回溯、贪心、动态规划、背包、序列及区间与树形 DP |
+| 31–36 | 字符串匹配、Trie、前缀和与窗口、单调结构、树状数组与线段树 |
 
-第一次阅读可先看[试学指南](docs/study-guide.md)，分清三章使用的不同存储单位；读完后用 [6 道综合练习](docs/unit-01-review.md)检查掌握情况，每题都有折叠解答与回读指引。已安装项目时，可用 `cs-study-map study` 查看本机进度，记录方法见[运行说明](docs/usage.md#study)。
+这些内容仍是 **AI 教材初稿**，尚未经过学科专家或外部学习者试学验收。程序检查通过不等于所有讲解和学习效果已经得到验证。
 
-前三章用纸笔建立模型，第 4、5 章学习控制结构与函数，第 6–9 章学习数组、链表、栈和队列，第 10–12 章继续学习算法分析、查找和排序，第 13–15 章学习递归、分治和快速排序，第 16–18 章学习树、二叉搜索树和堆，第 19–21 章学习哈希表、图和基础图遍历，第 22–24 章学习拓扑排序、带权最短路和最小生成树，第 25–27 章学习回溯与搜索剪枝、贪心算法和动态规划入门，第 28–30 章继续学习背包、序列、区间与树形动态规划，第 31–33 章学习字符串匹配、Trie、前缀和与窗口技巧，第 34–36 章学习单调结构、树状数组及线段树与延迟更新。三十三个编程章节合计提供 330 段可独立运行的程序及预期输出，包含例题和练习的参考实现；先预测结果，再运行和改变边界输入。环境准备见[编程练习与运行](docs/programming-practice.md)，结构模型见[数据结构练习指引](docs/data-structures-practice.md)，计数与排序验证见[算法练习指引](docs/algorithms-practice.md)，递归过程见[递归与分治练习指引](docs/recursion-practice.md)，形状、键序和最值维护见[树与堆练习指引](docs/trees-practice.md)，冲突、方向和访问过程见[哈希表与图练习指引](docs/hash-graphs-practice.md)，依赖、路线费用和连接总价见[拓扑排序与带权图练习指引](docs/weighted-graphs-practice.md)，搜索、最优性证明和状态复用见[回溯、贪心与动态规划练习指引](docs/strategy-practice.md)，容量、对齐、切分与子树状态见[动态规划进阶练习指引](docs/advanced-dp-practice.md)，字符位置、前缀路径与区间信息见[字符串、Trie 与区间技巧练习指引](docs/string-window-practice.md)，候选淘汰、动态前缀与范围更新见[单调结构与动态区间查询练习指引](docs/range-structures-practice.md)。
+后续按“原领域 → 原课程 → 课程内单元”扩展。[课程编写总表](docs/course-writing-plan.md)覆盖现有的 65 个课程／资料分组，并区分已有正文与待写内容；当前 36 章不代表完整课程体系。下一步优先补充程序设计基础的 C++ 语言与工程单元，其他方向按各自先修展开。具体缺口见[维护计划](docs/roadmap.md)，早期整理见[知识图与课程指南归档](docs/early-work/index.md)。
 
-## 可以做什么
+## 工具能做什么
 
-- 按章节学习，在本机记录错题、卡点和下一步；学习记录默认放在被 Git 忽略的 `.local/`。
-- 根据已识别知识点生成新的原创教材章节，保留所依据的资料版本；来源变化后提示复核。
-- 按领域、课程和 AI 识别的知识点找到资料，并跳转到固定版本的上游原文件。
-- 查看“这份资料学什么、建议先了解什么、可以尝试什么”，以及判断所引用的页码或文本位置。
-- 定时检查上游更新，识别新增、修改、同内容移动和删除；复用未变化的分析结果。
-- 通过人工修正文件覆盖自动分类，保留自己的判断。
+- **追踪来源**：同步上游提交与文件索引，识别新增、修改、移动和删除，保留可回查的版本信息。
+- **整理导读**：提取支持格式的文本，生成知识点、先修建议和练习建议，标明证据位置、提取范围及生成模型。
+- **编写教材**：依据主题摘要和学习路线生成原创章节；来源或教学计划变化后，提示复核已有稿件。
+- **保留人工判断**：通过配置覆盖自动分类，构建课程与领域导航。
+- **记录学习**：离线保存个人进度、卡点和复习状态；章节更新后提示重新复习。
 
-AI 导读标明提取覆盖范围、生成模型和未人工核验状态。资料索引齐全与 AI 导读覆盖率分别统计；部分提取、暂不支持的格式和识别失败都会如实展示。
+资料索引、有效 AI 导读和教材章节分别统计，当前覆盖以[状态页](docs/status.md)为准。支持文本、常见源码、可提取文本的 PDF、DOCX、PPTX 和 Notebook；扫描件 OCR、旧 DOC/PPT 与压缩包内部分析尚未支持。长资料可能只提取部分内容，导读会标明范围。
 
-## 首次运行
+## 本地使用
 
-需要 Python 3.11 或更新版本。
+需要 **Python 3.11 或更新版本**。在终端克隆仓库并创建虚拟环境：
 
 ```bash
 git clone https://github.com/Pleniluner/cs-study-map.git
 cd cs-study-map
 python -m venv .venv
-# Linux / macOS:
+```
+
+激活环境，按系统选择一条命令：
+
+```powershell
+# Windows PowerShell
+.\.venv\Scripts\Activate.ps1
+```
+
+```bash
+# Linux / macOS
 source .venv/bin/activate
-# Windows PowerShell 改用：.\.venv\Scripts\Activate.ps1
+```
+
+安装后即可使用仓库已有内容，无需模型密钥：
+
+```bash
 python -m pip install -e .
+cs-study-map study
+cs-study-map validate --tracked
+```
+
+记录学习状态：
+
+```bash
+cs-study-map study --chapter 01-data-and-bytes --status reading
+cs-study-map study --chapter 01-data-and-bytes --note "还需要练习从字节还原整数"
+cs-study-map study --chapter 01-data-and-bytes --status completed
+```
+
+进度保存在被 Git 忽略的 `.local/study-progress.json` 中。`completed` 由学习者完成自测后自行确认；完整状态与版本复习规则见[运行说明](docs/usage.md#study)。
+
+需要更新资料目录时运行：
+
+```bash
 cs-study-map run --limit 0
 ```
 
-这一步只获取文件元数据并生成导航，不需要模型密钥，也不会下载原始资料全文。接入 AI 后，再按需提取少量原资料进行分析，缓存保存在被 Git 忽略的 `.cache/` 中。
+该命令联网获取上游文件元数据、重建导航并校验，不调用模型，也不下载原始资料全文。只想用已有数据重建阅读页，可运行 `cs-study-map build`。
 
-## AI 运行方式
+## 可选：接入 AI 与自动更新
 
-支持两种方式，使用同一套结果校验与导读生成流程。
+生成新导读和新章节时，可选择模型 API 或本机已登录的 Codex CLI：
 
-| 方式 | 用途 | 配置 |
-| --- | --- | --- |
-| 模型 API | GitHub Actions 持续分析，或本地运行 | `CS_STUDY_API_BASE`、`CS_STUDY_MODEL`、`CS_STUDY_API_KEY` |
-| 本机 Codex CLI | 使用本机已有登录进行分类 | `CS_STUDY_PROVIDER=codex`、`CS_STUDY_MODEL`，可指定 `CS_STUDY_CODEX_BIN` |
+| 方式 | 所需配置 |
+| --- | --- |
+| 模型 API | `CS_STUDY_API_BASE`、`CS_STUDY_MODEL`、`CS_STUDY_API_KEY` |
+| Codex CLI | `CS_STUDY_PROVIDER=codex`、`CS_STUDY_MODEL`；必要时指定 `CS_STUDY_CODEX_BIN` |
 
-API 适配器支持 Chat Completions 和 Responses 两种协议；默认 `chat`，可用 `CS_STUDY_API_STYLE=responses` 切换。模型名称必须是所用服务实际提供的名称。Codex 方式需要支持所选模型的当前版本 CLI，凭据由 CLI 自行管理。
+API 支持 Chat Completions 和 Responses；默认 `chat`，可通过 `CS_STUDY_API_STYLE=responses` 切换。配置示例见 [docs/usage.md](docs/usage.md)，变量清单见 [.env.example](.env.example)；程序不会自动加载 `.env` 文件。
+
+配置完成后，可小批量分析和写作：
 
 ```bash
 cs-study-map analyze --course 程序设计基础 --limit 2 --require-ai
 cs-study-map write --limit 1 --require-ai
-cs-study-map build
-cs-study-map validate
 ```
 
-详细配置、PowerShell 示例和 GitHub 设置见 [运行说明](docs/usage.md)。
+分析会把提取片段发送给所配置的模型服务；教材写作使用主题摘要。`write` 会构建并校验输出，已存在且输入未变的章节会复用。写作范围由 [config/curriculum.json](config/curriculum.json) 控制。
 
-## 自动同步
+[Sync study map 工作流](.github/workflows/sync.yml)配置为每日检查上游，也支持在 Actions 页面手动运行，默认每次最多分析 6 份资料、编写 1 章。未配置模型时仍同步目录，并报告 `not-configured`。Fork 后的模型配置与工作流启用步骤见[运行说明](docs/usage.md)。
 
-GitHub Actions 每天检查一次，也可在 Actions 页面手动运行 **Sync study map**。工作流先检查上游变化，再在已配置模型时按预算生成导读和教材，验证通过后提交更新。每天默认最多分析 6 份材料、编写 1 章；教材范围由 `config/curriculum.json` 维护。
+## 维护与贡献
 
-未配置模型时，工作流仍同步目录，并明确报告 `not-configured`；已有导读可继续浏览，发生变化的原资料会等待重新分析。它不会把文件名规则或模拟输出标为 AI 已完成。
+| 目录 | 内容 |
+| --- | --- |
+| `config/` | 来源、分类体系、课程映射、人工修正与教材计划 |
+| `catalog/` | 文件元数据、分析结果、结构化教材与覆盖统计 |
+| `docs/textbook/` | 生成的教材阅读页 |
+| `docs/` | 课程与领域导航、练习指引、使用说明与计划 |
+| `src/cs_study_map/` | 同步、提取、分析、教材写作、构建及校验代码 |
+| `tests/` | 工具行为、教材程序与发布检查的测试 |
+| `.github/workflows/` | 自动同步与 CI |
+| `.cache/`、`.local/` | 被 Git 忽略的原资料缓存、个人进度及私下笔记 |
 
-所有人都可以直接浏览已经生成的学习地图，无需模型账号。Fork 后如需自动生成新导读，需要设置自己的模型接口；本机 Codex 登录不会上传到 GitHub。公开仓库长期无活动时，GitHub 可能停用定时工作流，可在 Actions 页面重新启用。
+修改教材正文时，应编辑 `catalog/chapters/` 中对应的结构化稿件；直接修改生成的阅读页会被下次构建覆盖。分类纠错可以修改 `config/overrides.json`，具体格式见[运行说明](docs/usage.md)。
 
-## 项目结构
-
-```text
-config/                  学习路线、来源、分类体系、课程映射、人工修正
-catalog/                 文件元数据、分析结果、教材结构化稿与覆盖统计
-docs/textbook/           可直接在 GitHub 阅读的教材
-docs/                    课程/领域导航、学习记录模板及使用说明
-src/cs_study_map/        同步、提取、AI 分类、教材编写与验证程序
-tests/                   同步、失败恢复、来源约束和发布检查
-.github/workflows/       自动同步与 CI
-.cache/                  本机原文件和提取缓存，禁止提交
-.local/                  本人的学习记录和未公开分析，禁止提交
-```
-
-初始分类映射来自个人已有的课程目录整理，属于可修正的起点。新课程会进入“待分类”。当前支持文本、常见源码、可提取文本的 PDF、DOCX、PPTX 和 Notebook；扫描件 OCR、旧 DOC/PPT、压缩包内分析尚未实现。PDF 默认最多提取前 8 页及总计 10,000 字符，不能据此声称已经读完一份长讲义。
-
-## 验证与贡献
+在仓库根目录复现构建与检查：
 
 ```bash
-python -m unittest discover -s tests -v
+cs-study-map build
 cs-study-map validate --tracked
+python -m unittest discover -s tests -v
 ```
 
-请通过 Issue 报告分类或导读错误，通过 PR 修改程序、分类映射或人工修正规则。请阅读 [贡献说明](CONTRIBUTING.md)。
+这些检查使用已有数据和本地测试样例，无需模型密钥。构建与校验不执行新生成的模型代码；教材程序由对应测试单独验证。项目现状与验证范围见[项目概况](docs/project-brief.md)。
 
-本项目原创程序、教材文本与维护文档采用 MIT 许可；来源材料及其权利不因此改变，详见 [来源说明](ATTRIBUTION.md)。
+欢迎通过 Issue 指出具体章节、分类或导读问题，通过 PR 提交修正。提交前请阅读[贡献指南](CONTRIBUTING.md)。
 
-早期成果：[总知识图与 60 份课程指南归档](docs/early-work/index.md)，保留项目建立当前 Git 仓库前的 README 与教材说明。
+## 来源与许可
+
+本项目由 Pleniluner 维护，与清华大学及上游维护者没有官方隶属关系。感谢 [REKCARC-TSC-UHT](https://github.com/PKUanonym/REKCARC-TSC-UHT) 的维护者和贡献者整理课程资料。
+
+原创程序、教材文本和维护文档采用 [MIT 许可](LICENSE)。上游材料及其权利不因此改变；原始教材、课件、作业、学生源码和提取全文不随本仓库发布。具体出处、署名及许可边界见[来源说明](ATTRIBUTION.md)。
