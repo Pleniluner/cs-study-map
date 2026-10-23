@@ -1,0 +1,231 @@
+{
+  "chapter_id": "29-sequence-dp",
+  "content": {
+    "exercises": [
+      {
+        "answer": "先把旧 row[j] 保存到 old。相等时用 diagonal 加一，不等时比较旧上方和当前左方；结束本格后再让 diagonal=old。每一行开始的 diagonal 为零。结果依次为 3、1、0；若把刚更新的当前左邻当对角值，a 对 aa 可能错误地被用两次。时间 O((n+1)(m+1))、额外空间 O(m+1)，m 是第二个串长度；本实现没有交换两串来取较短维度，只返回长度。",
+        "hint": "从左向右更新：row[j] 尚是上一行，row[j−1] 已是当前行；另用 diagonal 保存上一行的左邻。",
+        "program": {
+          "code": "def lcs_length_rolling(a, b):\n    row = [0] * (len(b) + 1)\n    for i in range(1, len(a) + 1):\n        diagonal = 0\n        for j in range(1, len(b) + 1):\n            old = row[j]\n            if a[i - 1] == b[j - 1]:\n                row[j] = diagonal + 1\n            elif row[j - 1] > row[j]:\n                row[j] = row[j - 1]\n            diagonal = old\n    return row[len(b)]\n\nprint(lcs_length_rolling(\"abac\", \"baca\"))\nprint(lcs_length_rolling(\"a\", \"aa\"))\nprint(lcs_length_rolling(\"\", \"aa\"))\n",
+          "output": "3\n1\n0\n"
+        },
+        "question": "只求 abac 与 baca 的 LCS 长度，用一行数组实现；再检查 a 与 aa、空串与 aa，解释旧对角值如何保存。"
+      },
+      {
+        "answer": "ab 和 cd 都长 2，按约定返回长度 2、起点 0 与 0。程序逐行逐列扫描，仅在严格变长时记录，因此最终最大长度平局时保留较早的结束位置，也就是较早起点。不相等处清零，不能沿上方或左方保留旧长度，否则又成了子序列。使用前后两行，时间 O((n+1)(m+1))、空间 O(m+1)；返回下标而不复制片段。空串或无共同字符时结果为长度 0、两起点 0。",
+        "hint": "定义状态为恰好在两个当前位置结束的公共连续片段长度。相等接旧对角，不等必须归零，答案在整张表中取最大。",
+        "program": {
+          "code": "def longest_common_substring(a, b):\n    previous = [0] * (len(b) + 1)\n    best = 0\n    start_a = 0\n    start_b = 0\n    for i in range(1, len(a) + 1):\n        current = [0] * (len(b) + 1)\n        for j in range(1, len(b) + 1):\n            if a[i - 1] == b[j - 1]:\n                current[j] = previous[j - 1] + 1\n                if current[j] > best:\n                    best = current[j]\n                    start_a = i - best\n                    start_b = j - best\n        previous = current\n    return {\"length\": best, \"a_start\": start_a, \"b_start\": start_b}\n\nprint(longest_common_substring(\"abxcd\", \"abycd\"))\nprint(longest_common_substring(\"\", \"ab\"))\n",
+          "output": "{'length': 2, 'a_start': 0, 'b_start': 0}\n{'length': 0, 'a_start': 0, 'b_start': 0}\n"
+        },
+        "question": "求 abxcd 与 abycd 的最长公共连续子串，返回长度及两串起点；若多个最长片段平局，优先 a 中起点小的，再优先 b 中起点小的。空结果规定起点均为 0。"
+      },
+      {
+        "answer": "设 L 为 LCS 长度。保留它需要删除 n−L 个源字符、插入 m−L 个目标字符，给出 n+m−2L 次操作。反过来，任意操作序列中幸存的原字符至多 L 个，所以至少需要这两部分数量；界可以达到。cat 到 cut 的插删距离为 2，而允许替换时为 1；abac 到 baca 的插删距离也为 2。函数复用滚动 LCS，只返回数值，时间 O((n+1)(m+1))、空间 O(m+1)。不要将此公式用于允许一次相邻交换或任意编辑代价的其他模型。",
+        "hint": "任何未删除且保留下来的原字符，按顺序构成两串的共同子序列；先保留最长的一份，再删除和插入其余字符。",
+        "program": {
+          "code": "def lcs_length_rolling(a, b):\n    row = [0] * (len(b) + 1)\n    for i in range(1, len(a) + 1):\n        diagonal = 0\n        for j in range(1, len(b) + 1):\n            old = row[j]\n            if a[i - 1] == b[j - 1]:\n                row[j] = diagonal + 1\n            elif row[j - 1] > row[j]:\n                row[j] = row[j - 1]\n            diagonal = old\n    return row[len(b)]\n\ndef insertion_deletion_distance(a, b):\n    common = lcs_length_rolling(a, b)\n    return len(a) + len(b) - 2 * common\n\ndef edit_table(a, b):\n    table = []\n    for i in range(len(a) + 1):\n        table.append([0] * (len(b) + 1))\n        table[i][0] = i\n    for j in range(len(b) + 1):\n        table[0][j] = j\n    for i in range(1, len(a) + 1):\n        for j in range(1, len(b) + 1):\n            extra = 0\n            if a[i - 1] != b[j - 1]:\n                extra = 1\n            best = table[i - 1][j - 1] + extra\n            if table[i - 1][j] + 1 < best:\n                best = table[i - 1][j] + 1\n            if table[i][j - 1] + 1 < best:\n                best = table[i][j - 1] + 1\n            table[i][j] = best\n    return table\n\nprint(insertion_deletion_distance(\"cat\", \"cut\"))\nprint(edit_table(\"cat\", \"cut\")[3][3])\nprint(insertion_deletion_distance(\"abac\", \"baca\"))\n",
+          "output": "2\n1\n2\n"
+        },
+        "question": "禁止替换，只允许每次插入或删除一个字符。用 LCS 长度求最小操作数，并比较 cat 到 cut 的答案与允许替换的编辑距离。"
+      }
+    ],
+    "introduction": "两份文本有多少共同内容，修改一份需要几步，一串数里能保留多长的递增片段，都可以通过序列状态来回答。但连续子串、可以跳过元素的子序列、允许替换的编辑距离，约束并不相同。本章先补足字符串和字符位置的约定，再把两个前缀组成二维状态，最后处理一个序列的结束位置状态。每个最优值都配合位置或对齐结果核验，压缩空间时也说明哪些恢复信息已经丢失。",
+    "limitations": [
+      "文本按 Unicode 码点直接比较，不覆盖编码转换、归一化、字形簇、模糊匹配或语言学相似度。",
+      "不枚举全部最优答案，也未实现二分尾值 LIS、线性空间 LCS 恢复及带权编辑距离。",
+      "本章的子序列和子串优化不代替 KMP 或 Trie 等模式匹配章节；复杂度按单位整数和码点比较分析。"
+    ],
+    "objectives": [
+      "准确区分子序列、连续子串以及字符串的码点位置。",
+      "推导最长公共子序列与单位编辑距离的边界和转移。",
+      "恢复原位置对、编辑对齐和严格递增的原下标序列。",
+      "解释一维 LCS 的旧对角值，识别只允许插删时的另一种距离。"
+    ],
+    "pitfalls": [
+      {
+        "correction": "str 下标按 Unicode 码点；组合字符可能占多个位置，本章不做归一化或字形簇处理。",
+        "mistake": "把视觉上相同的字形直接当作相同长度、相同码点序列。"
+      },
+      {
+        "correction": "连续性要求失配时当前结束状态归零；子序列才允许跳过字符并沿邻格取最大。",
+        "mistake": "把最长公共连续子串的失配状态保留为邻格最大值。"
+      },
+      {
+        "correction": "平局规则只选定一条路径；不同文字、位置对或编辑对齐都可能同样最优。",
+        "mistake": "把一条最优恢复路径当成全部最优方案，或者默认字典序最小。"
+      },
+      {
+        "correction": "n+m−2L 适用于只允许单位插入删除；允许单位替换时必须使用相应的代价转移。",
+        "mistake": "认为 LCS 长度直接决定所有定义下的编辑距离。"
+      }
+    ],
+    "prerequisites": [
+      "第 27–28 章的二维状态、不可达与空方案、更新顺序和恢复思想。",
+      "列表切片、循环、布尔短路以及独立二维行。",
+      "第 11 章的原位置与排序后位置区别；本章不要求模式匹配知识。"
+    ],
+    "sections": [
+      {
+        "body": "Python 的 str 是不可变的 Unicode 码点序列，len 和下标按码点计数，不按 UTF-8 字节计数，也不保证一个显示字形恰好占一个位置。本章文本接口只接收 str，区分大小写，不进行归一化。预组成的 é 长度为 1，e 后接组合重音符的长度为 2；即使显示相似，算法也按给定码点逐个比较。\n\n子序列由严格递增的一组原位置选出，可以跳过中间字符；连续子串则要求位置相邻。例如 abc 的 ac 是子序列，ca 不是，因为顺序不能交换；ac 也不是它的连续子串。空串是任何字符串的子序列，匹配结果应为空下标表，而不是失败的 None。\n\n先解决判定问题：给定 text 和 pattern，扫描 text，每次遇到 pattern 下一个待匹配字符就立即使用它。选择最早可用位置不会损失可行性，因为任何使用更晚位置的匹配，都可把这一位换成更早的相同字符，后面的匹配仍在其后。逐位替换就说明：若有解，最早匹配策略一定能找到；这是一段有明确交换理由的小型贪心。\n\n程序先检查是否还有待匹配字符，才读取 pattern 的下标，避免空串或已经完成时越界。它返回原位置列表，失败返回 None，不修改字符串。示例中“计算计算”的“计计”位于 0 和 2。扫描时间 O(n+1)，输出至多 min(n,m) 个下标，其中 n、m 为两个串的码点长度；本实现完成匹配后仍扫描剩余 text，因此不要声称提前结束。这个判定器只问给定模式能否嵌入，下一节才在两串之间寻找最长的共同内容。",
+        "program": {
+          "code": "def subsequence_positions(text, pattern):\n    positions = []\n    next_match = 0\n    for i in range(len(text)):\n        if next_match < len(pattern) and text[i] == pattern[next_match]:\n            positions.append(i)\n            next_match = next_match + 1\n    if next_match != len(pattern):\n        return None\n    return positions\n\nprint(subsequence_positions(\"计算计算\", \"计计\"))\nprint(subsequence_positions(\"abc\", \"ca\"))\nprint(subsequence_positions(\"abc\", \"\"))\nprint(len(\"é\"), len(\"e\\u0301\"))\n",
+          "output": "[0, 2]\nNone\n[]\n1 2\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "先规定序列的单位：字符、位置与子序列"
+      },
+      {
+        "body": "给定字符串 a 和 b，定义 table[i][j] 为 a 的前 i 个码点与 b 的前 j 个码点的最长公共子序列长度，简称 LCS 长度。长度为零的前缀只能共有空串，故第零行和第零列全为 0。状态使用前缀长度，最后字符的位置分别是 i−1、j−1，不把长度直接当下标。\n\n如果最后字符相同，可以把这一对接到两个更短前缀的共同子序列后，得到对角格加一。为什么不必另取上格或左格？任何最优匹配若使用其中一个末字符，都可把对应的同字符移到另一串末尾；移去最后这对后是两个更短前缀的匹配。若两端都没用，也不会超过对角格。因此存在配对这两个末字符的最优解。\n\n如果最后字符不同，不可能把它们配成一对。一个保持顺序的共同子序列也不能同时使用这两个末位置分别去匹配对方更早的字符，否则两对会交叉。至少有一端被舍弃，所以取上格与左格的较大值。不是把两项相加，因为它们的方案可能重叠，目标也只是长度。\n\n按行从上到下、列从左到右填表，当前格的上方、左方和左上方均已完成。每格依据上述分类得到正确长度，最后一格就是全串答案。示例 ab 与 ba 的最终长度为 1，两个前缀长度为 1 的状态却可能是 0。表的各行单独创建，输入不改变。含空串与初始化的时间、空间均为 O((n+1)(m+1))；这里 n、m 可以不同，不能把任意输入的成本简写为 O(n²)。表只记录长度，还没有告诉我们选了哪些位置。",
+        "program": {
+          "code": "def lcs_table(a, b):\n    table = []\n    for i in range(len(a) + 1):\n        table.append([0] * (len(b) + 1))\n    for i in range(1, len(a) + 1):\n        for j in range(1, len(b) + 1):\n            if a[i - 1] == b[j - 1]:\n                table[i][j] = table[i - 1][j - 1] + 1\n            else:\n                table[i][j] = table[i - 1][j]\n                if table[i][j - 1] > table[i][j]:\n                    table[i][j] = table[i][j - 1]\n    return table\n\nfor row in lcs_table(\"ab\", \"ba\"):\n    print(row)\n",
+          "output": "[0, 0, 0]\n[0, 0, 1]\n[0, 1, 1]\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "两个前缀组成状态：最长公共子序列"
+      },
+      {
+        "body": "从完整表右下角开始，末字符相同就记录位置对 [i−1,j−1] 并沿对角线退一步；不同时，沿长度较大的上格或左格退。只要任一前缀为空，恢复就结束。每步至少减少一个前缀长度，因此过程有限，最多走 n+m 步。\n\n本实现上格与左格相等时优先上格，即舍弃 a 的末字符。ab 与 ba 因而返回位置对 [0,1]，代表字符 a；选 b 也同样最优。平局规则只为了结果稳定，不保证字典序最小，也不枚举所有匹配。a 或 b 有重复字符时，相同文字甚至可能对应多组位置对，不能用文本相同推断位置相同。\n\n恢复得到的位置对暂按从后往前排列，最后反转外层列表。每个位置对新建为独立列表，结果中的两列都应严格递增，而且对应码点相等。检查这三个条件能证明它确实是共同子序列；还要把位置对数量同最优长度核对，才能证明返回方案达到了要求。空串与另一串的结果是长度 0 和空 pairs。\n\n返回位置而不直接反复拼接长字符串，可以保留来源身份，也避免把不可变字符串累加的复制开销藏在恢复里。若调用者需要显示内容，可再按这些位置读取字符。完整函数仍需 O((n+1)(m+1)) 时间与表空间，恢复和输出另外至多 O(n+m+1)。只保留两行或一行长度会省空间，但原路径不再全部可见；后面的压缩练习只返回长度，不声称能用相同信息恢复这一方案。",
+        "program": {
+          "code": "def lcs_table(a, b):\n    table = []\n    for i in range(len(a) + 1):\n        table.append([0] * (len(b) + 1))\n    for i in range(1, len(a) + 1):\n        for j in range(1, len(b) + 1):\n            if a[i - 1] == b[j - 1]:\n                table[i][j] = table[i - 1][j - 1] + 1\n            else:\n                table[i][j] = table[i - 1][j]\n                if table[i][j - 1] > table[i][j]:\n                    table[i][j] = table[i][j - 1]\n    return table\n\ndef lcs_match(a, b):\n    table = lcs_table(a, b)\n    pairs = []\n    i = len(a)\n    j = len(b)\n    while i > 0 and j > 0:\n        if a[i - 1] == b[j - 1]:\n            pairs.append([i - 1, j - 1])\n            i = i - 1\n            j = j - 1\n        elif table[i - 1][j] >= table[i][j - 1]:\n            i = i - 1\n        else:\n            j = j - 1\n    return {\"length\": table[len(a)][len(b)], \"pairs\": pairs[::-1]}\n\nprint(lcs_match(\"ab\", \"ba\"))\nprint(lcs_match(\"\", \"ba\"))\n",
+          "output": "{'length': 1, 'pairs': [[0, 1]]}\n{'length': 0, 'pairs': []}\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "恢复共同位置：一条最优路径不代表全部答案"
+      },
+      {
+        "body": "现在允许把 a 变成 b。删除一个码点、插入一个码点、把一个码点替换成另一个，各花费 1；保留相同码点花费 0。这是单位 Levenshtein 距离。本章不允许把两个相邻字符交换当成一次操作，也不考虑不同字符的特殊代价。\n\n定义 table[i][j] 为把 a 的前 i 个字符改成 b 的前 j 个字符的最小代价。空源变成长度 j 的目标，需要 j 次插入，所以第零行为 0、1、2……；长度 i 的源变空，需要 i 次删除，所以第零列为 i。与 LCS 的全零边界不同，这是代价的必要部分。\n\n观察最后一个对齐位置：若两边都有字符，可从左上格保留或替换；若只消耗源字符，从上格加一次删除；若只生成目标字符，从左格加一次插入。三类覆盖全部对齐的最后一步，取最小候选。已有更短前缀的最佳对齐接上最后一步一定可行，任何更差的前缀也可被最佳前缀替换，所以最优子结构成立。\n\n示例 cat 到 cut 的中间字符替换一次即可，距离为 1；它们的 LCS 长度为 2，但这不意味着编辑距离必须是 2。只有禁止替换、仅允许插入删除时，才得到后面练习中的 n+m−2L 关系。完整表逐行计算，时间和空间均为 O((n+1)(m+1))。代码通过候选比较求最小值，不能把求最大长度时的比较方向照搬过来；返回表仍是代价证据，具体编辑对齐由例题恢复。",
+        "program": {
+          "code": "def edit_table(a, b):\n    table = []\n    for i in range(len(a) + 1):\n        table.append([0] * (len(b) + 1))\n        table[i][0] = i\n    for j in range(len(b) + 1):\n        table[0][j] = j\n    for i in range(1, len(a) + 1):\n        for j in range(1, len(b) + 1):\n            extra = 0\n            if a[i - 1] != b[j - 1]:\n                extra = 1\n            best = table[i - 1][j - 1] + extra\n            if table[i - 1][j] + 1 < best:\n                best = table[i - 1][j] + 1\n            if table[i][j - 1] + 1 < best:\n                best = table[i][j - 1] + 1\n            table[i][j] = best\n    return table\n\nfor row in edit_table(\"cat\", \"cut\"):\n    print(row)\n",
+          "output": "[0, 1, 2, 3]\n[1, 0, 1, 2]\n[2, 1, 1, 2]\n[3, 2, 2, 1]\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "编辑距离：把保留、替换、删除和插入分开"
+      },
+      {
+        "body": "对整数列表 values，寻找原位置保持递增、所选数值也严格递增的最长子序列，简称严格 LIS。不能先排序再返回排序后的下标，因为排序破坏了原有先后关系。也不能把相等元素接起来，那会变成非降子序列问题。\n\n定义 lengths[i] 为必须以位置 i 结尾的最长长度。单独选它就有长度 1；枚举所有更早的 j，若 values[j] 严格小于 values[i]，就可把 i 接在 j 的最佳序列后面，候选为 lengths[j]+1。任何以 i 结尾且长度大于 1 的合法序列，都有这样一个倒数第二位置，所以枚举完整。最后答案是所有结束位置中的最大值，不一定在列表末尾。\n\nparent[i] 只在候选严格改善时记录 j；结束位置也只在严格改善时更新。于是同长度保留先遇到的前驱和结束点，提供确定的一种最优解。父下标每次严格减小，恢复一定终止。示例 [3,1,2,2,5,4] 返回原位置 [1,2,4]，值为 [1,2,5]；另一组原位置 [1,2,5] 对应值 [1,2,4]，也是最长，但这里没有采用字典序最小规则。\n\n空输入没有结束位置，返回长度 0 和空下标表；全相等的非空列表返回第一项，长度 1。程序按原顺序扫描，不修改输入。内层枚举次数恰为 n(n−1)/2，时间 O(n²+1)，长度、前驱及结果空间 O(n+1)。存在更快的尾值与二分方法，但需要另外证明尾值状态以及恢复条件，本章不把那个时间界套到当前的平方实现。",
+        "program": {
+          "code": "def lis(values):\n    lengths = [1] * len(values)\n    parent = [None] * len(values)\n    endpoint = None\n    for i in range(len(values)):\n        for j in range(i):\n            if values[j] < values[i] and lengths[j] + 1 > lengths[i]:\n                lengths[i] = lengths[j] + 1\n                parent[i] = j\n        if endpoint is None or lengths[i] > lengths[endpoint]:\n            endpoint = i\n    indices = []\n    while endpoint is not None:\n        indices.append(endpoint)\n        endpoint = parent[endpoint]\n    return {\"length\": len(indices), \"indices\": indices[::-1]}\n\nprint(lis([3, 1, 2, 2, 5, 4]))\nprint(lis([2, 2, 2]))\nprint(lis([]))\n",
+          "output": "{'length': 3, 'indices': [1, 2, 4]}\n{'length': 1, 'indices': [0]}\n{'length': 0, 'indices': []}\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "一个序列的状态：严格递增子序列以谁结尾"
+      }
+    ],
+    "self_checks": [
+      "手画 ab 与 ba 的 LCS 表，并恢复另一种最优位置匹配。",
+      "在 a 与 aa 的滚动计算中逐格标记旧上方、新左方与旧对角。",
+      "用恢复的编辑列分别重建源串与目标串，并重算操作代价。",
+      "为严格 LIS 找一个全重复输入，解释为什么答案不是整个列表。"
+    ],
+    "worked_examples": [
+      {
+        "answer": "第一组长度为 3，而两串长 4 且不相同，不可能有长度 4 的共同子序列，因此返回值达到上限。第二组有两个不同的最优文字，但程序只返回一个位置匹配。测试还用全部位置子集生成共同子序列集合，核对其他短串的最优长度，避免把恢复路径自身当作最优性证明。",
+        "program": {
+          "code": "def lcs_table(a, b):\n    table = []\n    for i in range(len(a) + 1):\n        table.append([0] * (len(b) + 1))\n    for i in range(1, len(a) + 1):\n        for j in range(1, len(b) + 1):\n            if a[i - 1] == b[j - 1]:\n                table[i][j] = table[i - 1][j - 1] + 1\n            else:\n                table[i][j] = table[i - 1][j]\n                if table[i][j - 1] > table[i][j]:\n                    table[i][j] = table[i][j - 1]\n    return table\n\ndef lcs_match(a, b):\n    table = lcs_table(a, b)\n    pairs = []\n    i = len(a)\n    j = len(b)\n    while i > 0 and j > 0:\n        if a[i - 1] == b[j - 1]:\n            pairs.append([i - 1, j - 1])\n            i = i - 1\n            j = j - 1\n        elif table[i - 1][j] >= table[i][j - 1]:\n            i = i - 1\n        else:\n            j = j - 1\n    return {\"length\": table[len(a)][len(b)], \"pairs\": pairs[::-1]}\n\nprint(lcs_match(\"abac\", \"baca\"))\nprint(lcs_match(\"ab\", \"ba\"))\n",
+          "output": "{'length': 3, 'pairs': [[1, 0], [2, 1], [3, 2]]}\n{'length': 1, 'pairs': [[0, 1]]}\n"
+        },
+        "question": "求 abac 与 baca 的最长公共子序列，返回两串中的位置对；说明 ab 与 ba 的平局结果为何不唯一。",
+        "steps": [
+          "先按两个前缀填表，边界均为零，完整问题的 LCS 长度为 3。",
+          "从末尾 c 与 a 不同开始，保留较大子问题；随后可依次配对 c、a、b。",
+          "把倒序收集的对反转，得到 [[1,0],[2,1],[3,2]]，对应共同文字 bac。",
+          "核对两列下标递增、三个码点分别相同；ab 与 ba 可选 a 或 b，程序依平局规则选 a。"
+        ]
+      },
+      {
+        "answer": "返回 [[c,None],[a,a],[b,b],[None,c]]，其中 c、a、b 表示对应单字符字符串。空源到“计”只需一列插入。ab 到 ba 的本模型距离为 2，程序选择两次替换；并没有把相邻交换计成一次。对齐列是稳定的消费源字符、生成目标字符的表示，不把列号误当作不断修改中的字符串下标。恢复 O(n+m+1)，完整表仍是二次规模；每列独立创建。",
+        "program": {
+          "code": "def edit_table(a, b):\n    table = []\n    for i in range(len(a) + 1):\n        table.append([0] * (len(b) + 1))\n        table[i][0] = i\n    for j in range(len(b) + 1):\n        table[0][j] = j\n    for i in range(1, len(a) + 1):\n        for j in range(1, len(b) + 1):\n            extra = 0\n            if a[i - 1] != b[j - 1]:\n                extra = 1\n            best = table[i - 1][j - 1] + extra\n            if table[i - 1][j] + 1 < best:\n                best = table[i - 1][j] + 1\n            if table[i][j - 1] + 1 < best:\n                best = table[i][j - 1] + 1\n            table[i][j] = best\n    return table\n\ndef edit_alignment(a, b):\n    table = edit_table(a, b)\n    columns = []\n    i = len(a)\n    j = len(b)\n    while i > 0 or j > 0:\n        extra = 0\n        if i > 0 and j > 0 and a[i - 1] != b[j - 1]:\n            extra = 1\n        if i > 0 and j > 0 and table[i][j] == table[i - 1][j - 1] + extra:\n            columns.append([a[i - 1], b[j - 1]])\n            i = i - 1\n            j = j - 1\n        elif i > 0 and table[i][j] == table[i - 1][j] + 1:\n            columns.append([a[i - 1], None])\n            i = i - 1\n        else:\n            columns.append([None, b[j - 1]])\n            j = j - 1\n    return {\"distance\": table[len(a)][len(b)], \"columns\": columns[::-1]}\n\nprint(edit_alignment(\"cab\", \"abc\"))\nprint(edit_alignment(\"\", \"计\"))\nprint(edit_alignment(\"ab\", \"ba\"))\n",
+          "output": "{'distance': 2, 'columns': [['c', None], ['a', 'a'], ['b', 'b'], [None, 'c']]}\n{'distance': 1, 'columns': [[None, '计']]}\n{'distance': 2, 'columns': [['a', 'b'], ['b', 'a']]}\n"
+        },
+        "question": "把 cab 变成 abc，恢复单位编辑距离的一种对齐。每一列 [源字符,目标字符] 中，None 表示该侧空位；解释空源与交换字母的结果。",
+        "steps": [
+          "原串与目标长度相等，但三个位置都不同，一次替换不够；一次插入或删除又不能保持长度，故距离至少为 2。",
+          "删除开头 c，保留 a、b，再在末尾插入 c，总代价为 2，达到下界。",
+          "恢复时优先可达到最小值的对角候选，再尝试删除，最后插入；从后往前收集并反转列。",
+          "去掉第一列中的 None 后重建源串，去掉第二列中的 None 后重建目标串，统计删除、插入、替换列共两次。"
+        ]
+      }
+    ]
+  },
+  "context_key": "de3227ac7707e271de3a0b3477a9a43cd97c6c04bca209c1f5a580947d915ee0",
+  "model": "Codex 当前会话（未记录具体模型型号）",
+  "prompt_version": "2-python",
+  "references": [
+    {
+      "note": "核对不可变 Unicode 码点序列及下标；组合字符演示和算法接口自拟，不进行归一化。",
+      "title": "Python 3.11：文本序列 str",
+      "url": "https://docs.python.org/3.11/library/stdtypes.html#text-sequence-type-str"
+    },
+    {
+      "note": "仅核对子序列、前缀/后缀状态和恢复思想；本章使用前缀表、自己的平局规则、位置对及原创文字，不移植讲义程序。",
+      "title": "MIT 6.006：最长公共子序列与父指针",
+      "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2008/1986024fc785732d48dc2e8d3780df1b_lec20.pdf"
+    },
+    {
+      "note": "核对插入、删除、替换的最小次数定义；正文自行推导前缀转移与对齐，明确不包含一次相邻交换。",
+      "title": "NIST DADS：Levenshtein 距离",
+      "url": "https://xlinux.nist.gov/dads/HTML/Levenshtein.html"
+    },
+    {
+      "note": "核对严格递增与以当前位置结束的状态；本章独立编写平方实现和恢复，不采用该页更快算法的复杂度。",
+      "title": "Algorithms for Competitive Programming：递增子序列",
+      "url": "https://cp-algorithms.com/dynamic_programming/longest_increasing_subsequence.html"
+    }
+  ],
+  "review_status": "ai-draft",
+  "schema_version": 1,
+  "sources": [
+    {
+      "analysis_digest": "9888da07b670886c773f0c27f93b693f8b97ca9f8dbee6a241b394b6c3a05c25",
+      "analysis_id": "9653e7ae080bce424a5f",
+      "blob_sha": "fe751673ab99d124f9f4a6ecff2a51f9d613c95f",
+      "commit": "37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0",
+      "coverage": "extracted-text",
+      "evidence": [
+        {
+          "id": "L1-L40",
+          "locator": "第 1–40 行"
+        },
+        {
+          "id": "L41-L80",
+          "locator": "第 41–80 行"
+        },
+        {
+          "id": "L121-L160",
+          "locator": "第 121–160 行"
+        }
+      ],
+      "path": "大一小学期/Week_3-Python/docs/readme.md",
+      "repository": "PKUanonym/REKCARC-TSC-UHT",
+      "topics": [
+        {
+          "evidence_ids": [
+            "L41-L80"
+          ],
+          "key": "9653e7ae080bce424a5f:0",
+          "name": "Python 基础语法的外部学习入口"
+        },
+        {
+          "evidence_ids": [
+            "L121-L160"
+          ],
+          "key": "9653e7ae080bce424a5f:1",
+          "name": "从基础语法到工具与应用的建议阅读顺序"
+        }
+      ]
+    }
+  ],
+  "title": "对齐两个前缀：序列动态规划与方案恢复"
+}

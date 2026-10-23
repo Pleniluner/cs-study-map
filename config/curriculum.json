@@ -791,11 +791,112 @@
         }
       ],
       "title": "保存子问题的答案：动态规划入门"
+    },
+    {
+      "format": "python",
+      "id": "28-knapsack",
+      "references": [
+        {
+          "note": "仅核对一次使用、无限使用与容量状态的模型；本章另行设计零重量、负价值、平局和恢复接口，题目、代码与数值原创。",
+          "title": "Stanford CS161：背包的两种使用次数模型",
+          "url": "https://web.stanford.edu/class/archive/cs/cs161/cs161.1172/CS161Lecture13.pdf"
+        },
+        {
+          "note": "核对压缩状态与使用次数的关系；未移植页面例题、练习或 C++ 代码，本章完全背包采用容量外层并保存最后类型。",
+          "title": "Algorithms for Competitive Programming：背包的更新顺序",
+          "url": "https://cp-algorithms.com/dynamic_programming/knapsack.html"
+        },
+        {
+          "note": "仅引用背包与数值编码长度部分，核对伪多项式概念；第 29 章的单位编辑距离模型另按 NIST 定义核对。",
+          "title": "MIT 6.006：背包与伪多项式时间",
+          "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/3484e876d81aba07911a1109f5b5e81e_MIT6_006F11_lec21.pdf"
+        }
+      ],
+      "scope": "承接状态与子集可达，讲 0/1 二维背包、原下标恢复、倒序压缩、正重量完全背包和恰好装满；用零重量、负价值、重复位置与无解区分契约，练习位置子集计数、面额组合和有序硬币序列。证明依赖方向并计入验证与大整数成本。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "限定容量与使用次数：背包问题和方案计数"
+    },
+    {
+      "format": "python",
+      "id": "29-sequence-dp",
+      "references": [
+        {
+          "note": "核对不可变 Unicode 码点序列及下标；组合字符演示和算法接口自拟，不进行归一化。",
+          "title": "Python 3.11：文本序列 str",
+          "url": "https://docs.python.org/3.11/library/stdtypes.html#text-sequence-type-str"
+        },
+        {
+          "note": "仅核对子序列、前缀/后缀状态和恢复思想；本章使用前缀表、自己的平局规则、位置对及原创文字，不移植讲义程序。",
+          "title": "MIT 6.006：最长公共子序列与父指针",
+          "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-spring-2008/1986024fc785732d48dc2e8d3780df1b_lec20.pdf"
+        },
+        {
+          "note": "核对插入、删除、替换的最小次数定义；正文自行推导前缀转移与对齐，明确不包含一次相邻交换。",
+          "title": "NIST DADS：Levenshtein 距离",
+          "url": "https://xlinux.nist.gov/dads/HTML/Levenshtein.html"
+        },
+        {
+          "note": "核对严格递增与以当前位置结束的状态；本章独立编写平方实现和恢复，不采用该页更快算法的复杂度。",
+          "title": "Algorithms for Competitive Programming：递增子序列",
+          "url": "https://cp-algorithms.com/dynamic_programming/longest_increasing_subsequence.html"
+        }
+      ],
+      "scope": "先规定 Unicode 码点和子序列位置，讲 LCS 表与位置恢复、单位编辑距离和对齐、平方严格 LIS；练习滚动 LCS、最长公共连续子串和仅插删距离。明确边界、平局、旧对角、独立列表、返回方案与全部方案的差别。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "对齐两个前缀：序列动态规划与方案恢复"
+    },
+    {
+      "format": "python",
+      "id": "30-interval-tree-dp",
+      "references": [
+        {
+          "note": "仅核对最后切分与按区间长度的依赖；本章自行设计维度、零矩阵约定、显式操作记录和最优结构计数。",
+          "title": "MIT 6.006：矩阵链的区间状态",
+          "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/3484e876d81aba07911a1109f5b5e81e_MIT6_006F11_lec21.pdf"
+        },
+        {
+          "note": "核对区间拆分和固定根选择后组合孩子的思想；本章使用相邻合并模型和经验证的单父森林，例题、非递归实现及验收独立设计。",
+          "title": "Illinois CS/ECE 374：树形动态规划",
+          "url": "https://courses.grainger.illinois.edu/cs374al1/fa2026/lectures/tree-dynamic-programming.html"
+        },
+        {
+          "note": "核对选根与不选根的依赖关系；本章另定负权、空森林、父表拒绝和稳定恢复的接口。",
+          "title": "Stanford CS161：树上最大权独立集",
+          "url": "https://web.stanford.edu/class/archive/cs/cs161/cs161.1172/CS161Lecture13.pdf"
+        }
+      ],
+      "scope": "从矩阵形状和乘法次数定义半开区间，讲最后切分、长度顺序及显式合并恢复；扩展到相邻块合并，验证父表森林并求最大权独立集。练习最优括号计数、非负最小权顶点覆盖与独立集计数，明确多根、环拒绝和大整数位成本。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "按区间与子树组织依赖：区间和树形动态规划"
     }
   ],
   "learner": "从基础开始自学；先用纸笔和小例子建立概念，再接触课程实验。",
   "planned": [
-    "动态规划进阶、字符串与模式匹配、前缀和、双指针和滑动窗口",
+    "动态规划进一步专题（多重与分组背包、区间优化、换根与树上背包）、字符串与模式匹配、前缀和、双指针和滑动窗口",
     "数据结构进阶：平衡树、树状数组、线段树、开放寻址哈希与索引堆",
     "图算法进阶：强连通分量、桥与割点、全点对最短路、匹配与网络流",
     "算法分析与理论：递推式、摊还证明、随机化、排序下界与复杂度入门",

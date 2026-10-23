@@ -8,7 +8,7 @@
 
 這是 Pleniluner 維護的個人學習專案，與清華大學及上游維護者沒有官方隸屬關係。公開儲存庫包含原創工具、教材草稿、來源索引和 AI 導讀；不發布原始教材、課件、作業、學生原始碼或擷取全文。
 
-## 依二十七章順序學習
+## 依三十章順序學習
 
 | # | 主題 | 實作 |
 | --- | --- | --- |
@@ -39,8 +39,11 @@
 | 25 | [回溯與搜尋剪枝](../textbook/25-backtracking.md) | 恢復搜尋狀態，驗證剪枝不遺漏答案 |
 | 26 | [貪心演算法與交換論證](../textbook/26-greedy-algorithms.md) | 建構反例，核對排程、合併及前綴碼 |
 | 27 | [動態規劃入門](../textbook/27-dynamic-programming.md) | 定義狀態、還原方案並檢查更新順序 |
+| 28 | [背包問題與方案計數](../textbook/28-knapsack.md) | 區分容量上限、恰好重量與使用次數，計算組合及序列 |
+| 29 | [序列動態規劃](../textbook/29-sequence-dp.md) | 還原共同子序列、編輯對齊及遞增子序列 |
+| 30 | [區間與樹形動態規劃](../textbook/30-interval-tree-dp.md) | 規劃相鄰合併，求獨立集、頂點覆蓋及計數 |
 
-第 4–27 章使用 Python 3.11 或更新版本，共提供 240 段可獨立執行的程式及預期輸出。練習方法見[程式練習指南](../programming-practice.md)、[資料結構練習指引](../data-structures-practice.md)與[演算法練習指引](../algorithms-practice.md)（簡體中文）。 [遞迴與分治練習指引（簡體中文）](../recursion-practice.md). [樹與堆積練習指引（簡體中文）](../trees-practice.md). [雜湊表與圖練習指引（簡體中文）](../hash-graphs-practice.md). [拓撲排序與帶權圖練習指引（簡體中文）](../weighted-graphs-practice.md). [回溯、貪心與動態規劃練習指引（簡體中文）](../strategy-practice.md).
+第 4–30 章使用 Python 3.11 或更新版本，共提供 270 段可獨立執行的程式及預期輸出。練習方法見[程式練習指南](../programming-practice.md)、[資料結構練習指引](../data-structures-practice.md)與[演算法練習指引](../algorithms-practice.md)（簡體中文）。 [遞迴與分治練習指引（簡體中文）](../recursion-practice.md). [樹與堆積練習指引（簡體中文）](../trees-practice.md). [雜湊表與圖練習指引（簡體中文）](../hash-graphs-practice.md). [拓撲排序與帶權圖練習指引（簡體中文）](../weighted-graphs-practice.md). [回溯、貪心與動態規劃練習指引（簡體中文）](../strategy-practice.md). [動態規劃進階練習指引（簡體中文）](../advanced-dp-practice.md).
 
 每章包含詳細講解、2 個原創例題、3 道附可展開解答的練習、自我檢測與選題來源。目前是 AI 初稿，尚未經學科專家審查或學習者試學，不代表所有課程都已完成教材。
 

@@ -26,5 +26,8 @@
   "docs/textbook/25-backtracking.md",
   "docs/textbook/26-greedy-algorithms.md",
   "docs/textbook/27-dynamic-programming.md",
+  "docs/textbook/28-knapsack.md",
+  "docs/textbook/29-sequence-dp.md",
+  "docs/textbook/30-interval-tree-dp.md",
   "docs/textbook/index.md"
 ]

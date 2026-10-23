@@ -8,7 +8,7 @@ Il progetto serve soprattutto allo studio del manutentore: seleziona argomenti d
 
 È un progetto personale di Pleniluner, senza affiliazione ufficiale con la Tsinghua University o i manutentori upstream. Il repository pubblico contiene strumenti originali, bozze, indici delle fonti e guide AI. Materiali didattici originali, slide, compiti, codice degli studenti e testi estratti integralmente non sono pubblicati.
 
-## Studia ventisette capitoli in ordine
+## Studia trenta capitoli in ordine
 
 | # | Argomento | Attività |
 | --- | --- | --- |
@@ -39,8 +39,11 @@ Il progetto serve soprattutto allo studio del manutentore: seleziona argomenti d
 | 25 | [Backtracking e potatura](../textbook/25-backtracking.md) | Ripristinare lo stato e verificare che la ricerca conservi tutte le soluzioni |
 | 26 | [Algoritmi greedy e argomenti di scambio](../textbook/26-greedy-algorithms.md) | Costruire controesempi e verificare intervalli, fusioni e codici prefissi |
 | 27 | [Introduzione alla programmazione dinamica](../textbook/27-dynamic-programming.md) | Definire gli stati, ricostruire le soluzioni e controllare gli aggiornamenti |
+| 28 | [Problemi dello zaino e conteggio](../textbook/28-knapsack.md) | Distinguere capacità, peso esatto, riuso, combinazioni e sequenze |
+| 29 | [Programmazione dinamica sulle sequenze](../textbook/29-sequence-dp.md) | Ricostruire sottosequenze comuni, allineamenti e sottosequenze crescenti |
+| 30 | [Programmazione dinamica su intervalli e alberi](../textbook/30-interval-tree-dp.md) | Pianificare fusioni adiacenti e verificare insiemi indipendenti e coperture |
 
-I capitoli dal 4 al 27 usano Python 3.11 o successivo e includono 240 programmi autonomi con l’output atteso. Consulta le guide alla [programmazione](../programming-practice.md), alle [strutture dati](../data-structures-practice.md) e agli [algoritmi](../algorithms-practice.md), in cinese. [Esercizi su ricorsione e divide et impera (in cinese)](../recursion-practice.md). [Esercizi su alberi e heap (in cinese)](../trees-practice.md). [Esercizi su tabelle hash e grafi (in cinese)](../hash-graphs-practice.md). [Esercizi su ordinamento topologico e grafi pesati (in cinese)](../weighted-graphs-practice.md). [Esercizi su backtracking, algoritmi greedy e programmazione dinamica (in cinese)](../strategy-practice.md).
+I capitoli dal 4 al 30 usano Python 3.11 o successivo e includono 270 programmi autonomi con l’output atteso. Consulta le guide alla [programmazione](../programming-practice.md), alle [strutture dati](../data-structures-practice.md) e agli [algoritmi](../algorithms-practice.md), in cinese. [Esercizi su ricorsione e divide et impera (in cinese)](../recursion-practice.md). [Esercizi su alberi e heap (in cinese)](../trees-practice.md). [Esercizi su tabelle hash e grafi (in cinese)](../hash-graphs-practice.md). [Esercizi su ordinamento topologico e grafi pesati (in cinese)](../weighted-graphs-practice.md). [Esercizi su backtracking, algoritmi greedy e programmazione dinamica (in cinese)](../strategy-practice.md). [Esercizi avanzati di programmazione dinamica (in cinese)](../advanced-dp-practice.md).
 
 Ogni capitolo contiene spiegazioni dettagliate, 2 esempi originali, 3 esercizi con soluzioni espandibili, un’autoverifica e le fonti degli argomenti. È una prima bozza AI, non revisionata da esperti né sperimentata con studenti; non significa che tutti i corsi abbiano un manuale completo.
 

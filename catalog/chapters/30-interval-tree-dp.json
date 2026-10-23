@@ -1,0 +1,226 @@
+{
+  "chapter_id": "30-interval-tree-dp",
+  "content": {
+    "exercises": [
+      {
+        "answer": "四个 2×2 矩阵的费用均为三次 8，共 24，有 5 种括号结构；[6,2,7,3] 只有 1 种最优结构；空链按约定为费用 0、1 种空结构。空区间和单矩阵的 ways 为 1，不能初始化成零使乘法消失。不同根切分对应不同结构，所以可相加；同一结构的不同执行交错不另计。时间 O((n+1)³)、状态数 O((n+1)²)，计数很大时乘法和存储的位成本另计。",
+        "hint": "先求 cost，再枚举能达到该最优值的切分点。每个切分下，左侧最优结构数乘右侧最优结构数，再对不同切分相加。",
+        "program": {
+          "code": "def matrix_tables(dimensions):\n    if len(dimensions) == 0:\n        return None\n    for dimension in dimensions:\n        if dimension <= 0:\n            return None\n    n = len(dimensions) - 1\n    cost = []\n    split = []\n    for i in range(n + 1):\n        cost.append([0] * (n + 1))\n        split.append([None] * (n + 1))\n    for length in range(2, n + 1):\n        for left in range(n - length + 1):\n            right = left + length\n            best = None\n            for middle in range(left + 1, right):\n                candidate = cost[left][middle] + cost[middle][right]\n                candidate = candidate + dimensions[left] * dimensions[middle] * dimensions[right]\n                if best is None or candidate < best:\n                    best = candidate\n                    split[left][right] = middle\n            cost[left][right] = best\n    return {\"cost\": cost, \"split\": split}\n\ndef count_matrix_optima(dimensions):\n    tables = matrix_tables(dimensions)\n    if tables is None:\n        return None\n    n = len(dimensions) - 1\n    ways = []\n    for i in range(n + 1):\n        ways.append([0] * (n + 1))\n        ways[i][i] = 1\n        if i < n:\n            ways[i][i + 1] = 1\n    for length in range(2, n + 1):\n        for left in range(n - length + 1):\n            right = left + length\n            for middle in range(left + 1, right):\n                candidate = tables[\"cost\"][left][middle] + tables[\"cost\"][middle][right]\n                candidate = candidate + dimensions[left] * dimensions[middle] * dimensions[right]\n                if candidate == tables[\"cost\"][left][right]:\n                    ways[left][right] = ways[left][right] + ways[left][middle] * ways[middle][right]\n    return {\"cost\": tables[\"cost\"][0][n], \"count\": ways[0][n]}\n\nprint(count_matrix_optima([2, 2, 2, 2, 2]))\nprint(count_matrix_optima([6, 2, 7, 3]))\nprint(count_matrix_optima([2]))\n",
+          "output": "{'cost': 24, 'count': 5}\n{'cost': 78, 'count': 1}\n{'cost': 0, 'count': 1}\n"
+        },
+        "question": "除最小费用外，统计矩阵链有多少种最优括号结构。对四个 2×2 矩阵、维度 [6,2,7,3] 和空链约定分别作答；不区分左右独立子树先计算哪一边。"
+      },
+      {
+        "answer": "inside 为自身费用加各孩子两状态最小值之和，outside 为所有孩子 inside 之和。示例选根费用 6，优于选两个叶子的 8。自由选择平局时不选，但父未选时必须选，故费用 [0,0] 的一条边返回孩子，不能返回空集。空森林费用零；负费用在本题接口中拒绝。含验证与恢复时间、空间 O(n+1)。独立集的补集恰是顶点覆盖，所以还可核对最小覆盖费用等于总费用减同权最大独立集；输出是否覆盖每条边仍需独立检查。",
+        "hint": "若不选父，所有孩子必须选；若选父，每个孩子可自由取两状态中较小值。恢复时父未选会强制当前结点选中。",
+        "program": {
+          "code": "def forest_structure(parents):\n    n = len(parents)\n    children = []\n    roots = []\n    for vertex in range(n):\n        children.append([])\n    for vertex in range(n):\n        parent = parents[vertex]\n        if parent == -1:\n            roots.append(vertex)\n        elif parent < 0 or parent >= n or parent == vertex:\n            return None\n        else:\n            children[parent].append(vertex)\n    order = roots.copy()\n    front = 0\n    while front < len(order):\n        vertex = order[front]\n        front = front + 1\n        for child in children[vertex]:\n            order.append(child)\n    if len(order) != n:\n        return None\n    return {\"children\": children, \"roots\": roots, \"order\": order}\n\ndef forest_vertex_cover(weights, parents):\n    if len(weights) != len(parents):\n        return None\n    for weight in weights:\n        if weight < 0:\n            return None\n    forest = forest_structure(parents)\n    if forest is None:\n        return None\n    inside = weights.copy()\n    outside = [0] * len(weights)\n    for vertex in forest[\"order\"][::-1]:\n        for child in forest[\"children\"][vertex]:\n            best = outside[child]\n            if inside[child] < best:\n                best = inside[child]\n            inside[vertex] = inside[vertex] + best\n            outside[vertex] = outside[vertex] + inside[child]\n    chosen = [False] * len(weights)\n    for vertex in forest[\"order\"]:\n        parent = parents[vertex]\n        if parent == -1 or chosen[parent]:\n            chosen[vertex] = inside[vertex] < outside[vertex]\n        else:\n            chosen[vertex] = True\n    total = 0\n    vertices = []\n    for vertex in range(len(weights)):\n        if chosen[vertex]:\n            total = total + weights[vertex]\n            vertices.append(vertex)\n    return {\"cost\": total, \"vertices\": vertices}\n\nprint(forest_vertex_cover([6, 4, 4], [-1, 0, 0]))\nprint(forest_vertex_cover([0, 0], [-1, 0]))\nprint(forest_vertex_cover([], []))\n",
+          "output": "{'cost': 6, 'vertices': [0]}\n{'cost': 0, 'vertices': [1]}\n{'cost': 0, 'vertices': []}\n"
+        },
+        "question": "森林每个结点有非负选择费用，要使每条父子边至少有一端被选，求最小费用及结点。这叫顶点覆盖。计算根费用 6、两个叶子各 4 的树，并检查零费用边。"
+      },
+      {
+        "answer": "叶子的两状态都为 1，分别对应选择它和不选它。inside 为各孩子 outside 的乘积，outside 为各孩子两状态之和的乘积；不同根分量的总数也相乘。星形三结点树有 5 个独立集，两个孤立点有 4 个，空森林有 1 个空集。这里统计全部合法方案，不能把最大权版本的 max 改成加号而保留其余所有运算。只有 O(n+1) 次状态组合及 O(n+1) 个整数槽位，但大整数可能各占多位；长链保留全部子树计数时不能据此声称只有线性位空间。",
+        "hint": "inside 与 outside 改存条件方案数。选根时每个孩子只能不选；不选根时孩子的两类方案都允许。",
+        "program": {
+          "code": "def forest_structure(parents):\n    n = len(parents)\n    children = []\n    roots = []\n    for vertex in range(n):\n        children.append([])\n    for vertex in range(n):\n        parent = parents[vertex]\n        if parent == -1:\n            roots.append(vertex)\n        elif parent < 0 or parent >= n or parent == vertex:\n            return None\n        else:\n            children[parent].append(vertex)\n    order = roots.copy()\n    front = 0\n    while front < len(order):\n        vertex = order[front]\n        front = front + 1\n        for child in children[vertex]:\n            order.append(child)\n    if len(order) != n:\n        return None\n    return {\"children\": children, \"roots\": roots, \"order\": order}\n\ndef count_forest_independent(parents):\n    forest = forest_structure(parents)\n    if forest is None:\n        return None\n    inside = [1] * len(parents)\n    outside = [1] * len(parents)\n    for vertex in forest[\"order\"][::-1]:\n        for child in forest[\"children\"][vertex]:\n            inside[vertex] = inside[vertex] * outside[child]\n            outside[vertex] = outside[vertex] * (inside[child] + outside[child])\n    count = 1\n    for root in forest[\"roots\"]:\n        count = count * (inside[root] + outside[root])\n    return count\n\nprint(count_forest_independent([-1, 0, 0]))\nprint(count_forest_independent([-1, -1]))\nprint(count_forest_independent([]))\n",
+          "output": "5\n4\n1\n"
+        },
+        "question": "只给父表，统计全部独立结点子集数，包括空集。求一个根带两个叶子、两个孤立结点和空森林的结果；说明孩子之间为何相乘。"
+      }
+    ],
+    "introduction": "前面的状态多按金额或前缀递增计算，但有些问题必须保留一整段区间，也有些问题由一棵树的孩子决定父结点。本章先从矩阵链的最后一次乘法找切分点，再研究只允许相邻合并的费用，最后把树上选择问题拆成选根和不选根两个状态。每个算法都明确依赖顺序、输入边界和方案含义，使用显式列表处理恢复和森林，避免把递归深度当作输入规模的隐含限制。",
+    "limitations": [
+      "矩阵只优化传统标量乘法次数，不计算元素或讨论快速矩阵乘法；相邻合并限定线性排列与非负大小。",
+      "树形部分只接收经验证的单父森林，不能直接处理共享子结点的 DAG、一般图、环或动态修改。",
+      "未覆盖环形区间、区间优化、换根、树上背包及全部最优方案列举；计数与费用的大整数位成本另计。"
+    ],
+    "objectives": [
+      "用半开区间定义状态，推导按长度计算的切分转移。",
+      "恢复可实际按顺序执行的合并记录，并区分括号结构与执行顺序。",
+      "验证父表确实形成森林，以孩子先完成的顺序计算树形状态。",
+      "推导森林独立集、顶点覆盖与独立集计数，检查多根和空森林。"
+    ],
+    "pitfalls": [
+      {
+        "correction": "必须比较该选择下全部子问题的最优代价，不能只看眼前乘法次数或当前结点权重。",
+        "mistake": "把矩阵链的最后切分或树根的选择当作一次局部贪心。"
+      },
+      {
+        "correction": "编号可能任意；先验证父表并建立父先于子的顺序，再反转计算。",
+        "mistake": "把编号倒序直接当作孩子先完成，或把循环父表当成森林。"
+      },
+      {
+        "correction": "平局规则只适用于自由状态；父未选时孩子必须选，不受本地费用是否为零影响。",
+        "mistake": "恢复覆盖时遇到零费用就跳过，导致一条边两端都没选。"
+      },
+      {
+        "correction": "计数对象必须先固定；乘积组合独立子选择，相加组合互斥分类，最优值则使用最大或最小。",
+        "mistake": "把括号结构数、不同执行顺序数与最优值混为一谈。"
+      }
+    ],
+    "prerequisites": [
+      "第 27–29 章的状态、最优子结构、平局和方案恢复。",
+      "第 14 章的半开区间，第 16 章的树、根、孩子与遍历。",
+      "第 21–22 章的队列游标与依赖顺序；第 26 章的任意两块最优合并。"
+    ],
+    "sections": [
+      {
+        "body": "先补一个成本模型。p 行 q 列矩阵乘 q 行 r 列矩阵，得到 p 行 r 列结果；通常逐格计算时，每格有 q 次标量乘法，共 pqr 次。本章只优化这个乘法次数，不计算矩阵元素，不计加法，不把次数等同运行秒数。改变括号不改变矩阵先后顺序，在精确算术模型中结果相同；浮点舍入影响另论。\n\n用正整数列表 dimensions 表示维度，第 i 个矩阵形状为 dimensions[i] 行、dimensions[i+1] 列。n 个矩阵需要 n+1 个维度。定义 cost[left][right] 为半开区间 [left,right) 内矩阵按原顺序相乘的最少次数。单个矩阵已经是结果，费用为零。空链按教学约定费用为零，不把它解释为某个给定形状的单位矩阵。\n\n长度至少为 2 时，最后一次乘法一定把区间切成 [left,middle) 和 [middle,right)，两边均非空。左结果形状为 dimensions[left] 乘 dimensions[middle]，右结果形状为 dimensions[middle] 乘 dimensions[right]，故新增次数为这三个数的乘积。枚举所有内部切分点，把两边最优费用与新增次数相加取最小；若某一侧不是最优，可替换而不影响结果形状，所以分类足够。\n\n子区间都更短，按长度从 2 到 n 填表，每格的依赖已经完成。split 仅在严格改善时保存切分，平局保留最小 middle。示例维度 [4,7,2,5]，先乘前两矩阵花 56，再乘末矩阵花 40，共 96。完整表只读取对角线及其上方的有效区间，其他初始化槽不代表独立问题。空维度列表或非正维度返回 None；单元素维度表表示零个矩阵。时间 O((n+1)³)、空间 O((n+1)²)，按整数运算单位成本计。",
+        "program": {
+          "code": "def matrix_tables(dimensions):\n    if len(dimensions) == 0:\n        return None\n    for dimension in dimensions:\n        if dimension <= 0:\n            return None\n    n = len(dimensions) - 1\n    cost = []\n    split = []\n    for i in range(n + 1):\n        cost.append([0] * (n + 1))\n        split.append([None] * (n + 1))\n    for length in range(2, n + 1):\n        for left in range(n - length + 1):\n            right = left + length\n            best = None\n            for middle in range(left + 1, right):\n                candidate = cost[left][middle] + cost[middle][right]\n                candidate = candidate + dimensions[left] * dimensions[middle] * dimensions[right]\n                if best is None or candidate < best:\n                    best = candidate\n                    split[left][right] = middle\n            cost[left][right] = best\n    return {\"cost\": cost, \"split\": split}\n\nprint(matrix_tables([4, 7, 2, 5])[\"cost\"][0])\nprint(matrix_tables([4])[\"cost\"])\nprint(matrix_tables([]))\n",
+          "output": "[0, 0, 56, 96]\n[[0]]\nNone\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "区间状态：从最后一次矩阵乘法找切分点"
+      },
+      {
+        "body": "split 保存的是一棵括号树。若要给出可执行的乘法步骤，不能只从根向下打印：根的最后一次乘法依赖左右两边已经完成。这里返回三元列表 [left,middle,right]，表示把已经得到的 [left,middle) 与 [middle,right) 两个结果相乘。下标始终指向原矩阵区间，不随中间结果数量变化。\n\ninterval_merges 使用栈帧 [left,right,done]。首次进入一个非平凡区间，先压入标记 done 为 True 的自身，再压右区间，最后压左区间。栈后进先出，实际先处理左边、再右边，最后再次弹出自身并记录合并。长度零或一不产生操作；每个真正的内部结点有两次访问，左右子区间长度严格减小。\n\n这就是显式模拟后序恢复。给定 n 个矩阵，n 为正时恰有 n−1 次合并，空链为零次。恢复工作与输出都是 O(n+1)，最坏栈空间 O(n+1)，不使用 Python 递归。完整 matrix_plan 仍先建立二次规模表并做三次量级计算，恢复没有降低整个算法的成本。\n\n对 [4,7,2,5]，先得到记录 [0,1,2]，再得到 [0,2,3]。检查时先把每个单矩阵区间看作可用结果，每条操作必须找到恰好相邻的两段，用其结果替代；累计每步三个边界维度的乘积应为 96。这样同时检验依赖、原顺序和费用，而不只是看到一个正确数字。interval_merges 是内部辅助函数，前提是 split 来自已经验证并填好的表；它不接受任意外部切分表，也不尝试修复非法结构。",
+        "program": {
+          "code": "def matrix_tables(dimensions):\n    if len(dimensions) == 0:\n        return None\n    for dimension in dimensions:\n        if dimension <= 0:\n            return None\n    n = len(dimensions) - 1\n    cost = []\n    split = []\n    for i in range(n + 1):\n        cost.append([0] * (n + 1))\n        split.append([None] * (n + 1))\n    for length in range(2, n + 1):\n        for left in range(n - length + 1):\n            right = left + length\n            best = None\n            for middle in range(left + 1, right):\n                candidate = cost[left][middle] + cost[middle][right]\n                candidate = candidate + dimensions[left] * dimensions[middle] * dimensions[right]\n                if best is None or candidate < best:\n                    best = candidate\n                    split[left][right] = middle\n            cost[left][right] = best\n    return {\"cost\": cost, \"split\": split}\n\ndef interval_merges(split, n):\n    operations = []\n    stack = [[0, n, False]]\n    while len(stack) > 0:\n        frame = stack.pop()\n        left = frame[0]\n        right = frame[1]\n        if right - left > 1:\n            middle = split[left][right]\n            if frame[2]:\n                operations.append([left, middle, right])\n            else:\n                stack.append([left, right, True])\n                stack.append([middle, right, False])\n                stack.append([left, middle, False])\n    return operations\n\ndef matrix_plan(dimensions):\n    tables = matrix_tables(dimensions)\n    if tables is None:\n        return None\n    n = len(dimensions) - 1\n    return {\"cost\": tables[\"cost\"][0][n],\n            \"merges\": interval_merges(tables[\"split\"], n)}\n\nprint(matrix_plan([4, 7, 2, 5]))\nprint(matrix_plan([4, 7]))\nprint(matrix_plan([4]))\n",
+          "output": "{'cost': 96, 'merges': [[0, 1, 2], [0, 2, 3]]}\n{'cost': 0, 'merges': []}\n{'cost': 0, 'merges': []}\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "恢复计算顺序：先完成左右两边，再合并"
+      },
+      {
+        "body": "有一排非负整数大小的块，每次只能合并当前相邻的两块，支付两块大小之和，直到剩一块。原顺序固定，因此每个中间块对应原列表的一段连续区间。第 26 章允许任意两块合并，本题增加了相邻限制，不能直接套用每次取全局最小两块的规则。\n\n定义 cost[left][right] 为把 [left,right) 合成一块的最小累计费用。最后一次合并仍有一个内部切分点；两侧费用相加，再支付整个区间大小之和。这个新增费用与切分位置无关，但子区间费用不同，所以仍需枚举切分。空区间和单块费用为零；长度递增保证先算左右两侧，平局保留最小切分点。\n\n为避免每个候选都重新扫描区间，先建立 prefix，prefix[i] 表示前 i 块的大小和，prefix[0] 为零。于是区间和是 prefix[right] 减 prefix[left]，用两个边界值即可得到。每次 append 加上当前块，新表长度最终为 n+1；这只是本题需要的前缀和用法，后续可另学更多区间查询技巧。\n\n对 [4,1,3,2]，任意两块规则会先合并不相邻的 1 和 2，得到总费用 19，这一步在本题中不合法。区间算法得到费用 20，例如先合并 1 与 3 得 4，再与 2 合成 6，最后与最左 4 合并，支付 4、6、10。返回的记录可用上一节的区间执行检查核验。负大小拒绝，零大小允许，空输入费用零。前缀和 O(n+1)，填表时间 O((n+1)³)、表空间 O((n+1)²)，恢复 O(n+1)；没有使用未经讲解的优化降低切分枚举量。",
+        "program": {
+          "code": "def interval_merges(split, n):\n    operations = []\n    stack = [[0, n, False]]\n    while len(stack) > 0:\n        frame = stack.pop()\n        left = frame[0]\n        right = frame[1]\n        if right - left > 1:\n            middle = split[left][right]\n            if frame[2]:\n                operations.append([left, middle, right])\n            else:\n                stack.append([left, right, True])\n                stack.append([middle, right, False])\n                stack.append([left, middle, False])\n    return operations\n\ndef adjacent_merge(weights):\n    for weight in weights:\n        if weight < 0:\n            return None\n    n = len(weights)\n    prefix = [0]\n    for weight in weights:\n        prefix.append(prefix[-1] + weight)\n    cost = []\n    split = []\n    for i in range(n + 1):\n        cost.append([0] * (n + 1))\n        split.append([None] * (n + 1))\n    for length in range(2, n + 1):\n        for left in range(n - length + 1):\n            right = left + length\n            best = None\n            for middle in range(left + 1, right):\n                candidate = cost[left][middle] + cost[middle][right]\n                candidate = candidate + prefix[right] - prefix[left]\n                if best is None or candidate < best:\n                    best = candidate\n                    split[left][right] = middle\n            cost[left][right] = best\n    return {\"cost\": cost[0][n], \"merges\": interval_merges(split, n)}\n\nprint(adjacent_merge([4, 1, 3, 2]))\nprint(adjacent_merge([]))\nprint(adjacent_merge([0, 0, 0]))\n",
+          "output": "{'cost': 20, 'merges': [[1, 2, 3], [1, 3, 4], [0, 1, 4]]}\n{'cost': 0, 'merges': []}\n{'cost': 0, 'merges': [[1, 2, 3], [0, 1, 3]]}\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "只能合并相邻块：区间总和成为最后一步费用"
+      },
+      {
+        "body": "树形问题输入用 parents 列表，结点编号为 0 到 n−1。parents[v] 为 −1 表示根，否则是唯一父结点编号；有多个根就是森林。类型约定为整数列表。父结点编号可以比孩子大，不能直接按编号倒序就声称孩子已完成。越界、其他负数、自身为父和循环关系都必须拒绝。\n\n先为每个结点创建独立孩子表，再逐项登记父子边和根。随后把所有根放入 order，以游标从前向后读取，每访问一个结点便把其孩子追加到末尾。得到的顺序一定父先于子。它是从根扩展的顺序，不必等同某种深度优先后序；只要反转以后每个孩子都在父之前，就能用于下面的树形状态计算。\n\n为什么这里不额外建立已访问集合？父表保证每个非根只有一个父亲，每个孩子也只被登记一次。从根出发不可能进入循环：环上的每个结点的唯一父亲都在环内，不会再有一条来自根路径的父边。因此每个可达结点只追加一次，循环所在分量反而不可从任何根到达。最后若 order 长度不是 n，就说明有未连到根的循环分量，返回 None。这个论证依赖父表契约，不能搬到任意邻接图上省掉访问标记。\n\n示例 [2,2,−1,0,−1] 有根 2 和 4，order 为 [2,4,0,1,3]；逆序时 3 在 0 前，0、1 在 2 前。空父表是合法空森林。建表、扩展与验证时间和空间都是 O(n+1)，order 作为数组队列保留已经读过的前缀，空间仍计入。算法没有递归，长链也不依赖解释器递归层数。",
+        "program": {
+          "code": "def forest_structure(parents):\n    n = len(parents)\n    children = []\n    roots = []\n    for vertex in range(n):\n        children.append([])\n    for vertex in range(n):\n        parent = parents[vertex]\n        if parent == -1:\n            roots.append(vertex)\n        elif parent < 0 or parent >= n or parent == vertex:\n            return None\n        else:\n            children[parent].append(vertex)\n    order = roots.copy()\n    front = 0\n    while front < len(order):\n        vertex = order[front]\n        front = front + 1\n        for child in children[vertex]:\n            order.append(child)\n    if len(order) != n:\n        return None\n    return {\"children\": children, \"roots\": roots, \"order\": order}\n\nprint(forest_structure([2, 2, -1, 0, -1]))\nprint(forest_structure([1, 0]))\nprint(forest_structure([]))\n",
+          "output": "{'children': [[3], [], [0, 1], [], []], 'roots': [2, 4], 'order': [2, 4, 0, 1, 3]}\nNone\n{'children': [], 'roots': [], 'order': []}\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "从父表建立森林：先验证，再安排依赖"
+      },
+      {
+        "body": "给每个结点一个整数权重，要选出若干结点，使任何父子边都不同时选中两端，并让权重和最大。这叫独立集；“独立”在这里指图上不相邻，与概率独立无关。允许空选，权重可以为负。父表先通过上一节检查，权重列表长度必须相同。\n\n对每个结点 v 定义 inside[v] 为在它的子树内强制选择 v 的最优值，outside[v] 为强制不选 v 的最优值。如果选 v，每个孩子都必须不选，故 inside 等于自身权重加各孩子 outside 之和；如果不选 v，孩子可选可不选，故 outside 为各孩子两个状态较大值之和。树中不同孩子的子树没有共享结点或跨边，在固定根的选择后才能独立组合。\n\n叶子 inside 为其权重，outside 为 0。按 order 的逆序处理，孩子的两个值已经完成；把它们相加就完成父状态。若多个根，分量之间也无边，各自最优值可以相加。仅比较当前结点和直属孩子的权重不够，因为孩子状态还包含全部后代。示例根权重 6、两个叶子各为 4，不选根得到 8，比选根的 6 更好。\n\n恢复改按父先于子的 order。父已选时强制不选当前结点；否则仅在 inside 严格大于 outside 时选择，平局不选。最后按编号扫描标记，输出升序原结点编号并重算权重。全负输入和空森林都返回空集、权重 0；若父表非法则返回 None。应同时检查边两端不能都在答案中，以及权重和等于穷举最优值。含验证、状态、恢复和结果的时间与空间均为 O(n+1)，按单位整数加法比较分析；一般有环图不能直接使用这两个树形转移。",
+        "program": {
+          "code": "def forest_structure(parents):\n    n = len(parents)\n    children = []\n    roots = []\n    for vertex in range(n):\n        children.append([])\n    for vertex in range(n):\n        parent = parents[vertex]\n        if parent == -1:\n            roots.append(vertex)\n        elif parent < 0 or parent >= n or parent == vertex:\n            return None\n        else:\n            children[parent].append(vertex)\n    order = roots.copy()\n    front = 0\n    while front < len(order):\n        vertex = order[front]\n        front = front + 1\n        for child in children[vertex]:\n            order.append(child)\n    if len(order) != n:\n        return None\n    return {\"children\": children, \"roots\": roots, \"order\": order}\n\ndef forest_independent(weights, parents):\n    if len(weights) != len(parents):\n        return None\n    forest = forest_structure(parents)\n    if forest is None:\n        return None\n    inside = weights.copy()\n    outside = [0] * len(weights)\n    for vertex in forest[\"order\"][::-1]:\n        for child in forest[\"children\"][vertex]:\n            inside[vertex] = inside[vertex] + outside[child]\n            best = outside[child]\n            if inside[child] > best:\n                best = inside[child]\n            outside[vertex] = outside[vertex] + best\n    chosen = [False] * len(weights)\n    for vertex in forest[\"order\"]:\n        parent = parents[vertex]\n        if parent == -1 or not chosen[parent]:\n            chosen[vertex] = inside[vertex] > outside[vertex]\n    total = 0\n    vertices = []\n    for vertex in range(len(weights)):\n        if chosen[vertex]:\n            total = total + weights[vertex]\n            vertices.append(vertex)\n    return {\"weight\": total, \"vertices\": vertices}\n\nprint(forest_independent([6, 4, 4], [-1, 0, 0]))\nprint(forest_independent([-2, -1], [-1, 0]))\nprint(forest_independent([], []))\n",
+          "output": "{'weight': 8, 'vertices': [1, 2]}\n{'weight': 0, 'vertices': []}\n{'weight': 0, 'vertices': []}\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "选根与不选根：森林最大权独立集"
+      }
+    ],
+    "self_checks": [
+      "用维度边界推导一条 [left,middle,right] 操作的两侧形状和乘法次数。",
+      "重放相邻合并记录，检查所有中间块仍对应连续原区间。",
+      "给父表重新编号，使父编号大于孩子，再验证结果不变。",
+      "分别列举三结点树的全部独立集和覆盖，核对空集、零权和平局。"
+    ],
+    "worked_examples": [
+      {
+        "answer": "第一组返回费用 78、记录 [[1,2,3],[0,1,3]]；第二组费用 54，记录相同。记录描述固定原顺序上的两侧结果，不是在矩阵之间换位。测试逐条消费已有区间，并枚举所有括号结构核对最优费用；只验证每条乘法尺寸相容仍不足以证明总费用最小。",
+        "program": {
+          "code": "def matrix_tables(dimensions):\n    if len(dimensions) == 0:\n        return None\n    for dimension in dimensions:\n        if dimension <= 0:\n            return None\n    n = len(dimensions) - 1\n    cost = []\n    split = []\n    for i in range(n + 1):\n        cost.append([0] * (n + 1))\n        split.append([None] * (n + 1))\n    for length in range(2, n + 1):\n        for left in range(n - length + 1):\n            right = left + length\n            best = None\n            for middle in range(left + 1, right):\n                candidate = cost[left][middle] + cost[middle][right]\n                candidate = candidate + dimensions[left] * dimensions[middle] * dimensions[right]\n                if best is None or candidate < best:\n                    best = candidate\n                    split[left][right] = middle\n            cost[left][right] = best\n    return {\"cost\": cost, \"split\": split}\n\ndef interval_merges(split, n):\n    operations = []\n    stack = [[0, n, False]]\n    while len(stack) > 0:\n        frame = stack.pop()\n        left = frame[0]\n        right = frame[1]\n        if right - left > 1:\n            middle = split[left][right]\n            if frame[2]:\n                operations.append([left, middle, right])\n            else:\n                stack.append([left, right, True])\n                stack.append([middle, right, False])\n                stack.append([left, middle, False])\n    return operations\n\ndef matrix_plan(dimensions):\n    tables = matrix_tables(dimensions)\n    if tables is None:\n        return None\n    n = len(dimensions) - 1\n    return {\"cost\": tables[\"cost\"][0][n],\n            \"merges\": interval_merges(tables[\"split\"], n)}\n\nprint(matrix_plan([6, 2, 7, 3]))\nprint(matrix_plan([3, 3, 3, 3]))\n",
+          "output": "{'cost': 78, 'merges': [[1, 2, 3], [0, 1, 3]]}\n{'cost': 54, 'merges': [[1, 2, 3], [0, 1, 3]]}\n"
+        },
+        "question": "矩阵形状依次为 6×2、2×7、7×3，求最少标量乘法次数与执行记录；再检查三个 3×3 矩阵的平局。",
+        "steps": [
+          "先算前两个矩阵花 6×2×7=84，结果形状 6×7，再乘末矩阵花 6×7×3=126，总计 210。",
+          "先算后两个矩阵花 2×7×3=42，结果形状 2×3，再由首矩阵乘它花 6×2×3=36，总计 78。",
+          "因此根切分在位置 1，先执行区间 [1,3) 的合并，再执行整个 [0,3) 的合并。",
+          "三个 3×3 矩阵两种括号都是两次 27，总费用 54；最小切分点规则选择先算右侧。"
+        ]
+      },
+      {
+        "answer": "答案权重 17，所有父子边都没有同时选择两端。零权二结点链在平局不选规则下返回空集，仍为最优；父表 [1,0] 没有根且形成循环，返回 None。没有为了处理循环而随意删边或把它当成两棵树。权重列表和父表均保持不变，测试以所有结点子集直接检查独立条件作为参考。",
+        "program": {
+          "code": "def forest_structure(parents):\n    n = len(parents)\n    children = []\n    roots = []\n    for vertex in range(n):\n        children.append([])\n    for vertex in range(n):\n        parent = parents[vertex]\n        if parent == -1:\n            roots.append(vertex)\n        elif parent < 0 or parent >= n or parent == vertex:\n            return None\n        else:\n            children[parent].append(vertex)\n    order = roots.copy()\n    front = 0\n    while front < len(order):\n        vertex = order[front]\n        front = front + 1\n        for child in children[vertex]:\n            order.append(child)\n    if len(order) != n:\n        return None\n    return {\"children\": children, \"roots\": roots, \"order\": order}\n\ndef forest_independent(weights, parents):\n    if len(weights) != len(parents):\n        return None\n    forest = forest_structure(parents)\n    if forest is None:\n        return None\n    inside = weights.copy()\n    outside = [0] * len(weights)\n    for vertex in forest[\"order\"][::-1]:\n        for child in forest[\"children\"][vertex]:\n            inside[vertex] = inside[vertex] + outside[child]\n            best = outside[child]\n            if inside[child] > best:\n                best = inside[child]\n            outside[vertex] = outside[vertex] + best\n    chosen = [False] * len(weights)\n    for vertex in forest[\"order\"]:\n        parent = parents[vertex]\n        if parent == -1 or not chosen[parent]:\n            chosen[vertex] = inside[vertex] > outside[vertex]\n    total = 0\n    vertices = []\n    for vertex in range(len(weights)):\n        if chosen[vertex]:\n            total = total + weights[vertex]\n            vertices.append(vertex)\n    return {\"weight\": total, \"vertices\": vertices}\n\nprint(forest_independent([5, 8, 6, 4, -2, 3], [-1, 0, 0, 1, 1, -1]))\nprint(forest_independent([0, 0], [-1, 0]))\nprint(forest_independent([1, 1], [1, 0]))\n",
+          "output": "{'weight': 17, 'vertices': [1, 2, 5]}\n{'weight': 0, 'vertices': []}\nNone\n"
+        },
+        "question": "权重 [5,8,6,4,−2,3]，父表 [−1,0,0,1,1,−1]。逐层求森林最大权独立集，并检查零权平局和循环父表。",
+        "steps": [
+          "结点 3、4、2、5 是叶子，inside 分别为 4、−2、6、3，outside 都为 0。",
+          "结点 1 的 inside 为 8，outside 为 4；负权叶子 4 可不选。",
+          "结点 0 的 inside 为 5+4+0=9，outside 为 8+6=14，所以其分量选择结点 1 与 2。",
+          "另一个根 5 独立贡献 3，合计 17；选择 1 后不能再选择它的孩子 3、4，恢复结果为 [1,2,5]。"
+        ]
+      }
+    ]
+  },
+  "context_key": "7fcb8c7955e60bf460218d6fcefb72865042964093d5e65e7b456a1558fc4a24",
+  "model": "Codex 当前会话（未记录具体模型型号）",
+  "prompt_version": "2-python",
+  "references": [
+    {
+      "note": "仅核对最后切分与按区间长度的依赖；本章自行设计维度、零矩阵约定、显式操作记录和最优结构计数。",
+      "title": "MIT 6.006：矩阵链的区间状态",
+      "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/3484e876d81aba07911a1109f5b5e81e_MIT6_006F11_lec21.pdf"
+    },
+    {
+      "note": "核对区间拆分和固定根选择后组合孩子的思想；本章使用相邻合并模型和经验证的单父森林，例题、非递归实现及验收独立设计。",
+      "title": "Illinois CS/ECE 374：树形动态规划",
+      "url": "https://courses.grainger.illinois.edu/cs374al1/fa2026/lectures/tree-dynamic-programming.html"
+    },
+    {
+      "note": "核对选根与不选根的依赖关系；本章另定负权、空森林、父表拒绝和稳定恢复的接口。",
+      "title": "Stanford CS161：树上最大权独立集",
+      "url": "https://web.stanford.edu/class/archive/cs/cs161/cs161.1172/CS161Lecture13.pdf"
+    }
+  ],
+  "review_status": "ai-draft",
+  "schema_version": 1,
+  "sources": [
+    {
+      "analysis_digest": "9888da07b670886c773f0c27f93b693f8b97ca9f8dbee6a241b394b6c3a05c25",
+      "analysis_id": "9653e7ae080bce424a5f",
+      "blob_sha": "fe751673ab99d124f9f4a6ecff2a51f9d613c95f",
+      "commit": "37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0",
+      "coverage": "extracted-text",
+      "evidence": [
+        {
+          "id": "L1-L40",
+          "locator": "第 1–40 行"
+        },
+        {
+          "id": "L41-L80",
+          "locator": "第 41–80 行"
+        },
+        {
+          "id": "L121-L160",
+          "locator": "第 121–160 行"
+        }
+      ],
+      "path": "大一小学期/Week_3-Python/docs/readme.md",
+      "repository": "PKUanonym/REKCARC-TSC-UHT",
+      "topics": [
+        {
+          "evidence_ids": [
+            "L41-L80"
+          ],
+          "key": "9653e7ae080bce424a5f:0",
+          "name": "Python 基础语法的外部学习入口"
+        },
+        {
+          "evidence_ids": [
+            "L121-L160"
+          ],
+          "key": "9653e7ae080bce424a5f:1",
+          "name": "从基础语法到工具与应用的建议阅读顺序"
+        }
+      ]
+    }
+  ],
+  "title": "按区间与子树组织依赖：区间和树形动态规划"
+}

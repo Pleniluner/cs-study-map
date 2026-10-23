@@ -8,7 +8,7 @@
 
 Pleniluner가 관리하는 개인 학습 프로젝트이며 칭화대학교나 상류 저장소 관리자와 공식 관계가 없습니다. 공개 저장소에는 자체 도구, 교재 초안, 출처 색인, AI 안내가 포함됩니다. 원본 교재, 강의자료, 과제, 학생 소스 코드, 추출 전문은 공개하지 않습니다.
 
-## 스물일곱 장을 순서대로 학습하기
+## 서른 장을 순서대로 학습하기
 
 | # | 주제 | 실습 |
 | --- | --- | --- |
@@ -39,8 +39,11 @@ Pleniluner가 관리하는 개인 학습 프로젝트이며 칭화대학교나 �
 | 25 | [백트래킹과 가지치기](../textbook/25-backtracking.md) | 탐색 상태를 복원하고 모든 답이 유지되는지 검증하기 |
 | 26 | [탐욕 알고리즘과 교환 논증](../textbook/26-greedy-algorithms.md) | 반례를 만들고 일정, 병합, 접두 부호 검증하기 |
 | 27 | [동적 계획법 입문](../textbook/27-dynamic-programming.md) | 상태를 정의하고 해를 복원하며 갱신 순서 확인하기 |
+| 28 | [배낭 문제와 경우의 수](../textbook/28-knapsack.md) | 용량, 정확한 무게, 재사용, 조합과 순서 구분하기 |
+| 29 | [수열의 동적 계획법](../textbook/29-sequence-dp.md) | 공통 부분 수열, 편집 정렬, 증가 부분 수열 복원하기 |
+| 30 | [구간과 트리의 동적 계획법](../textbook/30-interval-tree-dp.md) | 인접 병합을 계획하고 독립 집합과 정점 덮개 검증하기 |
 
-4–27장은 Python 3.11 이상을 사용하며, 독립적으로 실행할 수 있는 프로그램 240개와 예상 출력을 제공합니다. 중국어로 작성된 [프로그래밍 연습 안내](../programming-practice.md), [자료 구조 연습 안내](../data-structures-practice.md), [알고리즘 연습 안내](../algorithms-practice.md)를 참고하세요. [재귀와 분할 정복 연습 안내(중국어)](../recursion-practice.md). [트리와 힙 연습 안내(중국어)](../trees-practice.md). [해시 테이블과 그래프 연습 안내(중국어)](../hash-graphs-practice.md). [위상 정렬과 가중 그래프 연습 안내(중국어)](../weighted-graphs-practice.md). [백트래킹, 탐욕 알고리즘, 동적 계획법 연습 안내(중국어)](../strategy-practice.md).
+4–30장은 Python 3.11 이상을 사용하며, 독립적으로 실행할 수 있는 프로그램 270개와 예상 출력을 제공합니다. 중국어로 작성된 [프로그래밍 연습 안내](../programming-practice.md), [자료 구조 연습 안내](../data-structures-practice.md), [알고리즘 연습 안내](../algorithms-practice.md)를 참고하세요. [재귀와 분할 정복 연습 안내(중국어)](../recursion-practice.md). [트리와 힙 연습 안내(중국어)](../trees-practice.md). [해시 테이블과 그래프 연습 안내(중국어)](../hash-graphs-practice.md). [위상 정렬과 가중 그래프 연습 안내(중국어)](../weighted-graphs-practice.md). [백트래킹, 탐욕 알고리즘, 동적 계획법 연습 안내(중국어)](../strategy-practice.md). [동적 계획법 심화 연습 안내(중국어)](../advanced-dp-practice.md).
 
 각 장에는 자세한 설명, 창작 예제 2개, 펼쳐 볼 수 있는 풀이가 있는 연습문제 3개, 자가 점검과 출처가 있습니다. AI 초안이며 분야 전문가 검토나 학습자 시범 학습을 거치지 않았습니다. 모든 과목의 교재가 완성되었다는 뜻은 아닙니다.
 

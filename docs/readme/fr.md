@@ -8,7 +8,7 @@ Ce projet sert d’abord à l’apprentissage personnel de son mainteneur. Il s�
 
 Ce projet personnel est maintenu par Pleniluner, sans affiliation officielle avec l’Université Tsinghua ni les responsables amont. Le dépôt public contient des outils originaux, des brouillons, des index de sources et des guides IA. Les supports originaux, diapositives, devoirs, codes d’étudiants et textes extraits intégralement ne sont pas publiés.
 
-## Étudier vingt-sept chapitres dans l’ordre
+## Étudier trente chapitres dans l’ordre
 
 | # | Sujet | Activité |
 | --- | --- | --- |
@@ -39,8 +39,11 @@ Ce projet personnel est maintenu par Pleniluner, sans affiliation officielle ave
 | 25 | [Retour sur trace et élagage](../textbook/25-backtracking.md) | Restaurer les états et vérifier que tous les résultats sont conservés |
 | 26 | [Algorithmes gloutons et arguments d’échange](../textbook/26-greedy-algorithms.md) | Construire des contre-exemples et vérifier les choix, les fusions et les codes préfixes |
 | 27 | [Introduction à la programmation dynamique](../textbook/27-dynamic-programming.md) | Définir les états, reconstruire les solutions et vérifier l’ordre des mises à jour |
+| 28 | [Problèmes de sac à dos et dénombrement](../textbook/28-knapsack.md) | Distinguer capacité, poids exact, réutilisation, combinaisons et séquences |
+| 29 | [Programmation dynamique sur les séquences](../textbook/29-sequence-dp.md) | Reconstruire les sous-séquences communes, les alignements et les sous-séquences croissantes |
+| 30 | [Programmation dynamique sur les intervalles et les arbres](../textbook/30-interval-tree-dp.md) | Planifier les fusions adjacentes et vérifier ensembles indépendants et couvertures |
 
-Les chapitres 4 à 27 utilisent Python 3.11 ou une version ultérieure et proposent 240 programmes autonomes avec leur sortie attendue. Consultez les guides de [programmation](../programming-practice.md), de [structures de données](../data-structures-practice.md) et d’[algorithmes](../algorithms-practice.md), en chinois. [Exercices de récursivité et de division du problème (en chinois)](../recursion-practice.md). [Exercices sur les arbres et les tas (en chinois)](../trees-practice.md). [Exercices sur les tables de hachage et les graphes (en chinois)](../hash-graphs-practice.md). [Exercices sur le tri topologique et les graphes pondérés (en chinois)](../weighted-graphs-practice.md). [Exercices de recherche, d’algorithmes gloutons et de programmation dynamique (en chinois)](../strategy-practice.md).
+Les chapitres 4 à 30 utilisent Python 3.11 ou une version ultérieure et proposent 270 programmes autonomes avec leur sortie attendue. Consultez les guides de [programmation](../programming-practice.md), de [structures de données](../data-structures-practice.md) et d’[algorithmes](../algorithms-practice.md), en chinois. [Exercices de récursivité et de division du problème (en chinois)](../recursion-practice.md). [Exercices sur les arbres et les tas (en chinois)](../trees-practice.md). [Exercices sur les tables de hachage et les graphes (en chinois)](../hash-graphs-practice.md). [Exercices sur le tri topologique et les graphes pondérés (en chinois)](../weighted-graphs-practice.md). [Exercices de recherche, d’algorithmes gloutons et de programmation dynamique (en chinois)](../strategy-practice.md). [Exercices avancés de programmation dynamique (en chinois)](../advanced-dp-practice.md).
 
 Chaque chapitre contient des explications détaillées, 2 exemples originaux, 3 exercices avec solutions dépliables, une autoévaluation et les sources des sujets. Il s’agit d’un premier jet produit par IA, sans validation par des spécialistes ni essai auprès d’apprenants ; tous les cours ne disposent pas encore d’un manuel.
 
