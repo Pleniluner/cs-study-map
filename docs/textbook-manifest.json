@@ -23,5 +23,8 @@
   "docs/textbook/22-topological-sort.md",
   "docs/textbook/23-weighted-shortest-paths.md",
   "docs/textbook/24-minimum-spanning-trees.md",
+  "docs/textbook/25-backtracking.md",
+  "docs/textbook/26-greedy-algorithms.md",
+  "docs/textbook/27-dynamic-programming.md",
   "docs/textbook/index.md"
 ]

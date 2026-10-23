@@ -6,11 +6,11 @@
 
 **[开始读教材](docs/textbook/index.md)** · [前三章试学指南](docs/study-guide.md) · [综合练习](docs/unit-01-review.md) · [编程练习与运行](docs/programming-practice.md) · [查找参考资料](docs/index.md) · [覆盖状态](docs/status.md) · [使用与运行](docs/usage.md) · [来源与许可](ATTRIBUTION.md)
 
-项目仍在建设中。[项目概况与可复现成果](docs/project-brief.md)说明已有工具、验证依据与使用范围；[未完成清单与维护计划](docs/roadmap.md)列明下一批第 25–27 章、后续课程缺口和软件维护任务，并分别记录现有成果与未来验收标准。
+项目仍在建设中。[项目概况与可复现成果](docs/project-brief.md)说明已有工具、验证依据与使用范围；[未完成清单与维护计划](docs/roadmap.md)记录已完成的第 25–27 章、后续课程缺口和软件维护任务，并分别列出现有成果与未来验收标准。
 
 这是 Pleniluner 维护的个人学习项目，与清华大学及上游维护者没有官方隶属关系。公开仓库包含原创工具、教材草稿、来源索引和 AI 导读。原始教材、课件、作业、学生源码和提取全文不会随本仓库发布。
 
-## 按二十四章顺序学习
+## 按二十七章顺序学习
 
 | 顺序 | 学什么 | 动手任务 |
 | --- | --- | --- |
@@ -38,12 +38,15 @@
 | 22 | [拓扑排序与 DAG 应用](docs/textbook/22-topological-sort.md) | 维护剩余入度，恢复有向环，安排任务并计数路径 |
 | 23 | [带权最短路与松弛](docs/textbook/23-weighted-shortest-paths.md) | 比较 Dijkstra、Bellman–Ford 和 DAG 次序，处理负权与限步路线 |
 | 24 | [最小生成树与并查集](docs/textbook/24-minimum-spanning-trees.md) | 用割性质解释 Prim、Kruskal，核验森林并处理固定分量与新边 |
+| 25 | [回溯与搜索剪枝](docs/textbook/25-backtracking.md) | 枚举选择、恢复路径状态，验证剪枝不会遗漏零值与重复项答案 |
+| 26 | [贪心算法与交换论证](docs/textbook/26-greedy-algorithms.md) | 构造反例、证明区间选择，核验合并与前缀码的最优代价 |
+| 27 | [动态规划入门](docs/textbook/27-dynamic-programming.md) | 定义状态与转移，处理不可达、恢复方案并检查压缩更新顺序 |
 
 每章有实质讲解、2 个原创例题、3 道练习与折叠解答、自测以及选题来源。先按入门者的需要编排，后续根据本人的学习卡点调整。它还是 AI 教材初稿，尚未经过学科专家或学习者试学验收；现阶段不代表全部课程已经写成教材。
 
 第一次阅读可先看[试学指南](docs/study-guide.md)，分清三章使用的不同存储单位；读完后用 [6 道综合练习](docs/unit-01-review.md)检查掌握情况，每题都有折叠解答与回读指引。已安装项目时，可用 `cs-study-map study` 查看本机进度，记录方法见[运行说明](docs/usage.md#study)。
 
-前三章用纸笔建立模型，第 4、5 章学习控制结构与函数，第 6–9 章学习数组、链表、栈和队列，第 10–12 章继续学习算法分析、查找和排序，第 13–15 章学习递归、分治和快速排序，第 16–18 章学习树、二叉搜索树和堆，第 19–21 章学习哈希表、图和基础图遍历，第 22–24 章学习拓扑排序、带权最短路和最小生成树。二十一个编程章节合计提供 210 段可独立运行的程序及预期输出，包含例题和练习的参考实现；先预测结果，再运行和改变边界输入。环境准备见[编程练习与运行](docs/programming-practice.md)，结构模型见[数据结构练习指引](docs/data-structures-practice.md)，计数与排序验证见[算法练习指引](docs/algorithms-practice.md)，递归过程见[递归与分治练习指引](docs/recursion-practice.md)，形状、键序和最值维护见[树与堆练习指引](docs/trees-practice.md)，冲突、方向和访问过程见[哈希表与图练习指引](docs/hash-graphs-practice.md)，依赖、路线费用和连接总价见[拓扑排序与带权图练习指引](docs/weighted-graphs-practice.md)。
+前三章用纸笔建立模型，第 4、5 章学习控制结构与函数，第 6–9 章学习数组、链表、栈和队列，第 10–12 章继续学习算法分析、查找和排序，第 13–15 章学习递归、分治和快速排序，第 16–18 章学习树、二叉搜索树和堆，第 19–21 章学习哈希表、图和基础图遍历，第 22–24 章学习拓扑排序、带权最短路和最小生成树，第 25–27 章学习回溯与搜索剪枝、贪心算法和动态规划入门。二十四个编程章节合计提供 240 段可独立运行的程序及预期输出，包含例题和练习的参考实现；先预测结果，再运行和改变边界输入。环境准备见[编程练习与运行](docs/programming-practice.md)，结构模型见[数据结构练习指引](docs/data-structures-practice.md)，计数与排序验证见[算法练习指引](docs/algorithms-practice.md)，递归过程见[递归与分治练习指引](docs/recursion-practice.md)，形状、键序和最值维护见[树与堆练习指引](docs/trees-practice.md)，冲突、方向和访问过程见[哈希表与图练习指引](docs/hash-graphs-practice.md)，依赖、路线费用和连接总价见[拓扑排序与带权图练习指引](docs/weighted-graphs-practice.md)，搜索、最优性证明和状态复用见[回溯、贪心与动态规划练习指引](docs/strategy-practice.md)。
 
 ## 可以做什么
 

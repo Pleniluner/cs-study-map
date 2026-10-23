@@ -20,6 +20,8 @@
 
 拓扑排序、带权最短路与最小生成树章节用 [NIST 拓扑排序定义](https://xlinux.nist.gov/dads/HTML/topologicalSort.html)、[Aalto DFS 拓扑排序说明](https://tarjotin.cs.aalto.fi/CS-A1140/2020/notes/graphs-topological.html)、[Algorithms 4/e 最短路](https://algs4.cs.princeton.edu/44sp/index.php)、[最小生成树](https://algs4.cs.princeton.edu/43mst/index.php)及作者的并查集接口说明核对适用条件。部分作者页面通过搜索索引读取，直接打开返回 403 或超时。图、数值、轨迹、Python 实现及练习重新设计；懒堆旧记录、展平边表、完整路径压缩和失败接口均按本项目代码分析，未移植 Java 程序、教材图表或习题解答。章节中的上游 Python 学习入口只用于选题关联，不作为图算法证明来源，也未增加上游导读覆盖。
 
+回溯、贪心与动态规划章节核对 [NIST 回溯定义](https://xlinux.nist.gov/dads/HTML/backtrack.html)、[贪心定义](https://xlinux.nist.gov/dads/HTML/greedyalgo.html)、[最优合并](https://xlinux.nist.gov/dads/HTML/optimalMerge.html)、[Huffman 模型](https://xlinux.nist.gov/dads/HTML/huffmanCoding.html)、[MIT 6.006 动态规划讲义](https://www.ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/b6d4083131dd16e7d97f56d04b6e858f_MIT6_006F11_lec19.pdf)及 Python 列表语义。区间调度与截止时间交换条件另通过搜索索引核对 [Cusack 区间调度说明](https://cusack.hope.edu/DAIADS/Content/Algorithms/Greedy/Interval%20Scheduling.html)和 [Wayne 贪心讲义](https://www.cs.princeton.edu/~wayne/kleinberg-tardos/pdf/04GreedyAlgorithmsI.pdf)，直接读取分别不可用或返回 403。位置与值身份、零值、半开与闭区间、单符号空码、不可达及状态更新次序均按本项目契约说明；程序、例题、图和测试重新设计，未移植课程作业、代码或图表。上游 Python 入口继续仅作选题关联，有效导读数量不因外部参考核对而增加。
+
 核查时发现上游许可声明存在差异：根目录 [LICENSE](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/master/LICENSE) 为 CC BY-SA 4.0，而 [README 许可部分](https://github.com/PKUanonym/REKCARC-TSC-UHT#许可) 的链接指向 CC BY-NC-SA 4.0，并明确其他内容版权归各自作者。本项目不替上游消解这一差异，也不为上游材料重新许可。
 
 本项目新编写的程序、教材文本、维护文档和可独立许可的原创贡献采用根目录 MIT 许可。来源材料、可能涉及第三方权利的内容及其许可条件不被该许可覆盖。AI 辅助注释不能改变来源材料的权利，也不保证其判断准确。需要引用或改编具体材料时，应查看该材料适用的声明。

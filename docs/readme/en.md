@@ -8,7 +8,7 @@ This project is mainly for the maintainer’s own study. It selects useful topic
 
 This is Pleniluner’s personal learning project, with no official affiliation with Tsinghua University or upstream maintainers. The public repository contains original tools, textbook drafts, source indexes, and AI guides. Original course materials, slides, assignments, student source code, and extracted full text are not published.
 
-## Twenty-four chapters to study in order
+## Twenty-seven chapters to study in order
 
 | # | Topic | Activity |
 | --- | --- | --- |
@@ -36,8 +36,11 @@ This is Pleniluner’s personal learning project, with no official affiliation w
 | 22 | [Topological sorting and DAG applications](../textbook/22-topological-sort.md) | Track remaining prerequisites, recover cycles, and schedule tasks |
 | 23 | [Weighted shortest paths and relaxation](../textbook/23-weighted-shortest-paths.md) | Compare Dijkstra, Bellman–Ford, DAG order, and bounded walks |
 | 24 | [Minimum spanning trees and disjoint sets](../textbook/24-minimum-spanning-trees.md) | Explain Prim and Kruskal, verify forests, and improve a tree with a new edge |
+| 25 | [Backtracking and pruning](../textbook/25-backtracking.md) | Restore search state and prove that pruning preserves all answers |
+| 26 | [Greedy algorithms and exchange arguments](../textbook/26-greedy-algorithms.md) | Build counterexamples and verify scheduling, merging, and prefix codes |
+| 27 | [Introduction to dynamic programming](../textbook/27-dynamic-programming.md) | Define states, recover solutions, and check update order |
 
-Chapters 4–24 use Python 3.11 or later and include 210 standalone programs with expected outputs. See the [programming practice guide](../programming-practice.md), [data structures guide](../data-structures-practice.md), and [algorithm practice guide](../algorithms-practice.md), all in Chinese. [Recursion and divide-and-conquer exercises (in Chinese)](../recursion-practice.md). [Tree and heap exercises (in Chinese)](../trees-practice.md). [Hash table and graph exercises (in Chinese)](../hash-graphs-practice.md). [Topological sorting and weighted graph exercises (in Chinese)](../weighted-graphs-practice.md).
+Chapters 4–27 use Python 3.11 or later and include 240 standalone programs with expected outputs. See the [programming practice guide](../programming-practice.md), [data structures guide](../data-structures-practice.md), and [algorithm practice guide](../algorithms-practice.md), all in Chinese. [Recursion and divide-and-conquer exercises (in Chinese)](../recursion-practice.md). [Tree and heap exercises (in Chinese)](../trees-practice.md). [Hash table and graph exercises (in Chinese)](../hash-graphs-practice.md). [Topological sorting and weighted graph exercises (in Chinese)](../weighted-graphs-practice.md). [Backtracking, greedy, and dynamic programming exercises (in Chinese)](../strategy-practice.md).
 
 Each chapter has detailed explanations, 2 original examples, 3 exercises with expandable solutions, a self-check, and topic sources. This is an AI first draft, not reviewed by subject experts or trial learners; it does not mean every course has a textbook.
 

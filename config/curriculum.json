@@ -700,11 +700,101 @@
         }
       ],
       "title": "以最低总费用连接全图：最小生成树与并查集"
+    },
+    {
+      "format": "python",
+      "id": "25-backtracking",
+      "references": [
+        {
+          "note": "核对选择树深度优先搜索与退回选择点的定义；本章例题、状态和剪枝证明按原创实现设计。",
+          "title": "NIST DADS：回溯",
+          "url": "https://xlinux.nist.gov/dads/HTML/backtrack.html"
+        },
+        {
+          "note": "核对 append、pop 和浅复制；本章使用整数元素，不把浅复制解释为一般对象深复制。",
+          "title": "Python 3.11：列表操作与复制",
+          "url": "https://docs.python.org/3.11/tutorial/datastructures.html#more-on-lists"
+        }
+      ],
+      "scope": "用选择树讲解路径、撤销、独立副本、位置子集、排列与组合；证明剩余数量和非负子集和剪枝，完整处理零与重复值；例题和练习包含皇后、值去重、括号与全部简单路径。逐项区分无解、空解、无效输入、输出空间与递归限制。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "枚举选择并排除无解分支：回溯与搜索剪枝"
+    },
+    {
+      "format": "python",
+      "id": "26-greedy-algorithms",
+      "references": [
+        {
+          "note": "核对局部选择并不对所有问题保证全局最优；本章各问题的交换论证、数据和代码自行组织。",
+          "title": "NIST DADS：贪心算法",
+          "url": "https://xlinux.nist.gov/dads/HTML/greedyalgo.html"
+        },
+        {
+          "note": "通过搜索索引核对最早结束策略和交换思路；直接读取不可用。本章使用自己的半开区间数据、原下标接口及插入排序，成本按实现另算。",
+          "title": "David A. Cusack：区间调度",
+          "url": "https://cusack.hope.edu/DAIADS/Content/Algorithms/Greedy/Interval%20Scheduling.html"
+        },
+        {
+          "note": "核对两项合并且费用为和的模型；重新设计数值与轨迹，独立编写线性扫描选择实现。",
+          "title": "NIST DADS：最优合并",
+          "url": "https://xlinux.nist.gov/dads/HTML/optimalMerge.html"
+        },
+        {
+          "note": "核对最轻两树合并与二进制前缀码；只使用该模型，不采用页面关于其他编码法的附带比较。",
+          "title": "NIST DADS：Huffman 编码",
+          "url": "https://xlinux.nist.gov/dads/HTML/huffmanCoding.html"
+        }
+      ],
+      "scope": "通过找零反例区分可行与最优，证明最早结束区间调度和保持领先，建立最小合并树与 Huffman 码长的关系；练习最少删除、闭区间选点和最大拖期。明确输入模型、平局、单符号空码与实际平方时间实现。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "证明眼前选择的正确性：贪心算法与交换论证"
+    },
+    {
+      "format": "python",
+      "id": "27-dynamic-programming",
+      "references": [
+        {
+          "note": "核对复用子问题、按依赖顺序计算与状态数乘每状态工作量的思路；本章问题、数字、返回接口及全部 Python 程序重新设计，不移植课程作业或参考解答。",
+          "title": "MIT 6.006：记忆化与自底向上计算",
+          "url": "https://www.ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/b6d4083131dd16e7d97f56d04b6e858f_MIT6_006F11_lec19.pdf"
+        },
+        {
+          "note": "核对缓存子问题答案的基本思想；本章还包含计数和存在性任务，并明确状态设计与伪多项式范围。",
+          "title": "NIST DADS：动态规划",
+          "url": "https://xlinux.nist.gov/dads/HTML/dynamicprog.html"
+        }
+      ],
+      "scope": "从一步两步计数的重复递归建立记忆化与拓扑填表；定义不可达状态，解决一般正面额最少硬币和障碍网格。恢复最小费用路径及不相邻最优下标，比较网格正序与每项一次子集和倒序压缩，注明伪多项式和大整数成本。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "保存子问题的答案：动态规划入门"
     }
   ],
   "learner": "从基础开始自学；先用纸笔和小例子建立概念，再接触课程实验。",
   "planned": [
-    "下一批第 25–27 章：回溯与搜索剪枝、贪心算法、动态规划入门（尚未编写；目标新增 30 段经过实际运行的程序）",
     "动态规划进阶、字符串与模式匹配、前缀和、双指针和滑动窗口",
     "数据结构进阶：平衡树、树状数组、线段树、开放寻址哈希与索引堆",
     "图算法进阶：强连通分量、桥与割点、全点对最短路、匹配与网络流",

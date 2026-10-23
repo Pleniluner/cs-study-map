@@ -8,7 +8,7 @@
 
 Plenilunerが管理する個人学習プロジェクトで、清華大学や上流の管理者との公式な関係はありません。公開リポジトリには独自ツール、教材の草稿、出典索引、AIガイドを含みます。原資料、講義スライド、課題、学生のソースコード、抽出全文は公開しません。
 
-## 24章を順番に学ぶ
+## 27章を順番に学ぶ
 
 | # | テーマ | 実践 |
 | --- | --- | --- |
@@ -36,8 +36,11 @@ Plenilunerが管理する個人学習プロジェクトで、清華大学や上�
 | 22 | [トポロジカルソートと DAG の応用](../textbook/22-topological-sort.md) | 残る依存関係を管理し、閉路を復元してタスクを計画する |
 | 23 | [重み付き最短経路と緩和](../textbook/23-weighted-shortest-paths.md) | Dijkstra、Bellman–Ford、DAG の順序と辺数制限を比較する |
 | 24 | [最小全域木と素集合データ構造](../textbook/24-minimum-spanning-trees.md) | Prim と Kruskal を説明し、森と追加辺による改善を検証する |
+| 25 | [バックトラッキングと枝刈り](../textbook/25-backtracking.md) | 探索状態を復元し、枝刈りで解が失われないことを確認する |
+| 26 | [貪欲法と交換論法](../textbook/26-greedy-algorithms.md) | 反例を作り、区間の選択、併合、接頭符号を検証する |
+| 27 | [動的計画法入門](../textbook/27-dynamic-programming.md) | 状態を定義し、解の復元と更新順序を確認する |
 
-第 4–24 章では Python 3.11 以降を使い、単独で実行できる 210 個のプログラムと予想出力を示します。[プログラミング練習ガイド](../programming-practice.md)、[データ構造練習ガイド](../data-structures-practice.md)、[アルゴリズム練習ガイド](../algorithms-practice.md)（中国語）を参照してください。 [再帰と分割統治の練習ガイド（中国語）](../recursion-practice.md). [木とヒープの練習ガイド（中国語）](../trees-practice.md). [ハッシュ表とグラフの練習ガイド（中国語）](../hash-graphs-practice.md). [トポロジカルソートと重み付きグラフの練習ガイド（中国語）](../weighted-graphs-practice.md).
+第 4–27 章では Python 3.11 以降を使い、単独で実行できる 240 個のプログラムと予想出力を示します。[プログラミング練習ガイド](../programming-practice.md)、[データ構造練習ガイド](../data-structures-practice.md)、[アルゴリズム練習ガイド](../algorithms-practice.md)（中国語）を参照してください。 [再帰と分割統治の練習ガイド（中国語）](../recursion-practice.md). [木とヒープの練習ガイド（中国語）](../trees-practice.md). [ハッシュ表とグラフの練習ガイド（中国語）](../hash-graphs-practice.md). [トポロジカルソートと重み付きグラフの練習ガイド（中国語）](../weighted-graphs-practice.md). [バックトラッキング・貪欲法・動的計画法の練習ガイド（中国語）](../strategy-practice.md).
 
 各章には詳しい解説、独自の例題 2 問、解答を展開できる練習 3 問、自己確認、出典があります。AI による初稿であり、専門家の査読や学習者による試用は未実施です。全科目の教材が完成したことを意味しません。
 

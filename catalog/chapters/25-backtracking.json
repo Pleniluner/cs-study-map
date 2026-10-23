@@ -1,0 +1,217 @@
+{
+  "chapter_id": "25-backtracking",
+  "content": {
+    "exercises": [
+      {
+        "answer": "同一层选两个相同值，余下可用值的多重集合相同，所以只保留第一个尚未使用的位置即可。tried 不能跨层共用，否则第二个 2 永远无法进入后续位置。每次递归都创建自己的 tried，used 与 path 成对撤销。代码用线性 contains，设实际访问前缀数为 P，安全时间为 O((n+1)²P)，各层 tried 同时存在，工作空间可达 O((n+1)²)，不能误写为只有一个长度 n 的列表。输出另计每个排列的复制。",
+        "hint": "用 used 记录位置，用本层 tried 记录已经作为下一项尝试过的值；两者不是同一个状态。",
+        "program": {
+          "code": "def contains(values, target):\n    for value in values:\n        if value == target:\n            return True\n    return False\n\ndef unique_permutations(values):\n    n = len(values)\n    used = [False] * n\n    path = []\n    answers = []\n    def visit():\n        if len(path) == n:\n            answers.append(path.copy())\n            return\n        tried = []\n        for index in range(n):\n            if not used[index] and not contains(tried, values[index]):\n                tried.append(values[index])\n                used[index] = True\n                path.append(values[index])\n                visit()\n                path.pop()\n                used[index] = False\n    visit()\n    return answers\n\nvalues = [2, 1, 2]\nprint(unique_permutations(values))\nprint(values)\nprint(unique_permutations([]))\n",
+          "output": "[[2, 1, 2], [2, 2, 1], [1, 2, 2]]\n[2, 1, 2]\n[[]]\n"
+        },
+        "question": "输入整数列表 [2,1,2]，输出每种不同的值排列一次，保留第一次发现的次序且不修改输入。说明去重记录为什么只属于当前深度。"
+      },
+      {
+        "answer": "只有 opened 小于 n 才能放左括号，只有 closed 小于 opened 才能放右括号。这样每个前缀合法，到 closed=n 时两边都恰好 n 个。字符串不可变，递归收到新串，不需要 pop；但当前各栈层仍保留各自前缀，工作空间可达 O((n+1)²)。用全部二进制选择的松上界计，时间为 O((n+1)4ⁿ)，输出另占各合法串的长度之和。负 n 返回 None，n=0 对应一个空字符串。",
+        "hint": "每个前缀都要满足右括号数不超过左括号数；左括号总数不能超过 n。",
+        "program": {
+          "code": "def balanced(n):\n    if n < 0:\n        return None\n    answers = []\n    def visit(text, opened, closed):\n        if closed == n:\n            answers.append(text)\n            return\n        if opened < n:\n            visit(text + \"(\", opened + 1, closed)\n        if closed < opened:\n            visit(text + \")\", opened, closed + 1)\n    visit(\"\", 0, 0)\n    return answers\n\nprint(balanced(2))\nprint(balanced(0))\n",
+          "output": "['(())', '()()']\n['']\n"
+        },
+        "question": "生成 n 对圆括号的全部合法字符串，先尝试左括号。检查 n=2 和 n=0，并证明只限制最终左右数量相同还不够。"
+      },
+      {
+        "answer": "图须有限，所有端点合法且每行没有重复邻居；这些是输入契约，函数只显式检查起终点。路径不能重用顶点，因此深度至多 n，即使原图有环也会停止。到目标后保存副本并返回，不再延长已经到达目标的路径。不同分支仍可共用中间点，所以退出时清除 used。start=target 只输出 [start] 的零边路径，无路时输出 []，无效端点返回 None。若有 P 个访问前缀和 R 个答案，简单图中时间 O(nP+(n+1)R+n+1)，工作空间 O(n+1)，输出另计；全部简单路径可能非常多。",
+        "hint": "visited 应表示当前路径使用过的点，退出该分支时必须撤销；不要沿用普通可达性 DFS 的永久发现标记。",
+        "program": {
+          "code": "def simple_paths(adjacency, start, target):\n    n = len(adjacency)\n    if start < 0 or start >= n or target < 0 or target >= n:\n        return None\n    used = [False] * n\n    answers = []\n    path = []\n    def visit(vertex):\n        used[vertex] = True\n        path.append(vertex)\n        if vertex == target:\n            answers.append(path.copy())\n        else:\n            for neighbor in adjacency[vertex]:\n                if not used[neighbor]:\n                    visit(neighbor)\n        path.pop()\n        used[vertex] = False\n    visit(start)\n    return answers\n\ngraph = [[1, 2], [0, 2, 3], [3], []]\nprint(simple_paths(graph, 0, 3))\nprint(simple_paths(graph, 2, 2))\n",
+          "output": "[[0, 1, 2, 3], [0, 1, 3], [0, 2, 3]]\n[[2]]\n"
+        },
+        "question": "有向邻接表为 [[1,2],[0,2,3],[3],[]]，枚举从 0 到 3 的所有不重复顶点路径。再检查起点等于终点。"
+      }
+    ],
+    "introduction": "前面的 DFS 访问已经给出的图；这一章把“尚未作完的选择”当作结点，边选边生成搜索树。目标不只是找到一个答案，还要解释为什么没有遗漏、没有重复，以及为什么某些分支可以提前停止。我们从长度很小的二进制串开始，再处理子集、排列、组合、和约束与棋盘。程序只做本机纯计算；输入规模必须小，剪枝也不能消除所有指数增长。",
+    "limitations": [
+      "只处理小规模纯计算，递归受解释器栈深限制，不提高递归上限。",
+      "剪枝不会改变全部输出可能指数或阶乘增长的事实；不讲启发式搜索、分支限界优化或约束传播。",
+      "上游 Python 入口仅作选题关联，搜索树定义核对 NIST，程序、数据和推导为本项目设计。"
+    ],
+    "objectives": [
+      "画出部分选择组成的搜索树，说明基例和每次调用的进展。",
+      "正确配对选择与撤销，为答案保存独立副本。",
+      "区分位置不同、数值不同、组合无序和排列有序。",
+      "为剪枝给出不可能完成的理由，并与未剪枝解集比较。"
+    ],
+    "pitfalls": [
+      {
+        "correction": "列表引用会继续变化，需要保存独立副本；同时检查不同答案列表的身份。",
+        "mistake": "保存 path 就等于保存当时的答案。"
+      },
+      {
+        "correction": "剪枝可能把真答案一起删除；先证明被删子树无解，再与完整枚举核对。",
+        "mistake": "只要减少调用次数，剪枝就一定正确。"
+      },
+      {
+        "correction": "这里需要撤销路径上的标记，让其他分支重新使用同一顶点；永久标记适用于不同的访问目标。",
+        "mistake": "全局 visited 可以直接用于所有路径枚举。"
+      }
+    ],
+    "prerequisites": [
+      "第 5、13 章的函数、递归与调用栈。",
+      "第 6、8 章的列表共享、复制和栈操作。",
+      "第 10、21 章的复杂度、DFS 与访问状态。"
+    ],
+    "sections": [
+      {
+        "body": "长度为 n 的二进制串，每个位置都可以选 0 或 1。根表示还没有选任何位；走一条边确定下一位，深度 n 的叶子才是完整答案。当前列表 path 就是从根走到当前结点的选择。每次调用若已达到长度 n，就保存答案并返回；否则依次尝试两个数字。深度每次增加一，且最多为 n，所以搜索会终止。\n\n程序的 visit 定义在 binary_strings 内部。它可以读取外层的 n、path 和 answers；append、pop 修改的是这些列表对象，不是给外层名字重新赋值，因此不需要引入新的绑定语法。每次先 append，递归处理其全部后续，再 pop，返回时 path 的内容必须与进入该分支之前一样。下一条分支才会从正确的现场开始。\n\n保存答案必须使用 path.copy()。若直接加入 path，答案表里会反复引用同一个列表；搜索结束后 path 被撤销为空，先前的答案也会一起变空。复制只需浅复制，因为这里元素都是整数。n 为非负整数，负数返回 None；n=0 时根本身就是一个合法空串，所以结果为 [[]]，不是没有答案。\n\n这是深度优先的枚举顺序，不是所有题目都要求的唯一顺序。完整二叉树有 2ⁿ⁺¹−1 次调用，但每个叶子还复制 n 个位置，因此时间为 O((n+1)2ⁿ)，工作路径和递归栈为 O(n+1)，保存全部输出需要 O((n+1)2ⁿ) 空间。不能只数调用而漏掉输出复制。",
+        "program": {
+          "code": "def binary_strings(n):\n    if n < 0:\n        return None\n    answers = []\n    path = []\n    def visit():\n        if len(path) == n:\n            answers.append(path.copy())\n            return\n        for digit in range(2):\n            path.append(digit)\n            visit()\n            path.pop()\n    visit()\n    return answers\n\nprint(binary_strings(2))\nprint(binary_strings(0))\n",
+          "output": "[[0, 0], [0, 1], [1, 0], [1, 1]]\n[[]]\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "选择树：先走一条分支，再恢复现场"
+      },
+      {
+        "body": "子集问题问哪些位置被选中，不关心选中的先后顺序。对编号 0 到 n−1 的项目，每层固定处理一个 index，先尝试跳过，再尝试选择。于是每个完整答案对应唯一一串取舍决定，每种取舍也恰好到达一个叶子；这同时解释了完整性和不重复。输出中的编号天然递增，无需事后排序。\n\n函数 subsets 返回位置列表。如果原始数值是 [4,4]，选择位置 0 和选择位置 1 是两个不同的子集，即使取出的数值相同。先明确题目是区分项目身份，还是只关心数值组成；本节选择前一种约定。不要拿数值相同作为删除一个位置的理由，否则后面的计数与和约束都会改变。\n\nvisit(index) 的不变式是：编号小于 index 的取舍已经确定，path 只包含其中被选中的位置；编号从 index 开始都还没有处理。跳过分支不改 path，选择分支加上 index 后又撤销。index 每次加一，到 n 时统一保存，因此空集合也会被保存。程序先跳过，所以 n=2 的输出先是空集，再是只取 1、只取 0、同时取 0 和 1。\n\n共有 2ⁿ 个子集。n 为正时，全部输出中位置出现总次数为 n×2 的 n−1 次方，因为每个位置恰好出现在一半子集中。加上列表本身和空输入情况，时间与输出空间都是 O((n+1)2ⁿ)，额外搜索工作空间为 O(n+1)。只求是否存在某个答案时可以提前返回，但那是另一种接口，不能用于本节的全部枚举。",
+        "program": {
+          "code": "def subsets(n):\n    if n < 0:\n        return None\n    answers = []\n    path = []\n    def visit(index):\n        if index == n:\n            answers.append(path.copy())\n            return\n        visit(index + 1)\n        path.append(index)\n        visit(index + 1)\n        path.pop()\n    visit(0)\n    return answers\n\nprint(subsets(2))\nprint(subsets(0))\n",
+          "output": "[[], [1], [0], [0, 1]]\n[[]]\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "子集：为每个位置作一次取舍"
+      },
+      {
+        "body": "排列要安排所有位置的先后。不同于子集每层固定一个项目，排列的第 d 层要从所有尚未使用的位置中挑选下一个。used[index] 记录这个位置是否已经在当前 path 中。每次选择同时改变 used 和 path，返回后两者都要恢复；只撤销其中一个，会造成重复使用或无故少解。\n\n不变式是 path 中编号互不相同，used 恰好标记这些编号。路径长度达到 n 时，它便是所有编号的一次排列。对于任意目标排列，第一层可以选它的第一项，下一层选第二项，依此类推，所以该排列一定能到达；两条不同选择路径至少有一个位置不同，因而不会产生同一个编号排列。\n\n[False] * n 创建 n 个布尔槽位。布尔值不可变，修改一个下标是替换该槽的引用，可以这样初始化；不要据此推广到用乘法重复同一条可变行。我们只排列位置 0 到 n−1，因此无需比较项目值。若随后映射到相同数值，打印出来的值序列可能重复，练习再专门解决数值去重。\n\nn=0 仍有一个空排列；负 n 返回 None。共有 n! 个答案，复制它们至少需要与 n×n! 成正比的工作。这里每个非叶结点都扫描 n 个编号，安全总界为 O((n+1)n!)，工作空间 O(n+1)，输出空间 O((n+1)n!)。即使递归深度只是 n，也不能把总运行时间说成线性；树的宽度同样决定成本。",
+        "program": {
+          "code": "def permutations(n):\n    if n < 0:\n        return None\n    used = [False] * n\n    answers = []\n    path = []\n    def visit():\n        if len(path) == n:\n            answers.append(path.copy())\n            return\n        for index in range(n):\n            if not used[index]:\n                used[index] = True\n                path.append(index)\n                visit()\n                path.pop()\n                used[index] = False\n    visit()\n    return answers\n\nprint(permutations(3))\nprint(permutations(0))\n",
+          "output": "[[0, 1, 2], [0, 2, 1], [1, 0, 2], [1, 2, 0], [2, 0, 1], [2, 1, 0]]\n[[]]\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "排列：同一位置在一条路径中只能使用一次"
+      },
+      {
+        "body": "从 n 个编号中恰好选 k 个，既不需要全部子集，也不需要同一组项目的不同排列。维护递增的 path，参数 start 表示下一项最早可以选哪个编号。选 index 后只搜索 index+1 及以后，既保证不重复用位置，又让每组答案只按递增形式出现一次。\n\n还缺 need=k−len(path) 个位置，剩余候选只有 n−start 个。若后者少于 need，无论怎么选都凑不齐，可以直接返回。这就是可行性剪枝：证明整个子树没有答案后，才停止访问它。循环也只试到 n−need；再往后的编号即使被选中，后方也留不出其余需要的位置。Python range 的停止值不包含在内，因此代码写成 n−need+1。\n\nneed=0 时先保存答案。这样 k=0 会产生一个空组合，包括 n=0 的情况。k 大于 n 是合法但不可行的请求，返回空答案表；n 或 k 为负才返回 None。三种返回含义不能混淆。每一层选择都缩小未确定位置数，且任何合法递增组合的下一项都落在循环范围内，剪枝因此不会遗漏合法组合。\n\n令 R 为合法组合数。循环只进入仍能完成的前缀，每个前缀可归属于至少一个答案，而每个答案最多有 k+1 个前缀；包含复制的时间可用 O((k+1)(R+1)) 表示。工作栈与路径 O(k+1)，输出 O((k+1)R)。这说明按答案规模分析比笼统写 O(2ⁿ) 更有信息，但中间大小的 k 仍可能产生大量答案。",
+        "program": {
+          "code": "def combinations(n, k):\n    if n < 0 or k < 0:\n        return None\n    answers = []\n    path = []\n    def visit(start):\n        need = k - len(path)\n        if need == 0:\n            answers.append(path.copy())\n            return\n        if n - start < need:\n            return\n        for index in range(start, n - need + 1):\n            path.append(index)\n            visit(index + 1)\n            path.pop()\n    visit(0)\n    return answers\n\nprint(combinations(4, 2))\nprint(combinations(2, 3))\nprint(combinations(0, 0))\n",
+          "output": "[[0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3]]\n[]\n[[]]\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "组合与可行性剪枝：剩余数量够不够"
+      },
+      {
+        "body": "现在给每个位置一个非负整数，枚举总和恰为 target 的位置子集。total 是已选部分的和，suffix[index] 是尚未处理部分所有值的总和。若 total 已大于目标，继续选择非负数只会不变或增大；若 total 加上全部剩余值仍小于目标，即使全选也不够。两种情况都不可能成功，可以剪掉。\n\n非负条件是证明的一部分。若允许负数，当前超出目标后还可能被负数拉回来；若剩余值含负数，把全部相加也未必是可取得的最大增量。本程序先拒绝负数值和负目标，再使用上述界，不能把它当作任意整数子集和求解器。suffix 从后向前计算，一次 O(n) 预处理即可供每个结点常数次查询。\n\ntotal 等于目标时也不能立刻停止。后面若还有零，选择或跳过它们会产生不同的位置子集。例如 [0] 对目标 0 有空集和 [0] 两个答案。这里仍走到 index=n 的叶子才保存答案，所有零和重复值都按位置处理。剪枝开关 prune 便于对同一输入比较完整解集，calls 则统计实际进入 visit 的次数，包含刚进入就被剪掉的调用。\n\n令 V 为调用次数、R 为答案数，时间上界为 O(n+V+(n+1)R)，工作空间 O(n+1)，输出空间 O((n+1)R)。没有剪枝时 V=2 的 n+1 次方减一；全部为零且目标为零时仍需输出所有子集，剪枝不会带来减少。实验中调用变少只能说明该输入受益，不能据此承诺多项式最坏时间。整数运算暂按单位成本，大整数的位成本另计。",
+        "program": {
+          "code": "def subset_sum(values, target, prune):\n    if target < 0:\n        return None\n    for value in values:\n        if value < 0:\n            return None\n    n = len(values)\n    suffix = [0] * (n + 1)\n    for index in range(n - 1, -1, -1):\n        suffix[index] = suffix[index + 1] + values[index]\n    answers = []\n    path = []\n    calls = [0]\n    def visit(index, total):\n        calls[0] = calls[0] + 1\n        if prune and (total > target or total + suffix[index] < target):\n            return\n        if index == n:\n            if total == target:\n                answers.append(path.copy())\n            return\n        visit(index + 1, total)\n        path.append(index)\n        visit(index + 1, total + values[index])\n        path.pop()\n    visit(0, 0)\n    return {\"solutions\": answers, \"calls\": calls[0]}\n\nprint(subset_sum([2, 3, 5], 5, True)[\"solutions\"])\nprint(subset_sum([0], 0, True)[\"solutions\"])\nprint(subset_sum([-1, 2], 1, True))\n",
+          "output": "[[2], [0, 1]]\n[[], [0]]\nNone\n"
+        },
+        "source_topic_keys": [
+          "9653e7ae080bce424a5f:0"
+        ],
+        "title": "和约束剪枝：每个界都依赖输入条件"
+      }
+    ],
+    "self_checks": [
+      "手画 n=2 的二进制选择树，解释每次 append 与 pop。",
+      "用 [0,0]、目标 0 检查四个位置子集都存在。",
+      "指出允许负数后哪一条和约束剪枝证明失效。",
+      "区分一个空解、没有解和输入被拒绝的返回结果。"
+    ],
+    "worked_examples": [
+      {
+        "answer": "本例两种方式都进入 31 次调用：被剪掉的分支已经在叶层，因此并未减少调用数。改用 [2,3,5]、目标 11，全部值之和只有 10，根就能拒绝，只需一次调用。这说明必须实测而不能把剪枝自动写成提速。再用空列表验证：目标 0 时答案为 [[]]，正目标时为 []。剪枝条件必须证明余下子树不可能成功，不能只凭当前和“看起来已经够了”。本例还演示了验证目标：答案合法、数量一致、无位置重复、全部解相同及输入不变，只有对照输出示例并不足以保证一般正确性。",
+        "program": {
+          "code": "def subset_sum(values, target, prune):\n    if target < 0:\n        return None\n    for value in values:\n        if value < 0:\n            return None\n    n = len(values)\n    suffix = [0] * (n + 1)\n    for index in range(n - 1, -1, -1):\n        suffix[index] = suffix[index + 1] + values[index]\n    answers = []\n    path = []\n    calls = [0]\n    def visit(index, total):\n        calls[0] = calls[0] + 1\n        if prune and (total > target or total + suffix[index] < target):\n            return\n        if index == n:\n            if total == target:\n                answers.append(path.copy())\n            return\n        visit(index + 1, total)\n        path.append(index)\n        visit(index + 1, total + values[index])\n        path.pop()\n    visit(0, 0)\n    return {\"solutions\": answers, \"calls\": calls[0]}\n\nplain = subset_sum([0, 2, 3, 5], 5, False)\ncut = subset_sum([0, 2, 3, 5], 5, True)\nprint(cut[\"solutions\"])\nprint(plain[\"solutions\"] == cut[\"solutions\"])\nprint(plain[\"calls\"], cut[\"calls\"])\nprint(subset_sum([2, 3, 5], 11, True)[\"calls\"])\nprint(subset_sum([], 0, True)[\"solutions\"])\n",
+          "output": "[[3], [1, 2], [0, 3], [0, 1, 2]]\nTrue\n31 31\n1\n[[]]\n"
+        },
+        "question": "编号 0–3 的数值为 [0,2,3,5]，目标为 5。列出全部位置子集，并解释为什么遇到和为 5 不能立即返回。",
+        "steps": [
+          "先不选 0，余下部分可以单取编号 3，也可以取编号 1、2。",
+          "选中值为零的编号 0 后，仍能分别配合编号 3 或编号 1、2。",
+          "因此四个答案是 [3]、[1,2]、[0,3]、[0,1,2]；按值比较会错误地合并不同位置。",
+          "分别运行开启和关闭剪枝的版本，检查两个有序结果表相同，并比较实际调用次数。"
+        ]
+      },
+      {
+        "answer": "程序直接比较正反两个列差，没有依赖尚未讲过的集合技巧。一个布局由逐行列号唯一确定，逐层允许所有安全列保证完整性。n=0 有一个空布局，n=2、3 没有布局；负 n 返回 None。设答案数为 R，本实现每个前缀扫描 n 个候选、每个候选检查至多 n 个旧行，安全时间界为 O((n+1)²n!+(n+1)R)，工作空间 O(n+1)，输出另占 O((n+1)R)。它是便于解释的搜索，不是适合大棋盘的高性能求解器。",
+        "program": {
+          "code": "def queens(n):\n    if n < 0:\n        return None\n    answers = []\n    columns = []\n    def visit(row):\n        if row == n:\n            answers.append(columns.copy())\n            return\n        for column in range(n):\n            safe = True\n            for previous in range(row):\n                gap = row - previous\n                old = columns[previous]\n                if old == column or old - column == gap or column - old == gap:\n                    safe = False\n            if safe:\n                columns.append(column)\n                visit(row + 1)\n                columns.pop()\n    visit(0)\n    return answers\n\nprint(queens(4))\nprint(queens(2))\nprint(queens(0))\n",
+          "output": "[[1, 3, 0, 2], [2, 0, 3, 1]]\n[]\n[[]]\n"
+        },
+        "question": "在 4×4 棋盘每行放一个皇后，任意两个不能同列或同对角线。用从 0 开始的列号列表表示布局，求全部布局。",
+        "steps": [
+          "第 row 层只决定这一行的列，因此不需要再检查是否同行。",
+          "新列与每个旧列比较：相等表示同列；列差的绝对值等于行差表示同对角线。",
+          "前缀冲突无法靠以后增加皇后消除，故只递归进入没有冲突的选择。",
+          "依次尝试列 0–3，完整搜索得到 [1,3,0,2] 和 [2,0,3,1]，再逐对核验。"
+        ]
+      }
+    ]
+  },
+  "context_key": "0a38da0ab526e24e309dbd4700c3a51e61fb4b069c2200ebdfb59517d285f5d5",
+  "model": "Codex 当前会话（未记录具体模型型号）",
+  "prompt_version": "2-python",
+  "references": [
+    {
+      "note": "核对选择树深度优先搜索与退回选择点的定义；本章例题、状态和剪枝证明按原创实现设计。",
+      "title": "NIST DADS：回溯",
+      "url": "https://xlinux.nist.gov/dads/HTML/backtrack.html"
+    },
+    {
+      "note": "核对 append、pop 和浅复制；本章使用整数元素，不把浅复制解释为一般对象深复制。",
+      "title": "Python 3.11：列表操作与复制",
+      "url": "https://docs.python.org/3.11/tutorial/datastructures.html#more-on-lists"
+    }
+  ],
+  "review_status": "ai-draft",
+  "schema_version": 1,
+  "sources": [
+    {
+      "analysis_digest": "9888da07b670886c773f0c27f93b693f8b97ca9f8dbee6a241b394b6c3a05c25",
+      "analysis_id": "9653e7ae080bce424a5f",
+      "blob_sha": "fe751673ab99d124f9f4a6ecff2a51f9d613c95f",
+      "commit": "37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0",
+      "coverage": "extracted-text",
+      "evidence": [
+        {
+          "id": "L1-L40",
+          "locator": "第 1–40 行"
+        },
+        {
+          "id": "L41-L80",
+          "locator": "第 41–80 行"
+        },
+        {
+          "id": "L121-L160",
+          "locator": "第 121–160 行"
+        }
+      ],
+      "path": "大一小学期/Week_3-Python/docs/readme.md",
+      "repository": "PKUanonym/REKCARC-TSC-UHT",
+      "topics": [
+        {
+          "evidence_ids": [
+            "L41-L80"
+          ],
+          "key": "9653e7ae080bce424a5f:0",
+          "name": "Python 基础语法的外部学习入口"
+        },
+        {
+          "evidence_ids": [
+            "L121-L160"
+          ],
+          "key": "9653e7ae080bce424a5f:1",
+          "name": "从基础语法到工具与应用的建议阅读顺序"
+        }
+      ]
+    }
+  ],
+  "title": "枚举选择并排除无解分支：回溯与搜索剪枝"
+}

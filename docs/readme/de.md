@@ -8,7 +8,7 @@ Dieses Projekt dient vor allem dem Selbststudium des Maintainers. Es wählt geei
 
 Dies ist ein persönliches Lernprojekt von Pleniluner ohne offizielle Verbindung zur Tsinghua-Universität oder den Betreuern des Ursprungsprojekts. Das öffentliche Repository enthält eigene Werkzeuge, Lehrbuchentwürfe, Quellenverzeichnisse und KI-Leitfäden. Originale Kursmaterialien, Folien, Aufgaben, studentischer Quellcode und vollständig extrahierte Texte werden nicht veröffentlicht.
 
-## Vierundzwanzig Kapitel der Reihe nach lernen
+## Siebenundzwanzig Kapitel der Reihe nach lernen
 
 | # | Thema | Übung |
 | --- | --- | --- |
@@ -36,8 +36,11 @@ Dies ist ein persönliches Lernprojekt von Pleniluner ohne offizielle Verbindung
 | 22 | [Topologische Sortierung und DAG-Anwendungen](../textbook/22-topological-sort.md) | Abhängigkeiten verwalten, Zyklen finden und Aufgaben planen |
 | 23 | [Gewichtete kürzeste Wege und Relaxation](../textbook/23-weighted-shortest-paths.md) | Dijkstra, Bellman–Ford, DAG-Reihenfolge und begrenzte Kantenzahl vergleichen |
 | 24 | [Minimale Spannbäume und disjunkte Mengen](../textbook/24-minimum-spanning-trees.md) | Prim und Kruskal erklären sowie Wälder und neue Kanten prüfen |
+| 25 | [Backtracking und Beschneidung](../textbook/25-backtracking.md) | Suchzustände wiederherstellen und Vollständigkeit der Ergebnisse prüfen |
+| 26 | [Greedy-Algorithmen und Austauschargumente](../textbook/26-greedy-algorithms.md) | Gegenbeispiele entwickeln sowie Zeitpläne, Zusammenführungen und Präfixcodes prüfen |
+| 27 | [Einführung in die dynamische Programmierung](../textbook/27-dynamic-programming.md) | Zustände definieren, Lösungen rekonstruieren und Aktualisierungsreihenfolgen prüfen |
 
-Kapitel 4–24 verwenden Python ab Version 3.11 und enthalten 210 eigenständig ausführbare Programme mit erwarteten Ausgaben. Siehe die Leitfäden für [Programmierübungen](../programming-practice.md), [Datenstrukturen](../data-structures-practice.md) und [Algorithmen](../algorithms-practice.md), alle auf Chinesisch. [Übungen zu Rekursion und Teile und herrsche (auf Chinesisch)](../recursion-practice.md). [Übungen zu Bäumen und Heaps (auf Chinesisch)](../trees-practice.md). [Übungen zu Hashtabellen und Graphen (auf Chinesisch)](../hash-graphs-practice.md). [Übungen zu topologischer Sortierung und gewichteten Graphen (auf Chinesisch)](../weighted-graphs-practice.md).
+Kapitel 4–27 verwenden Python ab Version 3.11 und enthalten 240 eigenständig ausführbare Programme mit erwarteten Ausgaben. Siehe die Leitfäden für [Programmierübungen](../programming-practice.md), [Datenstrukturen](../data-structures-practice.md) und [Algorithmen](../algorithms-practice.md), alle auf Chinesisch. [Übungen zu Rekursion und Teile und herrsche (auf Chinesisch)](../recursion-practice.md). [Übungen zu Bäumen und Heaps (auf Chinesisch)](../trees-practice.md). [Übungen zu Hashtabellen und Graphen (auf Chinesisch)](../hash-graphs-practice.md). [Übungen zu topologischer Sortierung und gewichteten Graphen (auf Chinesisch)](../weighted-graphs-practice.md). [Übungen zu Backtracking, Greedy-Algorithmen und dynamischer Programmierung (auf Chinesisch)](../strategy-practice.md).
 
 Jedes Kapitel enthält ausführliche Erklärungen, 2 eigene Beispiele, 3 Aufgaben mit ausklappbaren Lösungen, einen Selbsttest und Themenquellen. Es handelt sich um einen KI-Erstentwurf ohne fachliche Begutachtung oder Erprobung durch Lernende. Das bedeutet nicht, dass für jeden Kurs ein Lehrbuch vorliegt.
 
