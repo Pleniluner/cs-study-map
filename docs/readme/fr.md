@@ -8,7 +8,7 @@ Ce projet sert d’abord à l’apprentissage personnel de son mainteneur. Il s�
 
 Ce projet personnel est maintenu par Pleniluner, sans affiliation officielle avec l’Université Tsinghua ni les responsables amont. Le dépôt public contient des outils originaux, des brouillons, des index de sources et des guides IA. Les supports originaux, diapositives, devoirs, codes d’étudiants et textes extraits intégralement ne sont pas publiés.
 
-## Étudier trente chapitres dans l’ordre
+## Étudier 33 chapitres dans l’ordre
 
 | # | Sujet | Activité |
 | --- | --- | --- |
@@ -42,8 +42,11 @@ Ce projet personnel est maintenu par Pleniluner, sans affiliation officielle ave
 | 28 | [Problèmes de sac à dos et dénombrement](../textbook/28-knapsack.md) | Distinguer capacité, poids exact, réutilisation, combinaisons et séquences |
 | 29 | [Programmation dynamique sur les séquences](../textbook/29-sequence-dp.md) | Reconstruire les sous-séquences communes, les alignements et les sous-séquences croissantes |
 | 30 | [Programmation dynamique sur les intervalles et les arbres](../textbook/30-interval-tree-dp.md) | Planifier les fusions adjacentes et vérifier ensembles indépendants et couvertures |
+| 31 | [Recherche de motifs et KMP](../textbook/31-string-matching.md) | Suivre les préfixes, les chevauchements, les blocs et les rotations |
+| 32 | [Tries et recherche par préfixe](../textbook/32-trie.md) | Gérer les mots répétés, la suppression, l’énumération et les comptes |
+| 33 | [Sommes préfixes, deux pointeurs et fenêtres glissantes](../textbook/33-prefix-window.md) | Justifier les bornes, la monotonie et le dénombrement |
 
-Les chapitres 4 à 30 utilisent Python 3.11 ou une version ultérieure et proposent 270 programmes autonomes avec leur sortie attendue. Consultez les guides de [programmation](../programming-practice.md), de [structures de données](../data-structures-practice.md) et d’[algorithmes](../algorithms-practice.md), en chinois. [Exercices de récursivité et de division du problème (en chinois)](../recursion-practice.md). [Exercices sur les arbres et les tas (en chinois)](../trees-practice.md). [Exercices sur les tables de hachage et les graphes (en chinois)](../hash-graphs-practice.md). [Exercices sur le tri topologique et les graphes pondérés (en chinois)](../weighted-graphs-practice.md). [Exercices de recherche, d’algorithmes gloutons et de programmation dynamique (en chinois)](../strategy-practice.md). [Exercices avancés de programmation dynamique (en chinois)](../advanced-dp-practice.md).
+Les chapitres 4 à 33 utilisent Python 3.11 ou une version ultérieure et proposent 300 programmes autonomes avec leur sortie attendue. Consultez les guides de [programmation](../programming-practice.md), de [structures de données](../data-structures-practice.md) et d’[algorithmes](../algorithms-practice.md), en chinois. [Exercices de récursivité et de division du problème (en chinois)](../recursion-practice.md). [Exercices sur les arbres et les tas (en chinois)](../trees-practice.md). [Exercices sur les tables de hachage et les graphes (en chinois)](../hash-graphs-practice.md). [Exercices sur le tri topologique et les graphes pondérés (en chinois)](../weighted-graphs-practice.md). [Exercices de recherche, d’algorithmes gloutons et de programmation dynamique (en chinois)](../strategy-practice.md). [Exercices avancés de programmation dynamique (en chinois)](../advanced-dp-practice.md). [Exercices sur les chaînes, les tries et les intervalles (en chinois)](../string-window-practice.md).
 
 Chaque chapitre contient des explications détaillées, 2 exemples originaux, 3 exercices avec solutions dépliables, une autoévaluation et les sources des sujets. Il s’agit d’un premier jet produit par IA, sans validation par des spécialistes ni essai auprès d’apprenants ; tous les cours ne disposent pas encore d’un manuel.
 

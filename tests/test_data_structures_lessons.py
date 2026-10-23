@@ -13,7 +13,10 @@ from test_programming_lessons import ALLOWED_NODES
 
 ROOT = Path(__file__).resolve().parents[1]
 CHAPTERS = ["06-arrays", "07-linked-lists", "08-stacks", "09-queues"]
-NODES = ALLOWED_NODES | {ast.List, ast.Dict, ast.Subscript, ast.Slice, ast.Attribute, ast.Is, ast.IsNot}
+NODES = ALLOWED_NODES | {
+    ast.List, ast.Dict, ast.Subscript, ast.Slice, ast.Attribute,
+    ast.Is, ast.IsNot, ast.In, ast.NotIn,
+}
 METHODS = {"append", "pop", "insert", "copy"}
 
 

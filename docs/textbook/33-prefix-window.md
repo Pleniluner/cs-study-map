@@ -1,0 +1,609 @@
+# 复用区间信息：前缀和、双指针与滑动窗口
+
+[返回教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md) · [树与堆练习指引](../trees-practice.md) · [哈希表与图练习指引](../hash-graphs-practice.md) · [拓扑排序与带权图练习指引](../weighted-graphs-practice.md)
+
+[上一章：把共同开头存成路径：Trie 与前缀检索](32-trie.md)
+
+[学习目标](#objectives) · [需要的基础](#prerequisites) · [例题](#examples) · [练习](#practice) · [自测](#self-check)
+
+状态：**AI 初稿，可开始试学**。生成模型：Codex 当前会话（未记录具体模型型号）。
+
+本章围绕资料中识别到的知识点重新编写；讲解、数值模型、例题与练习为 AI 原创组织，不是原课程题目或答案。主题出处只说明选题关联，不证明全部推导已经正确。
+
+很多连续区间问题都可以先用双重循环完成，再利用相邻区间之间的大量重复信息提速。本章比较三种不同理由：前缀和让区间求和变成相减，差分把整段增加记录在两个边界，双指针则依据单调性排除一批候选。滑动窗口是同向移动的双指针，但并非所有涉及区间的题都能套用它。每个算法都先写清输入条件、窗口不变式和返回位置，再用穷举全部区间核对。
+
+<a id="objectives"></a>
+
+## 学完要能做到
+
+- 用半开区间建立前缀和与差分，处理空区间及非法范围。
+- 说明有序两数和为什么能够一次排除一整行候选。
+- 证明非负数最短窗口和字符窗口的指针只前进。
+- 区分最长窗口、区间计数与含负数的指定和问题。
+
+<a id="prerequisites"></a>
+
+## 需要的基础
+
+- 第 6、10 章的列表、复杂度和循环不变式。
+- 第 19、32 章的字典查找、计数与期望成本。
+- 第 29–31 章的连续子串、码点位置与半开区间。
+
+## 前缀和：用两个边界表达一段连续区间
+
+对整数列表 values，定义 prefix\[k\] 为前 k 项之和，prefix\[0\]=0。长度 n 的列表需要 n+1 个前缀值，因为我们描述的是元素之间的边界。半开区间 \[start,stop) 包含 start 位置，排除 stop 位置，其和等于 prefix\[stop\]−prefix\[start\]：前 stop 项减去前 start 项后，剩下的恰是所求区间。
+
+输入 \[4,−2,0,5\] 的前缀表为 \[0,4,2,2,7\]。区间 \[1,4) 的和为 7−4=3；\[2,2) 为空，结果为 0。允许 stop 等于 n，也允许空列表的 \[0,0)。负数没有破坏等式，前缀值不必单调，不能因为某个前缀比前一个小就拒绝它。
+
+prefix\_sums 返回新表，不修改输入。range\_sum 只接受这样生成且未被破坏的表，以及整数边界；空表、负起点、终点早于起点或超出长度均返回 None。它检查范围，不重新验证整张前缀表；否则所谓一次常数查询就会暗中变成线性。若原列表后来变化，旧前缀表是旧快照，需要重建或换用动态结构。
+
+预处理时间与额外空间为 O(n+1)，每次查询 O(1)，q 次查询总计 O(n+q+1)，均按整数加减单位成本分析。Python 整数不会固定宽度溢出，但位数增长仍占时间和空间；若中间整数最多 B 位，加减和比较还要计入 B。这个相减技巧依赖加法可抵消，不能照搬成“区间最小值等于两个前缀最小值相减”。
+
+**完整程序**
+
+```python
+def prefix_sums(values):
+    result = [0]
+    for value in values:
+        result.append(result[len(result) - 1] + value)
+    return result
+
+def range_sum(prefix, start, stop):
+    if len(prefix) == 0 or start < 0 or stop < start or stop >= len(prefix):
+        return None
+    return prefix[stop] - prefix[start]
+
+prefix = prefix_sums([4, -2, 0, 5])
+print(prefix)
+print(range_sum(prefix, 1, 4), range_sum(prefix, 2, 2))
+print(range_sum(prefix, -1, 2))
+print(range_sum(prefix_sums([]), 0, 0))
+```
+
+**预期输出**
+
+```text
+[0, 4, 2, 2, 7]
+3 0
+None
+0
+```
+
+
+选题关联：来源主题 1（文末列出）。
+
+## 差分：把一整段增加记录在开始和结束处
+
+现在从长度 size 的全零列表出发，每个请求 \[start,stop,delta\] 要给半开区间整体加 delta，最终一次性取出所有元素。记录一个 changes 表：开始处加 delta，结束处减 delta，再从左到右累加变化。每个位置会收到所有已经开始、尚未结束的增加量。
+
+为什么结束位置要减，而不是结束前一位？半开区间最后受影响的位置是 stop−1，从 stop 起影响应消失。若 stop=size，仍需一个额外哨兵槽记录停止事件，因此 changes 长度为 size+1。恢复结果只读取前 size 项，哨兵不成为额外元素。空区间的两个操作落在同一槽，正好抵消。
+
+例如在五个零上给 \[0,3) 加 2，再给 \[1,5) 加 −1，最终得到 \[2,1,1,−1,−1\]。delta 可以为负，也可以为零；它描述增加量，与窗口算法的非负输入条件无关。多个请求可任意重叠，因为整数加法可交换，所有边界事件能够相加。
+
+函数约定 size、边界、delta 为整数，请求为列表且每项必须有三个元素。先验证非负长度和所有范围，再建立内部表；错误返回 None，原请求不变。零长度配空请求或 \[0,0) 请求合法，返回空结果。设请求数 q，含验证、初始化和恢复的总时间 O(size+q+1)，空间 O(size+1)。这适合一批更新后一次恢复；若每加一次都立刻重建查询，就会反复付出线性代价，不能把离线批处理的效率套到任意交错操作上。
+
+**完整程序**
+
+```python
+def range_additions(size, requests):
+    if size < 0:
+        return None
+    for request in requests:
+        if len(request) != 3:
+            return None
+        if request[0] < 0 or request[1] < request[0] or request[1] > size:
+            return None
+    changes = [0] * (size + 1)
+    for request in requests:
+        changes[request[0]] = changes[request[0]] + request[2]
+        changes[request[1]] = changes[request[1]] - request[2]
+    result = []
+    running = 0
+    for i in range(size):
+        running = running + changes[i]
+        result.append(running)
+    return result
+
+print(range_additions(5, [[0, 3, 2], [1, 5, -1], [3, 3, 9]]))
+print(range_additions(0, [[0, 0, 7]]))
+print(range_additions(3, [[0, 4, 1]]))
+```
+
+**预期输出**
+
+```text
+[2, 1, 1, -1, -1]
+[]
+None
+```
+
+
+选题关联：来源主题 1（文末列出）。
+
+## 相向双指针：有序性允许排除整批候选
+
+给定已经非降排序的整数列表，找两个不同位置，使数值之和等于 target。left 从最左开始，right 从最右开始。当两数和太小时，固定 left 与任何不超过 right 的位置相加，都不会比当前和更大，因此这个 left 不可能参与答案，可以整体排除。和太大时，对称地排除 right。
+
+每步保留区间内所有尚未排除的可能答案。一旦相等即可返回 \[left,right\]；指针相遇后没有两个不同位置，返回空列表。重复值允许使用，但必须来自两个位置，所以 \[2,2\] 可以构成目标 4，\[2\] 不可以。负数也允许，因为证明只依赖排序关系，不依赖数值为正。
+
+本实现先检查整个输入是否非降，违反返回 None，正确输入无解则返回 \[\]。这样调用者能够区别错误前提与正常无解。返回的是这个输入列表的原下标，函数不排序也不修改它；如果调用者预先排序了另一份数据，就需要自己保留原始位置映射，不能把排序后下标冒充排序前下标。
+
+示例 \[−3,0,2,2,5\] 的目标为 4，最终找到位置 \[2,3\]。有多个答案时返回指针扫描首次遇到的一对，未承诺枚举全部或按下标字典序最小。每次未成功都至少移动一个指针，总移动次数 O(n)，加上完整排序验证，时间 O(n+1)、额外空间 O(1)。若省掉验证却接受任意输入，证明就失去前提；单纯观察两数和的大小不能决定无序列表该删哪边。
+
+**完整程序**
+
+```python
+def sorted_pair(values, target):
+    for i in range(1, len(values)):
+        if values[i] < values[i - 1]:
+            return None
+    left = 0
+    right = len(values) - 1
+    while left < right:
+        total = values[left] + values[right]
+        if total == target:
+            return [left, right]
+        if total < target:
+            left = left + 1
+        else:
+            right = right - 1
+    return []
+
+print(sorted_pair([-3, 0, 2, 2, 5], 4))
+print(sorted_pair([2], 4))
+print(sorted_pair([2, 1], 3))
+```
+
+**预期输出**
+
+```text
+[2, 3]
+[]
+None
+```
+
+
+选题关联：来源主题 1（文末列出）。
+
+## 同向窗口：非负数中最短的达标区间
+
+目标是在非负整数列表中，寻找和至少为正整数 target 的最短非空连续区间，返回半开边界。每次把 right 指向的新元素加入 total；只要 total 已达标，就先记录当前候选，再删除 left 元素并向右收缩，直到不再达标。
+
+total 始终等于当前窗口的实际和。非负性保证右端扩展不会使和变小，左端收缩不会使和变大。当当前和不足时，继续删左边不可能重新达标；当一个左端已在达标时被删除，以后即便仍有达标窗口，它的右端更晚、长度更长，也不可能改善已经记录的候选。因此每个左端只需处理一次，所有可能最短解都已在收缩时比较。
+
+例中 \[0,2,1,0,4,2\] 对目标 6 返回 \[4,6)，长度 2。零不会破坏单调性，但可能要连续收缩几次才能去掉多余零；不能只用一次 if 代替 while。只在长度严格改善时更新 best，因此同长度保留更早发现、也即起点更小的一段。
+
+本函数先拒绝非正目标或任意负元素，返回 None；合法输入无解返回 \[\]。若删去验证，对 \[1,−1,5\]、目标 5 的朴素窗口可能漏掉最后单独的 5，因为删除正数后暂时不达标，而再删除负数反会增大和。条件失效就不能沿用证明。虽然循环嵌套，左右端各最多前进 n 次，加上验证仍为 O(n+1) 时间、O(1) 额外空间；含负数的另一类指定和任务放在最后一道练习。
+
+**完整程序**
+
+```python
+def shortest_window(values, target):
+    if target <= 0:
+        return None
+    for value in values:
+        if value < 0:
+            return None
+    best = []
+    left = 0
+    total = 0
+    for right in range(len(values)):
+        total = total + values[right]
+        while left <= right and total >= target:
+            if len(best) == 0 or right + 1 - left < best[1] - best[0]:
+                best = [left, right + 1]
+            total = total - values[left]
+            left = left + 1
+    return best
+
+print(shortest_window([0, 2, 1, 0, 4, 2], 6))
+print(shortest_window([0, 0], 1))
+print(shortest_window([1, -1, 5], 5))
+print(shortest_window([], 0))
+```
+
+**预期输出**
+
+```text
+[4, 6]
+[]
+None
+None
+```
+
+
+选题关联：来源主题 1（文末列出）。
+
+## 字符窗口：最近位置决定左边界能否前移
+
+求最长不含重复码点的连续子串，仍用 \[left,right+1) 表示当前窗口。字典 last 保存每个字符最近一次出现的位置。读到新字符时，若旧位置位于当前窗口内，就必须把 left 移到旧位置之后；若旧位置已在窗口外，则不应移动 left。
+
+这个限制尤其容易遗漏。文本 abba 扫到第二个 b 时，left 跳到 2；随后读到 a，它上一次在 0，已经不影响当前窗口。若不检查旧位置是否仍在窗口内，又把 left 设成 1，就会向后退并重新纳入重复的 b。实现使用旧位置至少为 left 这一条件，保证左端永不回退。
+
+移动后窗口无重复：新字符的冲突被排除，其余字符此前已互不相同，缩小窗口不会制造新冲突。这个 left 也是当前右端下最早的合法起点，再向左就会带回某个已排除的重复。因此每个右端的最长合法窗口都被考察，取其中最长便得到全局最优。
+
+返回半开边界，空串返回 \[0,0\]；长度相同时只保留先遇到的结果，等价于优先较小起点。示例 abba计 返回 \[2,5)，对应 ba计；“计算计算”返回 \[0,2)。不做字形簇处理，所以组合符也可能单独参与重复判断。设文本长 n、不同码点数 d，字典操作期望 O(1) 时总时间 O(n+1)，额外空间 O(d+1)；字典保留窗口外字符的最近位置，不能把空间写成只与当前窗口大小有关。返回边界避免了每次改善都复制整个子串。
+
+**完整程序**
+
+```python
+def longest_unique_window(text):
+    last = {}
+    left = 0
+    best = [0, 0]
+    for right in range(len(text)):
+        char = text[right]
+        if char in last and last[char] >= left:
+            left = last[char] + 1
+        last[char] = right
+        if right + 1 - left > best[1] - best[0]:
+            best = [left, right + 1]
+    return best
+
+print(longest_unique_window('abba计'))
+print(longest_unique_window('计算计算'))
+print(longest_unique_window(''))
+```
+
+**预期输出**
+
+```text
+[2, 5]
+[0, 2]
+[0, 0]
+```
+
+
+选题关联：来源主题 1（文末列出）。
+
+<a id="examples"></a>
+
+## 跟着做：原创例题
+
+### 例题 1
+
+初始列表为 \[2,0,3,1,4\]，先给 \[1,4) 加 2，再给 \[0,2) 加 −1；随后查询 \[1,4) 与整个列表的和。说明怎样组合差分和前缀和。
+
+1. 在五个零上处理两次范围增加，得到只表示增量的列表，不能把它当作最终数据。
+2. 逐位置把增量加到初始值上，得到 \[1,1,5,3,4\]。
+3. 对这份新列表建立前缀和，查询 \[1,4) 得到 1+5+3=9，查询 \[0,5) 得到 14。
+4. 保留原列表不变；所有更新结束后才开始这一批查询，所以一次恢复与一次预处理足够。
+
+**结果与核对**
+
+答案为 9 和 14，原始 \[2,0,3,1,4\] 保持不变。若有 n 项、u 次更新、q 次查询，这个批处理组合需 O(n+u+q+1) 时间、O(n+1) 额外空间；代码保存了增量、新值和前缀三份线性表，不能声称只用了一个表。独立测试直接对每次更新的每个元素相加，再逐区间求和核对。
+
+**完整程序**
+
+```python
+def prefix_sums(values):
+    result = [0]
+    for value in values:
+        result.append(result[len(result) - 1] + value)
+    return result
+
+def range_sum(prefix, start, stop):
+    if len(prefix) == 0 or start < 0 or stop < start or stop >= len(prefix):
+        return None
+    return prefix[stop] - prefix[start]
+
+def range_additions(size, requests):
+    if size < 0:
+        return None
+    for request in requests:
+        if len(request) != 3:
+            return None
+        if request[0] < 0 or request[1] < request[0] or request[1] > size:
+            return None
+    changes = [0] * (size + 1)
+    for request in requests:
+        changes[request[0]] = changes[request[0]] + request[2]
+        changes[request[1]] = changes[request[1]] - request[2]
+    result = []
+    running = 0
+    for i in range(size):
+        running = running + changes[i]
+        result.append(running)
+    return result
+
+base = [2, 0, 3, 1, 4]
+delta = range_additions(len(base), [[1, 4, 2], [0, 2, -1]])
+updated = []
+for i in range(len(base)):
+    updated.append(base[i] + delta[i])
+prefix = prefix_sums(updated)
+print(updated)
+print(range_sum(prefix, 1, 4), range_sum(prefix, 0, 5))
+print(base)
+```
+
+**预期输出**
+
+```text
+[1, 1, 5, 3, 4]
+9 14
+[2, 0, 3, 1, 4]
+```
+
+
+### 例题 2
+
+对 \[1,0,4,1,4\] 求和至少 5 的最短区间；对 abcaade 求最长无重复区间。两题都出现平局，说明返回位置。
+
+1. 数字列表没有单项达到 5，所以任何答案长度至少为 2。
+2. 位置 \[2,4) 的 \[4,1\] 达标，后面的 \[3,5) 也达标；程序只在更短时更新，保留前者。
+3. 文本先出现 abc，位置 \[0,3) 长度 3；后来的 bca、ade 也长 3。
+4. 逐个右端恢复无重复条件，最长始终为 3，严格改善规则保留 \[0,3)。
+
+**结果与核对**
+
+分别返回 \[2,4\] 和 \[0,3\]，数组形式的第二项都表示排除端点。数字题通过单项上界证明最短长度；文字题还应枚举全部长 4 的片段，确认每段都有重复，再排除更长片段。两种窗口共享向右移动的外形，却依赖不同不变式：一个是非负和，一个是字符唯一性，不应仅凭代码形状互换条件。
+
+**完整程序**
+
+```python
+def shortest_window(values, target):
+    if target <= 0:
+        return None
+    for value in values:
+        if value < 0:
+            return None
+    best = []
+    left = 0
+    total = 0
+    for right in range(len(values)):
+        total = total + values[right]
+        while left <= right and total >= target:
+            if len(best) == 0 or right + 1 - left < best[1] - best[0]:
+                best = [left, right + 1]
+            total = total - values[left]
+            left = left + 1
+    return best
+
+def longest_unique_window(text):
+    last = {}
+    left = 0
+    best = [0, 0]
+    for right in range(len(text)):
+        char = text[right]
+        if char in last and last[char] >= left:
+            left = last[char] + 1
+        last[char] = right
+        if right + 1 - left > best[1] - best[0]:
+            best = [left, right + 1]
+    return best
+
+values = [1, 0, 4, 1, 4]
+print(shortest_window(values, 5))
+print(longest_unique_window('abcaade'))
+```
+
+**预期输出**
+
+```text
+[2, 4]
+[0, 3]
+```
+
+
+<a id="practice"></a>
+
+## 自己做：先完成再看解答
+
+### 练习 1
+
+求最多含 limit 种码点的最长连续子串，平局优先较小起点。求 abaccc、limit=2；规定 limit 为非负整数，负数返回 None。
+
+<details>
+<summary>提示</summary>
+
+用字典记录窗口内次数，另记正次数的种类数。扩展后种类超限就持续移动左端；次数降到零才减少种类数。
+
+</details>
+
+<details>
+<summary>解答与检查</summary>
+
+返回 \[2,6)，对应 accc；limit=0 时返回 \[0,0\]。收缩结束后当前 left 是该右端的最早合法起点，所以可以比较最长长度。零计数键留在字典中，不能用 len(counts) 代表窗口种类数，也不能把空间写成 O(limit)。设全串不同码点数 d，期望时间 O(n+1)，空间 O(d+1)，左右端各最多走 n 步。
+
+**完整程序**
+
+```python
+def longest_k_distinct(text, limit):
+    if limit < 0:
+        return None
+    counts = {}
+    distinct = 0
+    left = 0
+    best = [0, 0]
+    for right in range(len(text)):
+        char = text[right]
+        if char not in counts:
+            counts[char] = 0
+        if counts[char] == 0:
+            distinct = distinct + 1
+        counts[char] = counts[char] + 1
+        while distinct > limit:
+            old = text[left]
+            counts[old] = counts[old] - 1
+            if counts[old] == 0:
+                distinct = distinct - 1
+            left = left + 1
+        if right + 1 - left > best[1] - best[0]:
+            best = [left, right + 1]
+    return best
+
+print(longest_k_distinct('abaccc', 2))
+print(longest_k_distinct('abc', 0))
+print(longest_k_distinct('abc', -1))
+```
+
+**预期输出**
+
+```text
+[2, 6]
+[0, 0]
+None
+```
+
+
+</details>
+
+### 练习 2
+
+统计非空连续子串中，恰好有 k 种不同码点的区间个数，按位置计数而不是对内容去重。求 abac、k=2 和 aaa、k=1；负 k 返回 None。
+
+<details>
+<summary>提示</summary>
+
+先计最多 k 种的区间。固定右端，在恢复合法窗口后，left 到 right 的每个起点都合法，共 right+1−left 个；再减去最多 k−1 种。
+
+</details>
+
+<details>
+<summary>解答与检查</summary>
+
+结果为 4 和 6。abac 中对应 ab、aba、ba、ac；aaa 的六个非空区间虽然文字会重复，位置身份各不相同。两类“最多”集合相减恰好留下 k 种，不能把最长窗口长度当作个数。k=0 返回 0，辅助函数对负上限也返回 0。两次扫描期望时间 O(n+1)、空间 O(d+1)；答案可能达 n(n+1)/2，计数整数的位成本需另计。
+
+**完整程序**
+
+```python
+def at_most_distinct_count(text, limit):
+    if limit < 0:
+        return 0
+    counts = {}
+    distinct = 0
+    left = 0
+    total = 0
+    for right in range(len(text)):
+        char = text[right]
+        if char not in counts:
+            counts[char] = 0
+        if counts[char] == 0:
+            distinct = distinct + 1
+        counts[char] = counts[char] + 1
+        while distinct > limit:
+            old = text[left]
+            counts[old] = counts[old] - 1
+            if counts[old] == 0:
+                distinct = distinct - 1
+            left = left + 1
+        total = total + right + 1 - left
+    return total
+
+def exactly_k_distinct_count(text, count):
+    if count < 0:
+        return None
+    return at_most_distinct_count(text, count) - at_most_distinct_count(text, count - 1)
+
+print(exactly_k_distinct_count('abac', 2))
+print(exactly_k_distinct_count('aaa', 1))
+print(exactly_k_distinct_count('aaa', 0))
+```
+
+**预期输出**
+
+```text
+4
+6
+0
+```
+
+
+</details>
+
+### 练习 3
+
+列表允许正数、负数与零，统计和恰好为 target 的非空连续区间。求 \[1,−1,1,−1\]、目标 0，并解释三个零为何得到 6。
+
+<details>
+<summary>提示</summary>
+
+若当前前缀和为 P，需要的更早前缀为 P−target。用字典记录每种更早前缀出现次数，先查询再把当前前缀加入。
+
+</details>
+
+<details>
+<summary>解答与检查</summary>
+
+答案分别为 4 和 6。初始化 \{0:1\} 代表最左边界，不能漏掉从位置 0 开始的区间；查询必须在新增当前前缀之前，否则目标为零时会把空区间算进去。同值前缀可在不同位置出现，应累加次数而不是只保存一个下标。这个方法依赖前缀差等式，不要求单调性。按字典操作期望常数计，时间 O(n+1)、空间 O(n+1)；大量哈希冲突会退化，巨大整数的加减、哈希及存储也不是单位成本，不能称无条件最坏线性。
+
+**完整程序**
+
+```python
+def subarray_sum_count(values, target):
+    frequencies = {0: 1}
+    prefix = 0
+    result = 0
+    for value in values:
+        prefix = prefix + value
+        wanted = prefix - target
+        if wanted in frequencies:
+            result = result + frequencies[wanted]
+        if prefix not in frequencies:
+            frequencies[prefix] = 0
+        frequencies[prefix] = frequencies[prefix] + 1
+    return result
+
+print(subarray_sum_count([1, -1, 1, -1], 0))
+print(subarray_sum_count([0, 0, 0], 0))
+print(subarray_sum_count([], 0))
+```
+
+**预期输出**
+
+```text
+4
+6
+0
+```
+
+
+</details>
+
+<a id="pitfalls"></a>
+
+## 容易混淆的地方
+
+- **把长度 n 的前缀表只开 n 个位置，或者忘记差分的末尾停止槽。** 两者都围绕 n+1 个边界定义；半开终点可等于 n，但不对应第 n 个元素。
+- **任何连续区间题都直接套滑动窗口。** 先证明某个端点移动可永久排除候选；负数破坏和的单调性，指定和计数改用前缀频次。
+- **看到两层循环就判为平方，或忽略验证前提的那一遍扫描。** 统计两个指针的累计移动次数，并把输入检查、初始化与输出一起计入。
+- **按字典键数统计活跃种类，或先插入当前前缀再统计零和区间。** 零计数键可能保留；指定和计数只查询严格更早的边界，排除空区间。
+
+<a id="self-check"></a>
+
+## 离开这一章前
+
+- [ ] 画出三元素列表的四个边界，解释 \[0,0)、\[0,3) 与 \[3,3)。
+- [ ] 为未排序输入构造一个相向双指针漏解的例子。
+- [ ] 逐步追踪 abba 的 left，说明最后一个 a 为何不能让它后退。
+- [ ] 枚举 abac 的全部十个非空区间，核对恰好两种字符的四个答案。
+- [ ] 比较三个零的六个非空区间与四个前缀边界，解释重复前缀的作用。
+
+## 本章边界
+
+- 这些整数与字符串教学接口不做任意对象类型校验；范围检查和语义前提已在各函数内明确处理。
+- 未实现交错动态范围查询、二维前缀和、单调队列或含负数的最短达标窗口。
+- 使用单位整数与期望字典操作模型分析；大整数和哈希碰撞需额外计成本，代码不承诺工业环境的最坏时延。
+
+## 选题来源与覆盖
+
+来源含学生报告时，仅将其作为选题线索；具体机制仍需结合后续实验或权威资料核对。
+
+- [大一小学期/Week\_3-Python/docs/readme.md](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0/%E5%A4%A7%E4%B8%80%E5%B0%8F%E5%AD%A6%E6%9C%9F/Week_3-Python/docs/readme.md)（已提取可读文本，固定版本 37cd19f7a9fb）
+- 主题 1：Python 基础语法的外部学习入口；位置：第 41–80 行。
+- 主题 2：从基础语法到工具与应用的建议阅读顺序；位置：第 121–160 行。
+
+## 参考资料与规则核对
+
+上游入口用于确定学习方向；下面的参考资料用于核对语言语义、数据结构或算法分析规则，例题和练习由本项目重新设计。
+
+- [USACO Guide：前缀和](https://usaco.guide/silver/prefix-sums)：核对预处理与静态区间相减的复杂度；本章改用零起点半开区间，自行设计负数、空区间和返回契约，未移植页面例题。
+- [USACO Guide：双指针](https://usaco.guide/silver/two-pointers)：核对相向与同向指针的基本分类；本章只接受已排序两数和输入，自行推导最短非负窗口、字符窗口与独立穷举测试。
+- [USACO Guide：差分范围更新](https://usaco.guide/problems/cses-1651-range-update-queries/solution)：仅核对范围增量的开始与停止事件；本章是全零基表上的离线批处理，不实现该页动态树结构，不复制题目和代码。
+
+**继续学习**：先独立完成自测，再记录仍需回读的步骤。
+
+[上一章：把共同开头存成路径：Trie 与前缀检索](32-trie.md)
+
+[教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md) · [树与堆练习指引](../trees-practice.md) · [哈希表与图练习指引](../hash-graphs-practice.md) · [拓扑排序与带权图练习指引](../weighted-graphs-practice.md) · [记录自己的学习](../learning-log-template.md)

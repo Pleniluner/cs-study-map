@@ -2,7 +2,7 @@
 
 [返回教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md) · [树与堆练习指引](../trees-practice.md) · [哈希表与图练习指引](../hash-graphs-practice.md) · [拓扑排序与带权图练习指引](../weighted-graphs-practice.md)
 
-[上一章：对齐两个前缀：序列动态规划与方案恢复](29-sequence-dp.md)
+[上一章：对齐两个前缀：序列动态规划与方案恢复](29-sequence-dp.md) · [下一章：复用已经相等的部分：字符串匹配与 KMP](31-string-matching.md)
 
 [学习目标](#objectives) · [需要的基础](#prerequisites) · [例题](#examples) · [练习](#practice) · [自测](#self-check)
 
@@ -830,6 +830,6 @@ print(count_forest_independent([]))
 
 **继续学习**：先独立完成自测，再记录仍需回读的步骤。
 
-[上一章：对齐两个前缀：序列动态规划与方案恢复](29-sequence-dp.md)
+[上一章：对齐两个前缀：序列动态规划与方案恢复](29-sequence-dp.md) · [下一章：复用已经相等的部分：字符串匹配与 KMP](31-string-matching.md)
 
 [教材目录](index.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md) · [树与堆练习指引](../trees-practice.md) · [哈希表与图练习指引](../hash-graphs-practice.md) · [拓扑排序与带权图练习指引](../weighted-graphs-practice.md) · [记录自己的学习](../learning-log-template.md)

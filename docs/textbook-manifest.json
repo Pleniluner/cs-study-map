@@ -29,5 +29,8 @@
   "docs/textbook/28-knapsack.md",
   "docs/textbook/29-sequence-dp.md",
   "docs/textbook/30-interval-tree-dp.md",
+  "docs/textbook/31-string-matching.md",
+  "docs/textbook/32-trie.md",
+  "docs/textbook/33-prefix-window.md",
   "docs/textbook/index.md"
 ]

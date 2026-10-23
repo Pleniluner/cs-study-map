@@ -892,11 +892,107 @@
         }
       ],
       "title": "按区间与子树组织依赖：区间和树形动态规划"
+    },
+    {
+      "format": "python",
+      "id": "31-string-matching",
+      "references": [
+        {
+          "note": "核对码点序列、切片和不可变字符串语义；本章以原创字符串规定位置和空结果，不实现归一化或编码转换。",
+          "title": "Python 3.11：文本序列 str",
+          "url": "https://docs.python.org/3.11/library/stdtypes.html#text-sequence-type-str"
+        },
+        {
+          "note": "仅核对码点与用户感知字符、字形簇边界的区别；本章明确不实现该标准的分段算法。",
+          "title": "Unicode UAX 29：文本分段",
+          "url": "https://www.unicode.org/reports/tr29/"
+        },
+        {
+          "note": "核对连续匹配和失配后利用前后缀的理由；本章自定全部匹配、空模式及跨块接口，未复制讲义伪代码或示例。",
+          "title": "Cornell CS312：字符串搜索",
+          "url": "https://www.cs.cornell.edu/courses/cs312/2002fa/lectures/lec26.htm"
+        },
+        {
+          "note": "核对边界链与前缀表的线性总量；原创 Python 实现直接扫描两串，周期例题显式枚举边界，不移植页面程序或练习。",
+          "title": "Algorithms for Competitive Programming：前缀函数",
+          "url": "https://cp-algorithms.com/string/prefix-function.html"
+        }
+      ],
+      "scope": "承接码点与连续子串，建立合法起点和空模式契约；推导朴素全部匹配、前缀函数、重叠 KMP 与跨块状态。例题说明回退和完整重复单元，练习边界链、最小旋转偏移及不重叠匹配；证明摊还复杂度并计入拼接和输出。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "复用已经相等的部分：字符串匹配与 KMP"
+    },
+    {
+      "format": "python",
+      "id": "32-trie",
+      "references": [
+        {
+          "note": "核对共享前缀、最长键前缀、通配与延迟删除的概念。页面直读受限，本轮通过可读取的同网址索引全文核对；没有移植 Java 程序、题目或数据。计数不变式和下标结构由本项目自定。",
+          "title": "Princeton Algorithms：Tries",
+          "url": "https://algs4.cs.princeton.edu/52trie/"
+        },
+        {
+          "note": "核对键成员查询、插入顺序及独立字典语义；本章明确区分边创建顺序、字符排序与完整词首次出现顺序。",
+          "title": "Python 3.11：dict 映射",
+          "url": "https://docs.python.org/3.11/library/stdtypes.html#mapping-types-dict"
+        }
+      ],
+      "scope": "以 Unicode 字典边和结点下标建立含重复词的 Trie；维护结束次数和子树词数，实现空词、精确与前缀查询、删除一次、保留旧结点、显式枚举及最长已存前缀。练习单码点通配、全库共同前缀与稳定去重，注明历史空间、期望哈希与字符串复制成本。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "把共同开头存成路径：Trie 与前缀检索"
+    },
+    {
+      "format": "python",
+      "id": "33-prefix-window",
+      "references": [
+        {
+          "note": "核对预处理与静态区间相减的复杂度；本章改用零起点半开区间，自行设计负数、空区间和返回契约，未移植页面例题。",
+          "title": "USACO Guide：前缀和",
+          "url": "https://usaco.guide/silver/prefix-sums"
+        },
+        {
+          "note": "核对相向与同向指针的基本分类；本章只接受已排序两数和输入，自行推导最短非负窗口、字符窗口与独立穷举测试。",
+          "title": "USACO Guide：双指针",
+          "url": "https://usaco.guide/silver/two-pointers"
+        },
+        {
+          "note": "仅核对范围增量的开始与停止事件；本章是全零基表上的离线批处理，不实现该页动态树结构，不复制题目和代码。",
+          "title": "USACO Guide：差分范围更新",
+          "url": "https://usaco.guide/problems/cses-1651-range-update-queries/solution"
+        }
+      ],
+      "scope": "统一半开边界，讲静态前缀和、批量差分、已排序两数和、非负数最短达标窗口和最长无重复码点子串。练习最多种类、恰好种类计数、含负数的指定和计数；证明单调性与指针总移动，检查非法范围、空结果、平局和大整数成本。",
+      "sources": [
+        {
+          "analysis_id": "9653e7ae080bce424a5f",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "复用区间信息：前缀和、双指针与滑动窗口"
     }
   ],
   "learner": "从基础开始自学；先用纸笔和小例子建立概念，再接触课程实验。",
   "planned": [
-    "动态规划进一步专题（多重与分组背包、区间优化、换根与树上背包）、字符串与模式匹配、前缀和、双指针和滑动窗口",
+    "动态规划进一步专题（多重与分组背包、区间优化、换根与树上背包）、编码与归一化、字形簇、多模式匹配与后缀结构、二维前缀和及单调队列",
     "数据结构进阶：平衡树、树状数组、线段树、开放寻址哈希与索引堆",
     "图算法进阶：强连通分量、桥与割点、全点对最短路、匹配与网络流",
     "算法分析与理论：递推式、摊还证明、随机化、排序下界与复杂度入门",

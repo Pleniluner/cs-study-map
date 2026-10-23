@@ -8,7 +8,7 @@ Dieses Projekt dient vor allem dem Selbststudium des Maintainers. Es wählt geei
 
 Dies ist ein persönliches Lernprojekt von Pleniluner ohne offizielle Verbindung zur Tsinghua-Universität oder den Betreuern des Ursprungsprojekts. Das öffentliche Repository enthält eigene Werkzeuge, Lehrbuchentwürfe, Quellenverzeichnisse und KI-Leitfäden. Originale Kursmaterialien, Folien, Aufgaben, studentischer Quellcode und vollständig extrahierte Texte werden nicht veröffentlicht.
 
-## Dreißig Kapitel der Reihe nach lernen
+## 33 Kapitel der Reihe nach lernen
 
 | # | Thema | Übung |
 | --- | --- | --- |
@@ -42,8 +42,11 @@ Dies ist ein persönliches Lernprojekt von Pleniluner ohne offizielle Verbindung
 | 28 | [Rucksackprobleme und Zählen von Lösungen](../textbook/28-knapsack.md) | Kapazität, genaues Gewicht, Wiederverwendung und Reihenfolge unterscheiden |
 | 29 | [Dynamische Programmierung für Sequenzen](../textbook/29-sequence-dp.md) | Gemeinsame Teilfolgen, Editierausrichtungen und steigende Teilfolgen rekonstruieren |
 | 30 | [Dynamische Programmierung für Intervalle und Bäume](../textbook/30-interval-tree-dp.md) | Benachbarte Bereiche zusammenführen sowie unabhängige Mengen und Knotenüberdeckungen prüfen |
+| 31 | [Zeichenkettensuche und KMP](../textbook/31-string-matching.md) | Präfixrücksprünge, Überlappungen, Blockgrenzen und Rotationen prüfen |
+| 32 | [Tries und Präfixsuche](../textbook/32-trie.md) | Wiederholte Wörter, Löschen, Aufzählen und Präfixanzahlen verwalten |
+| 33 | [Präfixsummen, zwei Zeiger und gleitende Fenster](../textbook/33-prefix-window.md) | Intervallgrenzen, Monotonie und Zählregeln begründen |
 
-Kapitel 4–30 verwenden Python ab Version 3.11 und enthalten 270 eigenständig ausführbare Programme mit erwarteten Ausgaben. Siehe die Leitfäden für [Programmierübungen](../programming-practice.md), [Datenstrukturen](../data-structures-practice.md) und [Algorithmen](../algorithms-practice.md), alle auf Chinesisch. [Übungen zu Rekursion und Teile und herrsche (auf Chinesisch)](../recursion-practice.md). [Übungen zu Bäumen und Heaps (auf Chinesisch)](../trees-practice.md). [Übungen zu Hashtabellen und Graphen (auf Chinesisch)](../hash-graphs-practice.md). [Übungen zu topologischer Sortierung und gewichteten Graphen (auf Chinesisch)](../weighted-graphs-practice.md). [Übungen zu Backtracking, Greedy-Algorithmen und dynamischer Programmierung (auf Chinesisch)](../strategy-practice.md). [Fortgeschrittene Übungen zur dynamischen Programmierung (auf Chinesisch)](../advanced-dp-practice.md).
+Kapitel 4–33 verwenden Python ab Version 3.11 und enthalten 300 eigenständig ausführbare Programme mit erwarteten Ausgaben. Siehe die Leitfäden für [Programmierübungen](../programming-practice.md), [Datenstrukturen](../data-structures-practice.md) und [Algorithmen](../algorithms-practice.md), alle auf Chinesisch. [Übungen zu Rekursion und Teile und herrsche (auf Chinesisch)](../recursion-practice.md). [Übungen zu Bäumen und Heaps (auf Chinesisch)](../trees-practice.md). [Übungen zu Hashtabellen und Graphen (auf Chinesisch)](../hash-graphs-practice.md). [Übungen zu topologischer Sortierung und gewichteten Graphen (auf Chinesisch)](../weighted-graphs-practice.md). [Übungen zu Backtracking, Greedy-Algorithmen und dynamischer Programmierung (auf Chinesisch)](../strategy-practice.md). [Fortgeschrittene Übungen zur dynamischen Programmierung (auf Chinesisch)](../advanced-dp-practice.md). [Übungen zu Zeichenketten, Tries und Intervallen (auf Chinesisch)](../string-window-practice.md).
 
 Jedes Kapitel enthält ausführliche Erklärungen, 2 eigene Beispiele, 3 Aufgaben mit ausklappbaren Lösungen, einen Selbsttest und Themenquellen. Es handelt sich um einen KI-Erstentwurf ohne fachliche Begutachtung oder Erprobung durch Lernende. Das bedeutet nicht, dass für jeden Kurs ein Lehrbuch vorliegt.
 

@@ -1,8 +1,8 @@
 # 编程练习与运行：从纸笔追踪到 Python
 
-[教材目录](textbook/index.md) · [第 4 章：控制结构](textbook/04-control-flow.md) · [第 5 章：函数](textbook/05-functions.md) · [第 6–9 章练习指引](data-structures-practice.md) · [第 10–12 章练习指引](algorithms-practice.md) · [第 13–15 章练习指引](recursion-practice.md) · [第 16–18 章练习指引](trees-practice.md) · [第 19–21 章练习指引](hash-graphs-practice.md) · [第 22–24 章练习指引](weighted-graphs-practice.md) · [第 25–27 章练习指引](strategy-practice.md) · [第 28–30 章练习指引](advanced-dp-practice.md) · [学习记录模板](learning-log-template.md)
+[教材目录](textbook/index.md) · [第 4 章：控制结构](textbook/04-control-flow.md) · [第 5 章：函数](textbook/05-functions.md) · [第 6–9 章练习指引](data-structures-practice.md) · [第 10–12 章练习指引](algorithms-practice.md) · [第 13–15 章练习指引](recursion-practice.md) · [第 16–18 章练习指引](trees-practice.md) · [第 19–21 章练习指引](hash-graphs-practice.md) · [第 22–24 章练习指引](weighted-graphs-practice.md) · [第 25–27 章练习指引](strategy-practice.md) · [第 28–30 章练习指引](advanced-dp-practice.md) · [第 31–33 章练习指引](string-window-practice.md) · [学习记录模板](learning-log-template.md)
 
-前三章用明确规定的教学模型解释数据、执行和分配。第 4、5 章开始用 Python 3.11 或更新版本表达计算：先决定哪些步骤执行、重复多少次，再把一段计算封装为函数。第 6–9 章继续把计算组织在数组、链表、栈和队列上，第 10–12 章学习分析工作量、查找和排序，第 13–15 章学习递归调用、分治和快速排序，第 16–18 章学习树、二叉搜索树和堆，第 19–21 章学习哈希表、图和基础图遍历，第 22–24 章学习拓扑排序、带权最短路和最小生成树，第 25–27 章学习回溯与搜索剪枝、贪心算法和动态规划入门，第 28–30 章学习背包、序列、区间与树形动态规划。继续沿用“先写状态，再核对变化”的方法，同时注意 Python 的变量绑定与前面玩具机器的整数格并不完全相同。
+前三章用明确规定的教学模型解释数据、执行和分配。第 4、5 章开始用 Python 3.11 或更新版本表达计算：先决定哪些步骤执行、重复多少次，再把一段计算封装为函数。第 6–9 章继续把计算组织在数组、链表、栈和队列上，第 10–12 章学习分析工作量、查找和排序，第 13–15 章学习递归调用、分治和快速排序，第 16–18 章学习树、二叉搜索树和堆，第 19–21 章学习哈希表、图和基础图遍历，第 22–24 章学习拓扑排序、带权最短路和最小生成树，第 25–27 章学习回溯与搜索剪枝、贪心算法和动态规划入门，第 28–30 章学习背包、序列、区间与树形动态规划，第 31–33 章学习字符串匹配、Trie、前缀和与窗口技巧。继续沿用“先写状态，再核对变化”的方法，同时注意 Python 的变量绑定与前面玩具机器的整数格并不完全相同。
 
 ## 准备一个能运行小程序的环境
 
@@ -38,7 +38,7 @@ python .local/lesson.py
 | [第 4 章](textbook/04-control-flow.md) | 区分顺序、互斥分支和重复；追踪计数与累加；解释 `range` 的停止值、零次循环和终止条件 | 重做[三个练习](textbook/04-control-flow.md#practice)，分别检查零、端点和不足一批的情况 |
 | [第 5 章](textbook/05-functions.md) | 说明定义与调用、形参与实参、打印与返回的区别；用局部名字组合两个函数，并验证多次调用 | 重做[三个练习](textbook/05-functions.md#practice)，检查空区间、负数端点、零目标和恰好达到目标 |
 
-第 4、5 章共有 20 段完整程序：每章 5 段讲解程序、2 个例题程序和 3 个练习参考实现。掌握之后，按[数据结构练习指引](data-structures-practice.md)学习第 6–9 章的另 40 段程序，再按[算法练习指引](algorithms-practice.md)学习第 10–12 章的 30 段程序、[递归与分治练习指引](recursion-practice.md)学习第 13–15 章的 30 段程序、[树与堆练习指引](trees-practice.md)学习第 16–18 章的 30 段程序、[哈希表与图练习指引](hash-graphs-practice.md)学习第 19–21 章的 30 段程序、[拓扑排序与带权图练习指引](weighted-graphs-practice.md)学习第 22–24 章的 30 段程序、[回溯、贪心与动态规划练习指引](strategy-practice.md)学习第 25–27 章的 30 段程序、[动态规划进阶练习指引](advanced-dp-practice.md)学习第 28–30 章的 30 段程序，共 270 段。新语法随例子逐步解释；先比较循环与递归，再把它们用于树和图遍历、哈希与结构维护，文件输入输出及异常处理语法仍留待后续。题目给定的输入范围是约定，程序不一定会主动拒绝范围外输入。
+第 4、5 章共有 20 段完整程序：每章 5 段讲解程序、2 个例题程序和 3 个练习参考实现。掌握之后，按[数据结构练习指引](data-structures-practice.md)学习第 6–9 章的另 40 段程序，再按[算法练习指引](algorithms-practice.md)学习第 10–12 章的 30 段程序、[递归与分治练习指引](recursion-practice.md)学习第 13–15 章的 30 段程序、[树与堆练习指引](trees-practice.md)学习第 16–18 章的 30 段程序、[哈希表与图练习指引](hash-graphs-practice.md)学习第 19–21 章的 30 段程序、[拓扑排序与带权图练习指引](weighted-graphs-practice.md)学习第 22–24 章的 30 段程序、[回溯、贪心与动态规划练习指引](strategy-practice.md)学习第 25–27 章的 30 段程序、[动态规划进阶练习指引](advanced-dp-practice.md)学习第 28–30 章的 30 段程序、[字符串、Trie 与区间技巧练习指引](string-window-practice.md)学习第 31–33 章的 30 段程序，共 300 段。新语法随例子逐步解释；先比较循环与递归，再把它们用于树和图遍历、哈希与结构维护，文件输入输出及异常处理语法仍留待后续。题目给定的输入范围是约定，程序不一定会主动拒绝范围外输入。
 
 ## 留下能帮助下一次学习的记录
 
