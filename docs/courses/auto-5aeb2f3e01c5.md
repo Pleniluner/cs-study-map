@@ -16,4 +16,4 @@ AI 导读基于可提取片段生成，尚未经学科专家逐条核验。建�
 
 | 文件 | 状态 |
 | --- | --- |
-| [大三下/网络编程技术/readme.md](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0/%E5%A4%A7%E4%B8%89%E4%B8%8B/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E6%8A%80%E6%9C%AF/readme.md) | 待识别 |
+| [大三下/网络编程技术/readme.md](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/ee2403d24dbe85fb33444133bb9ab98be5ea2f67/%E5%A4%A7%E4%B8%89%E4%B8%8B/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B%E6%8A%80%E6%9C%AF/readme.md) | 待识别 |

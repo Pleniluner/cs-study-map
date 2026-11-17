@@ -16,5 +16,5 @@ AI 导读基于可提取片段生成，尚未经学科专家逐条核验。建�
 
 | 文件 | 状态 |
 | --- | --- |
-| [大三下/数据库专题训练/hw/2019/readme.md](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0/%E5%A4%A7%E4%B8%89%E4%B8%8B/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%93%E9%A2%98%E8%AE%AD%E7%BB%83/hw/2019/readme.md) | 待识别 |
-| [大三下/数据库专题训练/readme.md](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0/%E5%A4%A7%E4%B8%89%E4%B8%8B/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%93%E9%A2%98%E8%AE%AD%E7%BB%83/readme.md) | 待识别 |
+| [大三下/数据库专题训练/hw/2019/readme.md](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/ee2403d24dbe85fb33444133bb9ab98be5ea2f67/%E5%A4%A7%E4%B8%89%E4%B8%8B/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%93%E9%A2%98%E8%AE%AD%E7%BB%83/hw/2019/readme.md) | 待识别 |
+| [大三下/数据库专题训练/readme.md](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/ee2403d24dbe85fb33444133bb9ab98be5ea2f67/%E5%A4%A7%E4%B8%89%E4%B8%8B/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%93%E9%A2%98%E8%AE%AD%E7%BB%83/readme.md) | 待识别 |

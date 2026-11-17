@@ -2,9 +2,9 @@
 
 [项目说明](../README.md) · [运行与覆盖状态](status.md) · [开始读教材](textbook/index.md) · [按原课程学习与续写](course-writing-plan.md)
 
-上游：[PKUanonym/REKCARC-TSC-UHT](https://github.com/PKUanonym/REKCARC-TSC-UHT)；索引版本：[`37cd19f7a9fb`](https://github.com/PKUanonym/REKCARC-TSC-UHT/commit/37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0)。
+上游：[PKUanonym/REKCARC-TSC-UHT](https://github.com/PKUanonym/REKCARC-TSC-UHT)；索引版本：[`ee2403d24dbe`](https://github.com/PKUanonym/REKCARC-TSC-UHT/commit/ee2403d24dbe85fb33444133bb9ab98be5ea2f67)。
 
-共 14629 份文件，92 个课程/资料分组，4 份有效 AI 导读。
+共 14630 份文件，92 个课程/资料分组，4 份有效 AI 导读。
 
 ## 按领域浏览
 
@@ -58,7 +58,7 @@
 | [应用近世代数](courses/auto-8a77af318afe.md) | 待分类 | 15 | 0 / 15 |
 | [应用随机过程](courses/auto-82055ff5a1dc.md) | 待分类 | 8 | 0 / 6 |
 | [形式与政策](courses/auto-0e3b73f37029.md) | 待分类 | 12 | 0 / 10 |
-| [形式语言与自动机](courses/auto-d4dac2681d6b.md) | 待分类 | 65 | 0 / 32 |
+| [形式语言与自动机](courses/auto-d4dac2681d6b.md) | 待分类 | 66 | 0 / 33 |
 | [微积分A(1)](courses/mathematics-eabace721e.md) | 数学基础 | 190 | 0 / 154 |
 | [微积分A(2)](courses/mathematics-fd71c2c5eb.md) | 数学基础 | 152 | 0 / 121 |
 | [思想道德与法治](courses/auto-5e83cb910994.md) | 待分类 | 4 | 0 / 4 |

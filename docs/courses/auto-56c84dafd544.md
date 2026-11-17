@@ -16,6 +16,6 @@ AI 导读基于可提取片段生成，尚未经学科专家逐条核验。建�
 
 | 文件 | 状态 |
 | --- | --- |
-| [大一上/大学化学A/readme.md](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0/%E5%A4%A7%E4%B8%80%E4%B8%8A/%E5%A4%A7%E5%AD%A6%E5%8C%96%E5%AD%A6A/readme.md) | 待识别 |
-| [大一上/大学化学A/大学化学A2023期末回忆版.md](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0/%E5%A4%A7%E4%B8%80%E4%B8%8A/%E5%A4%A7%E5%AD%A6%E5%8C%96%E5%AD%A6A/%E5%A4%A7%E5%AD%A6%E5%8C%96%E5%AD%A6A2023%E6%9C%9F%E6%9C%AB%E5%9B%9E%E5%BF%86%E7%89%88.md) | 待识别 |
-| [大一上/大学化学A/大学化学A2023期末回忆版.pdf](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0/%E5%A4%A7%E4%B8%80%E4%B8%8A/%E5%A4%A7%E5%AD%A6%E5%8C%96%E5%AD%A6A/%E5%A4%A7%E5%AD%A6%E5%8C%96%E5%AD%A6A2023%E6%9C%9F%E6%9C%AB%E5%9B%9E%E5%BF%86%E7%89%88.pdf) | 待识别 |
+| [大一上/大学化学A/readme.md](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/ee2403d24dbe85fb33444133bb9ab98be5ea2f67/%E5%A4%A7%E4%B8%80%E4%B8%8A/%E5%A4%A7%E5%AD%A6%E5%8C%96%E5%AD%A6A/readme.md) | 待识别 |
+| [大一上/大学化学A/大学化学A2023期末回忆版.md](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/ee2403d24dbe85fb33444133bb9ab98be5ea2f67/%E5%A4%A7%E4%B8%80%E4%B8%8A/%E5%A4%A7%E5%AD%A6%E5%8C%96%E5%AD%A6A/%E5%A4%A7%E5%AD%A6%E5%8C%96%E5%AD%A6A2023%E6%9C%9F%E6%9C%AB%E5%9B%9E%E5%BF%86%E7%89%88.md) | 待识别 |
+| [大一上/大学化学A/大学化学A2023期末回忆版.pdf](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/ee2403d24dbe85fb33444133bb9ab98be5ea2f67/%E5%A4%A7%E4%B8%80%E4%B8%8A/%E5%A4%A7%E5%AD%A6%E5%8C%96%E5%AD%A6A/%E5%A4%A7%E5%AD%A6%E5%8C%96%E5%AD%A6A2023%E6%9C%9F%E6%9C%AB%E5%9B%9E%E5%BF%86%E7%89%88.pdf) | 待识别 |

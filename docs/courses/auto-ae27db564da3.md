@@ -16,4 +16,4 @@ AI 导读基于可提取片段生成，尚未经学科专家逐条核验。建�
 
 | 文件 | 状态 |
 | --- | --- |
-| [大三上/VLSI设计导论/readme.md](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0/%E5%A4%A7%E4%B8%89%E4%B8%8A/VLSI%E8%AE%BE%E8%AE%A1%E5%AF%BC%E8%AE%BA/readme.md) | 待识别 |
+| [大三上/VLSI设计导论/readme.md](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/ee2403d24dbe85fb33444133bb9ab98be5ea2f67/%E5%A4%A7%E4%B8%89%E4%B8%8A/VLSI%E8%AE%BE%E8%AE%A1%E5%AF%BC%E8%AE%BA/readme.md) | 待识别 |
