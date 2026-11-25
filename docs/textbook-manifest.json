@@ -35,5 +35,8 @@
   "docs/textbook/34-monotonic-structures.md",
   "docs/textbook/35-fenwick-tree.md",
   "docs/textbook/36-segment-tree.md",
+  "docs/textbook/37-cpp-basics.md",
+  "docs/textbook/38-cpp-functions-lifetime.md",
+  "docs/textbook/39-cpp-files-project.md",
   "docs/textbook/index.md"
 ]

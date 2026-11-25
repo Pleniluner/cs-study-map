@@ -8,7 +8,7 @@ Ce projet sert d’abord à l’apprentissage personnel de son mainteneur. Il s�
 
 Ce projet personnel est maintenu par Pleniluner, sans affiliation officielle avec l’Université Tsinghua ni les responsables amont. Le dépôt public contient des outils originaux, des brouillons, des index de sources et des guides IA. Les supports originaux, diapositives, devoirs, codes d’étudiants et textes extraits intégralement ne sont pas publiés.
 
-## Étudier 36 chapitres dans l’ordre
+## Étudier 39 chapitres dans l’ordre
 
 | # | Sujet | Activité |
 | --- | --- | --- |
@@ -48,6 +48,11 @@ Ce projet personnel est maintenu par Pleniluner, sans affiliation officielle ave
 | 34 | [Piles et files monotones](../textbook/34-monotonic-structures.md) | Justifier le retrait des candidats et vérifier les intervalles avec valeurs négatives |
 | 35 | [Arbres de Fenwick et rangs de fréquences](../textbook/35-fenwick-tree.md) | Maintenir les blocs préfixes, les différences et les fréquences non négatives |
 | 36 | [Arbres de segments et propagation différée](../textbook/36-segment-tree.md) | Fusionner les résumés et suivre l’ordre des requêtes et les mises à jour |
+| 37 | [Types, entrées-sorties et contrôle en C++](../textbook/37-cpp-basics.md) | Compiler et vérifier les types, les entrées et les limites des boucles |
+| 38 | [Fonctions et durée de vie des objets C++](../textbook/38-cpp-functions-lifetime.md) | Suivre valeurs, références, pointeurs et libération des ressources |
+| 39 | [Fichiers, interfaces et tests C++](../textbook/39-cpp-files-project.md) | Construire un outil multifichier et vérifier les données et les erreurs |
+
+Les chapitres 37–39 complètent les bases de la programmation avec 30 programmes C++17 compilés et exécutés. Le total est de 360 programmes : 330 en Python et 30 en C++. Voir le [guide pratique C++](../cpp-programming-practice.md), en chinois.
 
 Les chapitres 4 à 36 utilisent Python 3.11 ou une version ultérieure et proposent 330 programmes autonomes avec leur sortie attendue. Consultez les guides de [programmation](../programming-practice.md), de [structures de données](../data-structures-practice.md) et d’[algorithmes](../algorithms-practice.md), en chinois. [Exercices de récursivité et de division du problème (en chinois)](../recursion-practice.md). [Exercices sur les arbres et les tas (en chinois)](../trees-practice.md). [Exercices sur les tables de hachage et les graphes (en chinois)](../hash-graphs-practice.md). [Exercices sur le tri topologique et les graphes pondérés (en chinois)](../weighted-graphs-practice.md). [Exercices de recherche, d’algorithmes gloutons et de programmation dynamique (en chinois)](../strategy-practice.md). [Exercices avancés de programmation dynamique (en chinois)](../advanced-dp-practice.md). [Exercices sur les chaînes, les tries et les intervalles (en chinois)](../string-window-practice.md). [Exercices sur les structures monotones et les requêtes dynamiques par intervalle (en chinois)](../range-structures-practice.md).
 

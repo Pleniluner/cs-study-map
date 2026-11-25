@@ -8,7 +8,7 @@
 
 Pleniluner가 관리하는 개인 학습 프로젝트이며 칭화대학교나 상류 저장소 관리자와 공식 관계가 없습니다. 공개 저장소에는 자체 도구, 교재 초안, 출처 색인, AI 안내가 포함됩니다. 원본 교재, 강의자료, 과제, 학생 소스 코드, 추출 전문은 공개하지 않습니다.
 
-## 36장을 순서대로 학습하기
+## 39장을 순서대로 학습하기
 
 | # | 주제 | 실습 |
 | --- | --- | --- |
@@ -48,6 +48,11 @@ Pleniluner가 관리하는 개인 학습 프로젝트이며 칭화대학교나 �
 | 34 | [단조 스택과 단조 큐](../textbook/34-monotonic-structures.md) | 후보 제거를 증명하고 음수가 포함된 구간 검증하기 |
 | 35 | [펜윅 트리와 빈도 순위](../textbook/35-fenwick-tree.md) | 누적 구간, 차분과 음이 아닌 빈도의 순위 관리하기 |
 | 36 | [세그먼트 트리와 지연 전파](../textbook/36-segment-tree.md) | 요약을 결합하고 질의 순서와 갱신 전파 추적하기 |
+| 37 | [C++ 자료형, 입출력과 제어 흐름](../textbook/37-cpp-basics.md) | 컴파일하고 자료형, 잘못된 입력과 반복 경계를 확인하기 |
+| 38 | [C++ 함수와 객체 수명](../textbook/38-cpp-functions-lifetime.md) | 값, 참조, 포인터와 자원 해제를 추적하기 |
+| 39 | [C++ 파일, 인터페이스와 테스트](../textbook/39-cpp-files-project.md) | 여러 파일로 집계 프로그램을 만들고 파싱과 오류를 검증하기 |
+
+37–39장은 프로그래밍 기초에 속하며, 실제로 컴파일하고 실행한 C++17 프로그램 30개를 추가합니다. 전체 프로그램은 360개로 Python 330개와 C++ 30개입니다. 중국어 [C++ 연습 안내](../cpp-programming-practice.md)를 참고하세요.
 
 4–36장은 Python 3.11 이상을 사용하며, 독립적으로 실행할 수 있는 프로그램 330개와 예상 출력을 제공합니다. 중국어로 작성된 [프로그래밍 연습 안내](../programming-practice.md), [자료 구조 연습 안내](../data-structures-practice.md), [알고리즘 연습 안내](../algorithms-practice.md)를 참고하세요. [재귀와 분할 정복 연습 안내(중국어)](../recursion-practice.md). [트리와 힙 연습 안내(중국어)](../trees-practice.md). [해시 테이블과 그래프 연습 안내(중국어)](../hash-graphs-practice.md). [위상 정렬과 가중 그래프 연습 안내(중국어)](../weighted-graphs-practice.md). [백트래킹, 탐욕 알고리즘, 동적 계획법 연습 안내(중국어)](../strategy-practice.md). [동적 계획법 심화 연습 안내(중국어)](../advanced-dp-practice.md). [문자열, 트라이와 구간 연습 안내(중국어)](../string-window-practice.md). [단조 구조와 동적 구간 질의 연습 안내(중국어)](../range-structures-practice.md).
 

@@ -132,11 +132,13 @@ class PipelineTests(unittest.TestCase):
 
     def test_no_configuration_is_not_successful_analysis(self):
         self.initialize()
-        with patch.dict(os.environ, {}, clear=True):
-            result = analyze(self.project, self.github, ModelClient())
-            self.assertEqual(result["status"], "not-configured")
-            with self.assertRaises(StudyError):
-                analyze(self.project, self.github, ModelClient(), require_ai=True)
+        # Limit the empty environment to the client's Python configuration lookup.
+        with patch.object(os, "environ", {}):
+            client = ModelClient()
+        result = analyze(self.project, self.github, client)
+        self.assertEqual(result["status"], "not-configured")
+        with self.assertRaises(StudyError):
+            analyze(self.project, self.github, client, require_ai=True)
 
     def test_failure_keeps_successful_analysis_and_can_resume(self):
         record = self.initialize()

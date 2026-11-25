@@ -8,7 +8,7 @@ Dieses Projekt dient vor allem dem Selbststudium des Maintainers. Es wählt geei
 
 Dies ist ein persönliches Lernprojekt von Pleniluner ohne offizielle Verbindung zur Tsinghua-Universität oder den Betreuern des Ursprungsprojekts. Das öffentliche Repository enthält eigene Werkzeuge, Lehrbuchentwürfe, Quellenverzeichnisse und KI-Leitfäden. Originale Kursmaterialien, Folien, Aufgaben, studentischer Quellcode und vollständig extrahierte Texte werden nicht veröffentlicht.
 
-## 36 Kapitel der Reihe nach lernen
+## 39 Kapitel der Reihe nach lernen
 
 | # | Thema | Übung |
 | --- | --- | --- |
@@ -48,6 +48,11 @@ Dies ist ein persönliches Lernprojekt von Pleniluner ohne offizielle Verbindung
 | 34 | [Monotone Stapel und Warteschlangen](../textbook/34-monotonic-structures.md) | Das Entfernen von Kandidaten begründen und Intervalle mit negativen Werten prüfen |
 | 35 | [Fenwick-Bäume und Häufigkeitsränge](../textbook/35-fenwick-tree.md) | Präfixblöcke, Differenzen und nichtnegative Häufigkeiten verwalten |
 | 36 | [Segmentbäume und verzögerte Aktualisierungen](../textbook/36-segment-tree.md) | Zusammenfassungen verbinden und Abfragereihenfolge sowie Aktualisierungen verfolgen |
+| 37 | [C++: Typen, Ein-/Ausgabe und Kontrollfluss](../textbook/37-cpp-basics.md) | Programme kompilieren und Typen, Eingabefehler und Schleifengrenzen prüfen |
+| 38 | [C++: Funktionen und Objektlebensdauer](../textbook/38-cpp-functions-lifetime.md) | Werte, Referenzen, Zeiger und Ressourcenfreigabe verfolgen |
+| 39 | [C++: Dateien, Schnittstellen und Tests](../textbook/39-cpp-files-project.md) | Ein Programm aus mehreren Dateien bauen und Daten sowie Fehler prüfen |
+
+Kapitel 37–39 ergänzen die Programmiergrundlagen um 30 kompilierte und ausgeführte C++17-Programme. Insgesamt sind es 360 Programme: 330 in Python und 30 in C++. Siehe den [C++-Übungsleitfaden](../cpp-programming-practice.md) auf Chinesisch.
 
 Kapitel 4–36 verwenden Python ab Version 3.11 und enthalten 330 eigenständig ausführbare Programme mit erwarteten Ausgaben. Siehe die Leitfäden für [Programmierübungen](../programming-practice.md), [Datenstrukturen](../data-structures-practice.md) und [Algorithmen](../algorithms-practice.md), alle auf Chinesisch. [Übungen zu Rekursion und Teile und herrsche (auf Chinesisch)](../recursion-practice.md). [Übungen zu Bäumen und Heaps (auf Chinesisch)](../trees-practice.md). [Übungen zu Hashtabellen und Graphen (auf Chinesisch)](../hash-graphs-practice.md). [Übungen zu topologischer Sortierung und gewichteten Graphen (auf Chinesisch)](../weighted-graphs-practice.md). [Übungen zu Backtracking, Greedy-Algorithmen und dynamischer Programmierung (auf Chinesisch)](../strategy-practice.md). [Fortgeschrittene Übungen zur dynamischen Programmierung (auf Chinesisch)](../advanced-dp-practice.md). [Übungen zu Zeichenketten, Tries und Intervallen (auf Chinesisch)](../string-window-practice.md). [Übungen zu monotonen Strukturen und dynamischen Intervallabfragen (auf Chinesisch)](../range-structures-practice.md).
 

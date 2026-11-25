@@ -2,11 +2,32 @@
 
 [返回课程导航](../index.md)
 
-资料索引：67 份；当前可解析：49 份；已生成 AI 导读：1 份。
+资料索引：67 份；当前可解析：49 份；已生成 AI 导读：2 份。
 
 AI 导读基于可提取片段生成，尚未经学科专家逐条核验。建议基础与练习是学习建议。
 
 ## 已生成的导读
+
+### C++札记.docx
+
+[原资料](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/37cd19f7a9fb80dc846a7016b3fd482ed5fe7cc0/%E5%A4%A7%E4%B8%80%E4%B8%8A/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80/hw/%E7%BC%96%E7%A8%8B%E6%89%8B%E8%AE%B0/C%2B%2B%E6%9C%AD%E8%AE%B0.docx) · 阅读资料 · 已提取可读文本 · AI 自动判断
+
+这是一份程序设计基础课程中的 C++ 学习札记，记录编译诊断、基本输入输出、类型与初始化、循环、函数参数、数组和指针等学习问题。当前只提取并核对了 Word 正文中的文字，未解读嵌入截图。部分经验表述含简化或错误，只作选题线索，具体语言语义另按 C++17 草案和编译器文档核对；不把其中的题目或代码作为教材答案。
+
+**涉及知识**
+
+- C++ 编译诊断、初始化、输入输出与控制流的学习问题（依据：Word 正文）
+- 函数声明与参数传递、数组范围、指针及动态资源的学习问题（依据：Word 正文）
+
+**建议先了解**
+
+- 建议先掌握整数运算、条件判断和有限循环。
+
+**建议尝试**
+
+- 建议自行设计有范围校验的计算与汇总任务，并观察参数修改及资源生命周期；不要复现原题。
+
+生成模型：Codex 当前会话（未记录具体模型型号）；人工修正：无。
 
 ### 大作业\_ERISC程序可视化.pdf
 
@@ -107,7 +128,7 @@ AI 导读基于可提取片段生成，尚未经学科专家逐条核验。建�
 | [大一上/程序设计基础/hw/project\_puzzle/2018\_周恩贤/实验报告\_2018011438\_周恩贤.pdf](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/ee2403d24dbe85fb33444133bb9ab98be5ea2f67/%E5%A4%A7%E4%B8%80%E4%B8%8A/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80/hw/project_puzzle/2018_%E5%91%A8%E6%81%A9%E8%B4%A4/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A_2018011438_%E5%91%A8%E6%81%A9%E8%B4%A4.pdf) | 待识别 |
 | [大一上/程序设计基础/hw/project\_puzzle/2018\_周恩贤/演示视频\_2018011438\_周恩贤.mp4](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/ee2403d24dbe85fb33444133bb9ab98be5ea2f67/%E5%A4%A7%E4%B8%80%E4%B8%8A/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80/hw/project_puzzle/2018_%E5%91%A8%E6%81%A9%E8%B4%A4/%E6%BC%94%E7%A4%BA%E8%A7%86%E9%A2%91_2018011438_%E5%91%A8%E6%81%A9%E8%B4%A4.mp4) | 暂不支持 |
 | [大一上/程序设计基础/hw/readme.md](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/ee2403d24dbe85fb33444133bb9ab98be5ea2f67/%E5%A4%A7%E4%B8%80%E4%B8%8A/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80/hw/readme.md) | 待识别 |
-| [大一上/程序设计基础/hw/编程手记/C++札记.docx](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/ee2403d24dbe85fb33444133bb9ab98be5ea2f67/%E5%A4%A7%E4%B8%80%E4%B8%8A/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80/hw/%E7%BC%96%E7%A8%8B%E6%89%8B%E8%AE%B0/C%2B%2B%E6%9C%AD%E8%AE%B0.docx) | 待识别 |
+| [大一上/程序设计基础/hw/编程手记/C++札记.docx](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/ee2403d24dbe85fb33444133bb9ab98be5ea2f67/%E5%A4%A7%E4%B8%80%E4%B8%8A/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80/hw/%E7%BC%96%E7%A8%8B%E6%89%8B%E8%AE%B0/C%2B%2B%E6%9C%AD%E8%AE%B0.docx) | 已有导读 |
 | [大一上/程序设计基础/hw/编程手记/ERISC小组说明.docx](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/ee2403d24dbe85fb33444133bb9ab98be5ea2f67/%E5%A4%A7%E4%B8%80%E4%B8%8A/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80/hw/%E7%BC%96%E7%A8%8B%E6%89%8B%E8%AE%B0/ERISC%E5%B0%8F%E7%BB%84%E8%AF%B4%E6%98%8E.docx) | 待识别 |
 | [大一上/程序设计基础/hw/编程手记/大作业\_ERISC程序可视化.pdf](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/ee2403d24dbe85fb33444133bb9ab98be5ea2f67/%E5%A4%A7%E4%B8%80%E4%B8%8A/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80/hw/%E7%BC%96%E7%A8%8B%E6%89%8B%E8%AE%B0/%E5%A4%A7%E4%BD%9C%E4%B8%9A_ERISC%E7%A8%8B%E5%BA%8F%E5%8F%AF%E8%A7%86%E5%8C%96.pdf) | 已有导读 |
 | [大一上/程序设计基础/hw/编程手记/大作业资料.docx](https://github.com/PKUanonym/REKCARC-TSC-UHT/blob/ee2403d24dbe85fb33444133bb9ab98be5ea2f67/%E5%A4%A7%E4%B8%80%E4%B8%8A/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%9F%BA%E7%A1%80/hw/%E7%BC%96%E7%A8%8B%E6%89%8B%E8%AE%B0/%E5%A4%A7%E4%BD%9C%E4%B8%9A%E8%B5%84%E6%96%99.docx) | 待识别 |

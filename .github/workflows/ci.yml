@@ -26,7 +26,9 @@ jobs:
       - name: Install
         run: python -m pip install -e .
       - name: Test behavior
-        run: python -m unittest discover -s tests -v
+        run: |
+          g++ --version
+          python -m unittest discover -s tests -v
       - name: Audit commit identities, messages and historical snapshots
         run: python scripts/privacy_guard.py history HEAD
       - name: Rebuild and validate public outputs

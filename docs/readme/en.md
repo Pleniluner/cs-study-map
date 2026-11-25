@@ -8,7 +8,7 @@ This project is mainly for the maintainer’s own study. It selects useful topic
 
 This is Pleniluner’s personal learning project, with no official affiliation with Tsinghua University or upstream maintainers. The public repository contains original tools, textbook drafts, source indexes, and AI guides. Original course materials, slides, assignments, student source code, and extracted full text are not published.
 
-## Thirty-six chapters to study in order
+## Thirty-nine chapters to study in order
 
 | # | Topic | Activity |
 | --- | --- | --- |
@@ -48,6 +48,11 @@ This is Pleniluner’s personal learning project, with no official affiliation w
 | 34 | [Monotonic stacks and queues](../textbook/34-monotonic-structures.md) | Prove candidate removal and verify intervals with negative values |
 | 35 | [Fenwick trees and frequency ranks](../textbook/35-fenwick-tree.md) | Maintain prefix blocks, differences, and nonnegative ranks |
 | 36 | [Segment trees and lazy propagation](../textbook/36-segment-tree.md) | Merge summaries and trace query order and pending updates |
+| 37 | [C++ types, I/O, and control flow](../textbook/37-cpp-basics.md) | Compile programs and check types, input failures, and loop boundaries |
+| 38 | [C++ functions and object lifetimes](../textbook/38-cpp-functions-lifetime.md) | Trace values, references, pointers, aliasing, and resource cleanup |
+| 39 | [C++ files, interfaces, and tests](../textbook/39-cpp-files-project.md) | Build a multi-file reporting tool and verify parsing and failures |
+
+Chapters 37–39 add 30 compiled and executed C++17 programs under Programming Fundamentals. The book now has 360 programs: 330 Python and 30 C++. See the [C++ practice guide](../cpp-programming-practice.md) (in Chinese).
 
 Chapters 4–36 use Python 3.11 or later and include 330 standalone programs with expected outputs. See the [programming practice guide](../programming-practice.md), [data structures guide](../data-structures-practice.md), and [algorithm practice guide](../algorithms-practice.md), all in Chinese. [Recursion and divide-and-conquer exercises (in Chinese)](../recursion-practice.md). [Tree and heap exercises (in Chinese)](../trees-practice.md). [Hash table and graph exercises (in Chinese)](../hash-graphs-practice.md). [Topological sorting and weighted graph exercises (in Chinese)](../weighted-graphs-practice.md). [Backtracking, greedy, and dynamic programming exercises (in Chinese)](../strategy-practice.md). [Advanced dynamic programming exercises (in Chinese)](../advanced-dp-practice.md). [String, trie, and interval exercises (in Chinese)](../string-window-practice.md). [Monotonic structures and dynamic range query exercises (in Chinese)](../range-structures-practice.md).
 

@@ -1079,6 +1079,132 @@
         }
       ],
       "title": "合并区间摘要：线段树与延迟更新"
+    },
+    {
+      "format": "cpp",
+      "id": "37-cpp-basics",
+      "references": [
+        {
+          "note": "核对预处理、编译、汇编、链接及 -c 的含义；具体演示为本项目原创并实际构建。",
+          "title": "GCC：编译阶段与输出选项",
+          "url": "https://gcc.gnu.org/onlinedocs/gcc/Overall-Options.html"
+        },
+        {
+          "note": "核对基础类型和可表示范围的实现相关性，不假定所有 int 都是 32 位。",
+          "title": "C++17 草案 N4659：basic.fundamental",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.fundamental"
+        },
+        {
+          "note": "核对整数除法向零截断、余数关系及除零前置条件。",
+          "title": "C++17 草案 N4659：expr.mul",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/expr.mul"
+        },
+        {
+          "note": "核对数值提取和失败状态；固定条数读取与完整记录解析由正文区分。",
+          "title": "C++17 草案 N4659：istream.formatted.arithmetic",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/istream.formatted.arithmetic"
+        }
+      ],
+      "scope": "所属课程：程序设计基础；语言：C++17。单元 1：从源码到运行。编译链接、main、初始化、类型范围、整数与浮点表达式、标准流校验及有界循环；区分输出与退出状态，说明数字前缀和严格解析边界。",
+      "sources": [
+        {
+          "analysis_id": "087c523259f76448cca0",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "从源码到运行：C++ 类型、输入输出与控制流"
+    },
+    {
+      "format": "cpp",
+      "id": "38-cpp-functions-lifetime",
+      "references": [
+        {
+          "note": "核对引用绑定与别名规则，例题自行规定别名允许或拒绝的契约。",
+          "title": "C++17 草案 N4659：dcl.ref",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/dcl.ref"
+        },
+        {
+          "note": "核对数组到首元素指针的转换；额外长度及空范围约定由本项目定义。",
+          "title": "C++17 草案 N4659：conv.array",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/conv.array"
+        },
+        {
+          "note": "核对生命周期与访问有效性的关系，不实际执行悬空访问或越界。",
+          "title": "C++17 草案 N4659：basic.life",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.life"
+        },
+        {
+          "note": "核对追加可能重新分配并使元素借用失效的条件。",
+          "title": "C++17 草案 N4659：vector.modifiers",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/vector.modifiers"
+        },
+        {
+          "note": "核对异常展开时已构造自动对象的销毁，正常作用域日志另由实际运行验证。",
+          "title": "C++17 草案 N4659：except.ctor",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/except.ctor"
+        }
+      ],
+      "scope": "所属课程：程序设计基础；语言：C++17。单元 2：函数与对象的生命周期。值、引用、const、指针、数组长度、作用域、析构和 RAII；明确借用前置条件、别名、失败不修改状态、容器复制与按值返回。",
+      "sources": [
+        {
+          "analysis_id": "087c523259f76448cca0",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "函数与对象的生命周期：C++ 值、引用和指针"
+    },
+    {
+      "format": "cpp",
+      "id": "39-cpp-files-project",
+      "references": [
+        {
+          "note": "核对预处理、编译、汇编、链接及 -c 的含义；具体演示为本项目原创并实际构建。",
+          "title": "GCC：编译阶段与输出选项",
+          "url": "https://gcc.gnu.org/onlinedocs/gcc/Overall-Options.html"
+        },
+        {
+          "note": "核对 getline、空行、末行和 EOF 语义；分钟记录格式及测试数据为原创。",
+          "title": "C++17 草案 N4659：string.io",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/string.io"
+        },
+        {
+          "note": "核对数值提取失败和范围处理，额外字段由项目主动检测。",
+          "title": "C++17 草案 N4659：istream.formatted.arithmetic",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/istream.formatted.arithmetic"
+        },
+        {
+          "note": "核对文件打开、截断与关闭行为；说明本项目不提供原子替换。",
+          "title": "C++17 草案 N4659：filebuf.members",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/filebuf.members"
+        },
+        {
+          "note": "核对声明、定义与翻译单元的关系，多文件示例仅使用普通非内联函数。",
+          "title": "C++17 草案 N4659：basic.def.odr",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/basic.def.odr"
+        },
+        {
+          "note": "核对异常传播和自动对象清理，普通文件流仍按默认状态位方式检查失败。",
+          "title": "C++17 草案 N4659：except.ctor",
+          "url": "https://timsong-cpp.github.io/cppwp/n4659/except.ctor"
+        }
+      ],
+      "scope": "所属课程：程序设计基础；语言：C++17。单元 3：组织完整的小程序。文件流、严格逐行解析、返回状态与异常、多文件编译链接。原创学习时长汇总和七日报告项目，覆盖空文件、坏记录、输入缺失、上限及旧报告保护。",
+      "sources": [
+        {
+          "analysis_id": "087c523259f76448cca0",
+          "topic_indexes": [
+            0,
+            1
+          ]
+        }
+      ],
+      "title": "组织完整的小程序：C++ 文件、接口与测试"
     }
   ],
   "learner": "从基础开始自学；先用纸笔和小例子建立概念，再接触课程实验。",
@@ -1087,7 +1213,7 @@
     "数据结构进一步专题：平衡树、开放寻址哈希、索引堆、二维范围结构、持久化、动态开点与复杂延迟标签",
     "图算法进阶：强连通分量、桥与割点、全点对最短路、匹配与网络流",
     "算法分析与理论：递推式、摊还证明、随机化、排序下界与复杂度入门",
-    "程序开发基础：文件、异常、模块、对象、调试与完整小项目",
+    "程序设计基础后续：更完整的输入语法、调试、异常安全、构建系统与状态转换项目；面向对象课程继续类、封装、复制移动、继承与多态",
     "计算机组成与操作系统：补码、浮点、缓存、虚拟地址、页表、TLB、进程线程与文件系统",
     "计算机网络、数据库、数学基础与编译原理（按先修关系逐批细化）"
   ],

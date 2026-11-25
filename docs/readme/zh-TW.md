@@ -8,7 +8,7 @@
 
 這是 Pleniluner 維護的個人學習專案，與清華大學及上游維護者沒有官方隸屬關係。公開儲存庫包含原創工具、教材草稿、來源索引和 AI 導讀；不發布原始教材、課件、作業、學生原始碼或擷取全文。
 
-## 依三十六章順序學習
+## 依三十九章順序學習
 
 | # | 主題 | 實作 |
 | --- | --- | --- |
@@ -48,6 +48,11 @@
 | 34 | [單調堆疊與單調佇列](../textbook/34-monotonic-structures.md) | 證明候選淘汰並核對負數區間 |
 | 35 | [樹狀陣列與頻次排名](../textbook/35-fenwick-tree.md) | 維護前綴區塊、差分與非負排名 |
 | 36 | [線段樹與延遲更新](../textbook/36-segment-tree.md) | 合併摘要並追蹤查詢順序與標記下推 |
+| 37 | [C++ 型別、輸入輸出與控制流程](../textbook/37-cpp-basics.md) | 實際編譯執行，核對型別、錯誤輸入與迴圈邊界 |
+| 38 | [C++ 函式與物件生命週期](../textbook/38-cpp-functions-lifetime.md) | 追蹤值、參考、指標、別名與資源清理 |
+| 39 | [C++ 檔案、介面與測試](../textbook/39-cpp-files-project.md) | 建立多檔案彙總工具，驗證解析與失敗處理 |
+
+第 37–39 章歸入「程式設計基礎」，新增 30 個已實際編譯執行的 C++17 程式；全書共 360 個程式，包含 330 個 Python 與 30 個 C++。詳見 [C++ 練習指引](../cpp-programming-practice.md)（簡體中文）。
 
 第 4–36 章使用 Python 3.11 或更新版本，共提供 330 段可獨立執行的程式及預期輸出。練習方法見[程式練習指南](../programming-practice.md)、[資料結構練習指引](../data-structures-practice.md)與[演算法練習指引](../algorithms-practice.md)（簡體中文）。 [遞迴與分治練習指引（簡體中文）](../recursion-practice.md). [樹與堆積練習指引（簡體中文）](../trees-practice.md). [雜湊表與圖練習指引（簡體中文）](../hash-graphs-practice.md). [拓撲排序與帶權圖練習指引（簡體中文）](../weighted-graphs-practice.md). [回溯、貪心與動態規劃練習指引（簡體中文）](../strategy-practice.md). [動態規劃進階練習指引（簡體中文）](../advanced-dp-practice.md). [字串、Trie 與區間技巧練習指引（簡體中文）](../string-window-practice.md). [單調結構與動態區間查詢練習指引（簡體中文）](../range-structures-practice.md).
 

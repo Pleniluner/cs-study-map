@@ -10,7 +10,8 @@ from pathlib import Path
 
 from cs_study_map.storage import StudyError, load_project, read_json
 from cs_study_map.textbook import (
-    BOOK_PROMPT, BOOK_PROMPT_VERSION, PYTHON_BOOK_PROMPT_VERSION,
+    BOOK_PROMPT, BOOK_PROMPT_VERSION, PYTHON_BOOK_PROMPT, PYTHON_BOOK_PROMPT_VERSION,
+    CPP_BOOK_PROMPT, CPP_BOOK_PROMPT_VERSION,
     chapter_status, curriculum, program_lines, validate_document,
     validate_program, validate_references, writing_prompt,
 )
@@ -165,8 +166,12 @@ for target in range(251):
         for chapter in plan["chapters"]:
             document = read_json(ROOT / "catalog/chapters" / (chapter["id"] + ".json"))
             self.assertEqual(chapter_status(project, plan, chapter, document), "current")
-            if chapter.get("format") == "python":
+            if chapter.get("format") in {"python", "cpp"}:
                 self.assertEqual(document["references"], chapter["references"])
+                prompt = ((CPP_BOOK_PROMPT, CPP_BOOK_PROMPT_VERSION) if chapter["format"] == "cpp"
+                          else (PYTHON_BOOK_PROMPT, PYTHON_BOOK_PROMPT_VERSION))
+                self.assertEqual(writing_prompt(chapter), prompt)
+                self.assertEqual(document["prompt_version"], prompt[1])
             else:
                 self.assertEqual(writing_prompt(chapter), (BOOK_PROMPT, BOOK_PROMPT_VERSION))
         reference = copy.deepcopy(plan["chapters"][-1]["references"][0])

@@ -4,13 +4,13 @@
 
 先从[原课程编写总表](../course-writing-plan.md)选择领域、课程和课程内单元，再读讲解、跟例题、做练习和自测。下表保留已发布章节的顺序与稳定链接；跨课程借读复用同一正文。
 
-已登记的具体章节中，可试学 36 章，待复核 0 章，待编写 0 章。后续待写方向另列于下方，尚未计入具体章节数量。每章含讲解、2 个原创例题、3 道练习及解答。当前章节均为 AI 初稿，尚未经过学科专家或学习者实际试学验收。
+已登记的具体章节中，可试学 39 章，待复核 0 章，待编写 0 章。后续待写方向另列于下方，尚未计入具体章节数量。每章含讲解、2 个原创例题、3 道练习及解答。当前章节均为 AI 初稿，尚未经过学科专家或学习者实际试学验收。
 
 ## 从这里开始
 
 先按下表顺序阅读。能独立解释并做对自测再前进；卡住时在本机学习记录中写下具体问题，后续据此调整教材。
 
-[三章试学指南](../study-guide.md) · [综合练习与回读指引](../unit-01-review.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md) · [树与堆练习指引](../trees-practice.md) · [哈希表与图练习指引](../hash-graphs-practice.md) · [拓扑排序与带权图练习指引](../weighted-graphs-practice.md)
+[三章试学指南](../study-guide.md) · [综合练习与回读指引](../unit-01-review.md) · [编程练习与运行](../programming-practice.md) · [数据结构练习指引](../data-structures-practice.md) · [算法练习指引](../algorithms-practice.md) · [递归与分治练习指引](../recursion-practice.md) · [树与堆练习指引](../trees-practice.md) · [哈希表与图练习指引](../hash-graphs-practice.md) · [拓扑排序与带权图练习指引](../weighted-graphs-practice.md) · [C++ 练习与编译](../cpp-programming-practice.md)
 
 | 顺序 | 章节 | 状态 |
 | ---: | --- | --- |
@@ -50,6 +50,9 @@
 | 34 | [淘汰不再有用的候选：单调栈与单调队列](34-monotonic-structures.md) | AI 初稿，可开始试学 |
 | 35 | [动态维护前缀：树状数组与频次排名](35-fenwick-tree.md) | AI 初稿，可开始试学 |
 | 36 | [合并区间摘要：线段树与延迟更新](36-segment-tree.md) | AI 初稿，可开始试学 |
+| 37 | [从源码到运行：C++ 类型、输入输出与控制流](37-cpp-basics.md) | AI 初稿，可开始试学 |
+| 38 | [函数与对象的生命周期：C++ 值、引用和指针](38-cpp-functions-lifetime.md) | AI 初稿，可开始试学 |
+| 39 | [组织完整的小程序：C++ 文件、接口与测试](39-cpp-files-project.md) | AI 初稿，可开始试学 |
 
 ## 后续路线（尚未写成教材）
 

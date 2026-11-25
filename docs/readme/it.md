@@ -8,7 +8,7 @@ Il progetto serve soprattutto allo studio del manutentore: seleziona argomenti d
 
 È un progetto personale di Pleniluner, senza affiliazione ufficiale con la Tsinghua University o i manutentori upstream. Il repository pubblico contiene strumenti originali, bozze, indici delle fonti e guide AI. Materiali didattici originali, slide, compiti, codice degli studenti e testi estratti integralmente non sono pubblicati.
 
-## Studia 36 capitoli in ordine
+## Studia 39 capitoli in ordine
 
 | # | Argomento | Attività |
 | --- | --- | --- |
@@ -48,6 +48,11 @@ Il progetto serve soprattutto allo studio del manutentore: seleziona argomenti d
 | 34 | [Pile e code monotone](../textbook/34-monotonic-structures.md) | Giustificare la rimozione dei candidati e verificare intervalli con valori negativi |
 | 35 | [Alberi di Fenwick e ranghi di frequenza](../textbook/35-fenwick-tree.md) | Gestire blocchi prefissi, differenze e frequenze non negative |
 | 36 | [Alberi di segmenti e propagazione differita](../textbook/36-segment-tree.md) | Unire riepiloghi e seguire ordine delle query e aggiornamenti |
+| 37 | [Tipi, input/output e controllo in C++](../textbook/37-cpp-basics.md) | Compilare e verificare tipi, input errati e limiti dei cicli |
+| 38 | [Funzioni e durata degli oggetti C++](../textbook/38-cpp-functions-lifetime.md) | Seguire valori, riferimenti, puntatori e rilascio delle risorse |
+| 39 | [File, interfacce e test C++](../textbook/39-cpp-files-project.md) | Costruire un programma su più file e verificare dati ed errori |
+
+I capitoli 37–39 completano i fondamenti di programmazione con 30 programmi C++17 compilati ed eseguiti. Il totale è di 360 programmi: 330 in Python e 30 in C++. Consulta la [guida pratica C++](../cpp-programming-practice.md), in cinese.
 
 I capitoli dal 4 al 36 usano Python 3.11 o successivo e includono 330 programmi autonomi con l’output atteso. Consulta le guide alla [programmazione](../programming-practice.md), alle [strutture dati](../data-structures-practice.md) e agli [algoritmi](../algorithms-practice.md), in cinese. [Esercizi su ricorsione e divide et impera (in cinese)](../recursion-practice.md). [Esercizi su alberi e heap (in cinese)](../trees-practice.md). [Esercizi su tabelle hash e grafi (in cinese)](../hash-graphs-practice.md). [Esercizi su ordinamento topologico e grafi pesati (in cinese)](../weighted-graphs-practice.md). [Esercizi su backtracking, algoritmi greedy e programmazione dinamica (in cinese)](../strategy-practice.md). [Esercizi avanzati di programmazione dinamica (in cinese)](../advanced-dp-practice.md). [Esercizi su stringhe, trie e intervalli (in cinese)](../string-window-practice.md). [Esercizi su strutture monotone e query dinamiche su intervalli (in cinese)](../range-structures-practice.md).
 

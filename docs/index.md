@@ -4,7 +4,7 @@
 
 上游：[PKUanonym/REKCARC-TSC-UHT](https://github.com/PKUanonym/REKCARC-TSC-UHT)；索引版本：[`ee2403d24dbe`](https://github.com/PKUanonym/REKCARC-TSC-UHT/commit/ee2403d24dbe85fb33444133bb9ab98be5ea2f67)。
 
-共 14630 份文件，92 个课程/资料分组，4 份有效 AI 导读。
+共 14630 份文件，92 个课程/资料分组，5 份有效 AI 导读。
 
 ## 按领域浏览
 
@@ -87,7 +87,7 @@
 | [电子学基础实验](courses/physics-electronics-0503555f53.md) | 物理、电子与信号 | 22 | 0 / 18 |
 | [离散数学(1)](courses/mathematics-22a3b7e3eb.md) | 数学基础 | 102 | 0 / 72 |
 | [离散数学(2)](courses/mathematics-ed97198321.md) | 数学基础 | 101 | 0 / 63 |
-| [程序设计基础](courses/programming-f25722d2ba.md) | 程序设计与软件工程 | 67 | 1 / 49 |
+| [程序设计基础](courses/programming-f25722d2ba.md) | 程序设计与软件工程 | 67 | 2 / 49 |
 | [系统分析与控制](courses/auto-8a011b656399.md) | 待分类 | 37 | 0 / 18 |
 | [线性代数(1)](courses/mathematics-447fa5e1e3.md) | 数学基础 | 66 | 0 / 61 |
 | [线性代数(2)](courses/mathematics-ed17c06428.md) | 数学基础 | 67 | 0 / 61 |

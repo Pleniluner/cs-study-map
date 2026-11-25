@@ -59,6 +59,7 @@ def validate(project, tracked=False):
     # Keep maintained reading guides under the same link checks as generated pages.
     manual_pages = ["docs/usage.md", "docs/learning-log-template.md", "docs/study-guide.md", "docs/unit-01-review.md", "docs/programming-practice.md", "docs/data-structures-practice.md", "docs/algorithms-practice.md", "docs/recursion-practice.md", "docs/trees-practice.md", "docs/hash-graphs-practice.md", "docs/weighted-graphs-practice.md", "docs/roadmap.md", "docs/project-brief.md", "docs/strategy-practice.md", "docs/advanced-dp-practice.md", "docs/string-window-practice.md", "docs/range-structures-practice.md"]
     manual_pages.append("docs/course-writing-plan.md")
+    manual_pages.append("docs/cpp-programming-practice.md")
     manifests += [name for name in manual_pages if (root / name).is_file()]
     for relative in manifests:
         safe_relative(relative)

@@ -8,7 +8,7 @@ O projeto serve principalmente ao estudo do mantenedor: seleciona temas de [REKC
 
 Este é um projeto pessoal de Pleniluner, sem vínculo oficial com a Universidade Tsinghua ou os mantenedores originais. O repositório público contém ferramentas próprias, rascunhos, índices de fontes e guias de IA. Materiais didáticos originais, slides, tarefas, código de estudantes e texto integral extraído não são publicados.
 
-## Estude 36 capítulos em ordem
+## Estude 39 capítulos em ordem
 
 | # | Tema | Atividade |
 | --- | --- | --- |
@@ -48,6 +48,11 @@ Este é um projeto pessoal de Pleniluner, sem vínculo oficial com a Universidad
 | 34 | [Pilhas e filas monotônicas](../textbook/34-monotonic-structures.md) | Justificar a remoção de candidatos e verificar intervalos com valores negativos |
 | 35 | [Árvores de Fenwick e posições por frequência](../textbook/35-fenwick-tree.md) | Manter blocos de prefixos, diferenças e frequências não negativas |
 | 36 | [Árvores de segmentos e propagação preguiçosa](../textbook/36-segment-tree.md) | Combinar resumos e acompanhar a ordem das consultas e atualizações |
+| 37 | [Tipos, entrada/saída e controle em C++](../textbook/37-cpp-basics.md) | Compilar e verificar tipos, entradas inválidas e limites dos laços |
+| 38 | [Funções e tempo de vida de objetos C++](../textbook/38-cpp-functions-lifetime.md) | Acompanhar valores, referências, ponteiros e liberação de recursos |
+| 39 | [Arquivos, interfaces e testes C++](../textbook/39-cpp-files-project.md) | Construir um programa com vários arquivos e verificar dados e erros |
+
+Os capítulos 37–39 acrescentam aos fundamentos de programação 30 programas C++17 compilados e executados. O total é de 360 programas: 330 em Python e 30 em C++. Consulte o [guia de prática C++](../cpp-programming-practice.md), em chinês.
 
 Os capítulos 4 a 36 usam Python 3.11 ou superior e incluem 330 programas independentes com as saídas esperadas. Consulte os guias de [programação](../programming-practice.md), [estruturas de dados](../data-structures-practice.md) e [algoritmos](../algorithms-practice.md), em chinês. [Exercícios de recursão e divisão de problemas (em chinês)](../recursion-practice.md). [Exercícios sobre árvores e heaps (em chinês)](../trees-practice.md). [Exercícios sobre tabelas hash e grafos (em chinês)](../hash-graphs-practice.md). [Exercícios de ordenação topológica e grafos ponderados (em chinês)](../weighted-graphs-practice.md). [Exercícios de backtracking, algoritmos gulosos e programação dinâmica (em chinês)](../strategy-practice.md). [Exercícios avançados de programação dinâmica (em chinês)](../advanced-dp-practice.md). [Exercícios sobre strings, tries e intervalos (em chinês)](../string-window-practice.md). [Exercícios sobre estruturas monotônicas e consultas dinâmicas em intervalos (em chinês)](../range-structures-practice.md).
 

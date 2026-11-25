@@ -18,7 +18,7 @@ from cs_study_map.pipeline import analyze
 from cs_study_map.render import build
 from cs_study_map.storage import StudyError, git_blob_sha, load_project, read_json, read_jsonl, write_json
 from cs_study_map.sync import synchronize
-from cs_study_map.textbook import PYTHON_BOOK_PROMPT, PYTHON_BOOK_PROMPT_VERSION, build_textbook, resolve_sources, validate_chapter, write_chapters
+from cs_study_map.textbook import CPP_BOOK_PROMPT, CPP_BOOK_PROMPT_VERSION, PYTHON_BOOK_PROMPT, PYTHON_BOOK_PROMPT_VERSION, build_textbook, resolve_sources, validate_chapter, write_chapters
 from cs_study_map.validate import audit_tracked, validate
 from test_pipeline import FakeGitHub, FakeModel, ROOT
 
@@ -133,6 +133,38 @@ class BookAndUpdateTests(unittest.TestCase):
         with patch.object(self.model, "generate", return_value=content):
             self.assertEqual(write_chapters(self.project, self.model)["failed"], 1)
         self.assertEqual(read_json(self.root / "catalog/chapters/01-start.json"), saved)
+
+    def test_cpp_writing_renders_multifile_contract_without_running_code(self):
+        self.prepare()
+        chapter = self.plan["chapters"][0]
+        chapter["format"] = "cpp"
+        write_json(self.root / "config/curriculum.json", self.plan)
+        (self.root / "docs/cpp-programming-practice.md").write_text("# C++ practice\n", encoding="utf-8")
+        sources = resolve_sources(self.project, chapter)
+        content = chapter_fixture(sources[0]["topics"][0]["key"])
+        program = {"files": {"main.cpp": '#include "value.hpp"\nint main() { return value(); }\n',
+                             "value.hpp": "int value();\n", "value.cpp": "int value() { return 0; }\n"},
+                   "stdin": "", "output": "", "stderr": "", "exit_code": 0, "fixtures": {}, "artifacts": {}}
+        for item in content["sections"] + content["worked_examples"] + content["exercises"]:
+            item["program"] = copy.deepcopy(program)
+        with patch.object(self.model, "generate", return_value=content) as generate:
+            self.assertEqual(write_chapters(self.project, self.model)["completed"], 1)
+            self.assertEqual(generate.call_args.args[1], CPP_BOOK_PROMPT)
+        document = read_json(self.root / "catalog/chapters/01-start.json")
+        self.assertEqual(document["prompt_version"], CPP_BOOK_PROMPT_VERSION)
+        with patch("subprocess.run", side_effect=AssertionError("Build must not execute C++")):
+            build_textbook(self.project)
+        page = (self.root / "docs/textbook/01-start.md").read_text(encoding="utf-8")
+        self.assertIn("```cpp", page)
+        self.assertIn("main.cpp value.cpp -o lesson.exe", page)
+        self.assertNotIn("```python", page)
+        self.assertIn("cpp-programming-practice.md", page)
+        solution = page.index("<summary>解答与检查</summary>")
+        self.assertIn("```cpp", page[solution:page.index("</details>", solution)])
+        self.assertEqual(write_chapters(self.project, self.model)["attempted"], 0)
+        (self.root / "docs/cpp-programming-practice.md").unlink()
+        build_textbook(self.project)
+        self.assertNotIn("cpp-programming-practice.md", (self.root / "docs/textbook/01-start.md").read_text(encoding="utf-8"))
 
     def test_manual_analysis_correction_invalidates_book(self):
         self.prepare()

@@ -4,6 +4,7 @@ import json
 import re
 
 from .github import source_url
+from .cpp import cpp_program_lines, validate_cpp_program
 from .pipeline import current_analysis
 from .render import effective_result, md
 from .storage import StudyError, atomic_write, digest, read_json, read_jsonl, write_json
@@ -44,7 +45,23 @@ official_references 是已经核对的官方语言语义参考说明，不得把
 """
 
 
+CPP_BOOK_PROMPT_VERSION = "1-cpp17"
+CPP_BOOK_PROMPT = BOOK_PROMPT + """
+本章使用 C++17。sections、worked_examples、exercises 可增加 program 字段；每个例题和练习必须提供。
+program 恰好包含 files、stdin、output、stderr、exit_code、fixtures、artifacts。
+files 是文件名到完整源码的映射，必须含 main.cpp，可有其他 .cpp 和 .hpp；全部在同一目录。
+fixtures 是运行前的文本文件映射，artifacts 是运行后要核对的文本文件映射，均只允许 .txt 或 .csv。
+文件名仅用小写英文字母、数字和下划线，不含路径，不用系统保留名。无文件用空对象。
+stdin、output、stderr 是准确文本，保留换行，无内容用空串；exit_code 为 0 到 125 的整数。
+源码不超过 8 个文件，合计不超过 24000 字符；单个文件不超过 16000 字符。只用标准库，不联网、不调用 shell。
+每段程序须能单独编译运行；先解释新语法、数据范围和失败规则，避免未定义行为。输入、文件与错误处理须与文字契约一致。
+只对源码字段使用正常 C++ 符号，其他文字仍遵守普通文本规则。official_references 用于核对 C++17 语义。
+"""
+
+
 def writing_prompt(chapter):
+    if chapter.get("format") == "cpp":
+        return CPP_BOOK_PROMPT, CPP_BOOK_PROMPT_VERSION
     if chapter.get("format") == "python":
         return PYTHON_BOOK_PROMPT, PYTHON_BOOK_PROMPT_VERSION
     return BOOK_PROMPT, BOOK_PROMPT_VERSION
@@ -86,7 +103,7 @@ def curriculum(project):
         ids.add(chapter["id"])
         if not chapter["sources"]:
             raise StudyError("Chapter needs at least one analyzed source")
-        if chapter.get("format", "prose") not in {"prose", "python"}:
+        if chapter.get("format", "prose") not in {"prose", "python", "cpp"}:
             raise StudyError("Unknown textbook chapter format")
         if "references" in chapter:
             validate_references(chapter["references"])
@@ -125,7 +142,7 @@ def chapter_key(plan, chapter, sources):
     return digest({"learner": plan["learner"], "chapter": chapter, "sources": sources, "prompt": prompt, "version": version})
 
 
-def validate_chapter(value, sources):
+def validate_chapter(value, sources, language="python"):
     fields = {"introduction", "objectives", "prerequisites", "sections", "worked_examples", "exercises", "pitfalls", "self_checks", "limitations"}
     if not isinstance(value, dict) or set(value) != fields:
         raise StudyError("Textbook chapter fields do not match schema")
@@ -173,7 +190,10 @@ def validate_chapter(value, sources):
             prose(text, 10)
     for item in value["sections"] + value["worked_examples"] + value["exercises"]:
         if "program" in item:
-            validate_program(item["program"])
+            if language == "cpp":
+                validate_cpp_program(item["program"])
+            else:
+                validate_program(item["program"])
     return value
 
 
@@ -196,10 +216,11 @@ def validate_document(document):
                 raise StudyError("Invalid textbook source topic")
         if not re.fullmatch(r"[0-9a-f]{40}", source["commit"]):
             raise StudyError("Textbook source must use a fixed commit")
-    validate_chapter(document["content"], document["sources"])
-    if document["prompt_version"] == PYTHON_BOOK_PROMPT_VERSION:
+    language = "cpp" if document["prompt_version"] == CPP_BOOK_PROMPT_VERSION else "python"
+    validate_chapter(document["content"], document["sources"], language)
+    if document["prompt_version"] in {PYTHON_BOOK_PROMPT_VERSION, CPP_BOOK_PROMPT_VERSION}:
         if any("program" not in item for item in document["content"]["worked_examples"] + document["content"]["exercises"]):
-            raise StudyError("Python chapters require programs for every example and exercise")
+            raise StudyError("Programming chapters require programs for every example and exercise")
     return document
 
 
@@ -233,9 +254,9 @@ def write_chapters(project, client, limit=1, selected=None, require_ai=False):
             prompt, version = writing_prompt(chapter)
             if chapter.get("references"):
                 context["official_references"] = chapter["references"]
-            content = validate_chapter(client.generate(context, prompt, max_tokens=12000), sources)
-            if chapter.get("format") == "python" and any("program" not in item for item in content["worked_examples"] + content["exercises"]):
-                raise StudyError("Python chapters require programs for every example and exercise")
+            content = validate_chapter(client.generate(context, prompt, max_tokens=12000), sources, chapter.get("format", "python"))
+            if chapter.get("format") in {"python", "cpp"} and any("program" not in item for item in content["worked_examples"] + content["exercises"]):
+                raise StudyError("Programming chapters require programs for every example and exercise")
             document = {"schema_version": 1, "chapter_id": chapter["id"], "title": chapter["title"],
                         "context_key": key, "model": client.model, "prompt_version": version,
                         "review_status": "ai-draft", "sources": sources, "content": content}
@@ -267,10 +288,12 @@ def paragraphs(text):
     return "\n\n".join(md(part) for part in text.splitlines() if part.strip())
 
 
-def program_lines(item):
+def program_lines(item, language="python"):
     program = item.get("program")
     if not program:
         return []
+    if language == "cpp":
+        return cpp_program_lines(program)
     lines = ["", "**完整程序**", "", "```python", program["code"].rstrip(), "```", "", "**预期输出**", ""]
     if program["output"]:
         lines += ["```text", program["output"].rstrip("\n"), "```", ""]
@@ -306,6 +329,7 @@ def build_textbook(project):
         if (root / "docs" / filename).is_file():
             support.append(f"[{label}](../{filename})")
     programming_support = ["[编程练习与运行](../programming-practice.md)"] if (root / "docs/programming-practice.md").is_file() else []
+    cpp_support = ["[C++ 练习与编译](../cpp-programming-practice.md)"] if (root / "docs/cpp-programming-practice.md").is_file() else []
     if (root / "docs/data-structures-practice.md").is_file():
         programming_support.append("[数据结构练习指引](../data-structures-practice.md)")
     if (root / "docs/algorithms-practice.md").is_file():
@@ -330,7 +354,8 @@ def build_textbook(project):
         label = "AI 初稿，可开始试学" if status == "current" else "来源或计划变化，待复核"
         rows.append(f"| {index + 1} | [{md(chapter['title'])}]({chapter['id']}.md) | {label} |")
         content = document["content"]
-        chapter_support = programming_support if chapter.get("format") == "python" else support
+        language = chapter.get("format", "prose")
+        chapter_support = cpp_support if language == "cpp" else (programming_support if language == "python" else support)
         navigation = chapter_navigation(plan["chapters"], index, available)
         lines = [f"# {md(document['title'])}", "", " · ".join(["[返回教材目录](index.md)", *chapter_support]), ""]
         if navigation:
@@ -346,15 +371,15 @@ def build_textbook(project):
         topic_numbers = {t["key"]: i + 1 for i, t in enumerate([t for s in document["sources"] for t in s["topics"]])}
         for section in content["sections"]:
             refs = "、".join(str(topic_numbers[k]) for k in section["source_topic_keys"])
-            lines += ["", f"## {md(section['title'])}", "", paragraphs(section["body"]), *program_lines(section), "", f"选题关联：来源主题 {refs}（文末列出）。"]
+            lines += ["", f"## {md(section['title'])}", "", paragraphs(section["body"]), *program_lines(section, language), "", f"选题关联：来源主题 {refs}（文末列出）。"]
         lines += ["", '<a id="examples"></a>', "", "## 跟着做：原创例题", ""]
         for i, example in enumerate(content["worked_examples"], 1):
             lines += [f"### 例题 {i}", "", paragraphs(example["question"]), ""]
             lines += [f"{n}. {md(step)}" for n, step in enumerate(example["steps"], 1)]
-            lines += ["", "**结果与核对**", "", paragraphs(example["answer"]), *program_lines(example), ""]
+            lines += ["", "**结果与核对**", "", paragraphs(example["answer"]), *program_lines(example, language), ""]
         lines += ['<a id="practice"></a>', "", "## 自己做：先完成再看解答", ""]
         for i, exercise in enumerate(content["exercises"], 1):
-            lines += [f"### 练习 {i}", "", paragraphs(exercise["question"]), "", "<details>", "<summary>提示</summary>", "", paragraphs(exercise["hint"]), "", "</details>", "", "<details>", "<summary>解答与检查</summary>", "", paragraphs(exercise["answer"]), *program_lines(exercise), "", "</details>", ""]
+            lines += [f"### 练习 {i}", "", paragraphs(exercise["question"]), "", "<details>", "<summary>提示</summary>", "", paragraphs(exercise["hint"]), "", "</details>", "", "<details>", "<summary>解答与检查</summary>", "", paragraphs(exercise["answer"]), *program_lines(exercise, language), "", "</details>", ""]
         lines += ['<a id="pitfalls"></a>', "", "## 容易混淆的地方", ""]
         for item in content["pitfalls"]:
             lines += [f"- **{md(item['mistake'])}** {md(item['correction'])}"]
@@ -382,7 +407,7 @@ def build_textbook(project):
              "目标是给自己一条能学下去的路线：读讲解 → 跟例题 → 独立做题 → 用自测找出卡点 → 回到资料深入。课程目录为选材提供线索，章节按先修关系组织。", "",
              f"已登记的具体章节中，可试学 {current} 章，待复核 {stale} 章，待编写 {len(plan['chapters']) - current - stale} 章。后续待写方向另列于下方，尚未计入具体章节数量。每章含讲解、2 个原创例题、3 道练习及解答。当前章节均为 AI 初稿，尚未经过学科专家或学习者实际试学验收。", "",
              "## 从这里开始", "", "先按下表顺序阅读。能独立解释并做对自测再前进；卡住时在本机学习记录中写下具体问题，后续据此调整教材。", "",
-             *([" · ".join(support + programming_support), ""] if support or programming_support else []),
+             *([" · ".join(support + programming_support + cpp_support), ""] if support or programming_support or cpp_support else []),
              "| 顺序 | 章节 | 状态 |", "| ---: | --- | --- |", *rows, "", "## 后续路线（尚未写成教材）", ""]
     if (root / "docs/course-writing-plan.md").is_file():
         lines[2] += " · [按原课程学习与续写](../course-writing-plan.md)"
